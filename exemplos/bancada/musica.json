@@ -1,0 +1,123 @@
+{
+ "_sobre": "Plano de composição da trilha do filme (ElevenLabs Music, modelo music_v1). Seis seções pensadas sobre a fala: introdução tensa, queda em 'Ele foi programado', respiro nas três perguntas, subida, tensão e final no CTA. A API não cumpre os tempos à risca: a tomada escolhida foi alinhada com scripts/trilha_eleven.py alinhar.",
+ "positive_global_styles": [
+  "instrumental",
+  "hybrid cinematic tech trailer",
+  "premium product launch film",
+  "deep sub bass hits",
+  "tight modern percussion",
+  "110 BPM",
+  "dark and confident",
+  "wide and punchy mix"
+ ],
+ "negative_global_styles": [
+  "vocals",
+  "singing",
+  "spoken word",
+  "lo-fi",
+  "cheesy corporate ukulele",
+  "muddy mix",
+  "long fade out"
+ ],
+ "sections": [
+  {
+   "section_name": "Intro",
+   "positive_local_styles": [
+    "tense minimal pulse",
+    "ticking clock",
+    "reverse swell rising into the drop",
+    "near silence at the very end"
+   ],
+   "negative_local_styles": [
+    "drums",
+    "full beat"
+   ],
+   "duration_ms": 3000,
+   "lines": []
+  },
+  {
+   "section_name": "Drop",
+   "positive_local_styles": [
+    "huge impact on the first beat",
+    "driving half-time groove",
+    "sub bass stabs",
+    "crisp hats",
+    "simple memorable low synth motif"
+   ],
+   "negative_local_styles": [
+    "vocals"
+   ],
+   "duration_ms": 11500,
+   "lines": []
+  },
+  {
+   "section_name": "Break",
+   "positive_local_styles": [
+    "stop-time accents",
+    "three punctuated hits with space between",
+    "playful call and response",
+    "filtered groove"
+   ],
+   "negative_local_styles": [
+    "vocals"
+   ],
+   "duration_ms": 4300,
+   "lines": []
+  },
+  {
+   "section_name": "Lift",
+   "positive_local_styles": [
+    "groove returns bigger",
+    "added high arpeggio",
+    "more energy",
+    "snare on the backbeat"
+   ],
+   "negative_local_styles": [
+    "vocals"
+   ],
+   "duration_ms": 6100,
+   "lines": []
+  },
+  {
+   "section_name": "Build",
+   "positive_local_styles": [
+    "tension build",
+    "snare roll and riser",
+    "rising pitch",
+    "pulling energy up",
+    "short silence at the very end"
+   ],
+   "negative_local_styles": [
+    "vocals"
+   ],
+   "duration_ms": 4700,
+   "lines": []
+  },
+  {
+   "section_name": "Finale",
+   "positive_local_styles": [
+    "massive impact on the first beat",
+    "triumphant full groove",
+    "big chord",
+    "final decisive hit and clean short tail at the end"
+   ],
+   "negative_local_styles": [
+    "vocals",
+    "fade out"
+   ],
+   "duration_ms": 6500,
+   "lines": []
+  }
+ ],
+ "_tomada_publicada": {
+  "semente": 7,
+  "virada_medida_s": 4.12,
+  "impacto_final_medido_s": 30.32,
+  "esticamento": [
+   0.984,
+   0.98
+  ],
+  "volume_lufs": -19,
+  "observacao": "A geração não é determinística; refazer com a mesma semente pode dar outra música. O arquivo de áudio não vai para o repositório."
+ }
+}

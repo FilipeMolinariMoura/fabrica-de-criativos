@@ -39,6 +39,10 @@ Precisa de `node_modules` com `three` e `playwright`, `ffmpeg` e `uv`. A narraç
 está no repositório: gere a sua (docs do projeto) e refaça `vo.json`; `narracao.json` diz como esta
 foi feita.
 
+A música do vídeo publicado foi gerada na ElevenLabs Music a partir de `musica.json` e alinhada à fala com
+`scripts/trilha_eleven.py` (capítulo 13 da documentação). O áudio não está no repositório. Os comandos abaixo
+usam a trilha sintetizada, que é grátis e dá um filme completo.
+
 ```bash
 # 1. tempos e sons a partir da fala  -> trilha.json + out/exemplos/bancada/hits.json
 node lib/3d/render.mjs --film exemplos/bancada --meta

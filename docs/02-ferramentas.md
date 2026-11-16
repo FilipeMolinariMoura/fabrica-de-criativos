@@ -120,7 +120,8 @@ O ajuste local no `mix.mjs` expõe os parâmetros do sidechain. Está descrito e
 | `scripts/voz_dialogo.py` | Diálogo entre vozes a partir das frases escolhidas |
 | `scripts/voz_avaliar.py` | Filtro às cegas: ordena as tomadas |
 | `scripts/vo_montar.py` | Trata a voz e grava os tempos de palavra e frase (`vo.json`) |
-| `scripts/trilha.py` | Compõe a trilha sob a narração |
+| `scripts/trilha.py` | Compõe a trilha sob a narração (sintetizada, grátis) |
+| `scripts/trilha_eleven.py` | Gera a trilha na ElevenLabs Music e alinha a virada e o final à fala (pago) |
 | `scripts/variante.py` | Variações de cor, estilo e voz no motor 2D |
 | `scripts/finalizar.sh` | Trilha, efeitos, mixagem e render do motor 2D (prévia ou final) |
 | `scripts/finalizar3d.sh` | O mesmo para o motor 3D, mais folha de contato e contraste das legendas (`previa`, `final`, `contato`, `contraste`, `audio`) |

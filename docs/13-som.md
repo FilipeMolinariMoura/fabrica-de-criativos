@@ -42,6 +42,34 @@ Climas disponíveis: `tenso`, `corporativo`, `tech`, `energetico` e `suave`.
 
 No motor 2D, `trilha.json` é escrito à mão. No motor 3D, o filme o calcula a partir das palavras, e o renderizador grava com `--meta`.
 
+### Alternativa paga: música gerada por IA, alinhada à fala
+
+A trilha sintetizada casa sozinha com a fala e é grátis, mas tem timbre de sintetizador. No anúncio deste projeto, o autor pediu uma música "mais impactante, que prende mais". A trilha publicada foi gerada na **ElevenLabs Music** e alinhada à narração com `scripts/trilha_eleven.py`.
+
+O processo tem três passos:
+
+1. **Planejar sobre a fala.** O arquivo `musica.json` do filme descreve a música em seções: introdução tensa, queda em "Ele foi programado", respiro nas três perguntas, subida, tensão e final no CTA. O plano usado está em [`exemplos/bancada/musica.json`](../exemplos/bancada/musica.json).
+2. **Gerar tomadas e escolher de ouvido.** Foram geradas seis faixas em três estilos (trailer, bass house e trap). O autor ouviu três delas já no vídeo e escolheu a de trailer.
+3. **Alinhar medindo.** A API não cumpre os tempos pedidos: a introdução de 3,0 s saiu com 3,9 a 4,5 s. O script acha no áudio a virada (o maior salto de energia no começo) e o impacto final, leva a virada para `reveal` e o impacto para `cta`, e estica o tempo de cada trecho sem mudar o tom.
+
+```bash
+uv run scripts/trilha_eleven.py gerar   exemplos/bancada --tomadas 2
+uv run scripts/trilha_eleven.py alinhar exemplos/bancada exemplos/bancada/audio/musica-1.raw.wav
+make audio3d FILME=exemplos/bancada      # refaz efeitos e mixagem com a música nova
+```
+
+Na tomada publicada, a virada foi medida em 4,12 s e o impacto final em 30,32 s. Para caírem em 2,40 s e 29,02 s, os dois trechos foram esticados em 1,6% e 2,0%. Quando uma tomada pede mais de 8%, o script usa um esticamento único e avisa onde o impacto final caiu.
+
+O que observar:
+
+- **Trocar a música não exige novo render.** A imagem é a mesma; refaz-se a mixagem e junta-se o áudio ao vídeo pronto. Levou minutos.
+- **A geração não é determinística.** A mesma semente pode dar outra música. Guarde a tomada escolhida; ela não vai para o repositório.
+- **O que pulsa na batida fica defasado.** O botão do cartão final foi animado sobre a grade de batidas da trilha sintetizada. Com a música nova, o pulso pode não coincidir com a batida. Corrigir pede novo render daquele trecho. Não foi feito.
+- **A medição alinha, o ouvido aprova.** Uma das seis tomadas tinha virada de só 3 dB; o script avisa quando o salto é menor que 6 dB.
+- **Licença.** Exige plano pago. Confira os termos de uso comercial do seu plano antes de veicular.
+
+`finalizar3d.sh` só recompõe a música sintetizada se `audio/music.wav` não existir ou se o `trilha.json` mudar. Uma música alinhada por este script é mantida.
+
 ## 13.3 Os efeitos
 
 Cada evento visual do filme tem uma linha: instante, rótulo e som.
@@ -143,6 +171,7 @@ Os arquivos separados (`vo.wav`, `music.wav`, `sfx.wav`) são o que torna essas 
 - **Estéreo.** A mixagem é, na prática, mono. O crítico apontou e deu prioridade baixa. Ficou assim.
 - **Timbre das duas vozes.** O nível foi igualado; o brilho, não.
 - **Escuta crítica final.** A mixagem foi corrigida e conferida por medida. A nota de som registrada depois das correções é nota de construção. Quem aprova o som de ouvido é a pessoa que aprova o filme.
+- **Batida do cartão final.** O pulso do botão segue a grade da trilha sintetizada, não a da música publicada (veja 13.2).
 - **Sons gravados.** Tudo é sintetizado. Para estalo de chave, tecla e papel, gravar com o celular ou usar um acervo CC0 daria mais matéria. Não foi feito.
 
 ## 13.9 Comandos

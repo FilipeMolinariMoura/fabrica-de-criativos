@@ -4,6 +4,18 @@ Todas as mudanças relevantes deste projeto ficam registradas aqui.
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o projeto adota o [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [2.0.1] — 2026-11-16
+
+### Adicionado
+
+- `scripts/trilha_eleven.py`: trilha gerada na ElevenLabs Music a partir de um plano de seções (`musica.json`) e alinhada à fala, medindo no áudio a virada e o impacto final.
+- `exemplos/bancada/musica.json`: o plano de composição da trilha do anúncio.
+
+### Alterado
+
+- O vídeo de A bancada passa a usar a trilha gerada por IA (estilo trailer), escolhida de ouvido pelo autor entre três opções. A imagem é a mesma: só o áudio foi refeito.
+- Capítulo 13 da documentação: seção sobre a alternativa paga de música e o que ela não resolve.
+
 ## [2.0.0] — 2026-11-16
 
 A versão 2 responde a uma reprovação. O anúncio do próprio projeto, feito com o motor 2D da versão 1, passou em todas as conferências e foi recusado pelo autor como "cru". O método ganhou as peças que faltavam para mirar em qualidade percebida, e para verificá-la.

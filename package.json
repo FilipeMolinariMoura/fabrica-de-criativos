@@ -1,6 +1,6 @@
 {
   "name": "fabrica-de-criativos",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Kit para produzir anúncios verticais (9:16) com IA e código: filmes 3D fotorrealistas em three.js ou motion 2D em canvas, renderizados quadro a quadro; narração grátis (Kokoro, Fish Audio) ou dirigida (ElevenLabs); trilha e efeitos sintetizados; mixagem em -14 LUFS.",
   "type": "module",
   "private": true,

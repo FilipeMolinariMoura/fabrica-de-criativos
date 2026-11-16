@@ -5,7 +5,7 @@
 **Anúncios em vídeo que saem de código: você escreve o roteiro, a IA narra, e cada cena entra na palavra falada.**
 
 [![CI](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/actions/workflows/ci.yml/badge.svg)](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/actions/workflows/ci.yml)
-[![Versão 2.0.0](https://img.shields.io/badge/vers%C3%A3o-2.0.0-FF6B4A.svg)](CHANGELOG.md)
+[![Versão 2.0.1](https://img.shields.io/badge/vers%C3%A3o-2.0.1-FF6B4A.svg)](CHANGELOG.md)
 [![Código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-blue.svg)](LICENSE)
 [![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey.svg)](LICENSE-docs.md)
 [![Guia em PDF](https://img.shields.io/badge/guia-PDF-0B1416.svg)](dist/Fabrica-de-Criativos.pdf)
@@ -313,12 +313,12 @@ Quer assumir um item? Veja [CONTRIBUTING.md](CONTRIBUTING.md).
   author  = {Molinari, Filipe},
   title   = {Fábrica de Criativos: método aberto para anúncios em vídeo a partir de código, com 3D fotorrealista e IA},
   year    = {2026},
-  version = {2.0.0},
+  version = {2.0.1},
   url     = {https://github.com/FilipeMolinariMoura/fabrica-de-criativos}
 }
 ```
 
-ABNT: MOLINARI, Filipe. **Fábrica de Criativos**: método aberto para anúncios em vídeo a partir de código, com 3D fotorrealista e IA. Versão 2.0.0. 2026. Disponível em: https://github.com/FilipeMolinariMoura/fabrica-de-criativos. Acesso em: 16 nov. 2026.
+ABNT: MOLINARI, Filipe. **Fábrica de Criativos**: método aberto para anúncios em vídeo a partir de código, com 3D fotorrealista e IA. Versão 2.0.1. 2026. Disponível em: https://github.com/FilipeMolinariMoura/fabrica-de-criativos. Acesso em: 16 nov. 2026.
 
 Os metadados de citação estão em [`CITATION.cff`](CITATION.cff).
 
