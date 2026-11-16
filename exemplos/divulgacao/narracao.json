@@ -1,0 +1,74 @@
+{
+ "metodo": "Fish Audio s2.1-pro-free, frase a frase (scripts/voz_por_frase.py --n 3 --temperatura 0.55; frases fracas com --mais), montada em diálogo com scripts/voz_dialogo.py e no tempo com scripts/vo_montar.py --tempo 1.08 --pausa-max 0.38.",
+ "vozes": {
+  "f1": {
+   "fish_id": "1d8cb595b6284ff7aa7e8fec7b93249d",
+   "nome_na_biblioteca": "Modelo 01"
+  },
+  "m5": {
+   "fish_id": "d0a1020822f64d07905bd4f4cb37fba9",
+   "nome_na_biblioteca": "NARRADOR"
+  }
+ },
+ "falas": [
+  {
+   "frase": "Esse vídeo não foi editado.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Ele foi programado.",
+   "voz": "m5"
+  },
+  {
+   "frase": "Sem timeline.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Sem arrastar clipe por clipe.",
+   "voz": "m5"
+  },
+  {
+   "frase": "Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Outra cor.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Outro estilo.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Outra voz.",
+   "voz": "m5"
+  },
+  {
+   "frase": "Um comando só.",
+   "voz": "m5"
+  },
+  {
+   "frase": "Sessenta quadros por segundo, com o áudio no padrão das redes.",
+   "voz": "m5"
+  },
+  {
+   "frase": "E dá pra fazer tudo de graça, com modelos abertos.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Método completo, guia em PDF e o código inteiro, aberto no GitHub.",
+   "voz": "m5"
+  },
+  {
+   "frase": "Procure Fábrica de Criativos no GitHub e crie o seu hoje.",
+   "voz": "f1"
+  }
+ ],
+ "refazer": [
+  "uv run scripts/voz_por_frase.py divulgacao 1d8cb595b6284ff7aa7e8fec7b93249d f1 --roteiros exemplos/divulgacao/roteiro.json --campo falas_fish",
+  "uv run scripts/voz_por_frase.py divulgacao d0a1020822f64d07905bd4f4cb37fba9 m5 --roteiros exemplos/divulgacao/roteiro.json --campo falas_fish",
+  "uv run scripts/voz_dialogo.py voz/divulgacao voz/divulgacao/dueto.wav --vozes f1,m5,f1,m5,f1,f1,f1,m5,m5,m5,f1,m5,f1",
+  "uv run scripts/vo_montar.py exemplos/divulgacao voz/divulgacao/dueto.wav --tempo 1.08 --pausa-max 0.38",
+  "scripts/finalizar.sh exemplos/divulgacao final"
+ ]
+}

@@ -49,6 +49,7 @@ As duas usam o mesmo código, os mesmos scripts e os mesmos arquivos intermediá
 |---|---|---|
 | ElevenLabs API | Narração de locutor (paga) | Comercial a partir do plano Starter |
 | Kokoro-82M | Narração local (gratuita) | Apache-2.0 |
+| Fish Audio | Narração na nuvem; modelo `s2.1-pro-free` gratuito com uso justo | Confira os termos do plano para uso comercial |
 | mlx-whisper / whisper.cpp | Transcrição às cegas e tempo das palavras | MIT |
 | Praat / Parselmouth | Medida de entonação (F0) no fim das frases | GPL |
 
@@ -81,7 +82,10 @@ As duas usam o mesmo código, os mesmos scripts e os mesmos arquivos intermediá
 |---|---|
 | `scripts/novo_criativo.sh` | Cria a pasta de um criativo novo a partir do exemplo |
 | `scripts/voz_eleven.mjs` / `scripts/eleven.mjs` | Narração paga, em lote, com N tomadas |
-| `scripts/voz_kokoro.py` | Narração gratuita, no mesmo formato de saída |
+| `scripts/voz_kokoro.py` | Narração gratuita local, no mesmo formato de saída |
+| `scripts/voz_fish.mjs` | Narração pela Fish Audio (modelo gratuito `s2.1-pro-free` ou pagos); `vozes` lista a biblioteca em português |
+| `scripts/voz_por_frase.py` | Entonação controlada: N candidatos por frase, escolha às cegas pelo fim de frase, montagem com pausas planejadas |
+| `scripts/voz_dialogo.py` | Diálogo entre vozes a partir das frases escolhidas |
 | `scripts/voz_avaliar.py` | Escolhe a melhor tomada às cegas |
 | `scripts/vo_montar.py` | Trata a voz e grava os tempos de palavra e frase (`vo.json`) |
 | `scripts/trilha.py` | Compõe a trilha sob a narração |

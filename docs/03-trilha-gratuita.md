@@ -79,6 +79,22 @@ uv run scripts/vo_montar.py <pasta-do-filme> voz/<criativo>/kokoro-dora-2.wav
 - **Piper:** roda em CPU, leve. Confira a licença de cada voz no cartão do modelo.
 - **XTTS-v2:** licença não comercial; não serve para anúncio.
 
+## 3.3.1 Fish Audio: voz de locutor sem pagar
+
+A Fish Audio tem um modelo gratuito na API (`s2.1-pro-free`, com uso justo) e uma biblioteca grande de vozes em português. Nos testes, a qualidade ficou bem acima da Kokoro. O anúncio de divulgação deste repositório usa duas vozes dela, em diálogo.
+
+```bash
+# .env: FISH_API_KEY=...   (crie em fish.audio → API Keys)
+node scripts/voz_fish.mjs vozes                                   # lista vozes em português
+uv run scripts/voz_por_frase.py <criativo> <voice_id> f1 --roteiros <roteiro.json> --n 3
+uv run scripts/voz_por_frase.py <criativo> <voice_id> f1 --roteiros <roteiro.json> --mais 8:5,11:7   # só as frases fracas
+uv run scripts/voz_dialogo.py voz/<criativo> voz/<criativo>/dueto.wav --vozes f1,m5,f1,...
+```
+
+**Cuidado máximo com a entonação.** Em bloco, a voz às vezes "se perde": uma afirmação termina subindo, como pergunta. Esse erro aparece mais em frases longas com vírgula. Frase a frase, cada candidato é conferido às cegas (palavras pelo Whisper, fim de frase pelo Praat), e só fica o que termina descendo. Use `--temperatura 0.55` para estabilizar.
+
+**Escolha da voz:** não use vozes que imitam pessoas reais (políticos, apresentadores, dubladores famosos). Em anúncio público, isso é risco legal e de reputação. Confira também se o seu plano permite uso comercial.
+
 ## 3.4 Logo 3D gratuito
 
 Há dois caminhos sem o After Effects:

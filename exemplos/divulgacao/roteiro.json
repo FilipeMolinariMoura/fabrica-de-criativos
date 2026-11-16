@@ -1,0 +1,52 @@
+{
+  "projeto": "Divulgação · Fábrica de Criativos",
+  "_regras": [
+    "Criativo de divulgação do próprio projeto, feito com o próprio kit.",
+    "Só telas reais do projeto: terminal, saídas da demo, PDF, página do GitHub.",
+    "Números por extenso na fala; na tela, a palavra-chave.",
+    "Grafia fonética na fala para a voz Kokoro: 'taimláin' (timeline), 'Guitirrábi' (GitHub)."
+  ],
+  "cta_fala": "Procure Fábrica de Criativos no Guitirrábi e crie o seu hoje.",
+  "criativos": [
+    {
+      "id": "divulgacao",
+      "titulo": "Esse vídeo não foi editado",
+      "papel": "Gancho de quebra de padrão → como funciona → prova (variações, 60 fps) → grátis → aberto → CTA",
+      "publico": "Social media, designers, devs e estudantes que produzem vídeo curto",
+      "falas": [
+        "Esse vídeo não foi editado.",
+        "Ele foi programado.",
+        "Sem taimláin. Sem arrastar clipe por clipe.",
+        "Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada.",
+        "Outra cor. Outro estilo. Outra voz. Um comando só.",
+        "Sessenta quadros por segundo, com o áudio no padrão das redes.",
+        "E dá pra fazer tudo de graça, com modelos abertos.",
+        "Método completo, guia em PDF e o código inteiro, aberto no Guitirrábi.",
+        "Procure Fábrica de Criativos no Guitirrábi e crie o seu hoje."
+      ],
+      "tela": [
+        "NÃO FOI EDITADO.",
+        "FOI PROGRAMADO.",
+        "Sem timeline",
+        "Roteiro → voz → cena",
+        "Cor · Estilo · Voz",
+        "60 fps · -14 LUFS",
+        "100% grátis",
+        "Aberto no GitHub",
+        "Fábrica de Criativos"
+      ],
+      "fonte": "Características do próprio repositório (README, dist/Fabrica-de-Criativos.pdf).",
+      "falas_fish": [
+        "Esse vídeo não foi editado.",
+        "Ele foi programado.",
+        "Sem timeline. Sem arrastar clipe por clipe.",
+        "Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada.",
+        "Outra cor. Outro estilo. Outra voz. Um comando só.",
+        "Sessenta quadros por segundo, com o áudio no padrão das redes.",
+        "E dá pra fazer tudo de graça, com modelos abertos.",
+        "Método completo, guia em PDF e o código inteiro, aberto no GitHub.",
+        "Procure Fábrica de Criativos no GitHub e crie o seu hoje."
+      ]
+    }
+  ]
+}

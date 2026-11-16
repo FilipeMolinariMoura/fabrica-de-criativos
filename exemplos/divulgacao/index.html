@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Divulgação · Fábrica de Criativos</title>
+<style>
+  @font-face { font-family: Display; src: url(../../lib/fonts/urbanist.woff2) format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: UI; src: url(../../lib/fonts/inter.woff2) format('woff2'); font-weight: 100 900; }
+  html, body { margin: 0; height: 100%; background: #08161A; overflow: hidden; }
+  body { display: grid; place-items: center; }
+  canvas { display: block; max-width: 100vw; max-height: 100vh; width: auto; height: auto; }
+  #hud { position: fixed; left: 12px; bottom: 10px; font: 12px/1 ui-monospace, monospace; color: #888; }
+  .render #hud { display: none; }
+</style>
+</head>
+<body>
+<canvas id="film"></canvas>
+<div id="hud">espaço: tocar/pausar · ←/→: quadro a quadro · clique: navegar · abra com ?format=9x16</div>
+<script>
+  // Identidade v2 (tinta-petróleo + vidro): fundo #08161A -> #0E2A30 com campos de luz difusa (petróleo, âmbar,
+  // coral) para o vidro refratar; texto branco quente #F4F1EC / #A9C1C4; UM destaque (coral #FF6B4A, ativo #FF8466)
+  // só na palavra-chave de cada cena, no estado ativo e no CTA. Tokens documentados em docs/design.md.
+  window.MARCA = {
+    nome: 'Fábrica de Criativos',
+    cores: {
+      destaque: '#FF6B4A', destaqueEscuro: '#D9532F', destaqueClaro: '#FF8466',
+      papel: '#F4F1EC', papel2: '#E6E9E8', tinta: '#08161A', tinta2: '#3B5458', mudo: '#6F8C90',
+      escuro: '#08161A', escuro2: '#0E2A30',
+      texto: '#F4F1EC', texto2: '#A9C1C4',
+      campos: [['#2A9D8F', 0.25], ['#F4A259', 0.12], ['#FF6B4A', 0.08]],
+    },
+    fim: { titulo: 'Fábrica de *Criativos*', sub: 'Procure no GitHub', cta: '', rodape: '' },
+  };
+  window.TEMA = 'escuro';
+</script>
+<script type="module" src="film.js"></script>
+</body>
+</html>

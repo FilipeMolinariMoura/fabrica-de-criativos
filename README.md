@@ -9,9 +9,9 @@
 [![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey.svg)](LICENSE-docs.md)
 [![Guia em PDF](https://img.shields.io/badge/guia-PDF-B3121B.svg)](dist/Fabrica-de-Criativos.pdf)
 
-<img src="exemplos/demo/preview/demo.gif" width="280" alt="Demonstração: anúncio de 13 s do app fictício Fluxo, gerado pelo kit com voz gratuita">
+<img src="exemplos/divulgacao/preview/divulgacao.gif" width="300" alt="Criativo de divulgação do projeto, feito com o próprio kit: 32 s, 9:16, narração em diálogo">
 
-<sub>Exemplo incluído (`exemplos/demo`): app fictício, interface desenhada em código, narração com voz aberta (Kokoro), trilha e efeitos sintetizados.</sub>
+<sub>Este anúncio foi feito com o próprio kit (`exemplos/divulgacao`): glassmorphism, cenas presas às palavras, narração em diálogo com vozes da Fish Audio (modelo gratuito) escolhidas frase a frase pela entonação. [Vídeo em 60 fps na release](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/releases/latest).</sub>
 
 </div>
 
@@ -29,6 +29,7 @@ As cenas são ancoradas nas **palavras da narração**. Por isso, trocar a voz, 
 
 - **Determinístico:** o mesmo commit gera o mesmo MP4, então o criativo pode ser versionado no Git.
 - **Sincronizado pela fala:** um texto que muda move cenas, efeitos e trilha sozinhos.
+- **Entonação controlada frase a frase:** `voz_por_frase.py` gera vários candidatos por frase e fica com o que termina no tom certo; `voz_dialogo.py` monta diálogos entre vozes.
 - **Verificação às cegas da voz:** o Whisper transcreve sem ver o roteiro, e o Praat mede a entonação no fim de cada frase.
 - **Áudio dentro do padrão:** trilha e efeitos sintetizados em código, master em -14 LUFS / -1 dBTP (ITU-R BS.1770).
 - **Biblioteca de motion:** molas, título com desfoque, cards de vidro, pílulas, cursor e toque, celular, transições e cartão final.
@@ -40,7 +41,7 @@ As cenas são ancoradas nas **palavras da narração**. Por isso, trocar a voz, 
 | Etapa | Trilha gratuita | Trilha paga |
 |---|---|---|
 | Agente (roteiro, código, revisão) | Claude Code + **Ollama** com modelo aberto (`qwen3-coder:30b`, `gpt-oss:20b`), ou OpenCode / Aider | **Claude Code** com plano Claude |
-| Narração | **Kokoro-82M** (Apache-2.0, vozes pt-BR) | **ElevenLabs** `eleven_v3` (plano Starter ou acima para uso comercial) |
+| Narração | **Kokoro-82M** (Apache-2.0, local) ou **Fish Audio** (modelo `s2.1-pro-free`, cota gratuita) | **ElevenLabs** `eleven_v3` (plano Starter ou acima para uso comercial) |
 | Conferência da fala | Whisper (mlx-whisper / openai-whisper) | igual |
 | Trilha e efeitos | Sintetizados em código | igual |
 | Logo 3D | three.js ou Blender | After Effects por script |
@@ -87,7 +88,7 @@ Briefing → Roteiro → Voz → Narração no tempo → Trilha e efeitos → Fi
 |---|---|---|---|
 | 1 | Briefing | `templates/briefing.md` | briefing aprovado |
 | 2 | Roteiro | agente + `marketing:content-creation` | `roteiros.json` |
-| 3 | Voz | `voz_kokoro.py` / `voz_eleven.mjs` + `voz_avaliar.py` | melhor tomada |
+| 3 | Voz | `voz_kokoro.py` / `voz_fish.mjs` / `voz_eleven.mjs`, `voz_por_frase.py` + `voz_avaliar.py` | melhor tomada |
 | 4 | Narração no tempo | `vo_montar.py` | `vo.json` (palavras no tempo) |
 | 5 | Trilha e efeitos | `trilha.py`, `sfx.mjs`, `mix.mjs` | `mix.wav` em -14 LUFS |
 | 6 | Filme | `lib/cena.js` + `lib/motion.js` | `film.js` |
@@ -102,7 +103,7 @@ fabrica-de-criativos/
 ├─ lib/               motion.js (harness), cena.js (primitivas), marca.json, fonts/ (OFL)
 ├─ scripts/           voz, avaliação, narração, trilha, variações, finalização, conferência
 ├─ ae/logo3d/         logo 3D no After Effects controlado por script
-├─ exemplos/demo/     criativo completo de exemplo
+├─ exemplos/         demo/ (app fictício) e divulgacao/ (o anúncio do próprio projeto)
 ├─ templates/         briefing, roteiro, rubrica de crítica, checklist de entrega
 ├─ vendor/motion-reel motor de render (MIT, v1.3.0)
 ├─ ebook/  dist/      fonte e PDF do guia "Fábrica de Criativos"

@@ -35,7 +35,7 @@ import soundfile as sf
 
 # números e grafias que o Whisper escreve do jeito dele: a fala é a mesma
 HOMO = {"1": "um", "2": "dois", "3": "tres", "4": "quatro", "5": "cinco", "6": "seis", "7": "sete", "8": "oito",
-        "9": "nove", "10": "dez", "15": "quinze", "20": "vinte", "30": "trinta", "100": "cem", "app": "aplicativo",
+        "9": "nove", "10": "dez", "15": "quinze", "20": "vinte", "30": "trinta", "60": "sessenta", "100": "cem", "app": "aplicativo",
         "pra": "para", "ta": "esta"}
 WH = ("quant", "onde", "cade", "quem", "como", "quando", "qual", "o que", "por que", "que ")
 
