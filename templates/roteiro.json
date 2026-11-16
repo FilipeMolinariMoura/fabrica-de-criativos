@@ -1,0 +1,38 @@
+{
+  "projeto": "Nome do projeto (aparece na página de aprovação)",
+  "_regras": [
+    "Regras que valem para todos os criativos: tom de voz, o que pode e o que não pode afirmar, de onde vêm os números.",
+    "Fala sem sigla; números por extenso (a voz lê melhor).",
+    "Cada afirmação precisa de fonte (campo fonte)."
+  ],
+  "cta_fala": "A chamada para ação falada no fim de todos os criativos.",
+  "decisoes": {
+    "Formato": "Reels e Stories 9:16, 1080×1920, de 15 a 30 s",
+    "Voz": "Kokoro pf_dora (grátis) ou ElevenLabs (paga)",
+    "Trilha": "Sintetizada para cada vídeo; efeitos presos aos cortes"
+  },
+  "pendencias": ["Pergunta que precisa de resposta do cliente antes da produção"],
+  "criativos": [
+    {
+      "id": "c01-exemplo",
+      "titulo": "Título curto do criativo",
+      "frente": "Linha de produto ou campanha",
+      "papel": "O que este criativo faz no conjunto (ex.: gancho de problema, prova, oferta)",
+      "publico": "Para quem é",
+      "falas": [
+        "Primeira frase: o gancho, em até três segundos.",
+        "A virada: o produto entra.",
+        "Uma prova concreta do que ele faz.",
+        "CTA"
+      ],
+      "falas_v3": [
+        "[curious] Primeira frase com marcação de tom (só ElevenLabs v3, opcional).",
+        "A virada: o produto entra.",
+        "Uma prova concreta do que ele faz.",
+        "CTA"
+      ],
+      "tela": ["Texto 1 na tela", "Texto 2 na tela", "Texto do cartão final"],
+      "fonte": "De onde vem cada afirmação (site, catálogo, documento do cliente)."
+    }
+  ]
+}

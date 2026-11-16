@@ -1,0 +1,25 @@
+{
+  "projeto": "Demo · Fluxo",
+  "_regras": [
+    "Produto fictício para demonstrar a fábrica: Fluxo, um app de tarefas.",
+    "A interface é desenhada em código (lib/cena.js); nenhuma captura de tela.",
+    "Voz grátis: Kokoro pf_dora (scripts/voz_kokoro.py). Fala curta, números por extenso."
+  ],
+  "cta_fala": "Baixe o Fluxo. É grátis.",
+  "criativos": [
+    {
+      "id": "demo",
+      "titulo": "Sua semana num lugar só",
+      "papel": "Demonstração: problema escuro, virada, app em ação, cartão final",
+      "publico": "Quem se perde em listas, mensagens e lembretes",
+      "falas": [
+        "Sua semana virou uma pilha de tarefas?",
+        "Com o Fluxo, tudo fica num lugar só.",
+        "Um toque, e cada tarefa ganha hora e dono.",
+        "CTA"
+      ],
+      "tela": ["Sua semana virou uma pilha?", "Tudo num lugar só", "Hora e dono", "Baixe o Fluxo"],
+      "fonte": "Produto fictício; nenhuma afirmação de desempenho."
+    }
+  ]
+}

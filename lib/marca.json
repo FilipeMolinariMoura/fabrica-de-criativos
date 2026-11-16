@@ -1,0 +1,22 @@
+{
+  "nome": "Sua Marca",
+  "cores": {
+    "destaque": "#D7263D",
+    "destaqueEscuro": "#A51D2F",
+    "destaqueClaro": "#EF4259",
+    "papel": "#F4F1EE",
+    "papel2": "#E9E4DF",
+    "tinta": "#1E1C1D",
+    "tinta2": "#57524F",
+    "mudo": "#9B948F",
+    "escuro": "#0B0A0A",
+    "escuro2": "#171314"
+  },
+  "fontes": { "display": "Display", "ui": "UI" },
+  "fim": {
+    "titulo": "Comece *hoje*",
+    "sub": "Uma frase curta sobre o que a marca entrega",
+    "cta": "Saiba mais",
+    "rodape": ""
+  }
+}

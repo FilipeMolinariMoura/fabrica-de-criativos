@@ -1,0 +1,8 @@
+# gerados pelo After Effects e pelo png16to8.py
+*.aep
+*.aep.bak
+Salvamento automático/
+Adobe After Effects Auto-Save/
+logs/
+render16/
+saida/

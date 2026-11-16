@@ -1,0 +1,103 @@
+{
+ "bpm": 101.1804,
+ "period": 0.593,
+ "offset": 0.328,
+ "beats": [
+  0.328,
+  0.921,
+  1.514,
+  2.107,
+  2.7,
+  3.293,
+  3.886,
+  4.479,
+  5.072,
+  5.665,
+  6.258,
+  6.851,
+  7.444,
+  8.037,
+  8.63,
+  9.223,
+  9.816,
+  10.409,
+  11.002,
+  11.595,
+  12.188,
+  12.781,
+  13.374
+ ],
+ "downbeats": [
+  0.328,
+  2.7,
+  5.072,
+  7.444,
+  9.816,
+  12.188
+ ],
+ "sections": [
+  {
+   "name": "problema",
+   "beat": -0.5531,
+   "t": 0.0
+  },
+  {
+   "name": "virada",
+   "beat": 4.0,
+   "t": 2.7
+  },
+  {
+   "name": "solucao",
+   "beat": 4.0,
+   "t": 2.7
+  },
+  {
+   "name": "cta",
+   "beat": 14.0,
+   "t": 8.63
+  }
+ ],
+ "reveal": 2.7,
+ "reveal_beat": 4.0,
+ "cta": 8.63,
+ "cta_beat": 14.0,
+ "hits": [
+  {
+   "t": 6.08,
+   "beat": 9.6998
+  }
+ ],
+ "bar_energy": [
+  0.0558,
+  0.1122,
+  0.0965,
+  0.0996,
+  0.0485
+ ],
+ "duration": 13.0,
+ "designed_bpm": 101.1804,
+ "detected": [
+  0.9227,
+  1.5173,
+  2.1093,
+  2.7013,
+  3.2933,
+  3.888,
+  4.48,
+  5.072,
+  5.6667,
+  6.2587,
+  6.8533,
+  7.4453,
+  8.0373
+ ],
+ "fit_inliers": 13,
+ "fit_residual_ms": 0.83,
+ "measured": {
+  "bpm": 101.199,
+  "offset_error_ms": 2.15
+ },
+ "key": "A menor -> relativa maior",
+ "mood": "tech",
+ "source": "scripts/trilha.py: grid projetado (downbeat na virada), conferido no stem de bateria com measure_beats"
+}

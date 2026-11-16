@@ -1,0 +1,41 @@
+// config.jsxinc: TUDO o que muda de uma marca para outra fica aqui. Os passos 01..08 não precisam ser editados.
+//
+// O resultado é uma vinheta de 3 s do logo em 3D: o ícone chega de longe girando em X/Y/Z, assenta de frente
+// para a câmera com foco que fecha, ganha um reflexo de luz e sombras macias, e para. Sai como sequência PNG
+// com alfa (fundo transparente) para entrar no filme com S.logoSeq() de lib/cena.js.
+
+var CFG = {
+  // Logo: PNG com transparência (de preferência grande, ~1000 px de altura), SVG, AI ou PSD.
+  // Caminho absoluto, ou relativo a esta pasta (ae/logo3d). Vazio = uma forma desenhada (círculo + LETRA).
+  LOGO: "",
+  LETRA: "F",
+
+  // true = ícone de app (bloco arredondado tipo iOS atrás do logo, com espessura); false = só o logo flutuando.
+  TILE: true,
+
+  // Composição
+  W: 1080, H: 1080, FPS: 60, DUR: 3.0,
+  SETTLE: 1.30,       // segundo em que o ícone assenta de frente (fim do movimento)
+  TILE_SIZE: 620,     // lado do bloco, em px na tela
+  LOGO_H: 400,        // altura do logo parado, em px na tela
+  LOGO_Z: -60,        // o logo flutua esta distância à frente do bloco (paralaxe ao girar)
+  CAM_Z: -1400,       // distância da câmera (= zoom, então z = 0 sai 1:1)
+  EDGE_DEPTH: 20,     // espessura do bloco em px (fatias empilhadas)
+
+  // Cores (hex)
+  CORES: {
+    fundo: "#F4F1EE",          // fundo do filme: só guia no AE, não sai no render (o PNG tem alfa)
+    tile: "#F6F6F6",           // face do bloco
+    destaque: "#D7263D",       // cor da forma desenhada (quando LOGO está vazio)
+    destaqueClaro: "#EF4259",  // cor do reflexo que passa sobre o logo
+    espessura: "#7A1422",      // lateral do logo enquanto gira
+    sombra: "#3B2920"          // tom das sombras (quente e neutro fica natural em fundo claro)
+  },
+
+  // Saídas (relativas a esta pasta)
+  AEP: "logo3d.aep",          // o projeto salvo
+  RENDER16: "render16",       // PNG 16 bits do Render Queue (mestre)
+  SAIDA: "saida",             // PNG 8 bits finais (png16to8.py): logo_00000.png ... + final.png
+  // Nome do aplicativo do After Effects para o run_all.sh (também dá para passar AE_APP no ambiente)
+  AE_APP: "Adobe After Effects 2025"
+};

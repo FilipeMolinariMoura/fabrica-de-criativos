@@ -1,0 +1,16 @@
+{
+  "name": "fabrica-de-criativos",
+  "version": "1.0.0",
+  "description": "Kit para produzir anúncios verticais (9:16) em motion design com IA: filmes em canvas renderizados quadro a quadro, narração grátis (Kokoro) ou paga (ElevenLabs), trilha e efeitos sintetizados, mixagem em -14 LUFS.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "demo": "make demo",
+    "check": "node scripts/checar_sintaxe.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

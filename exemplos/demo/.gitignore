@@ -1,0 +1,8 @@
+# gerados: áudio (refeito por make demo), saídas de render e pastas de trabalho
+audio/
+out/
+*.wav
+*.mp3
+*.mp4
+# a prévia leve fica no repositório
+!preview/

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Se este trabalho for útil na sua pesquisa ou produção, cite-o como abaixo."
+title: "Fábrica de Criativos: método aberto para anúncios em vídeo com motion design e IA"
+abstract: >-
+  Método reprodutível e kit de ferramentas para produzir anúncios de vídeo vertical (9:16)
+  em motion design com IA generativa: roteiro, narração sintética com conferência às cegas,
+  sincronização das cenas pela fala, trilha e efeitos sintetizados em código, render
+  determinístico quadro a quadro e controle de qualidade por rubrica. Documenta uma trilha
+  gratuita (modelos de pesos abertos) e uma trilha paga (serviços comerciais).
+authors:
+  - family-names: Molinari
+    given-names: Filipe
+type: software
+version: 1.0.0
+date-released: 2026-11-16
+license: MIT
+repository-code: "https://github.com/FilipeMolinariMoura/fabrica-de-criativos"
+keywords:
+  - motion design
+  - vídeo publicitário
+  - text-to-speech
+  - IA generativa
+  - render procedural
+  - Claude Code
+  - modelos de pesos abertos

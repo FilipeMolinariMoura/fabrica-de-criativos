@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  sintaxe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: node --check em todo .js e .mjs
+        run: |
+          find . -type f \( -name '*.js' -o -name '*.mjs' \) \
+            -not -path './node_modules/*' -not -path './out/*' -print0 \
+            | xargs -0 -n1 node --check
+
+      - name: python -m py_compile em todo .py
+        run: |
+          find . -type f -name '*.py' -not -path './node_modules/*' -not -path './out/*' -print0 \
+            | xargs -0 python -m py_compile
+
+      - name: JSON válido
+        run: |
+          find . -type f -name '*.json' -not -path './node_modules/*' -not -path './out/*' -print0 \
+            | xargs -0 -n1 python -m json.tool > /dev/null
+
+      - name: shellcheck (informativo, não bloqueia)
+        continue-on-error: true
+        run: |
+          sudo apt-get install -y shellcheck >/dev/null 2>&1 || true
+          find . -type f -name '*.sh' -not -path './node_modules/*' -print0 | xargs -0 shellcheck -S warning

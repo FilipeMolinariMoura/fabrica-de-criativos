@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Demo · Fluxo</title>
+<style>
+  @font-face { font-family: Display; src: url(../../lib/fonts/urbanist.woff2) format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: UI; src: url(../../lib/fonts/inter.woff2) format('woff2'); font-weight: 100 900; }
+  html, body { margin: 0; height: 100%; background: #111; overflow: hidden; }
+  body { display: grid; place-items: center; }
+  canvas { display: block; max-width: 100vw; max-height: 100vh; width: auto; height: auto; }
+  #hud { position: fixed; left: 12px; bottom: 10px; font: 12px/1 ui-monospace, monospace; color: #888; }
+  .render #hud { display: none; }
+</style>
+</head>
+<body>
+<canvas id="film"></canvas>
+<div id="hud">espaço: tocar/pausar · ←/→: quadro a quadro · clique: navegar · abra com ?format=9x16</div>
+<script>
+  // A marca do demo (produto fictício). Sobrescreve lib/marca.json só para este filme.
+  window.MARCA = {
+    nome: 'Fluxo',
+    cores: {
+      destaque: '#5B4BEA', destaqueEscuro: '#3A2DB5', destaqueClaro: '#7D6EFF',
+      papel: '#F3F2F8', papel2: '#E7E5F1', tinta: '#17161F', tinta2: '#4F4D5E', mudo: '#9896A8',
+      escuro: '#09080F', escuro2: '#13111C',
+    },
+    fim: { titulo: 'Baixe o *Fluxo*', sub: 'Grátis para iPhone e Android', cta: 'Baixar grátis', rodape: 'Demonstração · produto fictício' },
+  };
+</script>
+<script type="module" src="film.js"></script>
+</body>
+</html>

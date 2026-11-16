@@ -1,0 +1,21 @@
+# segredos
+.env
+.env.*
+!.env.example
+# dependências e saídas
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+out/
+entrega/
+voz/
+*.wav
+*.mp3
+*.mp4
+*.mov
+!exemplos/**/preview/*.gif
+*.aep
+*.aep Logs/
+ebook/out/
+.DS_Store

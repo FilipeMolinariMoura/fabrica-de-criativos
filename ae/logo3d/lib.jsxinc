@@ -1,0 +1,145 @@
+// lib.jsxinc: constantes e utilitários compartilhados pelos passos de ae/logo3d/*.jsx.
+// Cada passo começa com:
+//   var LOGO3D_DIR = File($.fileName).parent.fsName; $.evalFile(new File(LOGO3D_DIR + "/lib.jsxinc"));
+//   icRun("NN_nome", function (log) { ... });
+// icRun() envolve o corpo em beginSuppressDialogs / try / catch / finally endSuppressDialogs(false) e grava
+// ae/logo3d/logs/NN_nome.log. Sem diálogos, sem alert(), nunca salva sem um File absoluto.
+
+$.evalFile(new File(LOGO3D_DIR + "/config.jsxinc"));
+
+var IC = {
+  DIR: LOGO3D_DIR,
+  W: CFG.W, H: CFG.H, FPS: CFG.FPS, DUR: CFG.DUR,
+  COMP: "LOGO_3D",
+  MASTER: "LOGO_MASTER",    // 2D: LOGO_3D aninhada como UMA camada; o fade-in mora aqui (nada transparece)
+  TILE: CFG.TILE_SIZE, CAM_Z: CFG.CAM_Z, SETTLE: CFG.SETTLE,
+  LOGO_H: CFG.LOGO_H, LOGO_Z: CFG.TILE ? CFG.LOGO_Z : 0, EDGE_DEPTH: CFG.EDGE_DEPTH,
+  COLORS: CFG.CORES
+};
+IC.AEP = IC.DIR + "/" + CFG.AEP;
+IC.LOGS = IC.DIR + "/logs";
+IC.RENDER16 = IC.DIR + "/" + CFG.RENDER16;
+IC.LOGO = CFG.LOGO ? (/^(\/|[A-Za-z]:)/.test(CFG.LOGO) ? CFG.LOGO : IC.DIR + "/" + CFG.LOGO) : "";
+
+function icHex(h) {
+  return [parseInt(h.substr(1, 2), 16) / 255, parseInt(h.substr(3, 2), 16) / 255, parseInt(h.substr(5, 2), 16) / 255];
+}
+
+function icRun(name, body) {
+  var dir = new Folder(IC.LOGS);
+  if (!dir.exists) dir.create();
+  var L = new File(IC.LOGS + "/" + name + ".log");
+  L.encoding = "UTF-8"; L.lineFeed = "Unix"; L.open("w");
+  function log(s) { L.writeln(s); }
+  log("== " + name + " | AE " + app.version + " | " + new Date().toString());
+  app.beginSuppressDialogs();
+  try {
+    body(log);
+    log("OK");
+  } catch (e) {
+    log("ERRO " + e.toString() + " (linha " + e.line + ")");
+  } finally {
+    app.endSuppressDialogs(false);
+    L.close();
+  }
+}
+
+function icItem(name) {
+  for (var i = 1; i <= app.project.numItems; i++) if (app.project.item(i).name === name) return app.project.item(i);
+  return null;
+}
+
+function icComp() {
+  var c = icItem(IC.COMP);
+  if (!(c instanceof CompItem)) throw new Error("comp " + IC.COMP + " não existe; rode 01_comp.jsx antes");
+  return c;
+}
+
+function icLayer(comp, name) {
+  for (var i = 1; i <= comp.numLayers; i++) if (comp.layer(i).name === name) return comp.layer(i);
+  return null;
+}
+
+// Remove toda camada cujo nome começa com prefix (para cada passo poder rodar de novo, limpo).
+function icRemove(comp, prefix) {
+  for (var i = comp.numLayers; i >= 1; i--) {
+    var l = comp.layer(i);
+    if (l.name.indexOf(prefix) === 0) { try { l.locked = false; } catch (e) {} l.remove(); }
+  }
+}
+
+// Sempre salva num caminho absoluto: o AE nunca abre "Salvar como".
+function icSave(log) {
+  app.project.save(new File(IC.AEP));
+  log("salvo " + IC.AEP);
+}
+
+// Mostra o progresso no visualizador aberto: abre a comp e para no tempo t.
+function icShow(comp, t) {
+  try { comp.openInViewer(); } catch (e) {}
+  comp.time = t;
+}
+
+function icTr(layer) { return layer.property("ADBE Transform Group"); }
+
+function icMat(layer, accepts) {
+  var m = layer.property("ADBE Material Options Group");
+  m.property("ADBE Accepts Lights").setValue(accepts ? 1 : 0);
+  m.property("ADBE Accepts Shadows").setValue(0);
+  m.property("ADBE Casts Shadows").setValue(0);
+  m.property("ADBE Ambient Coefficient").setValue(100);
+  m.property("ADBE Diffuse Coefficient").setValue(100);
+  m.property("ADBE Specular Coefficient").setValue(0);
+}
+
+// Superelipse (|x|^n + |y|^n = 1), perto da máscara de ícone do iOS, como Shape do AE.
+// Polilinha densa reamostrada por comprimento de arco; 480 vértices deixam as facetas bem abaixo de 0,05 px.
+function icSquircleShape(size, n, count) {
+  var a = size / 2, raw = [], i, t;
+  var N = 8000;
+  for (i = 0; i < N; i++) {
+    t = 2 * Math.PI * i / N;
+    var c = Math.cos(t), s = Math.sin(t);
+    raw.push([a * (c < 0 ? -1 : 1) * Math.pow(Math.abs(c), 2 / n), a * (s < 0 ? -1 : 1) * Math.pow(Math.abs(s), 2 / n)]);
+  }
+  var cum = [0], tot = 0;
+  for (i = 1; i <= N; i++) {
+    var p = raw[i - 1], q = raw[i % N];
+    tot += Math.sqrt((q[0] - p[0]) * (q[0] - p[0]) + (q[1] - p[1]) * (q[1] - p[1]));
+    cum.push(tot);
+  }
+  var verts = [], j = 0;
+  for (i = 0; i < count; i++) {
+    var target = tot * i / count;
+    while (cum[j + 1] < target) j++;
+    var f = (target - cum[j]) / ((cum[j + 1] - cum[j]) || 1);
+    var P = raw[j], Q = raw[(j + 1) % N];
+    verts.push([P[0] + (Q[0] - P[0]) * f, P[1] + (Q[1] - P[1]) * f]);
+  }
+  var sh = new Shape();
+  sh.vertices = verts;
+  sh.closed = true;
+  return sh;
+}
+
+// Camada de forma com um grupo de superelipse, preenchimento e/ou traço opcionais.
+function icSquircleLayer(comp, name, size, opts) {
+  var lay = comp.layers.addShape();
+  lay.name = name;
+  var g = lay.property("ADBE Root Vectors Group").addProperty("ADBE Vector Group");
+  g.name = "squircle";
+  var vecs = g.property("ADBE Vectors Group");
+  vecs.addProperty("ADBE Vector Shape - Group").property("ADBE Vector Shape").setValue(icSquircleShape(size, 5, 480));
+  if (opts.fill) {
+    var fill = vecs.addProperty("ADBE Vector Graphic - Fill");
+    fill.property("ADBE Vector Fill Color").setValue(opts.fill);
+    if (opts.fillOpacity !== undefined) fill.property("ADBE Vector Fill Opacity").setValue(opts.fillOpacity);
+  }
+  if (opts.stroke) {
+    var st = vecs.addProperty("ADBE Vector Graphic - Stroke");
+    st.property("ADBE Vector Stroke Color").setValue(opts.stroke);
+    st.property("ADBE Vector Stroke Width").setValue(opts.strokeWidth || 1);
+    if (opts.strokeOpacity !== undefined) st.property("ADBE Vector Stroke Opacity").setValue(opts.strokeOpacity);
+  }
+  return lay;
+}
