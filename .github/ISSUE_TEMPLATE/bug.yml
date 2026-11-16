@@ -1,0 +1,86 @@
+name: Erro
+description: Algo quebrou ou saiu diferente do que a documentação diz.
+title: "[erro] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por relatar. Antes de enviar, confira a seção de solução de problemas em `docs/08-qualidade-e-solucao-de-problemas.md`.
+        **Não cole chaves de API, material de cliente nem caminhos da sua máquina.**
+  - type: dropdown
+    id: area
+    attributes:
+      label: Onde aconteceu
+      options:
+        - Instalação (make setup)
+        - Exemplo 2D (make demo)
+        - Motor 2D (lib/cena.js)
+        - Motor 3D (lib/3d)
+        - Voz
+        - Trilha, efeitos ou mixagem
+        - Render e entrega
+        - Documentação ou guia em PDF
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: aconteceu
+    attributes:
+      label: O que aconteceu
+      description: O que você viu ou ouviu. Se for imagem, anexe um quadro.
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que você esperava
+    validations:
+      required: true
+  - type: textarea
+    id: reproduzir
+    attributes:
+      label: Como reproduzir
+      description: Os comandos, na ordem, a partir da raiz do repositório.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: saida
+    attributes:
+      label: Saída do terminal
+      description: A mensagem de erro inteira. Apague chaves e caminhos pessoais.
+      render: text
+  - type: input
+    id: versao
+    attributes:
+      label: Versão ou commit
+      placeholder: "2.0.0 ou os 7 primeiros caracteres do commit"
+    validations:
+      required: true
+  - type: input
+    id: sistema
+    attributes:
+      label: Sistema, máquina e versões
+      description: O motor 3D só foi testado em macOS.
+      placeholder: "macOS 15, Apple M1 Pro 16 GB, Node 20, ffmpeg 7"
+    validations:
+      required: true
+  - type: dropdown
+    id: trilha
+    attributes:
+      label: Trilha
+      options:
+        - Gratuita (modelo aberto, Kokoro ou Fish Audio)
+        - Paga (Claude, ElevenLabs)
+        - Mista
+        - Não se aplica
+  - type: checkboxes
+    id: conferi
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Não há chave de API, material de cliente nem caminho pessoal neste relato.
+          required: true
+        - label: Procurei nas issues abertas e não achei o mesmo erro.
+          required: true

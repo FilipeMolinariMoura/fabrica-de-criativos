@@ -127,124 +127,198 @@ h3 + table, h3 + p, h3 + div { break-before: avoid; }
 .tag.pay { background: var(--redsoft); color: var(--red); }
 .tree { font: 500 8pt/1.5 'JetBrains Mono', Menlo, monospace; }
 .tree .c { color: #8F8587; }
-.refs p { font-size: 8.4pt; line-height: 1.45; margin-bottom: 1.8mm; padding-left: 5mm; text-indent: -5mm; }
+.refs p { font-size: 7.9pt; line-height: 1.4; margin-bottom: 1.2mm; padding-left: 5mm; text-indent: -5mm; }
+.toc li { padding: 0.2mm 0; font-size: 9.4pt; }
+.lead { font-size: 11pt; line-height: 1.5; }
+.toc .sep { margin-top: 1mm; }
+.phones.c5 { grid-template-columns: repeat(5, 1fr); } .phones.c6 { grid-template-columns: repeat(6, 1fr); }
+.pipe small { font-size: 7.2pt; }
+.split > .box { margin-top: 0; }
 </style></head>
 <body>
-
 <!-- ABERTURA + SUMÁRIO -->
 <section>
-  <div class="lbl" style="font:700 8pt Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--red)">Antes de começar</div>
+  <div class="lbl" style="font:700 8pt Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--red)">Antes de começar · edição 2</div>
   <h1 style="font-size:26pt;font-weight:800;letter-spacing:-0.02em;margin:2mm 0 3mm">Como usar este guia</h1>
-  <p class="lead">Este é o passo a passo para produzir anúncios de vídeo vertical (9:16) em motion design, com narração de locutor, interface real do produto, trilha própria e render em 60 fps. Tudo sai de código, então cada vídeo pode ser refeito, ajustado e variado sem reabrir um editor. Cada etapa tem uma <b>trilha gratuita</b>, com software livre e modelos abertos, e uma <b>trilha paga</b>, com serviços comerciais. O kit completo está em <code>github.com/FilipeMolinariMoura/fabrica-de-criativos</code>.</p>
+  <p class="lead">Este é o passo a passo para produzir anúncios de vídeo vertical (9:16) a partir de código: você escreve o roteiro, a IA narra, e cada cena entra na palavra falada. A primeira edição ensinava a fazer o vídeo <b>certo</b>. Esta ensina a fazê-lo <b>parecer caro</b>, e a provar isso antes de publicar. Cada etapa tem uma <b>trilha gratuita</b> e uma <b>trilha paga</b>. O kit está em <code>github.com/FilipeMolinariMoura/fabrica-de-criativos</code>.</p>
   <div class="kpis">
-    <div><b>8</b><span>etapas, do briefing ao arquivo final</span></div>
-    <div><b>1 a 2 h</b><span>por criativo depois do kit montado</span></div>
-    <div><b>60 fps</b><span>1080×1920, H.264, áudio em -14 LUFS</span></div>
-    <div><b>3 eixos</b><span>de variação: cor, estilo e voz</span></div>
+    <div><b>10</b><span>etapas, do briefing ao arquivo final</span></div>
+    <div><b>12</b><span>regras do visual caro, com números</span></div>
+    <div><b>192–768</b><span>amostras por quadro no motor 3D</span></div>
+    <div><b>60 fps</b><span>1080×1920, áudio em −14 LUFS</span></div>
   </div>
-  <p class="small" style="margin:0">Ao longo do guia: <b style="color:var(--green)">Dica</b> é atalho, <b style="color:var(--red)">Atenção</b> é erro que custa retrabalho, <b>Por quê</b> explica a regra, e cada etapa fecha com um checklist.</p>
-  <h2 style="margin-top:6mm">Sumário</h2>
+  <p class="small" style="margin:0">Ao longo do guia: <b style="color:var(--green)">Dica</b> é atalho, <b style="color:var(--red)">Atenção</b> é erro que custa retrabalho, <b>Por quê</b> explica a regra. Todo número vem marcado como medido ou estimado, e o que deu errado está escrito.</p>
+  <h2 style="margin-top:3.5mm">Sumário</h2>
   <ul class="toc">
-    <li><span class="n">01</span><span class="t">O kit completo<small>Ferramentas, skills, plugins, APIs, modelos e scripts</small></span><span class="p" data-toc="c01">3</span></li>
-    <li><span class="n">02</span><span class="t">Gratuito ou pago<small>As duas trilhas, etapa por etapa, e como apontar o agente para um modelo aberto</small></span><span class="p" data-toc="c02">4</span></li>
-    <li><span class="n">03</span><span class="t">Instalação e estrutura do projeto<small>O que instalar, onde fica cada coisa</small></span><span class="p" data-toc="c03">5</span></li>
-    <li><span class="n">04</span><span class="t">Briefing e roteiro<small>A estrutura de 30 segundos que funciona</small></span><span class="p" data-toc="c04">6</span></li>
-    <li><span class="n">05</span><span class="t">Voz de locutor com IA<small>ElevenLabs, tomadas e conferência às cegas</small></span><span class="p" data-toc="c05">7</span></li>
-    <li><span class="n">06</span><span class="t">Narração no tempo<small>Cada cena presa a uma palavra falada</small></span><span class="p" data-toc="c06">8</span></li>
-    <li><span class="n">07</span><span class="t">Trilha e efeitos sonoros<small>Música sintetizada, batidas e mixagem</small></span><span class="p" data-toc="c07">9</span></li>
-    <li><span class="n">08</span><span class="t">Construindo o filme<small>As técnicas de motion design, uma a uma</small></span><span class="p" data-toc="c08">10</span></li>
-    <li><span class="n">09</span><span class="t">Logo 3D no After Effects<small>Automatizado por script, assistindo ao vivo</small></span><span class="p" data-toc="c09">12</span></li>
-    <li><span class="n">10</span><span class="t">Crítica, render e entrega<small>Rodadas de revisão, 60 fps e variações</small></span><span class="p" data-toc="c10">13</span></li>
-    <li><span class="n">11</span><span class="t">Skills por etapa<small>Quais skills e plugins usar em cada fase</small></span><span class="p" data-toc="c11">14</span></li>
-    <li><span class="n">12</span><span class="t">Fundamentos<small>Animação, aprendizagem multimídia, fala e loudness</small></span><span class="p" data-toc="c12">15</span></li>
+    <li><span class="n">01</span><span class="t">A história: de certo a caro</span><span class="p" data-toc="c01">3</span></li>
+    <li><span class="n">02</span><span class="t">O método em 10 etapas</span><span class="p" data-toc="c02">4</span></li>
+    <li><span class="n">03</span><span class="t">O kit completo</span><span class="p" data-toc="c03">5</span></li>
+    <li><span class="n">04</span><span class="t">Gratuito ou pago</span><span class="p" data-toc="c04">6</span></li>
+    <li><span class="n">05</span><span class="t">Instalação e estrutura do projeto</span><span class="p" data-toc="c05">7</span></li>
+    <li><span class="n">06</span><span class="t">Briefing e roteiro</span><span class="p" data-toc="c06">8</span></li>
+    <li><span class="n">07</span><span class="t">Pesquisa de referências e as 12 regras</span><span class="p" data-toc="c07">9</span></li>
+    <li><span class="n">08</span><span class="t">Voz dirigida</span><span class="p" data-toc="c08">10</span></li>
+    <li><span class="n">09</span><span class="t">Narração no tempo</span><span class="p" data-toc="c09">11</span></li>
+    <li><span class="n">10</span><span class="t">Look-dev</span><span class="p" data-toc="c10">12</span></li>
+    <li><span class="n">11</span><span class="t">O filme em 3D fotorrealista</span><span class="p" data-toc="c11">13</span></li>
+    <li><span class="n">12</span><span class="t">O filme em 2D</span><span class="p" data-toc="c12">14</span></li>
+    <li><span class="n">13</span><span class="t">Som: trilha, efeitos e mixagem</span><span class="p" data-toc="c13">15</span></li>
+    <li><span class="n">14</span><span class="t">Crítica independente</span><span class="p" data-toc="c14">16</span></li>
+    <li><span class="n">15</span><span class="t">Render, variações e entrega</span><span class="p" data-toc="c15">17</span></li>
+    <li><span class="n">16</span><span class="t">Skills e como pedir ao agente</span><span class="p" data-toc="c16">18</span></li>
+    <li><span class="n">17</span><span class="t">Fundamentos</span><span class="p" data-toc="c17">19</span></li>
     <li class="sep">Apêndices</li>
-    <li><span class="n">A</span><span class="t">Cola de comandos</span><span class="p" data-toc="ap-a">14</span></li>
-    <li><span class="n">B</span><span class="t">Problemas comuns e soluções</span><span class="p" data-toc="ap-b">15</span></li>
-    <li><span class="n">C</span><span class="t">Custos e licenças</span><span class="p" data-toc="ap-c">15</span></li>
-    <li><span class="n">D</span><span class="t">Referências</span><span class="p" data-toc="ap-d">16</span></li>
+    <li><span class="n">A</span><span class="t">Cola de comandos</span><span class="p" data-toc="ap-a">20</span></li>
+    <li><span class="n">B</span><span class="t">Problemas comuns e soluções</span><span class="p" data-toc="ap-b">21</span></li>
+    <li><span class="n">C</span><span class="t">Custos, licenças e limites</span><span class="p" data-toc="ap-c">22</span></li>
+    <li><span class="n">D</span><span class="t">Referências</span><span class="p" data-toc="ap-d">23</span></li>
   </ul>
 </section>
 
-<!-- 01 KIT -->
+<!-- 01 HISTÓRIA -->
 <section class="chap pg"><span class="mk">QQc01QQ</span>
-  <div class="row"><div class="num">01</div><h1>O kit completo</h1></div>
-  <p class="intro">Tudo o que entra na produção, agrupado pela função. Leia esta página antes de instalar qualquer coisa: ela mostra o papel de cada peça e o que pode ser trocado.</p>
+  <div class="row"><div class="num">01</div><h1>A história: de certo a caro</h1></div>
+  <p class="intro">O anúncio do próprio projeto foi feito duas vezes. A primeira passou em todas as conferências e foi reprovada com uma palavra. O que mudou entre as duas é o assunto deste guia.</p>
+</section>
+<figure>
+  <div class="phones c6">
+    <div><img src="../docs/img/v1-01-gancho.jpg"><div class="cap"><i>Antes</i> · gancho</div></div>
+    <div><img src="../docs/img/v2-01-gancho.jpg"><div class="cap"><i>Depois</i> · gancho</div></div>
+    <div><img src="../docs/img/v1-04-palavra.jpg"><div class="cap"><i>Antes</i> · cena na palavra</div></div>
+    <div><img src="../docs/img/v2-06-palavra.jpg"><div class="cap"><i>Depois</i> · cena na palavra</div></div>
+    <div><img src="../docs/img/v1-08-gratis.jpg"><div class="cap"><i>Antes</i> · "de graça"</div></div>
+    <div><img src="../docs/img/v2-10-zero.jpg"><div class="cap"><i>Depois</i> · "custa zero"</div></div>
+  </div>
+  <figcaption>O mesmo roteiro e os mesmos momentos. À esquerda de cada par, a edição 1 (2D em canvas). À direita, a edição 2 (3D em three.js, o filme "A bancada").</figcaption>
+</figure>
+<div class="split">
+<div>
+<h3 style="margin-top:0">O que a primeira versão acertou</h3>
+<ul><li><b>Vídeo como código.</b> Cada quadro é função do tempo. O mesmo código gera o mesmo MP4.</li>
+<li><b>Cena presa à palavra.</b> Trocar a voz reposiciona o filme sozinho.</li>
+<li><b>Som sintetizado</b> e master em −14 LUFS.</li></ul>
+<p>Com isso, o anúncio 2D fechou com nota 8 em toda a rubrica de quem o construiu. O autor assistiu e disse: <b>cru</b>.</p>
+</div>
+<div>
+<h3 style="margin-top:0">O que a medição mostrou</h3>
+<table style="margin-bottom:0">
+  <tr><th>Medida</th><th>Edição 1</th><th>Referências</th></tr>
+  <tr><td>Quadro ocupado</td><td><b>3% a 21%</b></td><td>60% a 100%</td></tr>
+  <tr><td>Preto mais escuro</td><td><b>23/255</b></td><td>0 a 8/255</td></tr>
+  <tr><td>Cortes secos em 32 s</td><td><b>0</b></td><td>10 a 40</td></tr>
+  <tr><td>Câmera e luz</td><td><b>nenhuma</b></td><td>sempre</td></tr>
+</table>
+</div>
+</div>
+<div class="box porque"><b>A lição que organiza esta edição</b><p>Conferência automática prova que o vídeo está <i>correto</i>. Correto ainda pode ser cru. Faltavam ao método um jeito de mirar em "parece caro" e um jeito de impedir que o construtor aprovasse o próprio trabalho. As cinco peças novas são: pesquisa de referências, look-dev, 3D fotorrealista, voz dirigida e crítica independente.</p></div>
+<p class="small">As medidas da edição 1 são contagens sobre 12 quadros. As das referências são leitura visual de miniaturas (capítulo 07).</p>
+
+<!-- 02 MÉTODO -->
+<section class="chap"><span class="mk">QQc02QQ</span>
+  <div class="row"><div class="num">02</div><h1>O método em 10 etapas</h1></div>
+  <p class="intro">Cada etapa produz um arquivo que a seguinte consome, e tem um portão de qualidade: uma condição objetiva para seguir. As etapas 2 e 6 são novas, e a 9 mudou de dono.</p>
+</section>
+<div class="pipe">
+  <div><b>1</b><span>Briefing</span><small>produto, público, dor, CTA, telas reais</small></div>
+  <div><b>2</b><span>Referências</span><small>regras com números, lacunas medidas</small></div>
+  <div><b>3</b><span>Roteiro</span><small>30 s para o ouvido, texto aprovado</small></div>
+  <div><b>4</b><span>Voz dirigida</span><small>tom aprovado em amostras curtas</small></div>
+  <div><b>5</b><span>Narração no tempo</span><small>cada palavra com o seu instante</small></div>
+  <div><b>6</b><span>Look-dev</span><small>quadros de estilo com nota honesta</small></div>
+  <div><b>7</b><span>Filme</span><small>cada corte preso a uma palavra</small></div>
+  <div><b>8</b><span>Som</span><small>trilha e efeitos, mixagem medida</small></div>
+  <div><b>9</b><span>Crítica independente</span><small>quem critica não construiu</small></div>
+  <div><b>10</b><span>Render e entrega</span><small>60 fps, variações, conferência</small></div>
+</div>
+<table>
+  <tr><th>#</th><th>Etapa</th><th>Sai daqui com</th><th>Portão de qualidade</th></tr>
+  <tr><td>1</td><td><b>Briefing</b></td><td><code>briefing.md</code></td><td>Escopo confirmado: o que exatamente está sendo anunciado</td></tr>
+  <tr><td>2</td><td><b>Referências</b></td><td>Tabela, regras, análise de lacunas</td><td>Cada regra tem número; cada lacuna tem medida</td></tr>
+  <tr><td>3</td><td><b>Roteiro</b></td><td><code>roteiro.json</code></td><td>Texto aprovado <b>antes</b> de gerar a voz</td></tr>
+  <tr><td>4</td><td><b>Voz dirigida</b></td><td>Tomadas em <code>voz/&lt;id&gt;/</code></td><td>Tom e tomada final aprovados <b>de ouvido</b></td></tr>
+  <tr><td>5</td><td><b>Narração no tempo</b></td><td><code>vo.wav</code> e <code>vo.json</code></td><td>Todas as palavras encontradas, nenhuma frase cortada</td></tr>
+  <tr><td>6</td><td><b>Look-dev</b></td><td>4 quadros e 4 s de movimento</td><td>Nota de realismo registrada; quadros aprovados</td></tr>
+  <tr><td>7</td><td><b>Filme</b></td><td><code>film.js</code></td><td>Função pura do tempo; cortes saem de palavras</td></tr>
+  <tr><td>8</td><td><b>Som</b></td><td><code>mix.wav</code></td><td>−14 LUFS, pico ≤ −1 dBTP, música audível nos intervalos</td></tr>
+  <tr><td>9</td><td><b>Crítica independente</b></td><td>Correções com números</td><td>Tudo ≥ 8, ou a exceção escrita</td></tr>
+  <tr><td>10</td><td><b>Render e entrega</b></td><td>MP4 em <code>entrega/finais/</code></td><td><code>checar_entrega.sh</code> passa</td></tr>
+</table>
+<div class="split">
+<div class="box atencao"><b>O erro mais caro</b><p>Entender errado o escopo. Antes do roteiro, confirme <i>o que</i> está sendo anunciado: um produto específico ou a marca inteira.</p></div>
+<div class="box dica"><b>Piloto antes da escala</b><p>Construa um criativo completo, aprove, e só então produza os demais a partir dele.</p></div>
+</div>
+
+<!-- 03 KIT -->
+<section class="chap pg"><span class="mk">QQc03QQ</span>
+  <div class="row"><div class="num">03</div><h1>O kit completo</h1></div>
+  <p class="intro">Tudo o que entra na produção, agrupado pela função. Leia antes de instalar: mostra o papel de cada peça e o que pode ser trocado.</p>
 </section>
 <table class="kit">
   <tr><th>Ferramenta</th><th>Para que serve</th><th>Custo</th></tr>
-  <tr class="grp"><td colspan="3">Orquestração e inteligência</td></tr>
-  <tr><td><b>Claude Code</b><br><span class="small">app desktop ou CLI</span></td><td>O diretor da produção: escreve roteiros, código das cenas e scripts, roda os comandos, olha as folhas de contato e corrige. Tudo abaixo é acionado por ele.</td><td><span class="tag">CLI grátis · modelo pago ou aberto</span></td></tr>
-  <tr><td><b>Skill motion-reel</b><br><span class="small">plugin do Claude Code</span></td><td>O motor de vídeo. Traz o harness (<code>motion.js</code>), os scripts de projeto (<code>scaffold</code>, <code>gather</code>, <code>reference</code>, <code>beats</code>, <code>render</code>, <code>sfx</code>, <code>mix</code>, <code>sync</code>) e o processo de crítica em rodadas.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>Workflow / subagentes</b><br><span class="small">nativo do Claude Code</span></td><td>Roda vários agentes em paralelo: um por criativo, cada um construindo e revisando seu filme a partir do piloto aprovado. Use para escalar de 1 para 5 ou mais vídeos.</td><td><span class="tag">Gasta tokens</span></td></tr>
-  <tr><td><b>Ollama + modelo aberto</b><br><span class="small">qwen3-coder, gpt-oss</span></td><td>Trilha gratuita: roda um modelo de pesos abertos na sua máquina com API compatível com a da Anthropic. O Claude Code passa a usar esse modelo (capítulo 02).</td><td><span class="tag free">Grátis, local</span></td></tr>
-  <tr><td><b>Skill workflow-authoring</b></td><td>Referência para escrever o script do workflow (fases, pipeline, verificação).</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr class="grp"><td colspan="3">Imagem e render</td></tr>
-  <tr><td><b>Node.js + Playwright</b><br><span class="small">Chromium headless</span></td><td>Abre o filme (um <code>canvas</code> HTML) e captura quadro a quadro com <code>window.seek(t)</code>. Render exato, com desfoque de movimento por subquadros.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>ffmpeg / ffprobe</b></td><td>Codifica em H.264 yuv420p, junta áudio e vídeo, corta, converte e confere o arquivo final.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>three.js</b> <span class="small">(opcional)</span></td><td>Cenas 3D dentro do filme (modo <code>--3d</code> da skill): câmera atravessando espaços, objetos iluminados.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>Fontes woff2</b></td><td>Uma fonte de título e uma de interface (ex.: Urbanist + Inter, do Google Fonts), carregadas no <code>index.html</code>.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr class="grp"><td colspan="3">Orquestração</td></tr>
+  <tr><td><b>Claude Code</b><br><span class="small">app ou CLI</span></td><td>O agente que conduz a produção: escreve roteiro e código, roda comandos, olha as folhas de contato e corrige.</td><td><span class="tag">CLI grátis · modelo pago ou aberto</span></td></tr>
+  <tr><td><b>Ollama + modelo aberto</b><br><span class="small">qwen3-coder, gpt-oss</span></td><td>Trilha gratuita: um modelo de pesos abertos na sua máquina, com API compatível. O Claude Code passa a usar esse modelo.</td><td><span class="tag free">Grátis, local</span></td></tr>
+  <tr><td><b>Subagentes</b></td><td>Um agente por criativo depois do piloto, e os críticos independentes (capítulo 14).</td><td><span class="tag">Gasta tokens</span></td></tr>
+  <tr class="grp"><td colspan="3">Imagem</td></tr>
+  <tr><td><b>Motor 3D</b><br><span class="small"><code>lib/3d</code> · three.js</span></td><td>Câmera de acumulação, estúdio com luz de área, materiais físicos, aparelhos genéricos modelados em código. <b>Novo.</b></td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>Motor 2D</b><br><span class="small"><code>lib/cena.js</code></span></td><td>Primitivas de motion em canvas: títulos, vidro, pílulas, cursor, celular, transições.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>motion-reel</b><br><span class="small">em <code>vendor/</code></span></td><td>Harness do filme como função do tempo; render 2D, efeitos sonoros e mixagem.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>Playwright + ffmpeg</b></td><td>Abre o filme no Chromium, captura quadro a quadro e codifica em H.264.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>HDRI, texturas, fontes</b></td><td>Um HDRI de estúdio, madeira e digitais (CC0); Geist e Instrument Serif (OFL).</td><td><span class="tag free">Grátis</span></td></tr>
   <tr class="grp"><td colspan="3">Voz</td></tr>
-  <tr><td><b>ElevenLabs API</b></td><td>Narração de locutor. Modelos <code>eleven_v3</code> (mais expressivo, aceita marcações de tom) e <code>eleven_multilingual_v2</code> (mais estável). Devolve o tempo de cada caractere.</td><td><span class="tag">Grátis / Starter</span></td></tr>
-  <tr><td><b>Kokoro-82M</b><br><span class="small">Apache-2.0</span></td><td>Trilha gratuita: narração local com vozes de português do Brasil (<code>pf_dora</code>, <code>pm_alex</code>, <code>pm_santa</code>). Permite uso comercial.</td><td><span class="tag free">Grátis, local</span></td></tr>
-  <tr><td><b>mlx-whisper</b><br><span class="small">large-v3-turbo, Mac M</span></td><td>Transcreve a narração sem ver o texto: se o Whisper não ouviu a palavra certa, o ouvinte também não vai ouvir. Também marca o tempo de cada palavra.</td><td><span class="tag free">Grátis, local</span></td></tr>
-  <tr><td><b>praat-parselmouth</b></td><td>Mede o tom (F0) da voz para conferir se a frase termina descendo e a pergunta subindo.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr class="grp"><td colspan="3">Áudio</td></tr>
-  <tr><td><b>uv + Python</b><br><span class="small">numpy, scipy, librosa, soundfile</span></td><td>Sintetiza a trilha em código (<code>dsp.py</code> da skill), mede as batidas e gera os efeitos sonoros presos aos cortes. Os scripts declaram as próprias dependências.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr class="grp"><td colspan="3">Logo e 3D</td></tr>
-  <tr><td><b>After Effects</b><br><span class="small">ExtendScript via osascript</span></td><td>Anima o logo ou ícone em 3D (extrusão, varredura de luz, sombra) e renderiza uma sequência PNG com transparência que entra no cartão final.</td><td><span class="tag pay">Creative Cloud</span></td></tr>
-  <tr><td><b>Blender</b></td><td>Trilha gratuita para o logo 3D: extrusão do SVG, luz de varredura e render em PNG com transparência.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr class="grp"><td colspan="3">Pesquisa e captura de material</td></tr>
-  <tr><td><b>gather.mjs</b> <span class="small">(skill)</span></td><td>Tira capturas do site do produto, extrai cores, fontes, logo e textos da marca.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>iTunes Search API</b></td><td>Baixa as capturas oficiais de um app da App Store (sem login): <code>itunes.apple.com/lookup?id=…&amp;country=br</code>.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>reference.mjs</b> <span class="small">(skill)</span></td><td>Engenharia reversa de um vídeo de referência: um quadro por plano, folha a 1 fps e o ritmo dos cortes.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr><td><b>Navegador embutido / Claude in Chrome</b></td><td>Pesquisa de referências, Instagram e site do cliente, quando a página precisa de navegação.</td><td><span class="tag free">Grátis</span></td></tr>
-  <tr class="grp"><td colspan="3">Utilitários</td></tr>
-  <tr><td><b>Pillow / PyMuPDF</b></td><td>Monta folhas de contato e páginas de aprovação, converte PNG de 16 para 8 bits.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>ElevenLabs</b></td><td>Voz dirigida: marcações de tom no <code>eleven_v3</code>, idioma forçado, sementes; modo diálogo.</td><td><span class="tag pay">Starter</span></td></tr>
+  <tr><td><b>Fish Audio</b></td><td>Modelo gratuito na nuvem (<code>s2.1-pro-free</code>), frase a frase.</td><td><span class="tag free">Grátis, uso justo</span></td></tr>
+  <tr><td><b>Kokoro-82M</b></td><td>Narração local com vozes de português do Brasil. Apache-2.0.</td><td><span class="tag free">Grátis, local</span></td></tr>
+  <tr><td><b>Whisper + Praat</b></td><td>Filtro às cegas: palavra errada e tom no fim da frase. Também marca o tempo de cada palavra.</td><td><span class="tag free">Grátis, local</span></td></tr>
+  <tr class="grp"><td colspan="3">Som e pesquisa</td></tr>
+  <tr><td><b>uv + Python</b></td><td>Compõe a trilha em código e faz as medições de áudio.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>Miniaturas do YouTube</b></td><td>Leitura de ritmo, quadro e luz de um filme de referência sem baixá-lo.</td><td><span class="tag free">Grátis</span></td></tr>
+  <tr><td><b>Biblioteca de anúncios</b></td><td>Anúncios ativos de uma marca por dias no ar (consultada com o conector AdWhispr).</td><td><span class="tag">Opcional</span></td></tr>
 </table>
-
-<h3>O kit de scripts próprio</h3>
-<p>O repositório traz uma pasta <code>scripts/</code> que você leva de projeto em projeto. Cada script faz uma coisa:</p>
+<h3>Os scripts do repositório</h3>
 <table>
   <tr><th>Script</th><th>Faz</th></tr>
-  <tr><td><code>eleven.mjs</code></td><td>Acesso à ElevenLabs: conta, vozes e uma fala avulsa com o tempo de cada palavra.</td></tr>
-  <tr><td><code>voz_eleven.mjs</code></td><td>Gera a narração de vários roteiros em lote, com N tomadas cada, e registra os caracteres gastos.</td></tr>
-  <tr><td><code>voz_kokoro.py</code></td><td>Narração gratuita, no mesmo formato de saída, para o resto do processo não mudar.</td></tr>
-  <tr><td><code>voz_avaliar.py</code></td><td>Escolhe a melhor tomada: fidelidade às cegas, final de frase e expressividade.</td></tr>
-  <tr><td><code>vo_montar.py</code></td><td>Trata a voz escolhida, encurta pausas longas e grava <code>vo.wav</code> + <code>vo.json</code> (palavras e frases no tempo).</td></tr>
-  <tr><td><code>trilha.py</code></td><td>Compõe a trilha sob a narração: tensão no começo, virada na palavra-chave, impacto no CTA.</td></tr>
-  <tr><td><code>variante.py</code></td><td>Cria uma variação (cor, estilo ou voz) sem reescrever o filme.</td></tr>
-  <tr><td><code>finalizar.sh</code></td><td>Trilha, efeitos, mixagem e render de uma vez, em prévia (30 fps) ou final (60 fps).</td></tr>
-  <tr><td><code>novo_criativo.sh</code></td><td>Cria a pasta de um criativo novo a partir do exemplo.</td></tr>
-  <tr><td><code>checar_entrega.sh</code></td><td>Confere resolução, fps, formato de pixel, áudio e loudness de cada MP4.</td></tr>
-  <tr><td><code>folha_contato.py</code></td><td>Monta a folha de contato de um MP4 pronto.</td></tr>
+  <tr><td><code>voz_dirigida.py</code></td><td>ElevenLabs com direção: <code>amostras</code> de tom, <code>bloco</code> com sementes, <code>dialogo</code>, <code>juntar</code> vozes. <b>Novo.</b></td></tr>
+  <tr><td><code>voz_kokoro.py</code> · <code>voz_fish.mjs</code> · <code>voz_eleven.mjs</code></td><td>Narração gratuita local, gratuita na nuvem e paga em bloco, no mesmo formato de saída.</td></tr>
+  <tr><td><code>voz_por_frase.py</code> · <code>voz_dialogo.py</code></td><td>Vários candidatos por frase com escolha às cegas; montagem em diálogo.</td></tr>
+  <tr><td><code>voz_avaliar.py</code></td><td>O filtro às cegas. Ordena as tomadas e avisa que a nota não mede emoção.</td></tr>
+  <tr><td><code>vo_montar.py</code></td><td>Trata a voz e grava <code>vo.wav</code> e <code>vo.json</code> (palavras e frases no tempo).</td></tr>
+  <tr><td><code>trilha.py</code></td><td>Compõe a trilha sob a narração: tensão, virada na palavra, impacto no CTA.</td></tr>
+  <tr><td><code>finalizar.sh</code> · <code>finalizar3d.sh</code></td><td>Áudio e render de uma vez, no motor 2D e no 3D. O 3D também faz folha de contato e contraste.</td></tr>
+  <tr><td><code>variante.py</code></td><td>Variação de cor, estilo ou voz no motor 2D, sem reescrever o filme.</td></tr>
+  <tr><td><code>checar_entrega.sh</code> · <code>folha_contato.py</code></td><td>Confere o MP4 final; monta a folha de contato de um vídeo.</td></tr>
 </table>
-
-<div class="box porque"><b>Por quê tudo em código</b><p>Um vídeo que é uma função do tempo pode ser renderizado de novo a qualquer hora. Trocar uma palavra da narração move as cenas sozinho, uma cor nova vale para todos os criativos e uma variação custa um comando, não uma tarde no editor.</p></div>
-
 <div class="box"><b style="color:var(--mute)">Testados e deixados de fora</b>
-<ul style="margin:0"><li><b>Clone de voz local (Qwen3-TTS):</b> entonação e sílaba forte erradas em português. Voz pronta de estúdio venceu.</li>
-<li><b>HyperFrames reverse-any-video:</b> exige plano pago; o <code>reference.mjs</code> cobre a engenharia reversa.</li>
-<li><b>Fish Audio:</b> substituído pela ElevenLabs.</li>
-<li><b>IA de vídeo generativa:</b> não mostra a interface real do produto, que é o que convence.</li></ul></div>
+<ul style="margin:0"><li><b>Motor 2D para o anúncio do projeto:</b> correto e cru (capítulo 01).</li>
+<li><b>IA de vídeo no corte principal:</b> texto e interface saem errados, 24 a 30 fps, e tornaria falsa a frase "foi programado".</li>
+<li><b>Voz sem direção:</b> Kokoro, Fish Audio e ElevenLabs em diálogo foram reprovadas de ouvido para este anúncio (capítulo 08).</li>
+<li><b>Desfoque de lente por pós-processamento:</b> erra atrás de vidro e em reflexos.</li>
+<li><b>Modelos 3D de terceiros:</b> carregam marca alheia. Os aparelhos são modelados em código.</li></ul></div>
 
-<!-- 02 GRATUITO OU PAGO -->
-<section class="chap pg"><span class="mk">QQc02QQ</span>
-  <div class="row"><div class="num">02</div><h1>Gratuito ou pago</h1></div>
-  <p class="intro">O processo é o mesmo nas duas trilhas, com os mesmos scripts e arquivos. Muda só quem faz cada etapa. Dá para misturar: por exemplo, orquestrar com um modelo aberto e narrar com a voz paga.</p>
+<!-- 04 GRATUITO OU PAGO -->
+<section class="chap"><span class="mk">QQc04QQ</span>
+  <div class="row"><div class="num">04</div><h1>Gratuito ou pago</h1></div>
+  <p class="intro">O processo é o mesmo nas duas trilhas, com os mesmos scripts e arquivos. Dá para misturar. Vale saber onde está a diferença de verdade.</p>
 </section>
 <table>
-  <tr><th>Etapa</th><th>Trilha gratuita</th><th>Trilha paga</th></tr>
-  <tr><td><b>Agente</b></td><td>Claude Code apontado para um modelo aberto no <b>Ollama</b> (<code>qwen3-coder:30b</code>, <code>gpt-oss:20b</code>). Alternativas: OpenCode, Aider, Qwen Code</td><td><b>Claude Code</b> com plano Claude (Opus, Sonnet)</td></tr>
-  <tr><td><b>Narração</b></td><td><b>Kokoro-82M</b>, local, Apache-2.0, vozes pt-BR</td><td><b>ElevenLabs</b> <code>eleven_v3</code>, plano Starter ou acima</td></tr>
-  <tr><td><b>Conferência</b></td><td colspan="2">mlx-whisper ou whisper.cpp nas duas</td></tr>
-  <tr><td><b>Trilha e efeitos</b></td><td colspan="2">Sintetizados em código nas duas; na paga, opcionalmente um banco de música licenciado</td></tr>
-  <tr><td><b>Logo 3D</b></td><td><b>three.js</b> (modo <code>--3d</code>) ou <b>Blender</b></td><td><b>After Effects</b> por script</td></tr>
-  <tr><td><b>Render</b></td><td colspan="2">Playwright + Chromium + ffmpeg nas duas</td></tr>
-  <tr><td><b>Custo mensal</b></td><td>R$ 0 (só máquina e energia)</td><td>Plano Claude + ElevenLabs (+ Creative Cloud, se usar o AE)</td></tr>
+  <tr><th>Etapa</th><th>Trilha gratuita</th><th>Trilha paga</th><th>Diferença real</th></tr>
+  <tr><td><b>Agente</b></td><td>Claude Code com modelo aberto no <b>Ollama</b> (<code>qwen3-coder:30b</code>). Alternativas: OpenCode, Aider</td><td><b>Claude Code</b> com plano Claude</td><td>O modelo aberto erra mais em tarefa longa</td></tr>
+  <tr><td><b>Filme 2D e 3D</b></td><td colspan="2"><code>lib/cena.js</code> e <code>lib/3d</code> nas duas</td><td><b>Nenhuma</b></td></tr>
+  <tr><td><b>Narração</b></td><td><b>Kokoro</b> (local) ou <b>Fish Audio</b> (modelo gratuito)</td><td><b>ElevenLabs</b> com direção</td><td><b>A maior</b></td></tr>
+  <tr><td><b>Filtro da fala</b></td><td colspan="2">Whisper e Praat nas duas</td><td>Nenhuma</td></tr>
+  <tr><td><b>Trilha e efeitos</b></td><td colspan="2">Sintetizados em código nas duas</td><td>Nenhuma</td></tr>
+  <tr><td><b>Render</b></td><td colspan="2">Playwright, Chromium e ffmpeg nas duas</td><td>Nenhuma</td></tr>
 </table>
-
+<div class="box atencao"><b>Sobre a voz, sem rodeio</b><p>O anúncio do projeto diz "custa zero: os modelos são abertos". Isso vale para o agente, a imagem, a música, os efeitos e o render. A narração que foi ao ar veio da trilha paga: as duas vozes gratuitas foram reprovadas de ouvido para aquele anúncio. Se for pagar uma coisa só, pague a voz.</p></div>
+<h3>Quanto custou a voz do anúncio</h3>
+<table>
+  <tr><th>Item</th><th>Valor</th><th>Natureza do dado</th></tr>
+  <tr><td>Plano ElevenLabs Starter</td><td>US$ 5 por mês, 30 mil créditos</td><td>preço pago</td></tr>
+  <tr><td>Uma geração completa do roteiro dirigido</td><td>547 caracteres (1 crédito por caractere no <code>eleven_v3</code>)</td><td>contado</td></tr>
+  <tr><td>Todas as tentativas somadas</td><td>da ordem de 12 a 15 mil créditos</td><td>estimativa pelo saldo</td></tr>
+</table>
+<p>O gasto foi mais de vinte vezes o de uma geração, porque incluiu as tentativas reprovadas. O processo do capítulo 08 existe para você gastar menos: aprovar o tom em amostras de 10 segundos antes de gerar o roteiro inteiro.</p>
 <h3>Claude Code com um modelo aberto</h3>
-<p>O Claude Code é gratuito para instalar. O que se paga é o modelo por trás dele. O Ollama roda modelos de pesos abertos na sua máquina com uma API compatível com a da Anthropic; basta apontar o Claude Code para ela.</p>
 <pre data-t="terminal">brew install ollama &amp;&amp; npm install -g @anthropic-ai/claude-code
 ollama pull qwen3-coder:30b &amp;&amp; ollama serve      <span class="c"># deixe rodando</span>
 
@@ -256,74 +330,60 @@ claude --model qwen3-coder:30b</pre>
   <tr><th>Memória da máquina</th><th>Modelo sugerido</th><th>Resultado</th></tr>
   <tr><td>16 GB</td><td><code>gpt-oss:20b</code></td><td>Funciona, mas é lento e se perde em tarefas longas</td></tr>
   <tr><td>32 GB</td><td><code>qwen3-coder:30b</code></td><td>Equilíbrio recomendado</td></tr>
-  <tr><td>64 GB ou mais</td><td>Modelos MoE maiores da família Qwen3</td><td>Mais perto da trilha paga</td></tr>
-  <tr><td>Sem GPU</td><td>Modelo aberto hospedado (OpenRouter, Ollama Cloud)</td><td>Cota gratuita, mas o código sai da máquina</td></tr>
+  <tr><td>64 GB ou mais</td><td>Modelos maiores da família Qwen3</td><td>Mais perto da trilha paga</td></tr>
 </table>
-<div class="split">
-<div class="box atencao"><b>Expectativa honesta</b><p>Nenhum modelo aberto é o Claude: ele substitui o modelo dentro da mesma interface de agente. Os melhores modelos abertos de código chegam perto em tarefas curtas, mas erram mais no uso de ferramentas e em tarefas longas. Peça uma etapa por vez, com contexto de 32 mil tokens ou mais.</p></div>
-<div class="box dica"><b>Narração gratuita</b>
-<pre data-t="terminal" style="margin-bottom:0">uv run scripts/voz_kokoro.py all pf_dora 3 --rotulo kokoro-dora</pre>
-<p style="margin-top:2mm">Gera no mesmo formato da ElevenLabs, então <code>voz_avaliar.py</code> e <code>vo_montar.py</code> funcionam sem mudança.</p></div>
-</div>
-<div class="box porque"><b>Por quê ter as duas</b><p>A gratuita serve para aprender, para ensinar e para os rascunhos que o cliente aprova. A paga entra na versão que vai ao ar, com voz de locutor e licença comercial em dia. Os nomes e tamanhos de modelos mudam rápido: confira <code>ollama.com/library</code> antes de baixar.</p></div>
+<div class="box dica"><b>Como compensar o modelo mais fraco</b><p>Peça uma etapa por vez, citando os arquivos. Comece copiando um exemplo que funciona. Use um agente separado como crítico: a independência importa mais que o tamanho do modelo.</p></div>
 
-<!-- 03 INSTALAÇÃO -->
-<section class="chap"><span class="mk">QQc03QQ</span>
-  <div class="row"><div class="num">03</div><h1>Instalação e estrutura do projeto</h1></div>
-  <p class="intro">Uma vez por máquina, uma vez por projeto. Depois disso, cada criativo novo é uma pasta.</p>
+<!-- 05 INSTALAÇÃO -->
+<section class="chap"><span class="mk">QQc05QQ</span>
+  <div class="row"><div class="num">05</div><h1>Instalação e estrutura do projeto</h1></div>
+  <p class="intro">Uma vez por máquina. Depois disso, cada criativo novo é uma pasta.</p>
 </section>
 <ol class="steps">
   <li><b>Ferramentas do sistema (macOS)</b>
 <pre data-t="terminal">brew install node ffmpeg uv
-uv tool install mlx-whisper        <span class="c"># só em Mac com chip M</span></pre></li>
-  <li><b>Clonar o kit</b>O motor <code>motion-reel</code> já vem em <code>vendor/</code>, e o atalho <code>skill/</code> aponta para ele. Para usá-lo também como skill do agente, instale o plugin pelo menu de plugins do Claude Code.
+uv tool install mlx-whisper        <span class="c"># só em Mac com chip M; nos demais: openai-whisper</span></pre></li>
+  <li><b>Clonar e preparar</b>
 <pre data-t="terminal">git clone https://github.com/FilipeMolinariMoura/fabrica-de-criativos
 cd fabrica-de-criativos &amp;&amp; make setup</pre></li>
-  <li><b>Chave da ElevenLabs</b>Crie a chave em <i>Developers → API Keys</i> e salve num arquivo <code>.env</code> na raiz do projeto: <code>ELEVENLABS_API_KEY=sk_…</code>. A chave nunca vai para o chat nem para o git.</li>
-  <li><b>After Effects liberado para scripts</b>Em <i>Configurações → Script e expressões</i>, marque <b>Permitir que scripts gravem arquivos e acessem a rede</b>. No macOS, autorize o Terminal/Claude a controlar o After Effects quando o sistema pedir.</li>
+  <li><b>Rodar os exemplos</b>
+<pre data-t="terminal">make demo                                <span class="c"># exemplo 2D: voz gratuita, trilha, mixagem, prévia</span>
+make contato3d FILME=exemplos/bancada    <span class="c"># folha de contato do filme 3D, em segundos</span></pre></li>
 </ol>
-
+<div class="box dica"><b>Chaves, só se for usar voz na nuvem</b><p>Copie <code>.env.example</code> para <code>.env</code> e preencha <code>ELEVENLABS_API_KEY</code> ou <code>FISH_API_KEY</code>. A chave nunca vai para o chat com o agente nem para o git.</p></div>
 <h3>Estrutura de pastas</h3>
 <pre class="tree" data-t="repositório">fabrica-de-criativos/
-├─ docs/                    <span class="c"># método, trilhas, skills, técnicas, relatório, referências</span>
-├─ lib/                     <span class="c"># motion.js (harness), cena.js (primitivas), fonts/</span>
-├─ scripts/                 <span class="c"># voz, avaliação, narração, trilha, variações, entrega</span>
-├─ ae/logo3d/               <span class="c"># logo 3D no After Effects por script</span>
-├─ exemplos/demo/           <span class="c"># criativo de exemplo completo</span>
-├─ templates/               <span class="c"># briefing, roteiro, rubrica de crítica, checklist</span>
-├─ vendor/motion-reel/      <span class="c"># motor de render (MIT)</span>
-├─ skill -&gt;                 <span class="c"># atalho para o motor</span>
+├─ docs/                    <span class="c"># o manual completo, o relatório técnico, as referências</span>
+├─ lib/3d/                  <span class="c"># motor 3D: câmera, estúdio, modelos, telas, renderizador</span>
+├─ lib/cena.js  motion.js   <span class="c"># motor 2D e harness</span>
+├─ scripts/                 <span class="c"># voz, filtro, narração, trilha, variações, entrega</span>
+├─ exemplos/bancada/        <span class="c"># o anúncio 3D desta edição</span>
+├─ exemplos/divulgacao/     <span class="c"># o anúncio 2D da edição 1</span>
+├─ exemplos/demo/           <span class="c"># aplicativo fictício, usado no make demo</span>
+├─ templates/               <span class="c"># briefing, roteiro, referências, quadros de estilo, crítica</span>
+├─ vendor/motion-reel/      <span class="c"># motor de render e áudio (MIT)</span>
 └─ ebook/  dist/            <span class="c"># este guia e o PDF</span>
 
-seu-projeto/                <span class="c"># um por cliente</span>
-├─ .env                     <span class="c"># chave da ElevenLabs (trilha paga)</span>
-├─ roteiros/roteiros.json   <span class="c"># todos os roteiros + CTA</span>
-├─ voz/&lt;id&gt;/                <span class="c"># tomadas de narração</span>
-├─ a01-nome-do-criativo/    <span class="c"># um filme por pasta: film.js, index.html, audio/</span>
-└─ entrega/  previas/  finais/</pre>
-
-<div class="box dica"><b>Dica</b><p>Defina a marca uma vez (cores e fontes) em <code>lib/marca.json</code> (ou em <code>window.MARCA</code> no <code>index.html</code> do filme). Todo filme lê de lá, então mudar a marca é mexer em um lugar só.</p></div>
-
-<div class="check"><b>Checklist da instalação</b><ul>
-  <li><code>node -v</code>, <code>ffmpeg -version</code> e <code>uv --version</code> respondem</li>
-  <li>Chromium do Playwright instalado</li>
-  <li><code>node scripts/eleven.mjs conta</code> mostra seus caracteres</li>
-  <li>After Effects abre e aceita scripts</li>
-  <li><code>make demo</code> renderiza o exemplo</li>
-  <li>Fontes de título e interface em <code>lib/fonts/</code></li>
-</ul></div>
-
-<!-- 03 ROTEIRO -->
-<section class="chap"><span class="mk">QQc04QQ</span>
-  <div class="row"><div class="num">04</div><h1>Briefing e roteiro</h1></div>
-  <p class="intro">O roteiro decide 80% do resultado. Escreva para o ouvido e para o polegar: quem rola o feed decide em 1,5 segundo se fica.</p>
-</section>
-<h3>O que coletar no briefing</h3>
+um-filme/                   <span class="c"># uma pasta por criativo</span>
+├─ index.html  film.js      <span class="c"># o filme: window.seek(t) desenha o quadro t</span>
+├─ roteiro.json  vo.json    <span class="c"># o texto e o tempo de cada palavra</span>
+├─ trilha.json  beats.json  <span class="c"># os tempos da música</span>
+└─ audio/                   <span class="c"># vo.wav, music.wav, sfx.wav, mix.wav (fora do git)</span></pre>
 <div class="split">
-<ul><li>Produto, para quem é e a dor que resolve</li><li>Telas reais (site, App Store, capturas do cliente)</li><li>Logo, cores e fontes da marca</li></ul>
-<ul><li>CTA e canal (WhatsApp, site, loja)</li><li>2 ou 3 vídeos de referência do estilo desejado</li><li>Duração e formato (9:16 é o padrão para anúncio)</li></ul>
+<div class="box atencao"><b>Sistema testado</b><p>O motor 2D roda em macOS e Linux. O motor 3D só foi testado em macOS com Apple Silicon: o renderizador pede o backend gráfico Metal. Em Linux e Windows, essa opção precisa ser trocada, e isso não foi testado.</p></div>
+<div class="check" style="margin-top:1.6mm"><b>Checklist da instalação</b><ul style="columns:1">
+  <li><code>node -v</code>, <code>ffmpeg -version</code> e <code>uv --version</code> respondem</li>
+  <li><code>make demo</code> gera a prévia</li>
+  <li><code>make contato3d</code> gera a folha</li>
+  <li><code>.env</code> fora do git</li>
+</ul></div>
 </div>
 
+<!-- 06 ROTEIRO -->
+<section class="chap"><span class="mk">QQc06QQ</span>
+  <div class="row"><div class="num">06</div><h1>Briefing e roteiro</h1></div>
+  <p class="intro">O roteiro decide a maior parte do resultado. Nenhuma lente e nenhuma voz salvam uma frase mole. Escreva para o ouvido e para o polegar.</p>
+</section>
 <div class="keep"><h3>A estrutura de 30 segundos</h3>
 <div class="timeline">
   <div style="width:10%;background:#151213">Gancho<br>0–3 s</div>
@@ -331,233 +391,433 @@ seu-projeto/                <span class="c"># um por cliente</span>
   <div style="width:8%;background:#B3121B">Virada</div>
   <div style="width:32%;background:#D9484E">Produto em ação<br>11–21 s</div>
   <div style="width:15%;background:#E77E82">Prova<br>21–25 s</div>
-  <div style="width:15%;background:#2E6B3D">CTA + logo<br>25–30 s</div>
+  <div style="width:15%;background:#2E6B3D">CTA<br>25–30 s</div>
 </div>
 <div class="legend"><span>0 s</span><span>10 s</span><span>20 s</span><span>30 s</span></div></div>
-<ol class="steps">
-  <li><b>Gancho</b>Uma pergunta ou afirmação que o público reconhece como sua, já com texto na tela no primeiro quadro.</li>
-  <li><b>Problema</b>A dor em uma cena concreta. Uma frase, um número, nada de lista.</li>
-  <li><b>Virada</b>O nome do produto entra junto com a mudança visual mais forte do vídeo.</li>
-  <li><b>Produto em ação</b>A interface real fazendo a coisa: um toque, um campo preenchido, um resultado.</li>
-  <li><b>Prova</b>Um detalhe verificável (tempo, etapa, registro) que tira a promessa do abstrato.</li>
-  <li><b>CTA</b>Um verbo, um canal, um benefício: "Chama no WhatsApp e peça seu diagnóstico gratuito."</li>
-</ol>
-<div class="do-dont">
-  <div class="no"><b>Evite</b>Frases longas com vírgulas · jargão ("solução robusta") · siglas na fala · números sem fonte · três ideias na mesma cena</div>
-  <div class="yes"><b>Prefira</b>Frases de 4 a 9 palavras · verbo no começo · a palavra do cliente · número escrito por extenso na fala · uma ideia por cena</div>
-</div>
-<pre data-t="roteiros/roteiros.json">{ "cta_fala": "Chama no WhatsApp e peça seu diagnóstico gratuito.",
-  "criativos": [{
-    "id": "a01-meu-criativo",
-    "falas": ["Quanto tempo você perde por dia?", "Procurando o que já devia estar à mão?", "..."],
-    "tela":  ["Quanto tempo?", "Procurando?", "..."] }] }</pre>
-<div class="box atencao"><b>Atenção</b><p>Feche o roteiro com o cliente <b>antes</b> de gerar a voz. Uma palavra trocada depois exige nova narração, novos tempos e novo render.</p></div>
-
-<!-- 04 VOZ -->
-<section class="chap"><span class="mk">QQc05QQ</span>
-  <div class="row"><div class="num">05</div><h1>Voz de locutor com IA</h1></div>
-  <p class="intro">A narração é gerada em bloco (o roteiro inteiro de uma vez, para a entonação fluir), em várias tomadas, e uma máquina escolhe a melhor antes de você ouvir.</p>
-</section>
-<ol class="steps">
-  <li><b>Escolha a voz ouvindo</b>Gere a mesma frase com 4 ou 5 vozes prontas e escolha de ouvido. Vozes prontas da biblioteca soam melhor em português do que clones caseiros.
-<pre data-t="terminal">node scripts/eleven.mjs falar &lt;voice_id&gt; eleven_v3 teste.mp3 "Quanto tempo você perde por dia?"</pre></li>
-  <li><b>Gere as tomadas</b>Três tomadas por roteiro dão margem de escolha sem gastar demais.
-<pre data-t="terminal">node scripts/voz_eleven.mjs all locutor-v3 &lt;voice_id&gt; eleven_v3 3</pre></li>
-  <li><b>Avalie às cegas</b>O Whisper transcreve sem ver o texto; o script compara palavra por palavra, mede o tom no fim de cada frase e escolhe a tomada.
-<pre data-t="terminal">uv run scripts/voz_avaliar.py voz/a01-meu-criativo</pre></li>
-  <li><b>Corrija só o que falhou</b>Frase com palavra errada ou final subindo é regenerada sozinha, ajustando a grafia ou, no v3, uma marcação de tom.</li>
-</ol>
+<h3>Famílias de gancho vistas em anúncios que duram</h3>
+<p>Anúncios ativos de ferramentas criativas e de IA, ordenados por dias no ar numa biblioteca pública de anúncios. Dias no ar é <b>indício</b>, e não prova de desempenho: a ferramenta não informa gasto nem resultado.</p>
 <table>
-  <tr><th>Parâmetro</th><th>Valor de partida</th><th>Efeito</th></tr>
-  <tr><td><b>Modelo</b></td><td><code>eleven_v3</code></td><td>Mais natural e expressivo; <code>multilingual_v2</code> é a alternativa estável.</td></tr>
-  <tr><td><b>stability</b></td><td>0,5</td><td>Mais baixo varia mais o tom; mais alto deixa a leitura uniforme.</td></tr>
-  <tr><td><b>Formato</b></td><td><code>mp3_44100_128</code></td><td>192 kbps só nos planos pagos.</td></tr>
-  <tr><td><b>Marcações v3</b></td><td><code>[confident]</code>, <code>[curious]</code></td><td>Use pouco, só onde a tomada sem marcação falhou.</td></tr>
+  <tr><th>Família</th><th>Exemplo observado</th><th>Dias no ar</th></tr>
+  <tr><td><b>"Você ainda faz do jeito antigo?"</b></td><td>"It's 2026, if you're still manually recording your voiceovers…"</td><td>270</td></tr>
+  <tr><td><b>Número concreto</b></td><td>"Cut your editing time from 4 hours to 4 minutes"</td><td>228</td></tr>
+  <tr><td><b>"Isto não foi feito do jeito normal"</b></td><td>"Esto no lo estoy grabando yo."</td><td>64</td></tr>
+  <tr><td><b>Desafio ao espectador</b></td><td>"Un plan dans cette vidéo n'existe pas. Tu l'as repéré ?"</td><td>56</td></tr>
+</table>
+<p class="small">Coleta em 16 nov. 2026. Só o primeiro quadro e o texto de cada anúncio foram vistos.</p>
+<h3>Antes e depois: o roteiro do anúncio do projeto</h3>
+<table>
+  <tr><th>Edição 1</th><th>Edição 2</th><th>Por quê</th></tr>
+  <tr><td>Esse vídeo não foi editado. Ele foi programado.</td><td><i>igual</i></td><td>Gancho de uma família que dura no ar</td></tr>
+  <tr><td>Sem timeline.</td><td><b>Ninguém abriu um editor.</b></td><td>Jargão e negação abstrata viram uma imagem que dá para filmar</td></tr>
+  <tr><td>Outra cor. Outro estilo. Outra voz.</td><td><b>Quer outra cor? Outro estilo? Outra voz?</b></td><td>Pergunta dá à voz três finais subindo</td></tr>
+  <tr><td>…com o áudio no padrão das redes.</td><td>…<b>pronto pra postar.</b></td><td>Especificação vira benefício</td></tr>
+  <tr><td>E dá pra fazer tudo de graça…</td><td><b>E custa zero:</b> os modelos são abertos.</td><td>Mais curto, é número, e os dois-pontos criam a pausa</td></tr>
 </table>
 <div class="do-dont">
-  <div class="no"><b>Escreva assim e erra</b>"QR" · "10s" · "R$ 25 mil" · "WhatsApp" colado em pontuação estranha</div>
-  <div class="yes"><b>Escreva assim e acerta</b>"quiu-ár" · "dez segundos" · "vinte e cinco mil reais" · reticências para pausa curta</div>
+  <div class="no"><b>Evite</b>Frases longas com vírgulas · jargão · números sem fonte · três ideias na mesma cena · só afirmações do mesmo tamanho</div>
+  <div class="yes"><b>Prefira</b>Frases de 4 a 9 palavras · a palavra do público · número por extenso na fala · uma ideia por cena · uma pergunta a cada três ou quatro frases</div>
 </div>
-<div class="box porque"><b>Por quê conferir às cegas</b><p>Ouvir 30 tomadas cansa e o ouvido se acostuma com o erro. O Whisper não sabe o que deveria ouvir: se ele transcreve outra palavra, a sílaba está errada.</p></div>
+<div class="box atencao"><b>Atenção</b><p>Feche o roteiro <b>antes</b> de gerar a voz. E se o roteiro afirma algo sobre o próprio vídeo ("foi programado", "custa zero"), o vídeo precisa cumprir.</p></div>
 
-<!-- 05 NARRAÇÃO NO TEMPO -->
-<section class="chap"><span class="mk">QQc06QQ</span>
-  <div class="row"><div class="num">06</div><h1>Narração no tempo</h1></div>
-  <p class="intro">A técnica central do método: as cenas não têm segundos fixos, elas começam na palavra falada.</p>
-</section>
-<pre data-t="terminal">uv run scripts/vo_montar.py a01-meu-criativo voz/a01-meu-criativo/locutor-v3-2.mp3</pre>
-<p>O script trata o áudio (limpeza, leve aceleração, pausas longas encurtadas) e grava <code>audio/vo.json</code> com cada palavra e cada frase no tempo. No filme, o tempo de uma cena vem da palavra:</p>
-<pre data-t="film.js">const VO = await loadVO();
-const tProblema = wt(VO, 'quando');            <span class="c">// início da palavra "quando"</span>
-const tVirada   = wt(VO, 'produto', {after: 8});<span class="c">// primeira ocorrência depois de 8 s</span>
-const tCTA      = ph(VO, -1).t0;                 <span class="c">// início da última frase</span></pre>
-<div class="box dica"><b>Dica</b><p>Com as cenas presas às palavras, trocar a voz ou o ritmo da narração reposiciona o filme inteiro sozinho. É isso que torna a variação de voz barata (capítulo 10).</p></div>
-
-<!-- 06 TRILHA -->
+<!-- 07 REFERÊNCIAS -->
 <section class="chap"><span class="mk">QQc07QQ</span>
-  <div class="row"><div class="num">07</div><h1>Trilha e efeitos sonoros</h1></div>
-  <p class="intro">Trilha composta em código sob a narração, com os momentos fortes nos tempos certos. Sem banco de música, sem direito autoral.</p>
+  <div class="row"><div class="num">07</div><h1>Pesquisa de referências e as 12 regras</h1></div>
+  <p class="intro">"Ficou cru" é um veredito. Para virar trabalho, precisa virar medida. Esta etapa transforma "quero que pareça caro" em regras com números, sem baixar nenhum vídeo.</p>
 </section>
 <ol class="steps">
-  <li><b>Marque os momentos da trilha</b>Em <code>trilha.json</code>: duração, a virada (<code>reveal</code>) e o CTA, em segundos tirados do <code>vo.json</code>.
-<pre data-t="a01-meu-criativo/trilha.json">{ "dur": 30.4, "reveal": 4.46, "cta": 24.29, "hits": [], "mood": "institucional" }</pre></li>
-  <li><b>Componha</b><code>trilha.py</code> gera <code>music.wav</code> e <code>beats.json</code>: pulso grave e tenso antes da virada, abertura harmônica depois, impacto no CTA. A trilha fica abaixo da voz (ducking automático).</li>
-  <li><b>Efeitos presos aos cortes</b>No <code>film.js</code>, cada acento visual vai na lista <code>HITS</code> com o som que leva (whoosh, tap, pop, impacto). O <code>sfx.mjs</code> sintetiza todos no tempo exato do quadro.</li>
-  <li><b>Mixe</b><code>mix.mjs</code> junta voz, trilha e efeitos e masteriza em <b>-14 LUFS</b> e -1 dBTP, o padrão das redes.</li>
+  <li><b>Leia os filmes pelas miniaturas</b>O YouTube gera as miniaturas de pré-visualização da barra de tempo: uma por segundo nos filmes curtos. É uma folha de contato pronta. Com elas e os metadados públicos, dá para ler ritmo, enquadramento, paleta e tipografia.</li>
+  <li><b>Escreva as notas de honestidade no topo</b>Não vi os filmes em tamanho cheio. Lente e abertura são leitura visual. Não ouvi nada. Não atribuo autoria.</li>
+  <li><b>Monte a tabela</b>De 10 a 20 filmes, cada um com o motivo de estar ali e as técnicas reproduzíveis.</li>
+  <li><b>Destile as regras</b>O que se repete, escrito como especificação.</li>
+  <li><b>Meça o seu material contra elas</b>É a análise de lacunas (tabela do capítulo 01).</li>
 </ol>
-<pre data-t="film.js">export const HITS = [
-  [B(tVirada), 'virada', 'whoosh_big'],
-  [B(tToque),  'toque no botão', 'tap'],
-  [B(tCTA),    'cartão final', 'impact'] ];</pre>
-<div class="box atencao"><b>Atenção</b><p>Efeito em todo corte vira barulho. Reserve o impacto para a virada e o cartão final; nos outros cortes, um whoosh leve ou nada.</p></div>
-
-<!-- 07 FILME -->
-<section class="chap"><span class="mk">QQc08QQ</span>
-  <div class="row"><div class="num">08</div><h1>Construindo o filme</h1></div>
-  <p class="intro">O filme é uma função do tempo: <code>window.seek(t)</code> desenha o quadro <i>t</i> num canvas 1080×1920. Construa primeiro um piloto completo, aprove, e use-o como modelo para os demais.</p>
-</section>
-<pre data-t="terminal">node skill/scripts/scaffold.mjs a01-meu-criativo --title "Meu criativo" --duration 30 --formats 9x16</pre>
-<div class="keep"><h3>As técnicas que fazem o visual premium</h3>
+<h3>As 12 regras do visual caro</h3>
+<p>Números de partida para 1080×1920. Vieram de leitura visual de 17 referências e foram ajustados no look-dev.</p>
 <table>
-  <tr><th>Técnica</th><th>Como fazer</th></tr>
-  <tr><td><b>Molas (springs)</b></td><td>Todo movimento usa <code>springU</code>/<code>springKeys</code> em vez de easing linear: entra com peso, passa um pouco e assenta.</td></tr>
-  <tr><td><b>Título com desfoque</b></td><td>Cada palavra entra com desfoque de 12 px até 0, subindo 20 px, com 60 ms de atraso entre palavras.</td></tr>
-  <tr><td><b>Cards de vidro</b></td><td>Fundo branco a 70%, borda de 1 px clara, sombra longa e suave. Dão profundidade sem poluir.</td></tr>
-  <tr><td><b>Pílulas e chips</b></td><td>Botões arredondados que "acendem" (cor da marca + leve brilho) quando a narração cita a função.</td></tr>
-  <tr><td><b>Cursor e toque</b></td><td>Um dedo/cursor anda até o botão, toca, e um anel se expande: mostra uso real em vez de dizer.</td></tr>
-  <tr><td><b>Celular em perspectiva</b></td><td>A captura real dentro de um aparelho, com câmera que aproxima até a área que importa (zoom em escala logarítmica).</td></tr>
-  <tr><td><b>Fragmentos de profundidade</b></td><td>Pedaços recortados da tela flutuam à frente do celular, em camadas com parallax.</td></tr>
-  <tr><td><b>Transições</b></td><td><code>blurZoom</code> (aproxima e desfoca) e <code>lightSweep</code> (faixa de luz atravessa); a cena nova já aparece no primeiro quadro do corte.</td></tr>
-  <tr><td><b>Cartão final</b></td><td>Logo animado (capítulo 09), CTA em pílula, ícone do canal e a frase da narração na tela.</td></tr>
+  <tr><th>#</th><th>Regra</th><th>Números de partida</th></tr>
+  <tr><td>1</td><td><b>Encha o quadro</b></td><td>Objeto principal em 55% a 75% da largura; 60% da área trabalhada; o terço de baixo é chão com reflexo</td></tr>
+  <tr><td>2</td><td><b>Lente longa</b></td><td>Herói em 85 a 100 mm; macro em 100 a 135 mm; geral no máximo em 50 mm</td></tr>
+  <tr><td>3</td><td><b>Um plano nítido só</b></td><td>f/1,8 a f/2,8 em macro, f/4 nos gerais; o foco está na palavra dita</td></tr>
+  <tr><td>4</td><td><b>A câmera nunca para, e nunca corre</b></td><td>Empurrão de 2% a 6% ou órbita de 3° a 8° em todo plano; no máximo três movimentos fortes</td></tr>
+  <tr><td>5</td><td><b>Luz de estúdio com três papéis</b></td><td>Principal suave, contraluz 1 a 2 stops acima, preenchimento negativo; relação de 4:1 a 8:1</td></tr>
+  <tr><td>6</td><td><b>Matéria tem defeito</b></td><td>Toda aresta com raio; rugosidade variando; digitais no vidro a poucos por cento</td></tr>
+  <tr><td>7</td><td><b>Tela é luz e é legível</b></td><td>Inclinada de 8° a 25°; texto a ler com 30 px ou mais; o resto fora de foco de propósito</td></tr>
+  <tr><td>8</td><td><b>Tipografia fina</b></td><td>Duas famílias; caixa mista; maiúscula em 3,8% a 4,8% do quadro; até 5 palavras, uma de acento</td></tr>
+  <tr><td>9</td><td><b>Uma base, um acento</b></td><td>Acento em até 8% da área; no ato escuro, percentil 5 de luminância ≤ 8/255</td></tr>
+  <tr><td>10</td><td><b>Textura de lente</b></td><td>Grão de 3% a 5%; vinheta de 12% a 18%; bloom baixo e só em emissivos</td></tr>
+  <tr><td>11</td><td><b>Montagem com intenção</b></td><td>De 10 a 12 planos em 30 s; quadro 0 pronto; corte 2 quadros antes da palavra; zero fusão</td></tr>
+  <tr><td>12</td><td><b>Todo evento visual tem som</b></td><td>Quase silêncio de 150 a 250 ms antes da virada; master em −14 LUFS. <i>Convenção do gênero: as referências não foram ouvidas</i></td></tr>
+</table>
+<div class="split">
+<div class="box porque"><b>Do diagnóstico ao tratamento</b><p>O tratamento é uma frase e uma tabela de planos. A frase deste projeto: <i>o filme se passa num estúdio de produto, sobre uma bancada, e tudo o que o roteiro cita vira objeto físico.</i></p></div>
+<div class="box dica"><b>Regra de partida</b><p>É um lugar para começar a errar com método. No look-dev, f/2,8 no celular deixava uma faixa só de texto legível, e o herói passou para f/4.</p></div>
+</div>
+
+<!-- 08 VOZ -->
+<section class="chap pg"><span class="mk">QQc08QQ</span>
+  <div class="row"><div class="num">08</div><h1>Voz dirigida</h1></div>
+  <p class="intro">A voz foi a parte que mais deu errado. Três narrações passaram na conferência automática e foram reprovadas de ouvido. A que passou não veio de um motor melhor: veio de um processo.</p>
+</section>
+<div class="box atencao"><b>A lição que custou mais caro</b><p>O filtro às cegas (Whisper para as palavras, Praat para o tom no fim da frase) pega palavra errada e afirmação que termina como pergunta. Ele <b>não mede naturalidade nem emoção</b>. Narrações com nota máxima estavam corretas e mortas. <b>A máquina filtra, o ouvido aprova.</b></p></div>
+<table>
+  <tr><th>#</th><th>Tentativa</th><th>No filtro</th><th>No ouvido</th></tr>
+  <tr><td>1</td><td><b>Kokoro</b>, gratuito e local, roteiro em bloco</td><td>passa</td><td><b>Reprovada.</b> Limpa e neutra</td></tr>
+  <tr><td>2</td><td><b>Fish Audio</b> gratuito, frase a frase, duas vozes</td><td>passa</td><td><b>Reprovada.</b> Cada frase certa, o conjunto sem fio de emoção</td></tr>
+  <tr><td>3</td><td><b>ElevenLabs v3 em modo diálogo</b>, sem direção</td><td>passa</td><td><b>Reprovada.</b> Palavras fiéis, entonação errada</td></tr>
+  <tr><td>4</td><td><b>ElevenLabs com direção</b></td><td>passa</td><td><b>Aprovada</b></td></tr>
+</table>
+<h3>O processo que funcionou</h3>
+<ol class="steps">
+  <li><b>Amostras de tom</b>Só o gancho e o CTA, uns 10 segundos, em 4 a 7 variações de voz, modelo e ajuste.
+<pre data-t="terminal">uv run scripts/voz_dirigida.py amostras &lt;voice_id&gt; ana --id c01 --roteiros roteiros/roteiros.json</pre></li>
+  <li><b>Uma pessoa escolhe o tom</b>Mande os arquivos numerados e pergunte qual número. Não descreva as amostras antes.</li>
+  <li><b>O roteiro inteiro, com sementes</b>O texto dirigido numa geração só, em 5 a 8 tomadas. A semente torna a tomada repetível.
+<pre data-t="terminal">uv run scripts/voz_dirigida.py bloco c01 f1 ana --so-voz f1 --tomadas 5</pre></li>
+  <li><b>Filtro às cegas</b><code>uv run scripts/voz_avaliar.py voz/&lt;pasta&gt;</code> descarta o que tem erro objetivo.</li>
+  <li><b>Duas finalistas para o ouvido</b>Duas, e não uma nem cinco.</li>
+</ol>
+<h3>Como se dirige</h3>
+<table>
+  <tr><th>Ferramenta</th><th>Exemplo</th><th>Efeito</th></tr>
+  <tr><td><b>Marcação de tom</b> por bloco</td><td><code>[serious]</code> <code>[dramatic]</code> <code>[warmly]</code> <code>[curious]</code> <code>[confident]</code> <code>[excited]</code> <code>[amazed]</code> <code>[short pause]</code></td><td>Só o <code>eleven_v3</code> obedece. Vale até a próxima marcação</td></tr>
+  <tr><td><b>Ênfase</b></td><td>Esse vídeo... <b>NÃO</b> foi editado.</td><td>Uma palavra em caixa alta por frase</td></tr>
+  <tr><td><b>Pausa</b></td><td>reticências, dois-pontos</td><td>Silêncio antes da palavra que importa</td></tr>
+  <tr><td><b>Idioma forçado</b></td><td><code>language_code: "pt"</code></td><td>Reduz a melodia de inglês das vozes padrão</td></tr>
+</table>
+<pre data-t="texto dirigido da voz 1, como foi enviado">[serious] Esse vídeo... NÃO foi editado. [dramatic] Ele foi programado. [short pause] Ninguém abriu um editor. Ninguém arrastou um clipe. [warmly] Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada. [curious] Quer outra cor? Outro estilo? Outra voz? [confident] Um comando só! [excited] Sessenta quadros por segundo, pronto pra postar! [amazed] E custa zero: os modelos são abertos!</pre>
+<div class="split">
+<div class="box porque"><b>Dois textos, sempre</b><p>O roteiro aprovado fica limpo. O texto dirigido é outro campo (<code>falas_dirigidas</code>). O filtro confere contra o limpo. A segunda voz do filme usa o <code>eleven_multilingual_v2</code>, que não entende marcações: ali a direção é só pontuação.</p></div>
+<div class="box atencao"><b>Limite honesto</b><p>As vozes padrão são americanas. Idioma forçado e direção reduzem a melodia de inglês, sem apagar. O ideal é uma voz brasileira nativa da biblioteca, que exige plano pago e permissão na chave. Não foi o caminho deste anúncio.</p></div>
+</div>
+
+<!-- 09 NARRAÇÃO NO TEMPO -->
+<section class="chap"><span class="mk">QQc09QQ</span>
+  <div class="row"><div class="num">09</div><h1>Narração no tempo</h1></div>
+  <p class="intro">A técnica central do método: nada no filme tem segundo fixo. Tudo começa numa palavra.</p>
+</section>
+<pre data-t="terminal">uv run scripts/vo_montar.py &lt;pasta-do-filme&gt; voz/&lt;id&gt;/&lt;tomada&gt;.wav --tempo 1.10 --pausa-max 0.36</pre>
+<div class="keep"><p>O script trata o áudio, acelera de leve, encurta pausas longas e grava <code>vo.json</code> com cada palavra e cada frase no tempo. No filme:</p>
+<pre data-t="film.js">const tVirada = wt('programado');      <span class="c">// quando a transcrição marca a palavra</span>
+const tGolpe  = on('programado');      <span class="c">// quando a palavra é OUVIDA (início de energia no áudio)</span>
+const corte   = wt('ele') - 2 / 60;    <span class="c">// o corte vai dois quadros antes da palavra</span></pre></div>
+<div class="split">
+<div class="box dica"><b>Corte antes, golpe na hora</b><p>O olho precisa de um instante para ler a imagem nova: corte dois quadros antes. O impacto, esse, vai no início <i>audível</i> da palavra.</p></div>
+<div class="box atencao"><b>A transcrição adianta</b><p>O tempo de palavra do Whisper ficou de 50 a 235 ms antes do som, com média perto de 140 ms (medido). Para o que precisa bater, use o início medido no áudio.</p></div>
+</div>
+
+<!-- 10 LOOK-DEV -->
+<section class="chap"><span class="mk">QQc10QQ</span>
+  <div class="row"><div class="num">10</div><h1>Look-dev</h1></div>
+  <p class="intro">Antes de construir 30 segundos, construa quatro quadros. É o lugar mais barato para errar, e responde à pergunta que derrubou a primeira edição: isto parece caro?</p>
+</section>
+<figure>
+  <div class="phones c4">
+    <div><img src="../docs/img/lookdev/a_hero_phone_dark.jpg"><div class="cap"><i>A</i> · celular, escuro · nota 8</div></div>
+    <div><img src="../docs/img/lookdev/b_macro_editor_dark.jpg"><div class="cap"><i>B</i> · macro, escuro · nota 8</div></div>
+    <div><img src="../docs/img/lookdev/c_glass_cards_light.jpg"><div class="cap"><i>C</i> · vidro, claro · nota 7</div></div>
+    <div><img src="../docs/img/lookdev/d_end_card_light.jpg"><div class="cap"><i>D</i> · cartão final, claro · nota 7</div></div>
+  </div>
+  <figcaption>Os quatro quadros de estilo do projeto, a 768 amostras por quadro. Régua escrita antes das notas: 10 é indistinguível de fotografia de estúdio; 5 é um render bonito que qualquer pessoa reconhece como 3D.</figcaption>
+</figure>
+<div class="split">
+<div>
+<h3 style="margin-top:0">O que entregar</h3>
+<ul><li><b>3 ou 4 quadros de estilo</b>: um por mundo de luz, um do plano mais difícil, um do cartão final</li>
+<li><b>Um teste de movimento de 4 s</b>: quadro parado perdoa o que o movimento denuncia</li>
+<li><b>Nota de realismo</b> por quadro e a lista do que ainda parece falso</li>
+<li><b>Tempo de render</b> por quadro, para estimar o filme</li></ul>
+</div>
+<div>
+<h3 style="margin-top:0">Como dar nota honesta</h3>
+<ul><li>Escreva a régua antes</li>
+<li>Para cada quadro, escreva o que denuncia o render</li>
+<li>Dê a nota depois de escrever os defeitos</li>
+<li>Na dúvida entre duas notas, vale a menor</li></ul>
+</div>
+</div>
+<h3>O que fez os quadros parecerem fotografia</h3>
+<table>
+  <tr><th>#</th><th>O que</th><th>Por que pesa</th></tr>
+  <tr><td>1</td><td><b>Desfoque de lente por acumulação</b></td><td>Vidro atrás de vidro e reflexo no chão desfocam certo, sem truque</td></tr>
+  <tr><td>2</td><td><b>Pretos de verdade</b></td><td>Percentil 5 medido em 6/255 e 4/255. O filme reprovado estava em 23</td></tr>
+  <tr><td>3</td><td><b>Brilho só do ambiente no que é liso</b></td><td>Uma luz que se move imprime um pontinho por amostra num vidro</td></tr>
+  <tr><td>4</td><td><b>Um softbox por plano, por cálculo</b></td><td>A faixa de luz no canto da tela é posta onde aquela câmera a vê</td></tr>
+  <tr><td>5</td><td><b>Digitais no vidro</b></td><td>Só aparecem onde há reflexo. É o detalhe que mais "vira foto"</td></tr>
+  <tr><td>6</td><td><b>Chão com reflexo renderizado</b></td><td>O reflexo endurece perto do contato e se desfaz longe</td></tr>
+  <tr><td>7</td><td><b>Bloom só de emissivos</b></td><td>No mundo claro, bloom por limiar faria o fundo inteiro brilhar</td></tr>
+</table>
+<div class="box porque"><b>O look-dev previu o ponto fraco</b><p>A média foi 7,5, e a conclusão escrita foi: o mundo escuro está mais perto da meta que o claro. Com o filme pronto, os críticos independentes disseram o mesmo, e o realismo do mundo claro foi o único critério a fechar abaixo de 8. O que ainda parece falso: a luz não rebate do chão claro para os objetos, a aresta do vidro é uniforme, os aparelhos são limpos demais.</p></div>
+
+<!-- 11 3D -->
+<section class="chap"><span class="mk">QQc11QQ</span>
+  <div class="row"><div class="num">11</div><h1>O filme em 3D fotorrealista</h1></div>
+  <p class="intro">Não é traçado de raios. É rasterização comum em three.js, repetida muitas vezes por quadro, com uma coisa diferente a cada vez. A soma dá desfoque de lente, desfoque de movimento e sombra suave de verdade.</p>
+</section>
+<div class="box porque"><b>A ideia: uma câmera que soma</b><p>Uma câmera real não registra um instante nem um ponto: o obturador fica aberto por um tempo, e a luz entra por uma abertura que tem área. A imagem é a média de tudo o que passou. O pipeline (<code>lib/3d/pipeline.js</code>) faz o mesmo: um quadro é a média de <b>192 a 768 renders</b> completos da cena.</p></div>
+<table>
+  <tr><th>O que muda a cada amostra</th><th>O que se ganha</th></tr>
+  <tr><td><b>Posição da câmera na abertura da lente</b>, com a projeção cisalhada para o plano de foco não sair do lugar</td><td>Profundidade de campo de lente fina, correta atrás de vidro</td></tr>
+  <tr><td><b>Meio pixel</b></td><td>Antisserrilhado</td></tr>
+  <tr><td><b>Instante dentro do obturador</b></td><td>Desfoque de movimento: o que gira borra, o que está parado fica nítido</td></tr>
+  <tr><td><b>Posição de cada luz dentro da sua área</b></td><td>Sombra suave de softbox, com mapa de sombra comum</td></tr>
+  <tr><td><b>Micro-normal do chão</b></td><td>Reflexo acetinado, que endurece no contato</td></tr>
+</table>
+<figure>
+  <div class="phones c5">
+    <div><img src="../docs/img/v2-02-programado.jpg"><div class="cap"><i>1b</i> · macro, 100 mm</div></div>
+    <div><img src="../docs/img/v2-05-voz.jpg"><div class="cap"><i>5</i> · a voz como pinos</div></div>
+    <div><img src="../docs/img/v2-08-comando.jpg"><div class="cap"><i>8</i> · Enter, 135 mm</div></div>
+    <div><img src="../docs/img/v2-09-60fps.jpg"><div class="cap"><i>9</i> · giro a 60 fps</div></div>
+    <div><img src="../docs/img/v2-12-cartao.jpg"><div class="cap"><i>12b</i> · cartão final</div></div>
+  </div>
+  <figcaption>Cinco dos 16 planos de "A bancada". Tudo o que o roteiro cita é um objeto numa bancada de estúdio. As telas mostram só conteúdo real: quadros do exemplo, o roteiro, comandos do kit, a página do repositório.</figcaption>
+</figure>
+<h3>Como escrever um filme com <code>lib/3d</code></h3>
+<pre data-t="film.js">const pipe = new Pipeline(canvas, 1080, 1920);
+const S = await createStudio(pipe, '../../lib/3d/assets/');
+const stage = { scene: S.scene, camera: S.camera, floor: S.floor, floorUniforms: S.floorUniforms, mirror: S.mirror,
+  prepare(t) { <span class="c">/* uma vez por quadro: redesenhar as telas */</span> },
+  update(t)  { <span class="c">/* por amostra: posicionar objetos e devolver a câmera */</span> return { pos, target, fov, focus, aperture }; },
+  sample(s)  { S.sampleLights(s); } };
+window.seek = (t) =&gt; pipe.render(stage, t, { spp, fps, typeTex, frame });</pre>
+<ol class="steps">
+  <li><b>Monte os tempos a partir do <code>vo.json</code></b>Uma tabela com o instante de cada palavra que importa e outra com os cortes.</li>
+  <li><b>Descreva cada plano</b>Mundo de luz, o que as telas mostram, a função que posiciona objetos e devolve a câmera, a legenda.</li>
+  <li><b>Escreva a câmera em linguagem de fotografia</b>Posição, alvo, milímetros, ponto de foco e abertura.</li>
+  <li><b>Liste os eventos de som ao lado dos de imagem</b>Os mesmos instantes movem os dois.</li>
+  <li><b>Confira a cada mudança</b>Folha de contato em segundos; tiras densas nas ações; contraste medido das legendas.</li>
+</ol>
+<pre data-t="terminal">make contato3d   FILME=exemplos/bancada    <span class="c"># folha de contato, 2 quadros por plano</span>
+make contraste3d FILME=exemplos/bancada    <span class="c"># contraste de cada legenda contra o quadro pronto</span>
+make previa3d    FILME=exemplos/bancada    <span class="c"># áudio + 30 fps, 128 amostras por quadro</span>
+make final3d     FILME=exemplos/bancada    <span class="c"># áudio + 60 fps, 192 amostras por quadro</span></pre>
+<div><h3>Tempo de render</h3>
+<table>
+  <tr><th>Uso</th><th>Amostras por quadro</th><th>Tempo por quadro</th></tr>
+  <tr><td>Folha de contato</td><td>16 a 24</td><td>0,06 a 0,12 s</td></tr>
+  <tr><td>Prévia em movimento</td><td>128</td><td>cerca de 0,4 s</td></tr>
+  <tr><td>Final</td><td>192 a 256</td><td>0,6 a 0,9 s</td></tr>
+  <tr><td>Foto de estilo</td><td>768</td><td>2 a 3 s</td></tr>
+  <tr><td>Plano com vidro maciço</td><td>192</td><td>cerca de 4,5 s</td></tr>
+</table>
+<p class="small">Medido num Apple M1 Pro com 16 GB. O filme inteiro (35 s, 60 fps, 192 amostras) leva de 35 a 40 minutos; a prévia, perto de 14.</p></div>
+<h3>Tropeços que custaram uma rodada cada</h3>
+<table>
+  <tr><th>Sintoma</th><th>Causa</th><th>Saída</th></tr>
+  <tr><td>Clarão na tela e sombras lavadas</td><td>Com <code>scene.environment</code>, o three.js ignora <code>envMapIntensity</code> do material</td><td>Entregar o mapa em <code>material.envMap</code>, com a dose de cada material</td></tr>
+  <tr><td>Pontinhos brilhantes num vidro</td><td>A luz que se move imprime um ponto por amostra</td><td>Polidos recebem brilho só do ambiente</td></tr>
+  <tr><td>Vidro atrás de vidro some</td><td>A transmissão só enxerga objetos opacos</td><td>Renderizar o vidro em camadas, de trás para a frente</td></tr>
+  <tr><td>Objetos flutuando no mundo claro</td><td>Fresta clara entre o objeto e a sombra</td><td>Sombra de contato por objeto</td></tr>
+  <tr><td>Legenda sobre o assunto</td><td>O texto foi encaixado onde sobrou</td><td>Uma linha de base para as legendas; o assunto desce</td></tr>
+  <tr><td>Movimento chega antes da hora</td><td>A transformação 87% pronta 250 ms antes do golpe</td><td>Segurar, e resolver em 2 quadros na palavra</td></tr>
+</table>
+<div class="box atencao"><b>Limites</b><p>Sem luz rebatida e sem cáusticas: é o que mais separa o mundo claro de uma fotografia. Refração em espaço de tela. Testado numa máquina, em macOS. Os scripts de logo no After Effects (<code>ae/logo3d/</code>) continuam no kit como opcional e <b>não foram testados nesta edição</b>; o filme novo não depende deles.</p></div>
+
+<!-- 12 2D -->
+<section class="chap"><span class="mk">QQc12QQ</span>
+  <div class="row"><div class="num">12</div><h1>O filme em 2D</h1></div>
+  <p class="intro">O motor 2D (<code>lib/cena.js</code>) desenha num canvas e renderiza em poucos minutos. É o caminho mais curto para anúncios de interface com muitas variações.</p>
+</section>
+<table>
+  <tr><th>Use o 2D quando</th><th>Passe para o 3D quando</th></tr>
+  <tr><td>O argumento de venda é a interface de um aplicativo</td><td>O argumento é o objeto, o acabamento, a "cara de produto"</td></tr>
+  <tr><td>Você precisa de dezenas de variações</td><td>O filme será comparado a filmes de lançamento</td></tr>
+  <tr><td>O render precisa sair em minutos</td><td>Você aceita de 35 a 40 minutos por meio minuto de filme</td></tr>
+</table>
+<div><h3>As técnicas</h3>
+<table>
+  <tr><th>Técnica</th><th>Como fazer</th><th>Erro comum</th></tr>
+  <tr><td><b>Molas</b></td><td><code>springU</code> e <code>springKeys</code>: entra com peso, passa um pouco e assenta</td><td>Easing linear</td></tr>
+  <tr><td><b>Título com desfoque</b></td><td>Cada palavra entra de 12 px de desfoque a 0, com 60 ms entre palavras</td><td>Desfocar a frase inteira</td></tr>
+  <tr><td><b>Vidro</b></td><td>Desfoque real do fundo, borda clara, sombra longa e difusa</td><td>Sombra curta e escura</td></tr>
+  <tr><td><b>Pílulas que acendem</b></td><td>Cor da marca no instante em que a fala cita a função</td><td>Todas acesas sempre</td></tr>
+  <tr><td><b>Cursor e toque</b></td><td>Trajetória em arco, anel que se expande, som no toque</td><td>Clique sem antecipação</td></tr>
+  <tr><td><b>Celular</b></td><td>Captura real; zoom em escala logarítmica até a área citada</td><td>Tela inventada</td></tr>
+  <tr><td><b>Transições</b></td><td>A cena nova já está no primeiro quadro do corte</td><td>Flash em todo corte</td></tr>
 </table></div>
 <div class="split">
-<div class="box atencao"><b>Regras que não se quebram</b><ul style="margin:0"><li>Só telas reais do produto; tela inventada parece mentira.</li><li>Nada de "tudo aparecendo com fade".</li><li>Algo novo a cada 2 a 4 segundos.</li><li>Uma fonte de título, uma de interface, uma cor de destaque.</li></ul></div>
-<div class="box dica"><b>Escala com agentes</b><p>Aprovado o piloto, peça ao Claude um workflow com um agente por roteiro: cada um copia o piloto, troca as cenas pelas do seu roteiro e passa pelas rodadas de crítica antes de entregar.</p></div>
+<div class="box porque"><b>O que a edição 2 ensinou ao 2D</b><p>Os defeitos medidos se corrigem em canvas também: objeto em 55% a 75% da largura; preto de verdade; de 10 a 12 planos com corte na palavra; caixa mista com uma palavra de acento; texto a ler com 30 px ou mais.</p></div>
+<div class="box atencao"><b>O contrato do render</b><p>Vale para os dois motores. O filme é função pura do tempo. Sem <code>setTimeout</code>, sem <code>Math.random</code>, sem estado entre quadros. Os quadros podem ser pedidos fora de ordem.</p></div>
 </div>
-<p class="small">Contrato do render: sem <code>setTimeout</code>, sem <code>Math.random</code> (use ruído com semente), sem estado entre quadros. O renderizador pede os quadros fora de ordem e em paralelo.</p>
 
-<!-- 08 AFTER EFFECTS -->
-<section class="chap"><span class="mk">QQc09QQ</span>
-  <div class="row"><div class="num">09</div><h1>Logo 3D no After Effects</h1></div>
-  <p class="intro">O After Effects entra para uma peça só: a animação do logo ou ícone em 3D, usada no fim de todos os vídeos. Ele é controlado por script, e você assiste ao projeto sendo montado na janela aberta.</p>
+<!-- 13 SOM -->
+<section class="chap"><span class="mk">QQc13QQ</span>
+  <div class="row"><div class="num">13</div><h1>Som: trilha, efeitos e mixagem</h1></div>
+  <p class="intro">Todo som que não é voz sai de código. A edição 2 acrescentou medir: a primeira prévia do filme estava no padrão de loudness e levou nota 5 em desenho de som.</p>
 </section>
 <ol class="steps">
-  <li><b>Scripts numerados</b>Divida o trabalho em arquivos <code>.jsx</code> pequenos: composição, base do ícone, escudo/logo extrudado, animação, varredura de luz, sombra, montagem e render. Um <code>run_all.sh</code> chama todos em ordem.</li>
-  <li><b>Rode pelo osascript</b>
-<pre data-t="terminal">osascript -e 'tell application "Adobe After Effects 2027" to DoScriptFile "/caminho/ae/01_comp.jsx"'</pre></li>
-  <li><b>Sem diálogos</b>Todo script começa com <code>app.beginSuppressDialogs()</code>, salva com <code>app.project.save(new File(caminho))</code> e fecha com <code>CloseOptions.DO_NOT_SAVE_CHANGES</code>. Um diálogo aberto trava a automação.</li>
-  <li><b>Render em PNG com transparência</b>Fila de render do próprio AE, saída PNG RGBA. O AE grava PNG de 16 bits; converta para 8 bits (<code>png16to8.py</code>) e reduza para o tamanho de uso.</li>
-  <li><b>Use no filme</b>A sequência entra no cartão final, quadro a quadro, sincronizada com o tempo do filme.</li>
+  <li><b>Trilha</b><code>trilha.py</code> compõe a música a partir de quatro tempos da fala: duração, virada, CTA e acentos. O tempo forte cai exatamente na virada.</li>
+  <li><b>Efeitos</b>Cada evento visual do filme tem uma linha com instante, rótulo e som. Os instantes são os mesmos que movem a imagem.</li>
+  <li><b>Mixagem</b><code>mix.mjs</code> soma voz, música e efeitos, abaixa a música sob a voz e masteriza em <b>−14 LUFS</b> e pico de até −1 dBTP.</li>
 </ol>
-<pre data-t="film.js">export function stingIcon(ctx, IMG, t, t0, x, y, size = 576) {
-  if (t &lt; t0) return;
-  const im = IMG['st' + Math.min(89, Math.floor((t - t0) * 30))];
-  if (im) ctx.drawImage(im, x - size / 2, y - size / 2, size, size); }</pre>
-<div class="box dica"><b>Dica</b><p>Use o renderizador Classic 3D e <code>openInViewer()</code> em cada composição criada: o projeto fica visível enquanto o script trabalha, e você aprova o movimento antes do render.</p></div>
-
-<!-- 09 CRÍTICA E ENTREGA -->
-<section class="chap"><span class="mk">QQc10QQ</span>
-  <div class="row"><div class="num">10</div><h1>Crítica, render e entrega</h1></div>
-  <p class="intro">Nenhum vídeo sai sem pelo menos três rodadas de revisão em folhas de contato.</p>
-</section>
-<ol class="steps">
-  <li><b>Folhas de contato</b>Um quadro por batida, e uma versão em meio tamanho que simula o celular na mão.
-<pre data-t="terminal">node skill/scripts/render.mjs --film a01-meu-criativo --contact</pre></li>
-  <li><b>Notas de 1 a 10</b>Gancho, leitura no celular, qualidade do movimento, variedade, marca e sincronia de som. Corrija os três piores pontos e repita até tudo ficar com 8 ou mais.</li>
-  <li><b>Prévia para o cliente</b>Rápida, a 30 fps e sem desfoque: <code>scripts/finalizar.sh a01-meu-criativo previa</code></li>
-  <li><b>Final</b><code>scripts/finalizar.sh a01-meu-criativo final</code>: 60 fps com desfoque de movimento, áudio em -14 LUFS.</li>
-  <li><b>Confira o arquivo</b><code>ffprobe</code> deve mostrar 1080×1920, 60 fps, yuv420p e trilha de áudio. Tire um quadro do MP4 final e olhe.</li>
-</ol>
-<h3>Variações sem reescrever</h3>
+<pre data-t="film.js">[T.editor,          'tampa fecha', 'thud',       { gain: 0.5 }],
+[T.segundo - 0.36,  'giro',        'whoosh',     { len: 0.65, from: 400, to: 2800, gain: 0.5 }],
+[T.segundo,         'trava',       'click+thud', { gain: 0.45 }],</pre>
+<h3>O que a medição encontrou</h3>
+<div class="split">
+<div>
+<p><b>A música tinha sumido.</b> O sidechain padrão a deixava 14,8 LU abaixo da voz nos intervalos entre as frases.</p>
 <table>
-  <tr><th>Eixo</th><th>Comando</th><th>O que muda</th></tr>
-  <tr><td><b>Cor</b></td><td><code>variante.py a01 escuro --tema escuro</code></td><td>Fundo escuro, mesmo layout.</td></tr>
-  <tr><td><b>Estilo</b></td><td><code>variante.py a01 impacto --estilo impacto</code></td><td>Títulos em itálico pesado e caixa alta.</td></tr>
-  <tr><td><b>Voz</b></td><td><code>variante.py a01 voz2 --voz voz/a01/locutor-v2-1.mp3</code></td><td>Outra narração; cenas e trilha se reposicionam pelas palavras.</td></tr>
+  <tr><th>Parâmetro</th><th>Antes</th><th>Depois</th></tr>
+  <tr><td>Limiar</td><td>0,02</td><td><b>0,08</b></td></tr>
+  <tr><td>Razão</td><td>6</td><td><b>3</b></td></tr>
+  <tr><td>Ataque / soltura</td><td>12 / 280 ms</td><td><b>15 / 350 ms</b></td></tr>
+  <tr><td>Ganho da música</td><td>0 dB</td><td><b>+2 dB</b></td></tr>
 </table>
-<div class="check"><b>Checklist de entrega</b><ul>
-  <li>Texto da tela legível no meio tamanho</li>
-  <li>Gancho com texto no primeiro quadro</li>
-  <li>Narração conferida às cegas e de ouvido</li>
-  <li>Nenhum número sem fonte</li>
-  <li>CTA e contato conferidos com o cliente</li>
-  <li>1080×1920, 60 fps, -14 LUFS</li>
-  <li>Nomes padronizados (A01-NOME.mp4)</li>
-  <li>Licença comercial da voz ativa</li>
+<p class="small">Resultado medido: música 9,0 LU abaixo da voz nos intervalos; voz 14,3 dB acima da música durante a fala; loudness integrado inalterado.</p>
+</div>
+<div>
+<p><b>Mais da metade dos efeitos não se ouvia.</b> Cerca de 25 dos 44 eventos estavam de 15 a 27 dB abaixo da voz, e os três mais fortes caíam em cima de palavras.</p>
+<p><b>O filme morria depois da última palavra.</b> O cartão final ficava em silêncio. Agora há um acorde, a música se mantém e o botão pulsa.</p>
+<pre data-t="terminal" style="margin-bottom:0">make audio3d FILME=exemplos/bancada</pre>
+</div>
+</div>
+<div class="check"><b>As regras que ficaram</b><ul>
+  <li>Todo evento visual tem som, e todo som se ouve</li>
+  <li>Nenhum golpe em cima de palavra</li>
+  <li>O som dura o que a imagem dura</li>
+  <li>O impacto vai no início audível da palavra</li>
+  <li>Quase silêncio antes da virada</li>
+  <li>A música respira nos intervalos da voz</li>
+  <li>O filme não acaba quando a voz acaba</li>
+  <li>−14 LUFS e pico ≤ −1 dBTP, conferidos</li>
 </ul></div>
 
-<!-- 11 SKILLS -->
-<section class="chap pg"><span class="mk">QQc11QQ</span>
-  <div class="row"><div class="num">11</div><h1>Skills por etapa</h1></div>
-  <p class="intro">Skills são pacotes de instruções que o agente carrega quando a tarefa pede. Elas não dependem do modelo, então funcionam também na trilha gratuita.</p>
+<!-- 14 CRÍTICA -->
+<section class="chap"><span class="mk">QQc14QQ</span>
+  <div class="row"><div class="num">14</div><h1>Crítica independente</h1></div>
+  <p class="intro">Quem construiu sabe o que quis fazer e vê isso na tela, mesmo quando não está lá. Por isso, o construtor nunca aprova o próprio trabalho sozinho.</p>
 </section>
 <table>
-  <tr><th>Etapa</th><th>Skill / plugin</th><th>Para quê</th></tr>
-  <tr><td><b>Briefing</b></td><td><code>marketing:competitive-brief</code></td><td>Posicionamento e brechas de mensagem dos concorrentes</td></tr>
-  <tr><td><b>Briefing</b></td><td><code>design:user-research</code></td><td>Roteiro de conversa com o cliente e com o público</td></tr>
-  <tr><td><b>Roteiro</b></td><td><code>marketing:content-creation</code></td><td>De 5 a 10 ganchos e CTAs por criativo para escolher</td></tr>
-  <tr><td><b>Roteiro</b></td><td><code>design-skills:ux-writing</code></td><td>Texto curto e claro para a tela</td></tr>
-  <tr><td><b>Roteiro</b></td><td><code>marketing:brand-review</code></td><td>Tom de marca e alegações sem fonte</td></tr>
-  <tr><td><b>Filme</b></td><td><b><code>motion-reel</code></b></td><td>O motor: render, trilha, efeitos, mixagem, folhas de contato e rodadas de crítica (em <code>vendor/</code>)</td></tr>
-  <tr><td><b>Filme</b></td><td><code>design-skills:interaction-design</code></td><td>Microinterações e coreografia do movimento</td></tr>
-  <tr><td><b>Crítica</b></td><td><code>design:design-critique</code></td><td>Crítica estruturada por heurísticas</td></tr>
-  <tr><td><b>Crítica</b></td><td><code>design:accessibility-review</code></td><td>Contraste e legibilidade do texto na tela</td></tr>
-  <tr><td><b>Escala</b></td><td><code>workflow-authoring</code> + Workflow</td><td>Um agente por criativo depois do piloto, com verificação</td></tr>
-  <tr><td><b>Voz</b></td><td><code>motion-reel-voice</code></td><td>Ferramentas da ElevenLabs dentro do agente (opcional, há o script)</td></tr>
-  <tr><td><b>Documentos</b></td><td><code>pdf</code>, <code>artifact-design</code></td><td>Página de aprovação e guias como este</td></tr>
+  <tr><th>Camada</th><th>Quem</th><th>O que pega</th></tr>
+  <tr><td><b>1. Rodadas do construtor</b></td><td>O agente que escreve o filme</td><td>O grosso: plano ilegível, legenda sobre o objeto, quadro vazio</td></tr>
+  <tr><td><b>2. Críticos independentes</b></td><td>Agentes sem o histórico da construção: um de imagem, um de montagem e som</td><td>O que o construtor deixou de ver: flutuação, falta de peso, som que sumiu</td></tr>
+  <tr><td><b>3. Pessoa</b></td><td>Quem pediu o anúncio</td><td>O que nenhuma medição alcança: se a voz emociona, se o filme convence</td></tr>
 </table>
-<h3>Como pedir ao agente</h3>
-<pre data-t="pedido 1: roteiros">Siga docs/01-metodo.md. O briefing está em briefing.md. Escreva 6 roteiros de 30 s em
-roteiros/roteiros.json seguindo docs/07-roteiro-e-copy.md, revise com marketing:brand-review
-e pare para eu aprovar.</pre>
-<pre data-t="pedido 2: piloto">Monte o piloto a01 com lib/cena.js, prenda as cenas às palavras de vo.json e rode 3 rodadas
-de crítica com templates/critica.md antes de me mostrar.</pre>
-<pre data-t="pedido 3: escala">Piloto aprovado. Escreva um workflow com um agente por roteiro, de a02 a a06, cada um copiando
-o piloto e passando pela crítica.</pre>
+<h3>Como montar os críticos</h3>
+<ol class="steps">
+  <li><b>Um agente novo para cada crítico</b>Sem a conversa da construção.</li>
+  <li><b>Entregue material, e não conclusões</b>A prévia, as referências, o roteiro e a rubrica.</li>
+  <li><b>Exija medição e correção numérica</b>"A legenda encosta no celular" não basta. "Desça o assunto para o topo do celular ficar abaixo de y = 560" basta.</li>
+  <li><b>Proíba elogio</b></li>
+</ol>
+<h3>O caso real: a primeira prévia de "A bancada"</h3>
+<table>
+  <tr><th>Critério</th><th>Prévia 1 (críticos)</th><th>Depois das correções</th></tr>
+  <tr><td>Realismo</td><td>6 (escuro 7,5 · claro 5)</td><td>escuro 8,5 · claro <b>7,5</b></td></tr>
+  <tr><td>Composição · Tipografia</td><td>6 · 6,5</td><td>8 · 8,5</td></tr>
+  <tr><td>Acabamento · Consistência</td><td>6 · 5,5</td><td>8 · 8</td></tr>
+  <tr><td>Gancho · Ritmo · Movimento</td><td>6,5 · 6,5 · 6</td><td>8,5 · 8 · 8</td></tr>
+  <tr><td>Desenho de som</td><td>5</td><td>8 (nota de construção)</td></tr>
+  <tr><td>História sem som · CTA</td><td>7 · 7,5</td><td>8,5 · 8</td></tr>
+</table>
+<p class="small">Régua: 8 = eu colocaria no ar; 10 = não distingo de um filme de produto de estúdio. As notas da segunda coluna foram registradas pelo construtor depois de aplicar as correções, apoiadas em medições refeitas. Não são uma reavaliação cega.</p>
+<div class="split">
+<div class="box porque"><b>O que os críticos viram</b><ul style="margin:0"><li>Legenda impressa sobre o produto em sete planos</li><li>Palavra de acento com contraste de 2,0:1</li><li>O fundo "claro" era cinza neutro</li><li>Objetos flutuando: fresta de 12 a 18 px até a sombra</li><li>Gancho parado até 1,7 s</li><li>Música 14,8 LU abaixo da voz</li></ul></div>
+<div class="box atencao"><b>O que ficou abaixo da meta</b><p>O realismo do mundo claro fechou em 7,5. O chão ganhou foco de luz, fibra de papel e sombra de contato, mas a luz não rebate do chão para os objetos. A exceção está escrita no registro de crítica do filme, com o motivo. Registrar a recusa e o limite faz parte do método.</p></div>
+</div>
 
-<!-- 12 FUNDAMENTOS -->
-<section class="chap"><span class="mk">QQc12QQ</span>
-  <div class="row"><div class="num">12</div><h1>Fundamentos</h1></div>
-  <p class="intro">As regras do método vêm de estudos de animação, aprendizagem e áudio. Saber o porquê ajuda a decidir quando uma regra pode ceder.</p>
+<!-- 15 RENDER -->
+<section class="chap"><span class="mk">QQc15QQ</span>
+  <div class="row"><div class="num">15</div><h1>Render, variações e entrega</h1></div>
+  <p class="intro">A prévia serve para aprovar. O final serve para subir. Entre um e outro, a conferência do arquivo.</p>
+</section>
+<table>
+  <tr><th>Passo</th><th>Motor 2D</th><th>Motor 3D</th></tr>
+  <tr><td><b>Prévia, 30 fps</b></td><td><code>make previa FILME=&lt;pasta&gt;</code></td><td><code>make previa3d FILME=&lt;pasta&gt;</code></td></tr>
+  <tr><td><b>Final, 60 fps</b></td><td><code>make final FILME=&lt;pasta&gt;</code></td><td><code>make final3d FILME=&lt;pasta&gt;</code></td></tr>
+  <tr><td><b>Conferência</b></td><td colspan="2"><code>make checar ARQS="entrega/finais/*.mp4"</code></td></tr>
+</table>
+<h3>Especificação de entrega</h3>
+<table>
+  <tr><th>Item</th><th>Valor</th></tr>
+  <tr><td>Resolução e quadros</td><td>1080×1920 (9:16), 60 fps no final e 30 fps na prévia</td></tr>
+  <tr><td>Vídeo</td><td>H.264, yuv420p</td></tr>
+  <tr><td>Áudio</td><td>AAC, −14 LUFS integrados (±1), pico de até −1 dBTP</td></tr>
+</table>
+<h3>Variações sem reescrever (motor 2D)</h3>
+<table>
+  <tr><th>Eixo</th><th>Comando</th><th>O que muda</th></tr>
+  <tr><td><b>Cor</b></td><td><code>python3 scripts/variante.py &lt;filme&gt; escuro --tema escuro</code></td><td>Fundo escuro, mesmo layout</td></tr>
+  <tr><td><b>Estilo</b></td><td><code>python3 scripts/variante.py &lt;filme&gt; impacto --estilo impacto</code></td><td>Títulos em itálico pesado</td></tr>
+  <tr><td><b>Voz</b></td><td><code>python3 scripts/variante.py &lt;filme&gt; voz2 --voz voz/&lt;id&gt;/&lt;tomada&gt;.wav</code></td><td>Outra narração; cenas e trilha se reposicionam pelas palavras</td></tr>
+</table>
+<p class="small">No motor 3D, trocar a voz também reposiciona o filme, porque tudo sai do <code>vo.json</code>. Variações de cor e estilo com um comando ainda não existem no 3D.</p>
+<div class="check"><b>Checklist de entrega</b><ul>
+  <li>Gancho com imagem pronta e texto no quadro 0</li>
+  <li>A história se entende sem som</li>
+  <li>Legendas com contraste de 4,5:1 ou mais</li>
+  <li>Narração aprovada de ouvido por uma pessoa</li>
+  <li>Crítica feita por quem não construiu</li>
+  <li>Nenhum número sem fonte</li>
+  <li>1080×1920, 60 fps, −14 LUFS</li>
+  <li>Licença comercial da voz conferida</li>
+</ul></div>
+
+<!-- 16 SKILLS -->
+<section class="chap"><span class="mk">QQc16QQ</span>
+  <div class="row"><div class="num">16</div><h1>Skills e como pedir ao agente</h1></div>
+  <p class="intro">Skills são pacotes de instruções que o agente carrega quando a tarefa pede. Não dependem do modelo, então funcionam também na trilha gratuita. Nenhuma é obrigatória.</p>
+</section>
+<table>
+  <tr><th>Etapa</th><th>Skill ou plugin</th><th>Para quê</th></tr>
+  <tr><td><b>Referências</b></td><td>conector AdWhispr</td><td>Anúncios ativos por marca, por dias no ar</td></tr>
+  <tr><td><b>Roteiro</b></td><td><code>marketing:content-creation</code> · <code>marketing:brand-review</code></td><td>Variações de gancho; tom de marca e alegações sem fonte</td></tr>
+  <tr><td><b>Filme</b></td><td><b><code>motion-reel</code></b> (em <code>vendor/</code>)</td><td>Render 2D, efeitos, mixagem, folhas de contato</td></tr>
+  <tr><td><b>Crítica</b></td><td><code>design:design-critique</code> · <code>design:accessibility-review</code></td><td>Crítica por heurísticas; contraste e legibilidade</td></tr>
+  <tr><td><b>Escala</b></td><td><code>workflow-authoring</code></td><td>Um agente por criativo depois do piloto</td></tr>
+</table>
+<p>Peça por etapa, cite os arquivos e diga onde parar.</p>
+<pre data-t="pedido: referências">Siga docs/09-pesquisa-de-referencias.md. Levante 12 a 15 filmes de lançamento parecidos com o do briefing, sem baixar vídeo. Entregue a tabela, as regras com números e a análise de lacunas do nosso material. Marque o que é medido e o que é estimado. Pare para eu ler.</pre>
+<pre data-t="pedido: voz">Roteiro aprovado. Siga docs/12-voz-dirigida.md: gere amostras de tom só do gancho e do CTA, em 5 variações. Não gere o roteiro inteiro antes de eu escolher uma.</pre>
+<pre data-t="pedido: crítica independente (para um agente novo)">Você é crítico e não construiu este filme. Avalie entrega/previas/a01-previa.mp4 com a rubrica de docs/08-qualidade-e-solucao-de-problemas.md. Meça o que puder medir. Devolva notas por critério e uma lista de correções com números. Não elogie.</pre>
+
+<!-- 17 FUNDAMENTOS -->
+<section class="chap"><span class="mk">QQc17QQ</span>
+  <div class="row"><div class="num">17</div><h1>Fundamentos</h1></div>
+  <p class="intro">As regras do método vêm de estudos de animação, aprendizagem, computação gráfica e áudio. Saber o porquê ajuda a decidir quando uma regra pode ceder.</p>
 </section>
 <table>
   <tr><th>Fundamento</th><th>Fonte</th><th>Vira esta regra</th></tr>
-  <tr><td><b>Slow in / slow out, antecipação, follow-through</b></td><td>Thomas; Johnston (1981); Lasseter (1987)</td><td>Molas em vez de easing linear; o cursor antecipa o toque</td></tr>
-  <tr><td><b>Curvas de easing</b></td><td>Penner (2002)</td><td>Entradas e saídas com curva; zoom em escala logarítmica</td></tr>
-  <tr><td><b>Contiguidade temporal</b></td><td>Mayer (2009)</td><td>Texto na tela entra na palavra falada (cenas presas ao <code>vo.json</code>)</td></tr>
-  <tr><td><b>Sinalização e redundância</b></td><td>Mayer (2009)</td><td>A pílula acende no que a fala cita; na tela vai a palavra-chave, não a frase</td></tr>
-  <tr><td><b>Carga cognitiva</b></td><td>Sweller (1988)</td><td>Uma ideia por cena; uma fonte de título e uma de interface</td></tr>
-  <tr><td><b>Ideias que grudam</b></td><td>Heath; Heath (2007)</td><td>Gancho simples, inesperado e concreto</td></tr>
-  <tr><td><b>Reconhecimento robusto de fala</b></td><td>Radford et al. (2023)</td><td>Conferência às cegas da narração com o Whisper</td></tr>
-  <tr><td><b>Análise de entonação</b></td><td>Boersma; Weenink; Jadoul et al. (2018)</td><td>Afirmação termina descendo, pergunta termina subindo</td></tr>
-  <tr><td><b>Loudness</b></td><td>ITU-R BS.1770-4; EBU R 128</td><td>Master em -14 LUFS e -1 dBTP</td></tr>
-  <tr><td><b>Ruído procedural</b></td><td>Perlin (1985)</td><td>Grão e tremores com semente: o render é reprodutível</td></tr>
+  <tr><td><b>Antecipação, aceleração e assentamento</b></td><td>Thomas; Johnston (1981); Lasseter (1987)</td><td>Molas no 2D; recuo, estalo e balanço no 3D</td></tr>
+  <tr><td><b>Contiguidade temporal</b></td><td>Mayer (2009)</td><td>Tudo entra na palavra falada</td></tr>
+  <tr><td><b>Sinalização e redundância</b></td><td>Mayer (2009)</td><td>Na tela vai a palavra-chave, e não a frase</td></tr>
+  <tr><td><b>Carga cognitiva</b></td><td>Sweller (1988)</td><td>Uma ideia por cena</td></tr>
+  <tr><td><b>Amostragem distribuída</b></td><td>Cook; Porter; Carpenter (1984)</td><td>Lente, tempo e luz variam a cada amostra</td></tr>
+  <tr><td><b>Buffer de acumulação</b></td><td>Haeberli; Akeley (1990)</td><td>Um quadro é a média de 192 a 768 renders</td></tr>
+  <tr><td><b>Reconhecimento robusto de fala</b></td><td>Radford et al. (2023)</td><td>Filtro às cegas da narração</td></tr>
+  <tr><td><b>Análise de entonação</b></td><td>Boersma; Weenink; Jadoul et al. (2018)</td><td>Afirmação desce, pergunta sobe</td></tr>
+  <tr><td><b>Loudness</b></td><td>ITU-R BS.1770-4; EBU R 128</td><td>Master em −14 LUFS e −1 dBTP</td></tr>
+  <tr><td><b>Contraste de texto</b></td><td>WCAG 2.2 (W3C, 2023)</td><td>Legendas com 4,5:1 ou mais, medido</td></tr>
 </table>
-<div class="box porque"><b>Para aprofundar</b><p>O repositório traz um relatório técnico no formato de artigo (<code>docs/relatorio-tecnico.md</code>): resumo e abstract, fundamentação, método, arquitetura, avaliação, limitações e considerações éticas. É o ponto de partida para quem for usar o método em trabalho acadêmico.</p></div>
+<div class="box porque"><b>Para aprofundar</b><p>O repositório traz o manual completo em <code>docs/</code> (15 capítulos) e um relatório técnico em formato de artigo (<code>docs/relatorio-tecnico.md</code>), com resumo em português e inglês, avaliação, ameaças à validade, limitações e considerações éticas.</p></div>
 
 <!-- APÊNDICE A -->
-<section class="chap pg"><span class="mk">QQapaQQ</span>
+<section class="chap"><span class="mk">QQapaQQ</span>
   <div class="row"><div class="num">A</div><h1>Cola de comandos</h1></div>
 </section>
-<pre data-t="novo filme">node skill/scripts/scaffold.mjs &lt;filme&gt; --title "…" --duration 30 --formats 9x16
-node skill/scripts/gather.mjs &lt;url&gt; &lt;filme&gt;            <span class="c"># capturas, cores, fontes, logo</span>
-node skill/scripts/reference.mjs ref.mp4 &lt;filme&gt;       <span class="c"># engenharia reversa da referência</span></pre>
-<pre data-t="voz">node scripts/eleven.mjs conta
-node scripts/voz_eleven.mjs &lt;ids|all&gt; &lt;rotulo&gt; &lt;voice_id&gt; eleven_v3 3
-uv run scripts/voz_avaliar.py voz/&lt;id&gt;
-uv run scripts/voz_kokoro.py &lt;ids|all&gt; pf_dora 3 --rotulo kokoro   <span class="c"># trilha gratuita</span>
-uv run scripts/vo_montar.py &lt;filme&gt; &lt;tomada.mp3&gt;</pre>
-<pre data-t="áudio">uv run scripts/trilha.py &lt;filme&gt; --mood tech
-node skill/scripts/render.mjs --film &lt;filme&gt; --hits
-node skill/scripts/sfx.mjs &lt;filme&gt; &amp;&amp; node skill/scripts/mix.mjs &lt;filme&gt; --no-mux</pre>
-<pre data-t="imagem e render">node skill/scripts/render.mjs --film &lt;filme&gt; --contact          <span class="c"># folhas de contato</span>
-node skill/scripts/render.mjs --film &lt;filme&gt; --at 12.5          <span class="c"># um quadro</span>
-node skill/scripts/render.mjs --film &lt;filme&gt; --range 10:16 --fps 30 --noblur
-scripts/finalizar.sh &lt;filme&gt; previa | final
-scripts/checar_entrega.sh entrega/finais/*.mp4          <span class="c"># confere a entrega</span>
+<pre data-t="começar">make setup &amp;&amp; make demo
+scripts/novo_criativo.sh a01 "Meu primeiro criativo"
+make ajuda                                                     <span class="c"># lista todos os atalhos</span></pre>
+<pre data-t="voz gratuita">uv run scripts/voz_kokoro.py &lt;ids|all&gt; pf_dora 3 --rotulo kokoro
+node scripts/voz_fish.mjs vozes                                <span class="c"># vozes em português</span>
+uv run scripts/voz_por_frase.py &lt;id&gt; &lt;voice_id&gt; f1 --roteiros &lt;roteiro.json&gt; --n 3</pre>
+<pre data-t="voz dirigida (paga)">node scripts/eleven.mjs conta                                  <span class="c"># plano e cota</span>
+uv run scripts/voz_dirigida.py amostras &lt;voice_id&gt; ana --id c01 --roteiros roteiros/roteiros.json
+uv run scripts/voz_dirigida.py bloco c01 f1 ana --so-voz f1 --tomadas 5
+uv run scripts/voz_dirigida.py bloco c01 m5 beto --so-voz m5 --modelo eleven_multilingual_v2 \
+    --estabilidade 0.30 --estilo 0.55 --tomadas 3
+uv run scripts/voz_dirigida.py juntar c01-final narracao voz/c01-ana/ana-3.wav voz/c01-beto/beto-1.wav --pausa 0.36</pre>
+<pre data-t="filtro e narração no tempo">uv run scripts/voz_avaliar.py voz/&lt;id&gt;                         <span class="c"># filtra; quem aprova é o ouvido</span>
+uv run scripts/vo_montar.py &lt;filme&gt; voz/&lt;id&gt;/&lt;tomada&gt;.wav</pre>
+<pre data-t="filme 2D">make previa FILME=&lt;pasta&gt;        make final FILME=&lt;pasta&gt;
 python3 scripts/variante.py &lt;filme&gt; &lt;sufixo&gt; [--tema escuro] [--estilo impacto] [--voz &lt;tomada&gt;]</pre>
-<pre data-t="conferência">ffprobe -v error -show_entries stream=width,height,r_frame_rate,pix_fmt -of csv=p=0 final.mp4
-ffmpeg -ss 5 -i final.mp4 -frames:v 1 quadro.png</pre>
+<pre data-t="filme 3D">make contato3d FILME=&lt;pasta&gt;     make contraste3d FILME=&lt;pasta&gt;     make audio3d FILME=&lt;pasta&gt;
+make previa3d  FILME=&lt;pasta&gt;     make final3d FILME=&lt;pasta&gt;
+node lib/3d/render.mjs --film &lt;pasta&gt; --at 2.6,10.5 --spp 256   <span class="c"># quadros avulsos em qualidade alta</span></pre>
+<pre data-t="conferência">make checar ARQS="entrega/finais/*.mp4"                        <span class="c"># resolução, fps, áudio, −14 LUFS, pico</span>
+make sintaxe                                                   <span class="c"># sintaxe do código (o mesmo da CI)</span>
+uv run scripts/folha_contato.py &lt;video.mp4&gt;                    <span class="c"># folha de contato de qualquer vídeo</span></pre>
 
 <!-- APÊNDICE B -->
 <section class="chap"><span class="mk">QQapbQQ</span>
@@ -565,30 +825,40 @@ ffmpeg -ss 5 -i final.mp4 -frames:v 1 quadro.png</pre>
 </section>
 <table>
   <tr><th>Sintoma</th><th>Causa</th><th>Solução</th></tr>
-  <tr><td>Título aparece em fonte com serifa</td><td>O peso ou itálico usado não foi carregado</td><td>Liste cada variação de fonte no carregamento do <code>motion.js</code>.</td></tr>
-  <tr><td>Cenas fora do lugar depois de trocar a voz</td><td>Tempos fixos em segundos</td><td>Prenda as cenas às palavras com <code>wt()</code>.</td></tr>
-  <tr><td>Vídeo termina antes do cartão final</td><td>Mix antiga mais curta que o filme</td><td>Rode a mix de novo antes do render final.</td></tr>
-  <tr><td>"Permissão negada" no After Effects</td><td>Scripts sem permissão de gravar</td><td>Ative a opção em <i>Script e expressões</i> e reabra o AE.</td></tr>
-  <tr><td>"Salvar como" travando o AE</td><td>Script sem supressão de diálogos</td><td><code>beginSuppressDialogs</code> e salvar com caminho absoluto.</td></tr>
-  <tr><td>Erro de formato na ElevenLabs</td><td>192 kbps exige plano pago</td><td>Use <code>mp3_44100_128</code>.</td></tr>
-  <tr><td>Cota da ElevenLabs acabou</td><td>Limite mensal do plano</td><td>Confira com <code>eleven.mjs conta</code> antes do lote; assine o Starter.</td></tr>
-  <tr><td>Palavra pronunciada errada</td><td>Grafia ambígua para a voz</td><td>Escreva como se fala ("quiu-ár", números por extenso) e gere de novo só a frase.</td></tr>
-  <tr><td>Quadros diferentes a cada render</td><td><code>Math.random</code> ou estado entre quadros</td><td>Ruído com semente e tudo calculado a partir de <i>t</i>.</td></tr>
+  <tr><td>Nota máxima no filtro, narração sem vida</td><td>O filtro não mede emoção</td><td>Volte às amostras de tom e dirija</td></tr>
+  <tr><td>Português com melodia de inglês</td><td>Voz padrão americana</td><td>Idioma forçado, marcações de tom, ou voz nativa</td></tr>
+  <tr><td>Afirmação termina subindo</td><td>A voz "se perde" em frase longa</td><td>Quebre a frase, ou gere frase a frase</td></tr>
+  <tr><td>Cenas fora do lugar depois de trocar a voz</td><td>Tempos fixos em segundos</td><td>Prenda tudo às palavras</td></tr>
+  <tr><td>O impacto chega antes da palavra</td><td>A transcrição adianta de 50 a 235 ms</td><td>Use o início audível medido no áudio</td></tr>
+  <tr><td>O vídeo acaba antes do cartão final</td><td>Mixagem antiga, mais curta que o filme</td><td>Refaça a mixagem antes do render</td></tr>
+  <tr><td>A música some sob a voz</td><td>Sidechain forte e lento</td><td>Limiar 0,08, razão 3, soltura 350 ms, música +2 dB</td></tr>
+  <tr><td>Padrão de pontos no desfoque (3D)</td><td>Poucas amostras</td><td>192 ou mais em movimento; 768 em quadro parado</td></tr>
+  <tr><td>Preto leitoso (3D)</td><td>Fundo emitindo cinza</td><td>Emissão quase nula; confira o percentil 5</td></tr>
+  <tr><td>Quadros diferentes a cada render</td><td><code>Math.random</code> ou estado entre quadros</td><td>Ruído com semente; tudo a partir de <i>t</i></td></tr>
+  <tr><td>Modelo aberto se perde na tarefa</td><td>Contexto curto ou tarefa longa</td><td>32 mil tokens ou mais; uma etapa por vez</td></tr>
+  <tr><td>Claude Code ignora o Ollama</td><td><code>ANTHROPIC_API_KEY</code> definida</td><td>Deixe essa variável vazia</td></tr>
 </table>
 
 <!-- APÊNDICE C -->
 <section class="chap"><span class="mk">QQapcQQ</span>
-  <div class="row"><div class="num">C</div><h1>Custos e licenças</h1></div>
+  <div class="row"><div class="num">C</div><h1>Custos, licenças e limites</h1></div>
 </section>
 <table>
-  <tr><th>Item</th><th>Plano</th><th>Observação</th></tr>
-  <tr><td><b>Claude Code</b></td><td>Plano Claude (Pro ou Max)</td><td>Workflows com vários agentes consomem mais; aprove o piloto antes de escalar.</td></tr>
-  <tr><td><b>ElevenLabs</b></td><td>Grátis: cerca de 10 mil caracteres/mês</td><td>O grátis <b>não</b> permite uso comercial. Para publicar anúncios, assine o Starter (a partir de US$ 5/mês) antes de subir.</td></tr>
-  <tr><td><b>After Effects</b></td><td>Creative Cloud</td><td>Só para o logo 3D; dá para entregar sem ele usando um logo animado em código.</td></tr>
-  <tr><td><b>Trilha gratuita inteira</b></td><td>R$ 0</td><td>Ollama + modelo aberto, Kokoro, three.js ou Blender. Conte de 30 a 50% mais tempo de revisão.</td></tr>
-  <tr><td><b>Demais ferramentas</b></td><td>Grátis</td><td>Node, Playwright, ffmpeg, uv, Python, Whisper, fontes do Google Fonts.</td></tr>
+  <tr><th>Item</th><th>Custo ou licença</th><th>Observação</th></tr>
+  <tr><td><b>Código do kit</b></td><td>MIT</td><td>Pode usar em trabalho comercial</td></tr>
+  <tr><td><b>Este guia e a documentação</b></td><td>CC BY 4.0</td><td>Dê o crédito</td></tr>
+  <tr><td><b>Trilha gratuita inteira</b></td><td>R$ 0</td><td>O autor estima de 30% a 50% mais tempo de revisão; não é medição</td></tr>
+  <tr><td><b>ElevenLabs</b></td><td>Starter, US$ 5 por mês</td><td>O plano gratuito <b>não</b> permite uso comercial</td></tr>
+  <tr><td><b>Kokoro-82M</b></td><td>Apache-2.0</td><td>Uso comercial permitido</td></tr>
+  <tr><td><b>Fish Audio gratuito</b></td><td>Uso justo</td><td>Confira os termos antes de veicular</td></tr>
+  <tr><td><b>HDRI, texturas, fontes do 3D</b></td><td>CC0 e SIL OFL</td><td>Poly Haven, ambientCG, Google Fonts</td></tr>
 </table>
-<div class="box porque" style="margin-top:6mm"><b>Para o próximo projeto</b><p>Abra o Claude Code na pasta nova, entregue o briefing (produto, telas, marca, CTA, referências) e peça: <i>"Siga o guia Fábrica de Criativos: roteiros, voz, piloto para aprovação e depois os demais em paralelo."</i></p></div>
+<div class="box atencao"><b>O que este guia não promete</b><ul style="margin:0">
+<li><b>Desempenho de anúncio.</b> Não há dado de clique, retenção ou conversão aqui.</li>
+<li><b>Voz gratuita aprovada.</b> No caso documentado, só a paga passou no ouvido.</li>
+<li><b>3D fora do macOS.</b> Não foi testado.</li>
+<li><b>Logo no After Effects.</b> Os scripts não foram testados nesta edição.</li></ul></div>
+<div class="box porque"><b>Nunca material de cliente</b><p>Material de cliente, áudio, vídeo e chaves não entram em repositório público. Não use vozes que imitam pessoas reais. Siga as políticas de conteúdo gerado por IA da plataforma de anúncios.</p></div>
 
 <!-- APÊNDICE D -->
 <section class="chap"><span class="mk">QQapdQQ</span>
@@ -596,24 +866,19 @@ ffmpeg -ss 5 -i final.mp4 -frames:v 1 quadro.png</pre>
 </section>
 <div class="refs">
 <p>BOERSMA, P.; WEENINK, D. <b>Praat</b>: doing phonetics by computer. Amsterdam: University of Amsterdam. Software. Disponível em: https://www.praat.org.</p>
+<p>COOK, R. L.; PORTER, T.; CARPENTER, L. Distributed ray tracing. <b>ACM SIGGRAPH Computer Graphics</b>, v. 18, n. 3, p. 137-145, 1984.</p>
 <p>EUROPEAN BROADCASTING UNION. <b>EBU R 128</b>: loudness normalisation and permitted maximum level of audio signals. Geneva: EBU, 2020.</p>
-<p>HEATH, C.; HEATH, D. <b>Made to stick</b>: why some ideas survive and others die. New York: Random House, 2007.</p>
-<p>HEXGRAD. <b>Kokoro-82M</b>. Hugging Face, 2025. Disponível em: https://huggingface.co/hexgrad/Kokoro-82M.</p>
+<p>HAEBERLI, P.; AKELEY, K. The accumulation buffer: hardware support for high-quality rendering. <b>ACM SIGGRAPH Computer Graphics</b>, v. 24, n. 4, p. 309-318, 1990.</p>
 <p>INTERNATIONAL TELECOMMUNICATION UNION. <b>Recommendation ITU-R BS.1770-4</b>: algorithms to measure audio programme loudness and true-peak audio level. Geneva: ITU, 2015.</p>
 <p>JADOUL, Y.; THOMPSON, B.; DE BOER, B. Introducing Parselmouth: a Python interface to Praat. <b>Journal of Phonetics</b>, v. 71, p. 1-15, 2018.</p>
 <p>LASSETER, J. Principles of traditional animation applied to 3D computer animation. <b>ACM SIGGRAPH Computer Graphics</b>, v. 21, n. 4, p. 35-44, 1987.</p>
 <p>MAYER, R. E. <b>Multimedia learning</b>. 2. ed. New York: Cambridge University Press, 2009.</p>
-<p>McFEE, B. et al. librosa: audio and music signal analysis in Python. In: PYTHON IN SCIENCE CONFERENCE, 14., 2015, Austin. <b>Proceedings</b> [...]. Austin: SciPy, 2015. p. 18-25.</p>
-<p>OLLAMA. <b>Anthropic compatibility</b>. Disponível em: https://docs.ollama.com/api/anthropic-compatibility.</p>
-<p>OPENAI. <b>gpt-oss-120b &amp; gpt-oss-20b model card</b>. arXiv:2508.10925, 2025.</p>
-<p>PENNER, R. <b>Robert Penner's Programming Macromedia Flash MX</b>. Berkeley: McGraw-Hill/Osborne, 2002.</p>
-<p>PERLIN, K. An image synthesizer. <b>ACM SIGGRAPH Computer Graphics</b>, v. 19, n. 3, p. 287-296, 1985.</p>
 <p>RADFORD, A. et al. Robust speech recognition via large-scale weak supervision. In: INTERNATIONAL CONFERENCE ON MACHINE LEARNING, 40., 2023, Honolulu. <b>Proceedings</b> [...]. PMLR, 2023. v. 202, p. 28492-28518.</p>
-<p>SPRING, A. <b>motion-reel</b>. Versão 1.3.0. 2026. Licença MIT.</p>
 <p>SWELLER, J. Cognitive load during problem solving: effects on learning. <b>Cognitive Science</b>, v. 12, n. 2, p. 257-285, 1988.</p>
 <p>THOMAS, F.; JOHNSTON, O. <b>The illusion of life</b>: Disney animation. New York: Abbeville Press, 1981.</p>
-<p>WILLIAMS, R. <b>The animator's survival kit</b>. London: Faber and Faber, 2001.</p>
-<p>YANG, A. et al. <b>Qwen3 technical report</b>. arXiv:2505.09388, 2025.</p>
+<p>THREE.JS AUTHORS. <b>three.js documentation</b>. Disponível em: https://threejs.org/docs.</p>
+<p>WORLD WIDE WEB CONSORTIUM. <b>Web Content Accessibility Guidelines (WCAG) 2.2</b>. W3C Recommendation, 2023. Disponível em: https://www.w3.org/TR/WCAG22/.</p>
+<p class="small" style="text-indent:0;padding-left:0;margin-top:2mm">Bibliografia completa, com os filmes e anúncios de referência: <code>docs/referencias.md</code>. Endereços acessados em nov. 2026.</p>
 </div>
 
 </body></html>

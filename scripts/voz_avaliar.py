@@ -2,19 +2,27 @@
 # requires-python = ">=3.10"
 # dependencies = ["numpy", "soundfile", "praat-parselmouth"]
 # ///
-"""Avalia as tomadas de narração de um criativo e ordena da melhor para a pior.
+"""Filtro às cegas das tomadas de narração de um criativo: ordena da que tem menos erro para a que tem mais.
 
 uso: uv run scripts/voz_avaliar.py voz/<id> [--modelo-whisper NOME]
 
-Lê voz/<id>/texto.txt (o texto aprovado) e toda tomada voz/<id>/*.wav (ou *.mp3 sem .wav ao lado), venha
-ela da ElevenLabs (voz_eleven.mjs) ou do Kokoro (voz_kokoro.py). Precisa da transcrição do Whisper com tempo
-por palavra ao lado de cada tomada (<tomada>.json); se não existir, roda o Whisper sozinho:
-mlx_whisper (Mac com Apple Silicon) ou whisper (openai-whisper, qualquer sistema).
+O QUE ESTE SCRIPT FAZ E O QUE NÃO FAZ
+  Faz:     pega palavra errada, faltando ou sobrando (Whisper) e frase que termina com o tom errado
+           (afirmação que sobe, pergunta que desce; Praat). Serve para descartar tomada com defeito.
+  Não faz: NÃO mede naturalidade nem emoção. Tomada com nota 100 já foi reprovada de ouvido: sotaque,
+           melodia de outra língua, leitura sem vida e ênfase no lugar errado passam por aqui sem perder ponto.
+  Por isso a nota é um filtro, não uma aprovação. Quem aprova a voz é uma pessoa, ouvindo as duas ou três
+  primeiras do ranking.
 
-Critérios (nessa ordem de peso):
+Lê voz/<id>/texto.txt (o texto aprovado) e toda tomada voz/<id>/*.wav (ou *.mp3 sem .wav ao lado), venha
+ela da ElevenLabs (voz_dirigida.py, voz_eleven.mjs), da Fish Audio ou do Kokoro (voz_kokoro.py). Precisa da
+transcrição do Whisper com tempo por palavra ao lado de cada tomada (<tomada>.json); se não existir, roda o
+Whisper sozinho: mlx_whisper (Mac com Apple Silicon) ou whisper (openai-whisper, qualquer sistema).
+
+Critérios da nota (nessa ordem de peso):
   1. fidelidade: todas as palavras do texto, na ordem (conferência às cegas pelo Whisper);
   2. frases: afirmação termina descendo, pergunta (sim/não) termina subindo;
-  3. expressividade: variação de tom (desvio do F0 em semitons) sem gritar;
+  3. variação de tom: desvio do F0 em semitons (mede quanto o tom varia, não se a variação soa bem);
   4. ritmo: 2,3 a 3,3 palavras por segundo; nenhuma pausa interna maior que 0,9 s;
   5. fim limpo: o último som decai até o silêncio.
 Grava voz/<id>/avaliacao.json e imprime o ranking.
@@ -148,13 +156,14 @@ def tomadas(pasta):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Avalia e ordena as tomadas de narração de um criativo.")
+    ap = argparse.ArgumentParser(description="Filtro às cegas das tomadas de narração: pega palavra errada e tom errado no fim da "
+                                             "frase. Não mede naturalidade nem emoção; a aprovação é de ouvido.")
     ap.add_argument("pasta", help="voz/<id> (com texto.txt e as tomadas)")
     ap.add_argument("--modelo-whisper", default=None, help="modelo do Whisper (padrão: large-v3-turbo)")
     a = ap.parse_args()
     arq_texto = os.path.join(a.pasta, "texto.txt")
     if not os.path.exists(arq_texto):
-        sys.exit(f"faltou {arq_texto} (voz_eleven.mjs e voz_kokoro.py gravam esse arquivo)")
+        sys.exit(f"faltou {arq_texto} (voz_dirigida.py, voz_eleven.mjs e voz_kokoro.py gravam esse arquivo)")
     texto = open(arq_texto, encoding="utf-8").read().strip()
     res = []
     for t in tomadas(a.pasta):
@@ -170,7 +179,9 @@ def main():
         ruins = [f["frase"][:40] for f in r["frases"] if not f["ok"]]
         print(f'{r["tomada"]}: nota {r["nota"]} fiel {r["fiel"]} expr {r["expr_st"]}st ritmo {r["ritmo_wps"]} '
               f'pausa {r["maior_pausa"]}s dur {r["dur"]}s | faltou {r["faltou"]} sobrou {r["sobrou"]} | frases ruins {ruins}')
-    print(f"melhor: {os.path.join(a.pasta, res[0]['tomada'])}")
+    print(f"melhor no filtro: {os.path.join(a.pasta, res[0]['tomada'])}")
+    print("Atenção: a nota só filtra palavra errada e tom errado no fim da frase. Ela NÃO mede naturalidade nem emoção: "
+          "ouça as primeiras do ranking e aprove de ouvido.")
 
 
 if __name__ == "__main__":

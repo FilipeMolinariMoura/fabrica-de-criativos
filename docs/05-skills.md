@@ -1,51 +1,95 @@
-# 5. Skills, plugins e como usá-los no método
+# 5. Skills, plugins e como pedir ao agente
 
-*Skills* são pacotes de instruções (com scripts e referências) que o agente carrega quando a tarefa pede. Elas não dependem do modelo: funcionam no Claude Code com modelos da Anthropic e também com um modelo aberto atrás dele (trilha gratuita).
+[← 4. Trilha paga](04-trilha-paga.md) · [Índice](README.md) · Próximo: [6. Técnicas de motion →](06-tecnicas-de-motion.md)
 
-## 5.1 Mapa: qual skill em qual etapa
+*Skills* são pacotes de instruções, com scripts e referências, que o agente carrega quando a tarefa pede. Elas não dependem do modelo: funcionam no Claude Code com modelos da Anthropic e também com um modelo aberto por trás (trilha gratuita).
 
-| Etapa | Skill / plugin | Para quê | Essencial? |
+Nenhuma skill é obrigatória para usar o kit. O motor de render vem copiado em `vendor/`, e os scripts rodam pelo terminal. As skills ajudam o agente a acertar mais na primeira vez.
+
+## 5.1 Qual skill em qual etapa
+
+| Etapa | Skill ou plugin | Para quê | Peso |
 |---|---|---|---|
-| Briefing | `marketing:competitive-brief` | Posicionamento e brechas de mensagem dos concorrentes | Opcional |
-| Briefing | `design:user-research` / `design-skills:ux-research` | Roteiro de entrevista com o cliente e o público | Opcional |
-| Roteiro | `marketing:content-creation` / `marketing:draft-content` | Variações de gancho e de CTA | Recomendado |
-| Roteiro | `design-skills:ux-writing` | Texto curto e claro para a tela (microcopy) | Recomendado |
-| Roteiro | `marketing:brand-review` | Confere tom de marca e alegações sem fonte | Recomendado |
-| Voz | `motion-reel-voice` (plugin opcional) | Ferramentas MCP da ElevenLabs dentro do agente | Opcional (há o script) |
-| Filme | **`motion-reel`** | O motor: harness, render, trilha, SFX, mix, folhas de contato, rodadas de crítica | **Essencial** (em `vendor/`) |
-| Filme | `design-skills:interaction-design` | Microinterações, estados e coreografia de movimento | Recomendado |
-| Filme | `design-skills:design-elevation` | Polimento visual (tokens, espaçamento, hierarquia) | Opcional |
-| Crítica | `design:design-critique` / `design-skills:design-critique` | Crítica estruturada por heurísticas | Recomendado |
-| Crítica | `design:accessibility-review` | Contraste e legibilidade do texto na tela | Recomendado |
-| Escala | `workflow-authoring` + ferramenta Workflow | Um agente por criativo, com verificação | Recomendado a partir de 3 criativos |
-| Documentação | `anthropic-skills:pdf`, `artifact-design` | Página de aprovação e guias em PDF | Opcional |
+| 1. Briefing | `marketing:competitive-brief` | Posicionamento e brechas de mensagem dos concorrentes | Opcional |
+| 1. Briefing | `design:user-research` | Roteiro de conversa com quem pediu o anúncio e com o público | Opcional |
+| 2. Referências | `anthropic-skills:deep-research` | Levantamento em várias fontes com síntese | Opcional |
+| 2. Referências | Conector AdWhispr (MCP) | Anúncios ativos por marca, ordenados por dias no ar | Recomendado |
+| 3. Roteiro | `marketing:content-creation`, `marketing:draft-content` | Variações de gancho e de CTA | Recomendado |
+| 3. Roteiro | `design-skills:ux-writing` | Texto curto e claro para a tela | Recomendado |
+| 3. Roteiro | `marketing:brand-review` | Tom de marca e alegações sem fonte | Recomendado |
+| 4. Voz | `motion-reel-voice` (plugin) | Ferramentas da ElevenLabs dentro do agente | Opcional (há os scripts) |
+| 7. Filme | **`motion-reel`** | O motor: harness, render, trilha, efeitos, mixagem, folhas de contato | **Essencial** (já em `vendor/`) |
+| 7. Filme | `design-skills:interaction-design` | Microinterações e coreografia de movimento | Recomendado no 2D |
+| 9. Crítica | `design:design-critique` | Crítica estruturada por heurísticas | Recomendado |
+| 9. Crítica | `design:accessibility-review` | Contraste e legibilidade do texto na tela | Recomendado |
+| Escala | `workflow-authoring` | Um agente por criativo, com verificação | A partir de 3 criativos |
+| Documentação | `anthropic-skills:pdf` | Guias e páginas de aprovação | Opcional |
 
-## 5.2 A skill `motion-reel` em detalhe
+Os nomes são os dos marketplaces de plugins na data desta versão. Se algum mudar, a função continua a mesma: procure pelo que a skill faz.
 
-Ela está em `vendor/motion-reel/skills/motion-reel/` (MIT, v1.3.0). Para usar como skill do agente, instale o plugin pelo menu de plugins do Claude Code ou aponte o agente para o `SKILL.md`.
+## 5.2 A skill `motion-reel`
+
+Está em `vendor/motion-reel/skills/motion-reel/` (MIT, versão 1.3.0, de Aries Spring). O atalho `skill/` na raiz aponta para ela.
 
 | Script | Função |
 |---|---|
-| `scaffold.mjs` | Cria a pasta do filme (`--3d` para cenas em three.js) |
+| `scaffold.mjs` | Cria a pasta de um filme 2D (`--3d` para cenas em three.js) |
 | `gather.mjs` | Capturas do site, cores, fontes, logo e textos da marca |
-| `reference.mjs` | Quadros e ritmo de corte de um vídeo de referência |
-| `beats.py` | Grade de batidas de uma música ou trilha sintetizada |
-| `render.mjs` | `--contact`, `--strip`, `--at`, `--range`, `--hits`, `--video-only`, `--poster` |
-| `sfx.mjs` | Efeitos sonoros a partir da lista `HITS` do filme |
-| `mix.mjs` | Master em -14 LUFS / -1 dBTP e mux do MP4 |
+| `reference.mjs` | Quadros e ritmo de corte de um vídeo de referência em arquivo |
+| `beats.py` | Grade de batidas de uma música |
+| `render.mjs` | Render do motor 2D: `--contact`, `--strip`, `--at`, `--range`, `--hits`, `--poster` |
+| `sfx.mjs` | Efeitos sonoros a partir da lista de eventos do filme |
+| `mix.mjs` | Master em −14 LUFS e −1 dBTP |
 | `sync.py` | Confere os efeitos contra os cortes |
 | `dsp.py` | Instrumentos e barramentos para compor trilhas em código |
 
+O motor 3D tem renderizador próprio, `lib/3d/render.mjs`, porque o desfoque e a profundidade de campo são feitos dentro do quadro. O som do filme 3D usa os mesmos `sfx.mjs` e `mix.mjs`.
+
+O `mix.mjs` desta cópia tem uma alteração local de uma linha, documentada em [`vendor/README.md`](../vendor/README.md). Se você instalar o plugin oficial no lugar da cópia, leia aquele arquivo.
+
 ## 5.3 Como pedir ao agente
 
-Peça por etapa e cite os arquivos. Por exemplo:
+Peça por etapa, cite os arquivos e diga onde parar. Seis pedidos cobrem o método.
 
-> Siga `docs/01-metodo.md`. Briefing em `briefing.md`. Escreva 6 roteiros de 30 s em `roteiros/roteiros.json` seguindo `docs/07-roteiro-e-copy.md` e use `marketing:brand-review` para revisar. Pare para eu aprovar.
+**Referências (etapa 2)**
 
-> Monte o piloto `a01` com `lib/cena.js`, prenda as cenas às palavras de `vo.json` e rode 3 rodadas de crítica com `templates/critica.md` antes de me mostrar.
+> Siga `docs/09-pesquisa-de-referencias.md`. Levante 12 a 15 filmes de lançamento de produtos parecidos com o do briefing, sem baixar vídeo. Entregue a tabela de referências, as regras com números de partida e a análise de lacunas do nosso material. Marque o que é medido e o que é estimado. Pare para eu ler.
 
-> Piloto aprovado. Escreva um workflow com um agente por roteiro de `a02` a `a06`, cada um copiando o piloto e passando pela crítica.
+**Roteiro (etapa 3)**
+
+> Briefing em `briefing.md`. Escreva o roteiro de 30 s em `roteiro.json` seguindo `docs/07-roteiro-e-copy.md`. Proponha 5 ganchos, diga de que família cada um é, e revise com `marketing:brand-review`. Pare para eu aprovar o texto.
+
+**Voz (etapa 4)**
+
+> Roteiro aprovado. Siga `docs/12-voz-dirigida.md`: gere amostras de tom só do gancho e do CTA, em 5 variações. Não gere o roteiro inteiro antes de eu escolher uma.
+
+**Look-dev (etapa 6)**
+
+> Siga `docs/10-look-dev.md`. Construa 4 quadros de estilo com `lib/3d` e um teste de movimento de 4 s. Dê nota honesta de realismo de 1 a 10 a cada quadro e liste o que ainda parece falso. Não comece o filme.
+
+**Filme (etapa 7)**
+
+> Quadros aprovados. Construa o filme em `criativos/a01` com `lib/3d`, cada corte e cada evento preso a uma palavra do `vo.json`. Rode folhas de contato e tiras densas a cada rodada e registre as notas em `docs/critica.md` do filme.
+
+**Crítica independente (etapa 9)**
+
+> Você é crítico e não construiu este filme. Avalie `entrega/previas/a01-previa.mp4` com a rubrica de `docs/08-qualidade-e-solucao-de-problemas.md`. Meça o que puder medir. Devolva notas por critério e uma lista de correções com números. Não elogie.
+
+O último pedido vai para um agente novo, sem o histórico da construção. Esse é o ponto.
 
 ## 5.4 Instalar skills
 
-No Claude Code, abra o menu de plugins (no terminal, `/plugin`) e procure pelo nome. Os marketplaces de plugins oficiais trazem os pacotes `design`, `design-skills` e `marketing`. Uma skill é só uma pasta com `SKILL.md`, então também dá para copiá-la para `~/.claude/skills/`.
+No Claude Code, abra o menu de plugins (`/plugin` no terminal) e procure pelo nome. Uma skill é só uma pasta com `SKILL.md`, então também dá para copiá-la para `~/.claude/skills/`.
+
+Para usar o plugin oficial do motion-reel em vez da cópia em `vendor/`:
+
+```bash
+claude plugin marketplace add Aries-Spring/motion-reel
+claude plugin install motion-reel@aries-spring
+```
+
+Depois aponte a variável `SKILL` para a pasta `skills/motion-reel` do plugin instalado.
+
+---
+
+Próximo: [6. Técnicas de motion →](06-tecnicas-de-motion.md)

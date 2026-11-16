@@ -1,0 +1,4 @@
+# áudio é gerado (trilha.py, sfx.mjs, mix.mjs) ou vem da narração: não vai para o repositório
+audio/*.wav
+out/
+*.mp4

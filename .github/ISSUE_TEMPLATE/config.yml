@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentação
+    url: https://github.com/FilipeMolinariMoura/fabrica-de-criativos/blob/main/docs/README.md
+    about: O manual completo, com caminhos de leitura e a seção de solução de problemas.
+  - name: Falha de segurança
+    url: https://github.com/FilipeMolinariMoura/fabrica-de-criativos/security/policy
+    about: Não abra issue pública com detalhes. Leia a política de segurança.

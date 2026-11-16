@@ -1,0 +1,58 @@
+name: Ideia
+description: Uma melhoria no método, no kit ou na documentação.
+title: "[ideia] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Boas ideias aqui resolvem um problema concreto de quem produz anúncio. Conte o problema antes da solução.
+  - type: textarea
+    id: problema
+    attributes:
+      label: Que problema isso resolve
+      description: Uma situação real. O que você tentou fazer e onde travou.
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: O que você propõe
+    validations:
+      required: true
+  - type: dropdown
+    id: etapa
+    attributes:
+      label: Etapa do método
+      options:
+        - 1. Briefing
+        - 2. Referências
+        - 3. Roteiro
+        - 4. Voz dirigida
+        - 5. Narração no tempo
+        - 6. Look-dev
+        - 7. Filme
+        - 8. Som
+        - 9. Crítica independente
+        - 10. Render, variações e entrega
+        - Documentação
+        - Outra
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas que você considerou
+  - type: textarea
+    id: medida
+    attributes:
+      label: Como saber que funcionou
+      description: Uma medida ou uma conferência. O método prefere o que dá para medir.
+  - type: checkboxes
+    id: regras
+    attributes:
+      label: Cabe no projeto?
+      options:
+        - label: Mantém o contrato do render (filme como função pura do tempo).
+        - label: Funciona, ou tem equivalente, na trilha gratuita.
+        - label: Posso ajudar a implementar.

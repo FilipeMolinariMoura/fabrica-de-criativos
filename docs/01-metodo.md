@@ -1,64 +1,93 @@
-# 1. O método em 8 etapas
+# 1. O método em 10 etapas
+
+[← 0. Visão geral](00-visao-geral.md) · [Índice](README.md) · Próximo: [2. Ferramentas →](02-ferramentas.md)
 
 ```
-Briefing → Roteiro → Voz → Narração no tempo → Trilha e efeitos → Filme → Crítica → Render e variações
-   1          2        3            4                  5             6        7              8
+Briefing → Referências → Roteiro → Voz dirigida → Narração no tempo
+    1           2           3            4                 5
+
+→ Look-dev → Filme → Som → Crítica independente → Render, variações e entrega
+      6        7      8            9                         10
 ```
 
-Cada etapa produz um arquivo que a próxima consome. Por isso dá para voltar a qualquer ponto sem refazer o resto.
+Cada etapa produz um arquivo que a seguinte consome. Por isso dá para voltar a qualquer ponto sem refazer o resto. Cada etapa também tem um **portão de qualidade**: uma condição objetiva que precisa ser verdadeira antes de seguir.
 
-| # | Etapa | Entra | Sai | Portão de qualidade |
-|---|---|---|---|---|
-| 1 | Briefing | conversa com o cliente | `templates/briefing.md` preenchido | Produto, público, dor, CTA e telas reais confirmados |
-| 2 | Roteiro | briefing | `roteiros/roteiros.json` | O cliente aprovou o texto **antes** da voz |
-| 3 | Voz | roteiro | `voz/<id>/<rótulo>-<n>.(mp3\|wav)` | Transcrição às cegas 100% fiel, finais de frase corretos |
-| 4 | Narração no tempo | tomada escolhida | `<filme>/audio/vo.wav` + `vo.json` | Pausas naturais; nenhuma frase cortada |
-| 5 | Trilha e efeitos | `vo.json`, `trilha.json` | `music.wav`, `beats.json`, `sfx.wav`, `mix.wav` | -14 LUFS, voz inteligível acima da trilha |
-| 6 | Filme | tudo acima + capturas | `film.js` | Contrato do render respeitado (função pura do tempo) |
-| 7 | Crítica | folhas de contato | `docs/critica.md` do filme | 3 rodadas no mínimo, todas as notas ≥ 8 |
-| 8 | Render e variações | filme aprovado | `entrega/finais/*.mp4` | `scripts/checar_entrega.sh` passa |
+A versão 1 tinha oito etapas. A versão 2 acrescentou as etapas 2 (referências) e 6 (look-dev), e trocou a crítica do próprio construtor pela crítica independente.
+
+## Visão de conjunto
+
+| # | Etapa | Entra | Sai | Portão de qualidade | Capítulo |
+|---|---|---|---|---|---|
+| 1 | Briefing | conversa com quem pediu o anúncio | `briefing.md` preenchido | Produto, público, dor, CTA e telas reais confirmados | este |
+| 2 | Referências | 10 a 20 vídeos do gênero | tabela de referências, regras com números, análise de lacunas | Cada regra tem número de partida e cada lacuna tem medida | [9](09-pesquisa-de-referencias.md) |
+| 3 | Roteiro | briefing e referências | `roteiro.json` | Texto aprovado **antes** de gerar a voz | [7](07-roteiro-e-copy.md) |
+| 4 | Voz dirigida | roteiro aprovado | tomadas em `voz/<id>/` | Tom aprovado de ouvido em amostra curta; depois, tomada final aprovada de ouvido | [12](12-voz-dirigida.md) |
+| 5 | Narração no tempo | tomada aprovada | `audio/vo.wav` e `vo.json` | Todas as palavras do roteiro encontradas; nenhuma frase cortada | este |
+| 6 | Look-dev | regras e tratamento | 3 a 4 quadros de estilo e um teste de movimento | Nota honesta de realismo registrada; quem pediu aprova os quadros | [10](10-look-dev.md) |
+| 7 | Filme | tudo acima | `film.js` | Contrato do render respeitado; todo corte sai de uma palavra | [11](11-3d-fotorrealista.md) (3D) · [6](06-tecnicas-de-motion.md) (2D) |
+| 8 | Som | `vo.json` e eventos do filme | `music.wav`, `sfx.wav`, `mix.wav` | −14 LUFS, pico ≤ −1 dBTP, música audível nos intervalos da voz | [13](13-som.md) |
+| 9 | Crítica independente | prévia renderizada | lista de correções numérica | Todos os critérios ≥ 8, ou a exceção registrada por escrito | [8](08-qualidade-e-solucao-de-problemas.md) |
+| 10 | Render, variações e entrega | filme aprovado | `entrega/finais/*.mp4` | `scripts/checar_entrega.sh` passa | [8](08-qualidade-e-solucao-de-problemas.md) |
 
 ## 1.1 Briefing
+
 Colete, numa só rodada de perguntas:
-- produto, para quem é e a dor que resolve;
-- telas reais (site, App Store, capturas);
+
+- o produto, para quem é e a dor que resolve;
+- telas reais (site, loja de aplicativos, capturas);
 - logo, cores e fontes;
-- CTA e canal;
-- 2 ou 3 vídeos de referência;
+- o CTA e o canal;
+- dois ou três vídeos de referência;
 - duração e formato.
 
-Use `templates/briefing.md`.
+Use [`templates/briefing.md`](../templates/briefing.md).
 
-**Erro mais caro do método:** entender errado o escopo. Antes de escrever o roteiro, confirme com o cliente *o que* está sendo anunciado: o produto específico ou a empresa como um todo.
+**O erro mais caro do método é entender errado o escopo.** Antes de escrever uma linha de roteiro, confirme *o que* está sendo anunciado: um produto específico ou a marca inteira.
 
-## 1.2 Roteiro
-Estrutura de 30 s:
+## 1.2 Referências
+
+O briefing diz o que anunciar. As referências dizem que cara o anúncio precisa ter. Sem elas, o construtor mira no que sabe fazer, não no que o público está acostumado a ver.
+
+O trabalho tem três saídas:
+
+1. **Tabela de referências:** de 10 a 20 filmes, cada um com o motivo de estar ali e as técnicas reproduzíveis.
+2. **Regras com números:** o que os filmes têm em comum, escrito como especificação (lente, abertura, ocupação do quadro, ritmo).
+3. **Análise de lacunas:** o seu material medido contra as regras.
+
+Tudo isso é feito sem baixar vídeo, lendo as miniaturas de pré-visualização e os metadados públicos. O passo a passo está no [capítulo 9](09-pesquisa-de-referencias.md).
+
+## 1.3 Roteiro
+
+Estrutura de 30 segundos:
 
 | Tempo | Bloco | O que faz |
 |---|---|---|
-| 0–3 s | **Gancho** | Pergunta ou afirmação que o público reconhece como sua, com texto na tela já no primeiro quadro |
+| 0–3 s | **Gancho** | Afirmação ou pergunta que o público reconhece, com imagem pronta já no primeiro quadro |
 | 3–9 s | **Problema** | Uma cena concreta |
-| ~10 s | **Virada** | O nome do produto entra junto com a maior mudança visual |
-| 11–21 s | **Produto em ação** | Interface real |
+| ~10 s | **Virada** | O produto entra junto com a maior mudança visual |
+| 11–21 s | **Produto em ação** | Interface ou objeto real |
 | 21–25 s | **Prova** | Um detalhe verificável |
-| 25–30 s | **CTA** | Verbo + canal + benefício |
+| 25–30 s | **CTA** | Verbo, canal e benefício |
 
-Regras de texto:
-- frases de 4 a 9 palavras;
-- uma ideia por cena;
-- números por extenso na fala;
-- nenhum número sem fonte.
+Regras de texto: frases de 4 a 9 palavras, uma ideia por cena, números por extenso na fala, nenhum número sem fonte. Os detalhes, e o antes e depois do roteiro deste projeto, estão no [capítulo 7](07-roteiro-e-copy.md).
 
-Veja [07-roteiro-e-copy.md](07-roteiro-e-copy.md).
+**Portão:** o roteiro é aprovado antes da voz. Uma palavra trocada depois custa narração, tempos e render.
 
-## 1.3 Voz
-Gere o roteiro inteiro de uma vez, para a entonação fluir, em 3 tomadas. Avalie às cegas com `voz_avaliar.py`:
-1. **Fidelidade:** o Whisper transcreve sem ver o texto; qualquer palavra diferente é erro de pronúncia.
-2. **Fim de frase:** afirmação termina descendo; pergunta termina subindo (F0 medido com Praat).
-3. **Expressividade:** variação de tom sem gritar.
+## 1.4 Voz dirigida
 
-## 1.4 Narração no tempo
-`vo_montar.py` trata a voz e grava cada palavra no tempo. No filme, as cenas começam em palavras, não em segundos:
+A versão 1 gerava três tomadas, deixava a máquina escolher e seguia. Isso produziu narrações com nota máxima no filtro e reprovadas de ouvido. A versão 2 inverte a ordem: primeiro se aprova o **tom**, depois se gera o roteiro.
+
+1. Gere amostras curtas, só com o gancho e o CTA (uns 10 segundos), em 4 a 7 variações de modelo e ajuste.
+2. Uma pessoa ouve e escolhe o tom.
+3. Gere o roteiro inteiro com a direção escolhida, em 5 a 8 tomadas com sementes diferentes.
+4. Passe o filtro às cegas (palavras pelo Whisper, tom no fim de frase pelo Praat).
+5. Leve as duas melhores para o ouvido humano. É ele quem aprova.
+
+O processo completo, as marcações de direção e a tabela dos motores estão no [capítulo 12](12-voz-dirigida.md).
+
+## 1.5 Narração no tempo
+
+`scripts/vo_montar.py` trata a voz e grava o tempo de cada palavra em `vo.json`. No filme, nada começa em segundos fixos:
 
 ```js
 const VO = await loadVO();
@@ -66,27 +95,65 @@ const tVirada = wt(VO, 'produto', { after: 8 });   // primeira ocorrência depoi
 const tCTA    = ph(VO, -1).t0;                      // início da última frase
 ```
 
-É isso que permite trocar a voz e manter o filme sincronizado.
+Duas regras de precisão aprendidas na versão 2:
 
-## 1.5 Trilha e efeitos
-`trilha.json` marca a virada (`reveal`) e o CTA em segundos. `trilha.py` compõe tensão antes da virada, abertura depois e impacto no CTA. Cada acento visual vai em `HITS` com o som que leva, e `sfx.mjs` sintetiza tudo no quadro exato. `mix.mjs` masteriza em -14 LUFS / -1 dBTP.
+- **O corte vai dois quadros antes da palavra.** O olho precisa de um instante para ler a imagem nova.
+- **O impacto vai no início audível da palavra.** O tempo que o Whisper grava (`t0`) fica adiantado em relação ao som: nas medições de A bancada, de 50 a 235 ms, com média perto de 140 ms. Tudo o que precisa "bater" numa palavra usa o início de energia medido no áudio, ou `t0` mais uns 0,10 s.
 
-## 1.6 Filme
-O filme é `window.seek(t)`: desenha o quadro *t* num canvas 1080×1920. As técnicas estão em [06-tecnicas-de-motion.md](06-tecnicas-de-motion.md).
+## 1.6 Look-dev
 
-Construa **um piloto completo**, aprove com o cliente e só então escale os demais criativos, um agente por roteiro.
+Antes de construir 30 segundos, construa quatro quadros. O look-dev responde, por um custo pequeno, à pergunta que derrubou a primeira versão: *isto parece caro?*
 
-## 1.7 Crítica
-Para cada rodada:
-1. Renderize as folhas de contato (um quadro por batida) e a versão em meio tamanho, que simula o celular na mão.
-2. Dê notas de 1 a 10 em seis critérios: gancho, leitura no celular, movimento, variedade, marca e sincronia de som. A rubrica está em `templates/critica.md`.
-3. Corrija os três piores pontos e repita.
+- Três ou quatro quadros de estilo, um para cada mundo de luz e um para o cartão final.
+- Um teste de movimento de 4 segundos, porque quadro parado perdoa o que o movimento denuncia.
+- Uma nota de realismo de 1 a 10 por quadro, com a lista do que ainda parece falso.
 
-## 1.8 Render, variações e entrega
-1. Gere a prévia a 30 fps sem desfoque para o cliente aprovar.
-2. Gere o final a 60 fps, com desfoque de movimento por subquadros.
-3. Faça as variações com `variante.py`, nos três eixos:
-   - **cor:** tema escuro;
-   - **estilo:** títulos pesados em itálico;
-   - **voz:** outra narração, com as cenas se reposicionando pelas palavras.
-4. Rode `checar_entrega.sh` em tudo antes de enviar.
+O filme só começa depois da aprovação dos quadros. Veja o [capítulo 10](10-look-dev.md).
+
+## 1.7 Filme
+
+O filme é `window.seek(t)`: desenha o quadro *t* num canvas de 1080×1920. Há dois motores, com o mesmo contrato.
+
+| Motor | Use quando | Onde |
+|---|---|---|
+| **2D** (`lib/cena.js`) | O anúncio mostra interface de aplicativo, precisa de muitas variações rápidas e de render em poucos minutos | [capítulo 6](06-tecnicas-de-motion.md) |
+| **3D** (`lib/3d/`) | O anúncio precisa de aparência de filme de produto: objetos, luz de estúdio, lente | [capítulo 11](11-3d-fotorrealista.md) |
+
+Construa **um piloto completo**, aprove, e só então escale para os demais criativos.
+
+## 1.8 Som
+
+A música e os efeitos são sintetizados a partir dos mesmos tempos do filme. Na versão 2, o som passou a ser **medido**, não só construído: nível por frase, distância entre voz e música, e posição de cada efeito em relação às palavras. Veja o [capítulo 13](13-som.md).
+
+## 1.9 Crítica independente
+
+Quem construiu o filme não o aprova sozinho. Dois críticos que não participaram da construção avaliam a prévia:
+
+- um de **imagem**, que compara quadros com as referências e mede cor, contraste e ocupação;
+- um de **montagem e som**, que mede ritmo, movimento, níveis e posição dos efeitos.
+
+Cada um devolve notas por critério e uma lista de correções com números (posição, intensidade, tempo). O construtor aplica, registra o que não aplicou e por quê, e a rodada se repete até todos os critérios chegarem a 8. Veja o [capítulo 8](08-qualidade-e-solucao-de-problemas.md).
+
+## 1.10 Render, variações e entrega
+
+1. Gere a prévia a 30 fps para aprovação.
+2. Gere o final a 60 fps.
+3. Faça as variações de cor, estilo e voz. No motor 2D, `scripts/variante.py` faz as três com um comando.
+4. Rode `scripts/checar_entrega.sh` em todos os arquivos antes de enviar.
+
+A especificação de entrega está no [capítulo 8](08-qualidade-e-solucao-de-problemas.md#83-especificação-de-entrega).
+
+## 1.11 Quanto tempo leva
+
+Estes números são do autor, numa máquina só (Apple M1 Pro, 16 GB). Servem de ordem de grandeza.
+
+| Trabalho | Tempo | Natureza do dado |
+|---|---|---|
+| `make demo` (exemplo 2D, voz gratuita, prévia) | minutos | medido |
+| Um criativo 2D depois do kit montado | 1 a 2 horas, dominadas pela revisão humana | estimado pelo autor |
+| Render final do filme 3D (35 s, 60 fps) | 35 a 40 minutos | medido |
+| O filme 3D inteiro, da pesquisa de referências à entrega | menos de um dia, com vários agentes em paralelo e muitas rodadas | relato do autor, não cronometrado |
+
+---
+
+Próximo: [2. Ferramentas →](02-ferramentas.md)

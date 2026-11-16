@@ -1,0 +1,59 @@
+{
+ "metodo": "ElevenLabs. Voz 1 (feminina, Sarah, eleven_v3, language_code pt, estabilidade 0.5) com direção por marcações de tom em um bloco único; voz 2 (masculina, Brian, eleven_multilingual_v2, stability 0.30, style 0.55) nas duas últimas falas. Várias tomadas com sementes diferentes, conferidas às cegas (Whisper + Praat) e aprovadas de ouvido pelo autor. Montagem: scripts/vo_montar.py --tempo 1.10 --pausa-max 0.36.",
+ "texto_dirigido_voz1": "[serious] Esse vídeo... NÃO foi editado. [dramatic] Ele foi programado. [short pause] Ninguém abriu um editor. Ninguém arrastou um clipe. [warmly] Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada. [curious] Quer outra cor? Outro estilo? Outra voz? [confident] Um comando só! [excited] Sessenta quadros por segundo, pronto pra postar! [amazed] E custa zero: os modelos são abertos!",
+ "texto_voz2": "O método, o guia em PDF e o código inteiro... estão no GitHub! Procure Fábrica de Criativos, e crie o seu, hoje!",
+ "falas": [
+  {
+   "frase": "Esse vídeo não foi editado.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Ele foi programado.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Ninguém abriu um editor.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Ninguém arrastou um clipe.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Quer outra cor?",
+   "voz": "f1"
+  },
+  {
+   "frase": "Outro estilo?",
+   "voz": "f1"
+  },
+  {
+   "frase": "Outra voz?",
+   "voz": "f1"
+  },
+  {
+   "frase": "Um comando só.",
+   "voz": "f1"
+  },
+  {
+   "frase": "Sessenta quadros por segundo, pronto pra postar.",
+   "voz": "f1"
+  },
+  {
+   "frase": "E custa zero: os modelos são abertos.",
+   "voz": "f1"
+  },
+  {
+   "frase": "O método, o guia em PDF e o código inteiro estão no GitHub.",
+   "voz": "m5"
+  },
+  {
+   "frase": "Procure Fábrica de Criativos e crie o seu hoje.",
+   "voz": "m5"
+  }
+ ]
+}

@@ -1,6 +1,7 @@
 // Mix music + SFX (+ voice-over), master to -14 LUFS integrated / -1 dBTP, mux into every format.
 //
 //   node <skill>/scripts/mix.mjs <film> [--music-db 0] [--sfx-db 0] [--vo-db 2] [--no-mux]
+//        [--duck-threshold 0.02] [--duck-ratio 6] [--duck-attack 12] [--duck-release 280]   (sidechain of the music under the voice)
 //
 // Reads  <film>/audio/music.wav (beats.py or the film's own score), sfx.wav (sfx.mjs), vo.wav (optional)
 // Writes <film>/audio/mix.wav, then out/<film>/final.mp4 (primary format = film.json formats[0])
@@ -46,7 +47,7 @@ const has = (k) => stems.some((s) => s.k === k);
 let graph = chains.join(';');
 const mixIn = [];
 if (has('vo') && has('music')) {
-  graph += ';[vo]asplit=2[vo1][vokey];[music][vokey]sidechaincompress=threshold=0.02:ratio=6:attack=12:release=280:makeup=1[musicd]';
+  graph += ';[vo]asplit=2[vo1][vokey];[music][vokey]sidechaincompress=threshold=' + num('duck-threshold', 0.02) + ':ratio=' + num('duck-ratio', 6) + ':attack=' + num('duck-attack', 12) + ':release=' + num('duck-release', 280) + ':makeup=1[musicd]';
   mixIn.push('[musicd]', '[vo1]');
 } else {
   if (has('music')) mixIn.push('[music]');

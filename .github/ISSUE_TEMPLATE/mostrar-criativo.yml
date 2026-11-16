@@ -1,0 +1,73 @@
+name: Mostrar um criativo
+description: Você fez um vídeo com o kit. Mostre, e conte o que aprendeu.
+title: "[criativo] "
+labels: ["mostra"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Esta é a melhor parte. Regras rápidas:
+        - **Só mostre o que você pode mostrar.** Se o vídeo é de um cliente, tenha autorização escrita, ou mostre uma versão com conteúdo fictício.
+        - Não envie material privado. Link para o vídeo publicado, ou um GIF curto, basta.
+        - Não afirme resultado de anúncio sem fonte.
+  - type: input
+    id: link
+    attributes:
+      label: Link para o vídeo ou GIF
+      description: Um link público, ou arraste um GIF no campo de descrição abaixo.
+  - type: textarea
+    id: sobre
+    attributes:
+      label: O que é
+      description: O que o vídeo anuncia, a duração e o formato.
+    validations:
+      required: true
+  - type: dropdown
+    id: motor
+    attributes:
+      label: Motor
+      options:
+        - 2D (lib/cena.js)
+        - 3D (lib/3d)
+        - Os dois
+    validations:
+      required: true
+  - type: dropdown
+    id: trilha
+    attributes:
+      label: Trilha
+      options:
+        - Gratuita
+        - Paga
+        - Mista
+    validations:
+      required: true
+  - type: input
+    id: voz
+    attributes:
+      label: Voz
+      placeholder: "Kokoro pf_dora · Fish Audio · ElevenLabs dirigida · outra"
+  - type: textarea
+    id: funcionou
+    attributes:
+      label: O que funcionou
+  - type: textarea
+    id: fraco
+    attributes:
+      label: O que ficou fraco
+      description: O método valoriza a nota honesta. O que você mudaria?
+  - type: textarea
+    id: numeros
+    attributes:
+      label: Números, se tiver
+      description: Tempo de render, máquina, amostras por quadro, notas da crítica. Diga o que é medido e o que é estimado.
+  - type: checkboxes
+    id: autorizacao
+    attributes:
+      label: Autorização
+      options:
+        - label: Tenho o direito de mostrar este vídeo publicamente.
+          required: true
+        - label: Não há material de cliente sem autorização, chave de API nem dado pessoal aqui.
+          required: true
+        - label: Autorizo citar este criativo na documentação do projeto, com crédito.

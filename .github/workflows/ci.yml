@@ -5,9 +5,11 @@ on:
     branches: [main]
   pull_request:
 
+# Só conferências rápidas: nada de npm install, Chromium, render ou chamada a API paga.
 jobs:
   sintaxe:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -19,6 +21,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Sintaxe (JS, Python, shell), JSON, imports contra o package.json, arquivos que os filmes de exemplo
+      # pedem (lib/3d, exemplos/bancada), peças da versão 2 e caminhos locais ou chaves esquecidos em texto.
+      - name: conferência do repositório (o mesmo que make sintaxe)
+        run: node scripts/checar_sintaxe.mjs
+
+      # As três etapas abaixo repetem a sintaxe incluindo a pasta vendor/, que o script acima pula.
       - name: node --check em todo .js e .mjs
         run: |
           find . -type f \( -name '*.js' -o -name '*.mjs' \) \
@@ -34,6 +42,21 @@ jobs:
         run: |
           find . -type f -name '*.json' -not -path './node_modules/*' -not -path './out/*' -print0 \
             | xargs -0 -n1 python -m json.tool > /dev/null
+
+      # A voz dirigida monta as requisições a partir do modelo de roteiro e só imprime: não precisa de chave
+      # nem gasta crédito. Se o formato de templates/roteiro.json quebrar, esta etapa avisa.
+      - name: voz dirigida em --dry-run (não chama a API)
+        run: |
+          python scripts/voz_dirigida.py --help > /dev/null
+          python scripts/voz_dirigida.py amostras VOZ ci --id c02-voz-dirigida --roteiros templates/roteiro.json --dry-run
+          python scripts/voz_dirigida.py bloco c02-voz-dirigida f1 ci --so-voz f1 --tomadas 2 --roteiros templates/roteiro.json --dry-run
+          python scripts/voz_dirigida.py dialogo c02-voz-dirigida ci --tomadas 1 --roteiros templates/roteiro.json --dry-run
+
+      - name: ajuda dos atalhos (Makefile e scripts de finalização)
+        run: |
+          make ajuda
+          bash scripts/finalizar.sh --help > /dev/null
+          bash scripts/finalizar3d.sh --help > /dev/null
 
       - name: shellcheck (informativo, não bloqueia)
         continue-on-error: true

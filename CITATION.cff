@@ -1,25 +1,37 @@
 cff-version: 1.2.0
 message: "Se este trabalho for útil na sua pesquisa ou produção, cite-o como abaixo."
-title: "Fábrica de Criativos: método aberto para anúncios em vídeo com motion design e IA"
+title: "Fábrica de Criativos: método aberto para anúncios em vídeo a partir de código, com 3D fotorrealista e IA"
 abstract: >-
-  Método reprodutível e kit de ferramentas para produzir anúncios de vídeo vertical (9:16)
-  em motion design com IA generativa: roteiro, narração sintética com conferência às cegas,
-  sincronização das cenas pela fala, trilha e efeitos sintetizados em código, render
-  determinístico quadro a quadro e controle de qualidade por rubrica. Documenta uma trilha
-  gratuita (modelos de pesos abertos) e uma trilha paga (serviços comerciais).
+  Método reprodutível e kit de código aberto para produzir anúncios de vídeo vertical (9:16)
+  a partir de código. Cada quadro é função pura do tempo e cada evento do filme é ancorado no
+  instante de uma palavra da narração. A versão 2.0 acrescenta mineração de referências visuais
+  sem baixar vídeo, uma etapa de look-dev com nota de realismo, um pipeline 3D em three.js com
+  profundidade de campo de lente fina, desfoque de movimento e sombras de luz de área por
+  acumulação de amostras, um processo de direção de voz sintética com aprovação humana e
+  crítica por agentes independentes do construtor, com medições objetivas de imagem e de som.
+  Documenta uma trilha gratuita (modelos de pesos abertos) e uma trilha paga (serviços
+  comerciais), as tentativas reprovadas e as limitações. Não apresenta dados de desempenho de
+  veiculação.
 authors:
   - family-names: Molinari
     given-names: Filipe
 type: software
-version: 1.1.0
+version: 2.0.0
 date-released: 2026-11-16
 license: MIT
 repository-code: "https://github.com/FilipeMolinariMoura/fabrica-de-criativos"
+url: "https://github.com/FilipeMolinariMoura/fabrica-de-criativos"
 keywords:
-  - motion design
+  - vídeo como código
   - vídeo publicitário
-  - text-to-speech
-  - IA generativa
+  - motion design
   - render procedural
-  - Claude Code
+  - 3D fotorrealista
+  - three.js
+  - profundidade de campo por acumulação
+  - síntese de fala
+  - voz dirigida
+  - IA generativa
+  - agentes de IA
+  - crítica independente
   - modelos de pesos abertos

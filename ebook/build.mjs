@@ -30,6 +30,6 @@ await c.evaluate(() => document.fonts.ready);
 await c.pdf({ path: path.join(out, 'capa.pdf'), format: 'A4', printBackground: true, preferCSSPageSize: true });
 await b.close();
 execFileSync('uv', ['run', '-q', '--with', 'pymupdf', 'python', '-I', '-c',
-  `import fitz,sys; d=fitz.open(sys.argv[1]); d.insert_pdf(fitz.open(sys.argv[2])); d.set_metadata({"title":"Fábrica de Criativos","subject":"Guia prático de criativos em motion design com IA"}); d.save(sys.argv[3]); print(d.page_count)`,
+  `import fitz,sys; d=fitz.open(sys.argv[1]); d.insert_pdf(fitz.open(sys.argv[2])); d.set_metadata({"title":"Fábrica de Criativos","subject":"Guia do método: anúncios em vídeo a partir de código, com 3D fotorrealista e voz dirigida"}); d.save(sys.argv[3]); print(d.page_count)`,
   path.join(out, 'capa.pdf'), path.join(out, 'miolo.pdf'), path.join(here, '..', 'dist', 'Fabrica-de-Criativos.pdf')], { stdio: 'inherit' });
 console.log('toc', JSON.stringify(toc));

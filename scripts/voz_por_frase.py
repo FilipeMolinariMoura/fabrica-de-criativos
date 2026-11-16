@@ -2,14 +2,15 @@
 # requires-python = ">=3.11"
 # dependencies = ["numpy", "soundfile", "praat-parselmouth"]
 # ///
-"""Narração frase a frase com controle máximo de entonação (Fish Audio).
+"""Narração frase a frase com controle máximo de entonação (Fish Audio ou ElevenLabs).
 
 Gera N candidatos de cada frase do roteiro, confere cada um às cegas (Whisper) e mede o tom no fim da frase
 (Praat), escolhe o melhor de cada frase e monta a narração inteira com pausas planejadas e volume igualado.
 Serve para quando a voz "se perde" no bloco: cada frase é julgada sozinha.
 
   uv run scripts/voz_por_frase.py <id> <voice_id> <rotulo> [--n 3] [--temperatura 0.55] [--top-p 0.7]
-        [--roteiros roteiros/roteiros.json] [--campo falas] [--modelo s2.1-pro-free]
+        [--motor fish|eleven] [--roteiros roteiros/roteiros.json] [--campo falas] [--modelo NOME]
+        [--estabilidade 0.5]
         [--pausa 0.30] [--pausa-fala 0.42] [--pausa-curta 0.20] [--mais 8:5,11:6]
 
 Saída: voz/<id>/frases/<rotulo>/<k>-<n>.mp3 (candidatos), voz/<id>/<rotulo>-frases.wav (montada),
@@ -17,7 +18,8 @@ voz/<id>/<rotulo>-frases.relatorio.json (escolha e medidas de cada frase), voz/<
 Regras de tom: afirmação termina descendo; pergunta de sim/não termina subindo; pergunta com "quem/onde/..."
 termina descendo. Frases curtas em sequência ("Outra cor. Outro estilo.") usam a pausa curta.
 --mais k:n gera mais candidatos só nas frases k (as outras reaproveitam os já gerados).
-A chave vem de FISH_API_KEY no ambiente ou no .env.
+--motor eleven usa a ElevenLabs (modelo padrão eleven_v3; --estabilidade 0.0, 0.5 ou 1.0 no v3).
+A chave vem de FISH_API_KEY ou ELEVENLABS_API_KEY, no ambiente ou no .env.
 """
 import argparse
 import importlib.util
@@ -26,6 +28,7 @@ import os
 import re
 import subprocess
 import sys
+import urllib.error
 import urllib.request
 
 import numpy as np
@@ -38,14 +41,30 @@ _spec.loader.exec_module(VA)
 SR = 48000
 
 
-def chave():
-    if os.environ.get("FISH_API_KEY"):
-        return os.environ["FISH_API_KEY"].strip()
+def chave(nome="FISH_API_KEY"):
+    if os.environ.get(nome):
+        return os.environ[nome].strip()
     if os.path.exists(".env"):
-        m = re.search(r"^FISH_API_KEY=(.+)$", open(".env").read(), re.M)
+        m = re.search(rf"^{nome}=(.+)$", open(".env").read(), re.M)
         if m and m.group(1).strip():
             return m.group(1).strip().strip("\"'")
-    sys.exit("Falta FISH_API_KEY no .env (veja .env.example).")
+    sys.exit(f"Falta {nome} no .env (veja .env.example).")
+
+
+def eleven(texto, voz, modelo, estab, saida, key):
+    corpo = json.dumps({"text": texto, "model_id": modelo, "voice_settings": {"stability": estab}}).encode()
+    req = urllib.request.Request(f"https://api.elevenlabs.io/v1/text-to-speech/{voz}?output_format=mp3_44100_128",
+                                 data=corpo, method="POST", headers={"xi-api-key": key, "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r:
+            open(saida, "wb").write(r.read())
+    except urllib.error.HTTPError as e:
+        sys.exit(f"ElevenLabs {e.code}: {e.read().decode()[:300]}")
+    wav = saida[:-4] + ".wav"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", saida, "-ar", str(SR), "-ac", "1", wav], check=True)
+    os.makedirs("voz", exist_ok=True)
+    open(os.path.join("voz", "caracteres.log"), "a").write(f"eleven {modelo} {len(texto)}\n")
+    return wav
 
 
 def fish(texto, voz, modelo, temp, top_p, saida, key):
@@ -101,7 +120,9 @@ def main():
     ap.add_argument("--top-p", type=float, default=0.7)
     ap.add_argument("--roteiros", default="roteiros/roteiros.json")
     ap.add_argument("--campo", default="falas")
-    ap.add_argument("--modelo", default="s2.1-pro-free")
+    ap.add_argument("--motor", choices=["fish", "eleven"], default="fish")
+    ap.add_argument("--modelo", default=None, help="padrão: s2.1-pro-free (fish) ou eleven_v3 (eleven)")
+    ap.add_argument("--estabilidade", type=float, default=0.5)
     ap.add_argument("--pausa", type=float, default=0.30, help="entre frases da mesma fala")
     ap.add_argument("--pausa-fala", type=float, default=0.42, help="entre falas")
     ap.add_argument("--pausa-curta", type=float, default=0.20, help="entre frases curtas em sequência (<= 3 palavras)")
@@ -112,7 +133,8 @@ def main():
     rot = json.load(open(a.roteiros))
     c = next((x for x in rot["criativos"] if x["id"] == a.id), None) or sys.exit(f"criativo {a.id} não está no roteiro")
     falas = [rot["cta_fala"] if f == "CTA" else f for f in (c.get(a.campo) or c["falas"])]
-    key = chave()
+    key = chave("ELEVENLABS_API_KEY" if a.motor == "eleven" else "FISH_API_KEY")
+    modelo = a.modelo or ("eleven_v3" if a.motor == "eleven" else "s2.1-pro-free")
     pasta = os.path.join("voz", a.id)
     cand_dir = os.path.join(pasta, "frases", a.rotulo)
     os.makedirs(cand_dir, exist_ok=True)
@@ -127,7 +149,10 @@ def main():
                 mp3 = os.path.join(cand_dir, f"{k:02d}-{n}.mp3")
                 wav = mp3[:-4] + ".wav"
                 if not os.path.exists(wav):
-                    fish(frase, a.voz, a.modelo, a.temperatura, a.top_p, mp3, key)
+                    if a.motor == "eleven":
+                        eleven(frase, a.voz, modelo, a.estabilidade, mp3, key)
+                    else:
+                        fish(frase, a.voz, modelo, a.temperatura, a.top_p, mp3, key)
                 cands.append(julgar(wav, frase))
             cands.sort(key=lambda x: -x["nota"])
             melhor = cands[0]

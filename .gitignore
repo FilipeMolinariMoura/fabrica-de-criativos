@@ -2,11 +2,12 @@
 .env
 .env.*
 !.env.example
-# dependências e saídas
-node_modules/
+# dependências (sem a barra no fim: vale para a pasta e também para um link simbólico chamado node_modules)
+node_modules
 __pycache__/
 *.pyc
 .venv/
+# saídas: render, entrega e tomadas de voz (as tomadas trazem o texto do roteiro e ficam fora do git)
 out/
 entrega/
 voz/

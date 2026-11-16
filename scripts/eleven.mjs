@@ -28,7 +28,7 @@ function lerChave() {
   const arq = path.join(raiz, '.env');
   if (!fs.existsSync(arq)) return null;
   const env = fs.readFileSync(arq, 'utf8');
-  return env.match(/^\s*ELEVENLABS_API_KEY\s*=\s*"?([^"\r\n]+)"?/m)?.[1]?.trim() ?? null;
+  return env.match(/^[ \t]*ELEVENLABS_API_KEY[ \t]*=[ \t]*"?([^"\r\n]+)"?/m)?.[1]?.trim() ?? null;
 }
 const chave = lerChave();
 if (!chave) { console.error('falta ELEVENLABS_API_KEY (no ambiente ou no .env da raiz). Sem chave? Use a voz grátis: scripts/voz_kokoro.py'); process.exit(1); }

@@ -9,7 +9,8 @@
 //   <modelo>    eleven_v3 | eleven_multilingual_v2 | ...
 //   [tomadas]   quantas gerações por criativo (padrão 1); as que já existem são puladas
 //   --roteiros  caminho do roteiro (padrão roteiros/roteiros.json; o formato está em templates/roteiro.json)
-//   --tags      usa o campo "falas_v3" (com marcações de tom do v3) quando existir
+//   --tags      usa o campo "falas_dirigidas" (com marcações de tom do v3; o nome antigo "falas_v3" ainda vale)
+//               quando existir. Para tomadas com semente, amostras de tom e diálogo: scripts/voz_dirigida.py
 //   --stab      stability da voz (padrão 0.5)
 //
 // Saída (o mesmo formato da voz grátis, scripts/voz_kokoro.py):
@@ -43,7 +44,8 @@ if (!alvo.length) { console.error(`nenhum criativo com id ${ids} em ${rot}`); pr
 const temFfmpeg = spawnSync('ffmpeg', ['-version']).status === 0;
 
 for (const c of alvo) {
-  const falas = (tags && c.falas_v3) ? c.falas_v3 : c.falas;
+  const dirigidas = c.falas_dirigidas || c.falas_v3;
+  const falas = (tags && dirigidas) ? [].concat(dirigidas).map((f) => (typeof f === 'string' ? f : (f.texto ?? f.frase))) : c.falas;
   const texto = falas.map((f) => (f === 'CTA' ? dados.cta_fala : f)).join(' ');
   const limpo = c.falas.map((f) => (f === 'CTA' ? dados.cta_fala : f)).join(' ');
   const pasta = path.join(raiz, 'voz', c.id);

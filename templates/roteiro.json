@@ -5,10 +5,17 @@
     "Fala sem sigla; números por extenso (a voz lê melhor).",
     "Cada afirmação precisa de fonte (campo fonte)."
   ],
+  "_voz_dirigida": [
+    "Campos OPCIONAIS, só para a voz dirigida da ElevenLabs (scripts/voz_dirigida.py). Quem usa a voz grátis pode apagar falas_dirigidas e vozes.",
+    "falas_dirigidas: as mesmas falas, na mesma ordem e com as mesmas palavras, agora com direção: marcações de tom entre colchetes, em inglês ([serious], [dramatic], [warmly], [curious], [confident], [excited], [amazed], [short pause]; só o modelo eleven_v3 obedece), ênfase em CAIXA ALTA e reticências para pausa.",
+    "Cada item de falas_dirigidas é um texto ou um objeto {\"texto\": \"...\", \"voz\": \"apelido\"}. O campo voz diz quem fala aquela fala e é obrigatório no modo diálogo.",
+    "vozes: liga cada apelido ao voice_id da ElevenLabs (liste os seus com: node scripts/eleven.mjs vozes). O voice_id não é segredo; a chave da API é, e fica só no .env.",
+    "falas continua sendo o texto limpo e aprovado: é ele que vai para a página de aprovação e para as vozes grátis. O exemplo c02 abaixo mostra os três campos juntos."
+  ],
   "cta_fala": "A chamada para ação falada no fim de todos os criativos.",
   "decisoes": {
     "Formato": "Reels e Stories 9:16, 1080×1920, de 15 a 30 s",
-    "Voz": "Kokoro pf_dora (grátis) ou ElevenLabs (paga)",
+    "Voz": "Kokoro pf_dora (grátis) ou ElevenLabs dirigida (paga)",
     "Trilha": "Sintetizada para cada vídeo; efeitos presos aos cortes"
   },
   "pendencias": ["Pergunta que precisa de resposta do cliente antes da produção"],
@@ -25,13 +32,42 @@
         "Uma prova concreta do que ele faz.",
         "CTA"
       ],
-      "falas_v3": [
-        "[curious] Primeira frase com marcação de tom (só ElevenLabs v3, opcional).",
-        "A virada: o produto entra.",
-        "Uma prova concreta do que ele faz.",
+      "tela": ["Texto 1 na tela", "Texto 2 na tela", "Texto do cartão final"],
+      "fonte": "De onde vem cada afirmação (site, catálogo, documento do cliente)."
+    },
+    {
+      "id": "c02-voz-dirigida",
+      "titulo": "Exemplo com voz dirigida e duas vozes",
+      "frente": "Linha de produto ou campanha",
+      "papel": "Mostra os campos opcionais falas_dirigidas, vozes e voz (por fala)",
+      "publico": "Para quem é",
+      "falas": [
+        "Esse vídeo não foi editado.",
+        "Ele foi programado.",
+        "Quer outra voz?",
+        "Um comando só.",
         "CTA"
       ],
-      "tela": ["Texto 1 na tela", "Texto 2 na tela", "Texto do cartão final"],
+      "vozes": {
+        "f1": "<voice_id da voz 1>",
+        "m5": "<voice_id da voz 2>"
+      },
+      "falas_dirigidas": [
+        { "texto": "[serious] Esse vídeo... NÃO foi editado.", "voz": "f1" },
+        { "texto": "[dramatic] Ele foi programado. [short pause]", "voz": "f1" },
+        { "texto": "[curious] Quer outra voz?", "voz": "f1" },
+        { "texto": "[confident] Um comando só!", "voz": "f1" },
+        { "texto": "CTA", "voz": "m5" }
+      ],
+      "_como_gerar": [
+        "1. Tom: uv run scripts/voz_dirigida.py amostras <voice_id> ana --id c02-voz-dirigida   (ouça e aprove antes de seguir)",
+        "2. Voz 1: uv run scripts/voz_dirigida.py bloco c02-voz-dirigida f1 ana --so-voz f1 --tomadas 5",
+        "3. Voz 2: uv run scripts/voz_dirigida.py bloco c02-voz-dirigida m5 beto --so-voz m5 --modelo eleven_multilingual_v2 --estabilidade 0.30 --estilo 0.55 --tomadas 3",
+        "4. Emenda: uv run scripts/voz_dirigida.py juntar c02-voz-dirigida narracao voz/c02-voz-dirigida-ana/ana-<n>.wav voz/c02-voz-dirigida-beto/beto-<n>.wav",
+        "Ou as duas vozes numa geração só: uv run scripts/voz_dirigida.py dialogo c02-voz-dirigida dueto --tomadas 3",
+        "Todo comando aceita --dry-run: mostra o que seria enviado, sem gastar crédito."
+      ],
+      "tela": ["Não foi editado.", "Foi programado.", "Texto do cartão final"],
       "fonte": "De onde vem cada afirmação (site, catálogo, documento do cliente)."
     }
   ]

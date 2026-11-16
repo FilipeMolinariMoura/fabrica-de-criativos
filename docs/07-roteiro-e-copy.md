@@ -1,5 +1,9 @@
 # 7. Roteiro e copy
 
+[← 6. Técnicas de motion](06-tecnicas-de-motion.md) · [Índice](README.md) · Próximo: [8. Qualidade →](08-qualidade-e-solucao-de-problemas.md)
+
+O roteiro decide a maior parte do resultado. Nenhuma lente e nenhuma voz salvam uma frase mole. Este capítulo dá a fórmula, as famílias de gancho que se veem em anúncios que ficam muito tempo no ar, e o antes e depois do roteiro do anúncio deste projeto, com o raciocínio de cada troca.
+
 ## 7.1 Fórmula de 30 segundos
 
 | Bloco | Tempo | Função | Exemplo genérico |
@@ -11,40 +15,105 @@
 | Prova | 21–25 s | Dar um detalhe verificável | "Cada etapa com responsável e horário." |
 | CTA | 25–30 s | Pedir uma ação | "Chama no WhatsApp e peça seu diagnóstico gratuito." |
 
-## 7.2 Tipos de gancho
+"Fluxo" é o aplicativo fictício do exemplo `exemplos/demo`.
 
-| Tipo | Quando usar |
+A fórmula é um ponto de partida. O anúncio deste projeto dobra a regra: o gancho e a virada acontecem nos primeiros 4 segundos, porque o produto *é* a virada ("não foi editado, foi programado").
+
+## 7.2 Famílias de gancho
+
+### As cinco clássicas
+
+| Família | Quando usar |
 |---|---|
 | Pergunta de dor | O público já sente o problema |
 | Número concreto | Existe um dado com fonte |
-| Contraste antes/depois | O produto tem efeito visual claro |
-| Afirmação contraintuitiva | O mercado tem uma crença errada que o produto derruba |
+| Contraste antes e depois | O produto tem efeito visual claro |
+| Afirmação contraintuitiva | O mercado tem uma crença que o produto derruba |
 | "Você sabia" | Há um recurso pouco conhecido |
 
-Gere de 5 a 10 ganchos por criativo (`marketing:content-creation`) e escolha com o cliente.
+### O que se viu em anúncios de longa duração
 
-## 7.3 Escrever para a voz
+Na pesquisa de referências deste projeto ([capítulo 9](09-pesquisa-de-referencias.md)), anúncios ativos de ferramentas criativas e de IA foram ordenados por dias no ar na biblioteca de anúncios da Meta. Dias no ar é um sinal indireto: quem paga por um anúncio durante meses provavelmente tem motivo. A ferramenta de consulta não informa gasto nem resultado, então **isto é indício, não prova de desempenho**.
+
+| Família | Exemplo observado | Dias no ar na data da coleta |
+|---|---|---|
+| **"Você ainda faz do jeito antigo?"** | "It's 2026, if you're still manually recording your voiceovers…" (ElevenLabs) | 270 |
+| **Número concreto de ganho** | "Cut your editing time from 4 hours to 4 minutes" (ElevenLabs) | 228 |
+| **O produto ocupando o quadro inteiro** | Interface do editor em tela cheia, sem frase de efeito (CapCut) | 229 |
+| **"Isto que você vê não foi feito do jeito normal"** | "Esto no lo estoy grabando yo." (HeyGen) | 64 |
+| **Desafio ao espectador** | "Un plan dans cette vidéo n'existe pas. Tu l'as repéré ?" (HeyGen) | 56 |
+| **Sequência de verbos** | "Idea, type, generate, edit, done!" (Canva) | 53 |
+
+Coleta em 16 nov. 2026. Só foram vistos o primeiro quadro e o texto de cada anúncio, não o vídeo.
+
+Padrões que se repetem nos mais antigos:
+
+1. **O primeiro quadro já é a imagem pronta.** Produto ou prova visível, texto legível. Nunca fade de preto, nunca logo.
+2. **Número concreto vence adjetivo.** "De 4 horas para 4 minutos" diz mais que "muito mais rápido".
+3. **Legenda queimada grande**, de 2 a 4 palavras por vez, sincronizada com a fala.
+4. **CTA por ação simples**, dito e escrito.
+5. **O que está há mais tempo no ar é "prova mais rosto"**, e não motion polido. Um filme sem rosto compensa com prova no primeiro quadro.
+
+O gancho deste projeto, "Esse vídeo não foi editado. Ele foi programado.", pertence à quarta família. No orgânico, a mesma ideia sustenta vídeos técnicos com centenas de milhares de visualizações (por exemplo, "This video was made with code", do canal Fireship). Isso ajudou a decidir **manter o gancho** e reescrever só o meio.
+
+## 7.3 Antes e depois: o roteiro deste anúncio
+
+A primeira versão do roteiro tinha 84 palavras. A segunda tem 78. O gancho, o coração ("cada cena entra exatamente na palavra falada") e o CTA ficaram. Seis frases mudaram.
+
+| # | Primeira versão | Segunda versão | Por quê |
+|---|---|---|---|
+| 1 | Esse vídeo não foi editado. | *igual* | É o melhor ativo do filme e pertence a uma família de gancho que dura no ar |
+| 2 | Ele foi programado. | *igual* | Fecha o gancho com a virada |
+| 3 | Sem timeline. | **Ninguém abriu um editor.** | "Timeline" é jargão, e "sem" é negação abstrata. "Ninguém abriu um editor" é uma imagem: dá para filmar (a tampa do notebook fechando) |
+| 4 | Sem arrastar clipe por clipe. | **Ninguém arrastou um clipe.** | Mesma construção da frase anterior, mais curta, com sujeito |
+| 5 | Você escreve o roteiro, a inteligência artificial narra, e cada cena entra exatamente na palavra falada. | *igual* | É a explicação do produto em uma frase, e cada oração vira um plano |
+| 6 | Outra cor. Outro estilo. Outra voz. | **Quer outra cor? Outro estilo? Outra voz?** | A pergunta devolve a palavra ao espectador e dá à voz três finais de frase subindo, que quebram a monotonia do trecho |
+| 7 | Um comando só. | *igual* | Resposta seca às três perguntas |
+| 8 | Sessenta quadros por segundo, com o áudio no padrão das redes. | Sessenta quadros por segundo, **pronto pra postar.** | "Padrão das redes" é especificação. Quem não sabe o que é LUFS não sente nada. "Pronto pra postar" é o benefício |
+| 9 | E dá pra fazer tudo de graça, com modelos abertos. | **E custa zero: os modelos são abertos.** | A primeira chegava aos 19 segundos e mole. "Custa zero" é mais curto, é número, e os dois-pontos criam a pausa que dá peso |
+| 10 | Método completo, guia em PDF e o código inteiro, aberto no GitHub. | **O método, o guia em PDF e o código inteiro estão no GitHub.** | Frase com verbo. A lista sem verbo soava como leitura de índice |
+| 11 | Procure Fábrica de Criativos no GitHub e crie o seu hoje. | Procure Fábrica de Criativos e crie o seu hoje. | "GitHub" já foi dito na frase anterior e está escrito na tela |
+
+Três lições saem desta tabela e valem para qualquer roteiro:
+
+- **Troque negação por imagem.** Se a frase não pode ser filmada, reescreva.
+- **Troque especificação por benefício.** O número técnico vai para a tela (o medidor mostra "−14 LUFS"); a fala diz o que isso dá a quem ouve.
+- **Dê à voz o que cantar.** Perguntas, dois-pontos e frases curtas depois de uma longa criam melodia. Um roteiro de afirmações do mesmo tamanho sai monótono em qualquer motor de voz.
+
+**Custo de mudar o roteiro:** regravar a voz, refazer o `vo.json` e reposicionar o filme. Como as cenas são presas às palavras, o reposicionamento é automático para as palavras que ficaram. As frases novas pedem planos novos.
+
+## 7.4 Escrever para a voz
 
 | Evite | Prefira |
 |---|---|
 | Frase longa com vírgulas | Frases de 4 a 9 palavras |
-| Siglas ("QR", "CRM") | Escreva como se fala ("quiu-ár", "cê-érre-ême") |
+| Siglas ("QR", "CRM") em motores neutros | A grafia como se fala ("quiu-ár"), testando no motor escolhido |
 | "R$ 25 mil", "10s" | "vinte e cinco mil reais", "dez segundos" |
-| Jargão ("solução robusta") | A palavra que o cliente usa |
+| Jargão ("solução robusta") | A palavra que o público usa |
 | Três ideias numa cena | Uma ideia por cena |
+| Só afirmações | Uma pergunta ou uma pausa a cada três ou quatro frases |
 
-## 7.4 Texto da tela
+**A grafia depende do motor.** Na primeira versão, com Fish Audio, o roteiro precisou de grafia fonética para estrangeirismos ("taimláin", "Guitirrábi"). Com a ElevenLabs dirigida, a grafia normal ("GitHub", "PDF") saiu certa. Teste a palavra difícil sozinha antes de gerar o roteiro inteiro, e guarde o texto limpo num campo e o texto de fala em outro.
+
+**Marcações de direção** (`[serious]`, `[warmly]`) e ênfase em CAIXA ALTA entram num texto à parte, o texto dirigido. O roteiro aprovado continua limpo. Veja o [capítulo 12](12-voz-dirigida.md).
+
+## 7.5 Texto da tela
+
 - Na tela vai a palavra-chave, não a frase inteira (princípio da redundância).
-- Título com no máximo 6 palavras e legível na folha em meio tamanho.
-- Sem travessão nem pontuação decorativa.
+- No máximo 5 palavras por vez, em caixa mista, com uma palavra de acento.
+- A frase do gancho está **escrita no quadro 0**, para quem assiste sem som.
+- A legenda nunca encosta no assunto. Se encostar, mova o assunto.
+- Contraste medido de pelo menos 4,5:1 contra o que está atrás da legenda (critério AA da WCAG para texto normal).
 
-## 7.5 Conformidade
+## 7.6 Conformidade
+
 - Nenhum número sem fonte. Se houver fonte, ela aparece na tela.
-- Nada de logos de clientes sem autorização escrita.
+- Nenhuma marca de terceiros sem autorização escrita.
 - Narração sintética: siga as políticas da plataforma de anúncios sobre conteúdo gerado por IA.
-- Antes de veicular, confira a licença comercial da voz (veja [04-trilha-paga.md](04-trilha-paga.md)).
+- Antes de veicular, confira a licença comercial da voz ([capítulo 4](04-trilha-paga.md)).
+- Se o roteiro afirma algo sobre o próprio vídeo ("foi programado", "custa zero"), o vídeo precisa cumprir. Foi por isso que o anúncio deste projeto não usa tomadas de IA de vídeo, e é por isso que este manual diz com todas as letras que a voz aprovada veio da trilha paga.
 
-## 7.6 Esquema do `roteiros.json`
+## 7.7 Esquema do `roteiro.json`
 
 ```json
 {
@@ -59,3 +128,9 @@ Gere de 5 a 10 ganchos por criativo (`marketing:content-creation`) e escolha com
   ]
 }
 ```
+
+O modelo completo, com os campos opcionais, está em [`templates/roteiro.json`](../templates/roteiro.json).
+
+---
+
+Próximo: [8. Qualidade →](08-qualidade-e-solucao-de-problemas.md)

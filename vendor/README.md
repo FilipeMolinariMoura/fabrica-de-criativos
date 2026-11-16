@@ -45,3 +45,17 @@ claude plugin install motion-reel@aries-spring
 
 Depois aponte `SKILL` para a pasta `skills/motion-reel` do plugin instalado. Com o plugin instalado, o
 Claude Code também passa a conhecer o fluxo completo (roteiro de planos, crítica por folhas de contato etc.).
+
+## Alteração local em `motion-reel/skills/motion-reel/scripts/mix.mjs`
+
+Uma linha, para expor os parâmetros do sidechain que abaixa a música sob a voz (antes fixos em
+`threshold=0.02:ratio=6:attack=12:release=280`): quatro opções novas, com os mesmos valores por padrão,
+então quem não as usa não vê diferença.
+
+```
+node vendor/motion-reel/skills/motion-reel/scripts/mix.mjs <filme> --no-mux \
+  --music-db 2 --duck-threshold 0.08 --duck-ratio 3 --duck-attack 15 --duck-release 350
+```
+
+Motivo: em `exemplos/bancada` a crítica mediu a música 14,8 LU abaixo da voz nos intervalos (sumia).
+Ao atualizar o vendor, reaplique esta troca ou a mixagem volta ao comportamento original.
