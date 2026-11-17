@@ -2,7 +2,7 @@
 
 [← 8. Qualidade](08-qualidade-e-solucao-de-problemas.md) · [Índice](README.md) · Próximo: [10. Look-dev →](10-look-dev.md)
 
-"Ficou cru" é um veredito. Para virar trabalho, ele precisa virar medida. Este capítulo mostra como transformar "quero que pareça caro" numa lista de regras com números, lendo filmes de referência **sem baixar nenhum vídeo**.
+"Quero que pareça caro" é um desejo. Para virar trabalho, ele precisa virar medida. Este capítulo mostra como transformar esse desejo numa lista de regras com números, lendo filmes de referência **sem baixar nenhum vídeo**. É o que separa um anúncio de modelo pronto de um filme com cara de lançamento.
 
 É a etapa 2 do método. A saída dela são três documentos: a tabela de referências, as regras e a análise de lacunas. A ficha em branco para preencher é [`templates/referencias.md`](../templates/referencias.md).
 
@@ -116,7 +116,7 @@ O que os filmes têm em comum, escrito como especificação. **Os números são 
 | 11 | **Montagem com intenção** | Em 30 s, de 10 a 12 planos. O quadro 0 já é imagem pronta. Primeira troca forte antes de 1,8 s. Corte 2 quadros antes da palavra-chave. Escala alternando. Zero fusão |
 | 12 | **Todo evento visual tem som** | Tecla, clique, deslize e batida grave no gancho e no CTA; de 150 a 250 ms de quase silêncio antes da virada; master em −14 LUFS e −1 dBTP. *Esta regra não veio de escuta das referências: é convenção do gênero* |
 
-**O que mudou na prática.** As regras 2, 3 e 5 foram ajustadas no look-dev: f/2,8 no celular deixava só uma faixa de texto legível, e o herói passou para f/4. A relação de luz do mundo claro ficou perto de 3,5:1, um pouco abaixo da faixa. A regra 12 precisou de medição de verdade, que está no [capítulo 13](13-som.md). Regra de partida é isso: um lugar para começar a errar com método.
+**Ajuste fino no look-dev.** As regras são o ponto de partida; o look-dev calibra cada uma para o seu objeto. No filme deste projeto, o herói (celular) ficou em f/4, que mantém várias linhas de texto legíveis, e a relação de luz do mundo claro ficou perto de 3,5:1, mais suave e arejada. A regra 12 ganha medição de verdade no [capítulo 13](13-som.md). Comece pelos números da tabela e deixe os quadros de estilo dizerem onde ajustar.
 
 ## 9.4 Análise de lacunas
 
@@ -134,13 +134,13 @@ Com as regras na mão, meça o seu material contra elas. O método tem quatro pa
 | Cortes secos | Detector de mudança de cena (por exemplo, o filtro `select='gt(scene,0.25)'` do ffmpeg) |
 | Altura da tipografia | Altura de maiúscula em pixels, dividida pela altura do quadro |
 
-**3. Compare cena a cena.** Uma tabela com quatro colunas: o que está na tela, por que parece barato, o que a referência faz, e em que regra isso cai.
+**3. Compare cena a cena.** Uma tabela com quatro colunas: o que está na tela, o que o afasta da referência, o que a referência faz, e em que regra isso cai.
 
-**4. Liste os defeitos que atravessam o filme inteiro.** São eles que orientam o tratamento.
+**4. Liste os padrões que atravessam o filme inteiro.** São eles que orientam o tratamento.
 
-O resultado para o anúncio 2D deste projeto:
+Veja como a análise funciona na prática. O exemplo abaixo mede um rascunho em motion 2D no estilo de modelo pronto (degradê, caixas e fusões), o ponto de partida mais comum, contra as referências:
 
-| Medida | Filme 2D | Referências (leitura visual) |
+| Medida | Rascunho 2D de partida | Referências (leitura visual) |
 |---|---|---|
 | Área ocupada por conteúdo | 3% a 21% (mediana perto de 11%) | 60% a 100% |
 | Faixa vertical usada | de 11–17% até 62–79% da altura | quadro inteiro |
@@ -151,20 +151,18 @@ O resultado para o anúncio 2D deste projeto:
 | Fundo | o mesmo degradê nos 12 quadros | um lugar |
 | Tipografia | caixa alta, peso perto de 800, maiúscula em 5,8% do quadro | caixa mista, 400 a 600, 2% a 5% |
 
-O número que mais explicava o "cru": em 9 dos 12 quadros, mais de 85% dos pixels eram degradê vazio.
+O número que mais diz: em 9 dos 12 quadros, mais de 85% dos pixels eram degradê vazio. A medição transforma uma impressão vaga em oito frentes claras de trabalho, cada uma com a sua regra:
 
-E os defeitos que atravessavam o filme:
+1. **Criar um lugar:** chão, horizonte e luz (regras 1 e 5).
+2. **Dar matéria:** painéis com espessura, aparelho com volume (regra 6).
+3. **Tornar legível o que é prova:** código, terminal e página do repositório em close (regra 7).
+4. **Dar existência à câmera:** closes e gerais, sempre em movimento (regras 2 a 4).
+5. **Montar com ritmo:** corte seco na palavra (regra 11).
+6. **Refinar a tipografia** (regra 8).
+7. **Dar direção à cor:** uma base e um acento (regra 9).
+8. **Pretos reais e textura de lente** (regras 9 e 10).
 
-1. Não existe lugar. Sem chão, sem horizonte, sem luz.
-2. Nada tem matéria. Painéis sem espessura, celular sem volume.
-3. Nada é legível quando precisa ser. Código, terminal e página do repositório eram a prova, e estavam ilegíveis.
-4. A câmera não existe. Nunca um close, nunca um geral.
-5. Sem ritmo de montagem. Toda troca é fusão.
-6. Tipografia de modelo pronto de anúncio.
-7. Cor sem direção: cinco cores disputando.
-8. Preto lavado e degradê liso.
-
-O que **manter** também faz parte da análise: o gancho, a ideia da palavra que dispara a cena, os materiais reais (quadros do exemplo, páginas do guia, a página do repositório).
+O que **manter** também faz parte da análise: o gancho, a ideia da palavra que dispara a cena e os materiais reais (quadros do exemplo, páginas do guia, a página do repositório).
 
 ## 9.5 Das lacunas ao tratamento
 
@@ -181,31 +179,31 @@ Duas decisões de tratamento que valem como regra geral:
 
 ## 9.6 Por que não vídeo generativo
 
-A pesquisa considerou inserir tomadas de IA de vídeo (uma mão virando a chave, um rosto iluminado pela tela). A recomendação foi **não usar no corte principal**, por dois tipos de risco.
+Tomadas de IA de vídeo (uma mão virando a chave, um rosto iluminado pela tela) parecem um atalho tentador. A recomendação do método é **renderizar o corte principal 100% por código**, por dois motivos.
 
-**Riscos de imagem:**
+**Controle de imagem:**
 
 - Texto e interface saem errados e precisam ser substituídos por composição.
 - Geometria fina (teclados, grades) ondula entre quadros.
 - Os modelos entregam de 24 a 30 fps; o filme é de 60 fps e diz isso em voz alta.
 - A bancada gerada não bate com a bancada em 3D.
 
-**Riscos de mensagem, os mais sérios:**
+**Coerência de mensagem, o motivo mais forte:**
 
 1. O filme afirma "Esse vídeo não foi editado. Ele foi programado." Tomadas geradas e compostas à mão tornariam a frase falsa.
 2. O filme afirma que os modelos são abertos. Créditos pagos de um serviço fechado contradizem isso.
 3. O filme é a demonstração do produto. Cada plano que o kit não fez é um plano a menos de prova.
 
-A estimativa de custo para três inserções ficou na casa de 500 créditos de um serviço desse tipo. O número de tentativas por plano era chute, e o custo não foi verificado porque a ideia foi descartada antes.
+Há ainda o custo: inserções geradas consomem créditos pagos a cada tentativa, enquanto o render por código é gratuito e se repete idêntico quantas vezes for preciso.
 
-## 9.7 O que a pesquisa não conseguiu verificar
+## 9.7 Limites da coleta
 
-Registre isto no seu documento também.
+Registre no seu documento o que a coleta por miniaturas não alcança. Isso mantém cada número no seu devido peso.
 
 - O som de todas as referências.
 - Lentes, aberturas e medidas em pixels das referências.
 - Quem produziu os filmes.
-- O desempenho real dos anúncios: só dias no ar. Várias marcas procuradas não estavam na base consultada.
+- O desempenho real dos anúncios: a base informa dias no ar, e nem toda marca está nela.
 - As zonas seguras das redes: valores de convenção.
 
 ## 9.8 Checklist da etapa
@@ -216,7 +214,7 @@ Registre isto no seu documento também.
 - [ ] O seu material medido em pelo menos cinco grandezas
 - [ ] Lista do que manter
 - [ ] Tratamento em uma frase e uma tabela de planos
-- [ ] Lista do que não foi verificado
+- [ ] Limites da coleta registrados
 
 ---
 

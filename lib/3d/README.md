@@ -33,6 +33,10 @@ aberração (master limpo para grade externa).
 
 ## Qualidade e tempo (Apple M1 Pro, Chromium headless em ANGLE Metal, 1080×1920)
 
+Qualquer GPU com WebGL 2 serve, inclusive as integradas; os tempos abaixo são de referência e
+variam com a máquina. Na prática, use os presets prontos: `npm run contato`, `npm run previa`
+(128 spp) e `npm run final` (192 spp), que aceitam `--spp N` para trocar a qualidade.
+
 | Uso | spp | Render por quadro |
 |---|---|---|
 | Bloqueio / folha de contato | 16–24 | 0,06–0,12 s |
@@ -42,9 +46,9 @@ aberração (master limpo para grade externa).
 
 Vidro com `transmission` custa 3–8× (cada camada de vidro é mais uma passada da cena). A captura do
 quadro (screenshot PNG → ffmpeg) soma ~0,4 s por quadro. Meça com `readPixels` no fim do quadro:
-sem isso a GPU ainda não terminou e o número mente.
+sem isso a GPU ainda não terminou e o tempo medido sai menor que o real.
 
-## Armadilhas (cada uma custou uma rodada)
+## Boas práticas (e as armadilhas que elas evitam)
 
 - **`scene.environment` ignora `material.envMapIntensity`.** Para um material ter a sua dose do
   estúdio (chão em 0, vidro antirreflexo em 0,1), atribua o mapa em `material.envMap`

@@ -37,7 +37,7 @@ def main():
     a = ap.parse_args()
 
     vozes = [v.strip() for v in a.vozes.split(",") if v.strip()]
-    rel = {v: json.load(open(os.path.join(a.pasta, f"{v}-frases.relatorio.json"))) for v in set(vozes)}
+    rel = {v: json.load(open(os.path.join(a.pasta, f"{v}-frases.relatorio.json"), encoding="utf-8")) for v in set(vozes)}
     n = len(next(iter(rel.values())))
     if len(vozes) != n:
         raise SystemExit(f"--vozes tem {len(vozes)} rótulos, mas o roteiro tem {n} frases")
@@ -61,8 +61,8 @@ def main():
     final = final / max(1e-9, np.max(np.abs(final))) * 0.89
     sf.write(a.saida, final, SR)
     base = os.path.splitext(a.saida)[0]
-    open(base + ".texto.txt", "w").write(" ".join(it["frase"] for it in itens) + "\n")
-    json.dump([{"frase": it["frase"], "voz": it["voz"]} for it in itens], open(base + ".vozes.json", "w"), ensure_ascii=False, indent=1)
+    open(base + ".texto.txt", "w", encoding="utf-8").write(" ".join(it["frase"] for it in itens) + "\n")
+    json.dump([{"frase": it["frase"], "voz": it["voz"]} for it in itens], open(base + ".vozes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"ok {a.saida} ({len(final) / SR:.2f} s)")
     for it in itens:
         print(f"  {it['voz']:>4}  {it['frase']}")

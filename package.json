@@ -1,19 +1,27 @@
 {
   "name": "fabrica-de-criativos",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Kit para produzir anúncios verticais (9:16) com IA e código: filmes 3D fotorrealistas em three.js ou motion 2D em canvas, renderizados quadro a quadro; narração grátis (Kokoro, Fish Audio) ou dirigida (ElevenLabs); trilha e efeitos sintetizados; mixagem em -14 LUFS.",
   "type": "module",
   "private": true,
   "license": "MIT",
-  "engines": { "node": ">=18" },
+  "engines": { "node": ">=20" },
   "scripts": {
-    "demo": "make demo",
+    "ajuda": "node fabrica.mjs ajuda",
+    "verificar": "node fabrica.mjs verificar",
+    "demo": "node fabrica.mjs demo",
+    "novo": "node fabrica.mjs novo",
+    "previa": "node fabrica.mjs previa",
+    "final": "node fabrica.mjs final",
+    "audio": "node fabrica.mjs audio",
+    "contato": "node fabrica.mjs contato",
+    "checar": "node fabrica.mjs checar",
     "check": "node scripts/checar_sintaxe.mjs"
   },
   "dependencies": {
     "three": "^0.187.0"
   },
   "devDependencies": {
-    "playwright": "^1.49.0"
+    "playwright": "^1.65.0"
   }
 }

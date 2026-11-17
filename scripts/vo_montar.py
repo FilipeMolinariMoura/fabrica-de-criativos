@@ -54,7 +54,7 @@ def whisper(wav, pasta, modelo=None):
         sys.exit("faltou o Whisper. Instale um deles:\n  uv tool install mlx-whisper     (Mac com Apple Silicon)\n"
                  "  uv tool install openai-whisper  (qualquer sistema)")
     subprocess.run(cmd, check=True, capture_output=True)
-    d = json.load(open(os.path.join(pasta, os.path.splitext(os.path.basename(wav))[0] + ".json")))
+    d = json.load(open(os.path.join(pasta, os.path.splitext(os.path.basename(wav))[0] + ".json"), encoding="utf-8"))
     return [w for seg in d["segments"] for w in seg.get("words", [])]
 
 

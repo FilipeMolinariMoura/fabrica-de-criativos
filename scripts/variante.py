@@ -43,7 +43,7 @@ def main():
     if len(sys.argv) < 3 or sys.argv[1] in ("-h", "--help"):
         print(__doc__)
         sys.exit(0 if len(sys.argv) > 1 else 1)
-    src = os.path.abspath(sys.argv[1].rstrip("/"))
+    src = os.path.abspath(sys.argv[1].rstrip("/\\"))
     suf = sys.argv[2]
     tema, estilo, voz = arg("--tema"), arg("--estilo"), arg("--voz")
     dst = f"{src}-{suf}"

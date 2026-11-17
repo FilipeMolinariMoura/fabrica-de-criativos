@@ -1,6 +1,6 @@
 # A bancada
 
-O anúncio de divulgação do projeto refeito como **filme de produto**: tudo o que o roteiro cita é um
+O anúncio de divulgação do projeto, feito como **filme de produto**: tudo o que o roteiro cita é um
 objeto físico numa bancada de estúdio, fotografado com lente longa e pouca profundidade de campo.
 35 s, 9:16, renderizado em three.js pelo pipeline de `lib/3d` (materiais físicos, profundidade de
 campo e desfoque de movimento por acumulação, sombras de luz de área, reflexo real no tampo).
@@ -35,13 +35,29 @@ O que precisa **bater** numa palavra (impacto, estalo, trava) usa `on()`: o iní
 
 ## Como rodar (da raiz do repositório)
 
-Precisa de `node_modules` com `three` e `playwright`, `ffmpeg` e `uv`. A narração (`audio/vo.wav`) não
-está no repositório: gere a sua (docs do projeto) e refaça `vo.json`; `narracao.json` diz como esta
-foi feita.
+Com o ambiente instalado (`npm run verificar` sem pendências; veja o
+[capítulo 3](../../docs/03-trilha-gratuita.md)). A narração (`audio/vo.wav`) não está no repositório:
+gere a sua ([capítulo 12](../../docs/12-voz-dirigida.md)) e refaça `vo.json`; `narracao.json` diz como
+esta foi feita.
 
 A música do vídeo publicado foi gerada na ElevenLabs Music a partir de `musica.json` e alinhada à fala com
-`scripts/trilha_eleven.py` (capítulo 13 da documentação). O áudio não está no repositório. Os comandos abaixo
-usam a trilha sintetizada, que é grátis e dá um filme completo.
+`scripts/trilha_eleven.py` ([capítulo 13](../../docs/13-som.md)). Os comandos abaixo usam a trilha
+sintetizada, que é grátis e dá um filme completo.
+
+Os comandos `npm run …` funcionam igual no Windows, no macOS e no Linux:
+
+```bash
+npm run contato -- exemplos/bancada        # folha de contato
+npm run audio   -- exemplos/bancada        # eventos, trilha, efeitos e mixagem (-14 LUFS)
+npm run previa  -- exemplos/bancada        # 30 fps, 128 spp -> entrega/previas/
+npm run final   -- exemplos/bancada        # 60 fps, 192 spp -> entrega/finais/
+npm run checar  -- entrega/finais/bancada.mp4
+```
+
+`previa` e `final` aceitam `--de S --ate S --spp N --fps N --sem-audio`. No macOS e no Linux, o
+equivalente com `make` é `make contato3d|audio3d|previa3d|final3d FILME=exemplos/bancada`.
+
+Passo a passo, com o renderizador direto:
 
 ```bash
 # 1. tempos e sons a partir da fala  -> trilha.json + out/exemplos/bancada/hits.json
@@ -60,7 +76,6 @@ node lib/3d/render.mjs --film exemplos/bancada --range 0:35 --fps 30 --spp 128 -
   --mp4 entrega/previas/bancada-previa.mp4 --audio exemplos/bancada/audio/mix.wav
 node lib/3d/render.mjs --film exemplos/bancada --range 0:35 --fps 60 --spp 192 --crf 18 \
   --mp4 entrega/finais/bancada.mp4 --audio exemplos/bancada/audio/mix.wav
-scripts/checar_entrega.sh entrega/finais/bancada.mp4
 ```
 
 `window.ACABAMENTO` no `index.html` (ou `--q "acabamento=limpo"`) desliga grão, vinheta, halação e
@@ -76,13 +91,15 @@ aberração para uma finalização externa; `--limpo <arquivo>` grava esse maste
 
 O plano 3 (vidro de verdade, em duas camadas) custa sozinho cerca de um quarto do total.
 
-## Pontos fracos conhecidos
+## Notas de acabamento
 
-- **Mundo claro**: tem foco de luz, fibra de papel e sombra de contato, mas é rasterização — a luz
-  não rebate do chão nos objetos. É onde o filme mais parece render.
-- **Plano 3** lê como "peças em trilhos" antes de ler como timeline.
-- **Objetos limpos demais** (chave, medidor, placas): sem desgaste nem poeira.
-- Uma legenda do plano 11 ("Guia em PDF.") usa véu claro, porque a grua passa a tela escura por trás.
-- A mixagem foi conferida por medida (-14 LUFS, pico -1,3 dBTP), não por escuta crítica.
+- **Mundo claro**: foco de luz, fibra de papel e sombra de contato por objeto dão ao ciclorama o ar de
+  estúdio fotográfico.
+- **Legendas**: contraste medido sobre o quadro renderizado (`--contrast`), todas acima de 4,5:1. Uma
+  legenda do plano 11 ("Guia em PDF.") usa véu claro, porque a grua passa a tela escura por trás.
+- **Mixagem**: −14,0 LUFS integrados, pico −1,3 dBTP, música 9 LU abaixo da voz nos respiros.
+- **Para ir além**: desgaste e poeira nos objetos metálicos (chave, medidor, placas) aproximam ainda
+  mais o filme de uma fotografia.
 
-Histórico das rodadas de crítica e notas: [`docs/critica.md`](docs/critica.md).
+O making-of completo está no
+[capítulo 14](../../docs/14-estudo-de-caso-a-bancada.md).

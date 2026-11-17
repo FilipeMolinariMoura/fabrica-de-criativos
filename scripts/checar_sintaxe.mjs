@@ -55,18 +55,23 @@ for (const f of js) {
   if (r.status !== 0) falhar(rel(f), `sintaxe\n${r.stderr.trim()}`);
 }
 if (py.length) {
-  const cmd = spawnSync('python3', ['--version']).status === 0 ? 'python3' : 'python';
+  // python3 (macOS/Linux), python (Windows) ou, sem nenhum dos dois, o Python que o uv baixa
+  const roda = (c, a) => spawnSync(c, a, { encoding: 'utf8', windowsHide: true });
+  const [cmd, pre] = roda('python3', ['--version']).status === 0 ? ['python3', []]
+    : roda('python', ['--version']).status === 0 ? ['python', []] : ['uv', ['run', '--no-project', '-q', 'python']];
   const prog = 'import sys, ast\nfor f in sys.argv[1:]:\n    try:\n        ast.parse(open(f, encoding="utf-8").read(), f)\n'
     + '    except SyntaxError as e:\n        print(f"{f}\\t{e.msg} (linha {e.lineno})")\n';
-  const r = spawnSync(cmd, ['-c', prog, ...py], { encoding: 'utf8' });
+  const r = spawnSync(cmd, [...pre, '-c', prog, ...py], { encoding: 'utf8', windowsHide: true });
   if (r.status !== 0) falhar('python', `não consegui rodar ${cmd}: ${(r.stderr || '').trim().slice(0, 300)}`);
   for (const l of (r.stdout || '').split('\n').filter(Boolean)) { const [f, m] = l.split('\t'); falhar(rel(f), `sintaxe: ${m}`); }
 }
-for (const f of sh) {
+// no Windows (o bash ali pode ser o do WSL, que não entende C:\...) e sem bash, a sintaxe dos .sh fica para a CI
+const temBash = sh.length > 0 && process.platform !== 'win32' && !spawnSync('bash', ['--version']).error;
+for (const f of temBash ? sh : []) {
   const r = spawnSync('bash', ['-n', f], { encoding: 'utf8' });
   if (r.status !== 0) falhar(rel(f), `sintaxe\n${(r.stderr || '').trim()}`);
 }
-linhas.push(`sintaxe: ${js.length} js/mjs, ${py.length} py, ${sh.length} sh`);
+linhas.push(`sintaxe: ${js.length} js/mjs, ${py.length} py, ${sh.length} sh${sh.length && !temBash ? ' (sh pulados aqui; a CI confere)' : ''}`);
 
 // ------------------------------------------------------------------ 2. JSON
 const json = com(/\.json$/);

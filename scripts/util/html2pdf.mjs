@@ -3,6 +3,7 @@
 // uso: node scripts/util/html2pdf.mjs <entrada.html> <saida.pdf> ["Título no rodapé"]
 import { chromium } from 'playwright';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const [src, out, title = ''] = process.argv.slice(2);
 if (!src || !out || src === '--help' || src === '-h') {
@@ -12,7 +13,7 @@ if (!src || !out || src === '--help' || src === '-h') {
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const b = await chromium.launch();
 const p = await b.newPage();
-await p.goto('file://' + path.resolve(src), { waitUntil: 'networkidle' });
+await p.goto(pathToFileURL(path.resolve(src)).href, { waitUntil: 'networkidle' });
 await p.emulateMedia({ media: 'print', colorScheme: 'light' });
 await p.evaluate(() => document.fonts.ready);
 await p.pdf({

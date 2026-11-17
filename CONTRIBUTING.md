@@ -1,6 +1,6 @@
 # Como contribuir
 
-Obrigado por querer melhorar a Fábrica de Criativos. Este guia diz o que cabe no projeto, quais regras o código precisa respeitar e como propor a mudança.
+Obrigado por querer melhorar a Fábrica de Criativos! O projeto é 100% gratuito e de código aberto, e cresce com cada filme, cena, voz e correção que a comunidade traz. Este guia diz o que cabe no projeto, quais regras o código precisa respeitar e como propor a mudança.
 
 Ao participar, você aceita o [código de conduta](CODE_OF_CONDUCT.md).
 
@@ -13,9 +13,10 @@ Ao participar, você aceita o [código de conduta](CODE_OF_CONDUCT.md).
 | Um objeto, material ou recurso do motor 3D | `lib/3d/` |
 | Um motor de voz, sobretudo aberto e em português | `scripts/voz_<motor>.*` |
 | Correção de erro, de documentação ou de tradução | onde o erro estiver |
-| Um item do [roteiro do projeto](README.md#roteiro-do-projeto) | conforme o item |
+| Suporte e testes em Windows, macOS e Linux | `instalar/`, `fabrica.mjs` e [`docs/08`](docs/08-qualidade-e-solucao-de-problemas.md) |
+| Uma ideia das [issues abertas](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/issues) | conforme o item |
 
-Para mudança grande, abra uma issue antes e descreva a proposta. Evita trabalho jogado fora.
+Para mudança grande, abra uma issue antes e descreva a proposta. Assim a conversa sobre o desenho acontece antes do código.
 
 ## A regra que não tem exceção: nunca material de cliente
 
@@ -44,8 +45,8 @@ E uma quarta, do método: **todo corte e todo evento saem de uma palavra do `vo.
 2. Use conteúdo fictício ou do próprio projeto.
 3. Mantenha no repositório: `index.html`, `film.js`, `film.json`, `roteiro.json`, `vo.json`, `trilha.json`, e uma pasta `preview/` com GIF curto, pôster e folha de contato.
 4. **Não** inclua `audio/` nem MP4. Descreva em `narracao.json` como a voz foi feita, para outra pessoa conseguir refazer.
-5. Escreva um `README.md` do filme com a lista de planos, os comandos para rodar e os **pontos fracos conhecidos**.
-6. Registre as rodadas de crítica em `docs/critica.md` do filme.
+5. Escreva um `README.md` do filme com a lista de planos, os comandos para rodar (`npm run contato`, `previa`, `final`) e as notas de acabamento.
+6. Registre as rodadas de revisão em `docs/critica.md` do filme, a partir de [`templates/critica.md`](templates/critica.md).
 7. Materiais de terceiros: só com licença aberta (CC0, OFL, MIT ou equivalente), listados com origem e licença.
 
 ## Como adicionar uma primitiva 2D
@@ -63,7 +64,7 @@ E uma quarta, do método: **todo corte e todo evento saem de uma palavra do `vo.
 3. Superfície polida recebe brilho só do ambiente (`envSpecOnly`), para não imprimir um ponto por amostra.
 4. O que emite luz e deve gerar bloom vai na camada 1 (`mesh.layers.enable(1)`).
 5. Meça antes e depois: tempo por quadro a 192 amostras, com leitura de pixel no fim do quadro.
-6. Se descobrir um tropeço novo, acrescente uma linha em [`docs/11-3d-fotorrealista.md`](docs/11-3d-fotorrealista.md#116-tropeços).
+6. Se descobrir uma boa prática nova, acrescente uma linha em [`docs/11-3d-fotorrealista.md`](docs/11-3d-fotorrealista.md#116-armadilhas-conhecidas-e-como-evitar).
 
 ## Como adicionar um motor de voz
 
@@ -74,22 +75,22 @@ E uma quarta, do método: **todo corte e todo evento saem de uma palavra do `vo.
 3. A chave, se houver, vem de variável de ambiente ou do `.env`. Acrescente o nome dela em `.env.example`, sem valor.
 4. Registre os caracteres gastos em `voz/caracteres.log`, se o serviço cobrar por caractere.
 5. Declare a **licença de uso comercial** do modelo ou do serviço no cabeçalho do script e em [`docs/02-ferramentas.md`](docs/02-ferramentas.md).
-6. Conte a verdade sobre o resultado em [`docs/12-voz-dirigida.md`](docs/12-voz-dirigida.md): o que o motor fez bem, o que fez mal, e se alguém aprovou de ouvido.
+6. Descreva o motor em [`docs/12-voz-dirigida.md`](docs/12-voz-dirigida.md): em que ele se destaca, quando usá-lo e como dirigi-lo.
 
 ## Portões de qualidade
 
 Antes de abrir o pull request:
 
-- [ ] `make sintaxe` passa (sintaxe de JavaScript, Python, shell e JSON; é o mesmo que a CI roda)
+- [ ] `npm run check` passa (sintaxe de JavaScript, Python, shell e JSON; é o mesmo que a CI roda; no macOS e no Linux, `make sintaxe` faz o mesmo)
 - [ ] Nenhum material de cliente, chave, áudio, vídeo ou caminho local
 - [ ] Contrato do render respeitado
-- [ ] Para filmes: folha de contato olhada, contraste das legendas ≥ 4,5:1, e `make checar` passando no MP4 que você gerou localmente
+- [ ] Para filmes: folha de contato olhada (`npm run contato -- <pasta>`), contraste das legendas ≥ 4,5:1, e `npm run checar -- <arquivo.mp4>` passando no MP4 que você gerou localmente
 - [ ] Para filmes: a crítica foi feita por alguém, pessoa ou agente, que **não** construiu o filme
 - [ ] Números na documentação marcados como medidos ou estimados
-- [ ] Comandos da documentação conferidos contra o `Makefile` e os scripts
+- [ ] Comandos da documentação conferidos contra o `package.json`, o `fabrica.mjs`, o `Makefile` e os scripts, e testados no seu sistema
 - [ ] Documentação em português do Brasil, com acentuação correta; citações em ABNT em [`docs/referencias.md`](docs/referencias.md)
 
-`make sintaxe` confere o código. `make checar` confere os vídeos entregues. São coisas diferentes.
+`npm run check` confere o código. `npm run checar` confere os vídeos entregues. São coisas diferentes.
 
 ## Fluxo
 
@@ -100,7 +101,7 @@ Antes de abrir o pull request:
 
 ## Estilo
 
-- **Texto:** frases curtas, voz ativa, sem palavras de propaganda. Diga o que foi medido e o que deu errado.
+- **Texto:** frases curtas, voz ativa, tom de quem ensina. Prefira recomendações ("faça X porque Y") e marque o que foi medido. Comandos na forma `npm run …`, que funciona nos três sistemas.
 - **Código:** siga o estilo do arquivo que você está mexendo. Comentários explicam o porquê.
 - **Nomes:** em português para o que o usuário vê (scripts, opções, documentação).
 

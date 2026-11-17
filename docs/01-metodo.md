@@ -12,7 +12,7 @@ Briefing → Referências → Roteiro → Voz dirigida → Narração no tempo
 
 Cada etapa produz um arquivo que a seguinte consome. Por isso dá para voltar a qualquer ponto sem refazer o resto. Cada etapa também tem um **portão de qualidade**: uma condição objetiva que precisa ser verdadeira antes de seguir.
 
-A versão 1 tinha oito etapas. A versão 2 acrescentou as etapas 2 (referências) e 6 (look-dev), e trocou a crítica do próprio construtor pela crítica independente.
+Duas etapas fazem a diferença entre um vídeo correto e um vídeo que parece caro: a pesquisa de referências (etapa 2), que transforma "filme de produto" em números, e o look-dev (etapa 6), que aprova a aparência antes de construir. A crítica independente (etapa 9) garante que quem constrói não aprova sozinho.
 
 ## Visão de conjunto
 
@@ -23,11 +23,11 @@ A versão 1 tinha oito etapas. A versão 2 acrescentou as etapas 2 (referências
 | 3 | Roteiro | briefing e referências | `roteiro.json` | Texto aprovado **antes** de gerar a voz | [7](07-roteiro-e-copy.md) |
 | 4 | Voz dirigida | roteiro aprovado | tomadas em `voz/<id>/` | Tom aprovado de ouvido em amostra curta; depois, tomada final aprovada de ouvido | [12](12-voz-dirigida.md) |
 | 5 | Narração no tempo | tomada aprovada | `audio/vo.wav` e `vo.json` | Todas as palavras do roteiro encontradas; nenhuma frase cortada | este |
-| 6 | Look-dev | regras e tratamento | 3 a 4 quadros de estilo e um teste de movimento | Nota honesta de realismo registrada; quem pediu aprova os quadros | [10](10-look-dev.md) |
+| 6 | Look-dev | regras e tratamento | 3 a 4 quadros de estilo e um teste de movimento | Avaliação de realismo registrada; quem pediu aprova os quadros | [10](10-look-dev.md) |
 | 7 | Filme | tudo acima | `film.js` | Contrato do render respeitado; todo corte sai de uma palavra | [11](11-3d-fotorrealista.md) (3D) · [6](06-tecnicas-de-motion.md) (2D) |
 | 8 | Som | `vo.json` e eventos do filme | `music.wav`, `sfx.wav`, `mix.wav` | −14 LUFS, pico ≤ −1 dBTP, música audível nos intervalos da voz | [13](13-som.md) |
 | 9 | Crítica independente | prévia renderizada | lista de correções numérica | Todos os critérios ≥ 8, ou a exceção registrada por escrito | [8](08-qualidade-e-solucao-de-problemas.md) |
-| 10 | Render, variações e entrega | filme aprovado | `entrega/finais/*.mp4` | `scripts/checar_entrega.sh` passa | [8](08-qualidade-e-solucao-de-problemas.md) |
+| 10 | Render, variações e entrega | filme aprovado | `entrega/finais/*.mp4` | `npm run checar` passa | [8](08-qualidade-e-solucao-de-problemas.md) |
 
 ## 1.1 Briefing
 
@@ -69,13 +69,13 @@ Estrutura de 30 segundos:
 | 21–25 s | **Prova** | Um detalhe verificável |
 | 25–30 s | **CTA** | Verbo, canal e benefício |
 
-Regras de texto: frases de 4 a 9 palavras, uma ideia por cena, números por extenso na fala, nenhum número sem fonte. Os detalhes, e o antes e depois do roteiro deste projeto, estão no [capítulo 7](07-roteiro-e-copy.md).
+Regras de texto: frases de 4 a 9 palavras, uma ideia por cena, números por extenso na fala, nenhum número sem fonte. Os detalhes, e a lapidação do roteiro deste projeto, estão no [capítulo 7](07-roteiro-e-copy.md).
 
 **Portão:** o roteiro é aprovado antes da voz. Uma palavra trocada depois custa narração, tempos e render.
 
 ## 1.4 Voz dirigida
 
-A versão 1 gerava três tomadas, deixava a máquina escolher e seguia. Isso produziu narrações com nota máxima no filtro e reprovadas de ouvido. A versão 2 inverte a ordem: primeiro se aprova o **tom**, depois se gera o roteiro.
+A conferência automática confere palavras e entonação, mas quem sente a emoção é o ouvido. Por isso a ordem é esta: primeiro se aprova o **tom** em amostras curtas, depois se gera o roteiro inteiro. Assim você gasta pouco e acerta o tom antes de gerar tudo.
 
 1. Gere amostras curtas, só com o gancho e o CTA (uns 10 segundos), em 4 a 7 variações de modelo e ajuste.
 2. Uma pessoa ouve e escolhe o tom.
@@ -83,7 +83,7 @@ A versão 1 gerava três tomadas, deixava a máquina escolher e seguia. Isso pro
 4. Passe o filtro às cegas (palavras pelo Whisper, tom no fim de frase pelo Praat).
 5. Leve as duas melhores para o ouvido humano. É ele quem aprova.
 
-O processo completo, as marcações de direção e a tabela dos motores estão no [capítulo 12](12-voz-dirigida.md).
+O processo completo, as marcações de direção e qual motor usar em cada caso estão no [capítulo 12](12-voz-dirigida.md). A voz gratuita (Kokoro) segue os mesmos passos, sem custo.
 
 ## 1.5 Narração no tempo
 
@@ -95,18 +95,18 @@ const tVirada = wt(VO, 'produto', { after: 8 });   // primeira ocorrência depoi
 const tCTA    = ph(VO, -1).t0;                      // início da última frase
 ```
 
-Duas regras de precisão aprendidas na versão 2:
+Duas regras de precisão:
 
 - **O corte vai dois quadros antes da palavra.** O olho precisa de um instante para ler a imagem nova.
 - **O impacto vai no início audível da palavra.** O tempo que o Whisper grava (`t0`) fica adiantado em relação ao som: nas medições de A bancada, de 50 a 235 ms, com média perto de 140 ms. Tudo o que precisa "bater" numa palavra usa o início de energia medido no áudio, ou `t0` mais uns 0,10 s.
 
 ## 1.6 Look-dev
 
-Antes de construir 30 segundos, construa quatro quadros. O look-dev responde, por um custo pequeno, à pergunta que derrubou a primeira versão: *isto parece caro?*
+Antes de construir 30 segundos, construa quatro quadros. O look-dev responde, por um custo pequeno, à pergunta que mais importa num anúncio: *isto parece caro?*
 
 - Três ou quatro quadros de estilo, um para cada mundo de luz e um para o cartão final.
 - Um teste de movimento de 4 segundos, porque quadro parado perdoa o que o movimento denuncia.
-- Uma nota de realismo de 1 a 10 por quadro, com a lista do que ainda parece falso.
+- Uma avaliação de realismo de 1 a 10 por quadro, com a lista do que refinar.
 
 O filme só começa depois da aprovação dos quadros. Veja o [capítulo 10](10-look-dev.md).
 
@@ -123,7 +123,7 @@ Construa **um piloto completo**, aprove, e só então escale para os demais cria
 
 ## 1.8 Som
 
-A música e os efeitos são sintetizados a partir dos mesmos tempos do filme. Na versão 2, o som passou a ser **medido**, não só construído: nível por frase, distância entre voz e música, e posição de cada efeito em relação às palavras. Veja o [capítulo 13](13-som.md).
+A música e os efeitos são sintetizados a partir dos mesmos tempos do filme. O som é **medido**, não só construído: nível por frase, distância entre voz e música, e posição de cada efeito em relação às palavras. Veja o [capítulo 13](13-som.md).
 
 ## 1.9 Crítica independente
 
@@ -132,27 +132,27 @@ Quem construiu o filme não o aprova sozinho. Dois críticos que não participar
 - um de **imagem**, que compara quadros com as referências e mede cor, contraste e ocupação;
 - um de **montagem e som**, que mede ritmo, movimento, níveis e posição dos efeitos.
 
-Cada um devolve notas por critério e uma lista de correções com números (posição, intensidade, tempo). O construtor aplica, registra o que não aplicou e por quê, e a rodada se repete até todos os critérios chegarem a 8. Veja o [capítulo 8](08-qualidade-e-solucao-de-problemas.md).
+Cada um devolve uma avaliação por critério e uma lista de ajustes com números (posição, intensidade, tempo). O construtor aplica, registra o que decidiu não aplicar e por quê, e a rodada se repete até todos os critérios chegarem a 8. Veja o [capítulo 8](08-qualidade-e-solucao-de-problemas.md).
 
 ## 1.10 Render, variações e entrega
 
 1. Gere a prévia a 30 fps para aprovação.
 2. Gere o final a 60 fps.
 3. Faça as variações de cor, estilo e voz. No motor 2D, `scripts/variante.py` faz as três com um comando.
-4. Rode `scripts/checar_entrega.sh` em todos os arquivos antes de enviar.
+4. Rode `npm run checar -- entrega/finais/<arquivo>.mp4` em todos os arquivos antes de enviar.
 
 A especificação de entrega está no [capítulo 8](08-qualidade-e-solucao-de-problemas.md#83-especificação-de-entrega).
 
 ## 1.11 Quanto tempo leva
 
-Estes números são do autor, numa máquina só (Apple M1 Pro, 16 GB). Servem de ordem de grandeza.
+Estes números foram tomados numa máquina só (Apple M1 Pro, 16 GB, GPU integrada). Servem de ordem de grandeza.
 
 | Trabalho | Tempo | Natureza do dado |
 |---|---|---|
-| `make demo` (exemplo 2D, voz gratuita, prévia) | minutos | medido |
+| `npm run demo` (exemplo 2D, voz gratuita, prévia) | minutos | medido |
 | Um criativo 2D depois do kit montado | 1 a 2 horas, dominadas pela revisão humana | estimado pelo autor |
 | Render final do filme 3D (35 s, 60 fps) | 35 a 40 minutos | medido |
-| O filme 3D inteiro, da pesquisa de referências à entrega | menos de um dia, com vários agentes em paralelo e muitas rodadas | relato do autor, não cronometrado |
+| O filme 3D inteiro, da pesquisa de referências à entrega | menos de um dia, com vários agentes em paralelo | estimado, não cronometrado |
 
 ---
 

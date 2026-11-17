@@ -54,7 +54,7 @@ for (const c of alvo) {
   for (let n = 1; n <= tomadas; n++) {
     const saida = path.join(pasta, `${rotulo}${tags ? '-tags' : ''}-${n}.mp3`);
     if (fs.existsSync(saida)) continue;
-    execFileSync('node', [path.join(raiz, 'scripts/eleven.mjs'), 'falar', voz, modelo, saida, texto, stab], { stdio: 'inherit' });
+    execFileSync(process.execPath, [path.join(raiz, 'scripts', 'eleven.mjs'), 'falar', voz, modelo, saida, texto, stab], { stdio: 'inherit' });
     fs.appendFileSync(path.join(raiz, 'voz/caracteres.log'), `${new Date().toISOString()} ${c.id} ${rotulo} ${texto.length}\n`);
     if (temFfmpeg) execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', saida, '-ar', '48000', '-ac', '1', saida.replace(/\.mp3$/, '.wav')]);
   }

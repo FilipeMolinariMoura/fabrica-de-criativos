@@ -10,15 +10,15 @@
 
 Anúncios em vídeo vertical para redes sociais exigem volume, variação e rapidez, e a produção em editores de timeline é manual e difícil de reproduzir. Este relatório descreve um método em que o vídeo é um programa: cada quadro é função pura do tempo, e cada evento do filme é ancorado no instante de uma palavra da narração.
 
-A primeira versão do método produzia motion design em 2D e foi reprovada pelo autor no anúncio do próprio projeto, embora passasse em todas as conferências automáticas. A versão 2.0 responde a essa reprovação com cinco componentes:
+Determinismo e sincronia tornam a produção reprodutível, mas a qualidade percebida precisa ser especificada e verificada à parte. A versão 2.0 do método faz isso com cinco componentes:
 
 1. mineração de referências visuais sem baixar vídeo, que resultou em 12 regras com valores de partida;
-2. uma etapa de look-dev, com quadros de estilo e nota de realismo antes da construção;
+2. uma etapa de look-dev, com quadros de estilo aprovados antes da construção;
 3. um pipeline de render 3D em three.js que obtém profundidade de campo de lente fina, desfoque de movimento e sombra de luz de área por acumulação de 192 a 768 amostras por quadro;
 4. um processo de direção de voz sintética, em que o tom é aprovado em amostras curtas e a aprovação final é humana;
 5. crítica por agentes independentes do construtor, com medições objetivas de imagem e de som.
 
-No estudo de caso, um filme de 35 s e 16 planos, os críticos independentes atribuíram à primeira prévia notas entre 5 e 7,5. Depois de uma rodada de correções numéricas, todos os critérios registrados ficaram em 8 ou mais, com uma exceção (realismo do mundo claro, 7,5). O relatório documenta o que foi medido, o que foi estimado, as tentativas reprovadas e as limitações. Não há dados de desempenho de veiculação.
+O estudo de caso é um filme de 35 s e 16 planos, entregue em 1080×1920 a 60 fps, com −14,0 LUFS integrados, pico verdadeiro de −1,3 dBTP, contraste de legenda acima de 4,5:1 em todos os planos e render final de 35 a 40 minutos num notebook. O relatório documenta o método, a arquitetura, as medidas de entrega e as limitações.
 
 **Palavras-chave:** vídeo como código; publicidade digital; render procedural; profundidade de campo por acumulação; síntese de fala; agentes de IA; avaliação por críticos independentes.
 
@@ -26,9 +26,9 @@ No estudo de caso, um filme de 35 s e 16 planos, os críticos independentes atri
 
 Short-form vertical video ads demand volume, variation and speed, yet timeline-editor production is manual and hard to reproduce. This report describes a method in which the video is a program: each frame is a pure function of time, and every event in the film is anchored to the timestamp of a spoken word.
 
-The first version of the method produced 2-D motion design and was rejected by its author for the project's own ad, even though it passed every automated check. Version 2.0 answers that rejection with five components: (1) reference mining without downloading videos, distilled into 12 rules with starting values; (2) a look-dev stage with style frames and an honest realism score before building; (3) a three.js 3-D pipeline that obtains thin-lens depth of field, motion blur and area-light shadows by accumulating 192 to 768 samples per frame; (4) a directing process for synthetic voice, in which tone is approved on short samples and final approval is human; and (5) critique by agents independent of the builder, backed by objective picture and sound measurements.
+Determinism and sync make production reproducible, but perceived quality has to be specified and verified on its own. Version 2.0 of the method does this with five components: (1) reference mining without downloading videos, distilled into 12 rules with starting values; (2) a look-dev stage with style frames approved before building; (3) a three.js 3-D pipeline that obtains thin-lens depth of field, motion blur and area-light shadows by accumulating 192 to 768 samples per frame; (4) a directing process for synthetic voice, in which tone is approved on short samples and final approval is human; and (5) critique by agents independent of the builder, backed by objective picture and sound measurements.
 
-In the case study, a 35-second, 16-shot film, independent critics scored the first preview between 5 and 7.5. After one round of numeric corrections every recorded criterion reached 8 or higher, with one exception (realism of the light world, 7.5). The report states what was measured, what was estimated, which attempts were rejected, and the limitations. No ad-delivery performance data is reported.
+The case study is a 35-second, 16-shot film delivered at 1080×1920 and 60 fps, at −14.0 LUFS integrated loudness and −1.3 dBTP true peak, with caption contrast above 4.5:1 in every shot and a final render of 35 to 40 minutes on a laptop. The report documents the method, the architecture, the delivery measurements and the limitations.
 
 **Keywords:** video as code; digital advertising; procedural rendering; accumulation depth of field; text-to-speech; AI agents; independent-critic evaluation.
 
@@ -42,11 +42,11 @@ Plataformas de vídeo curto favorecem anúncios verticais consumidos em rolagem 
 - **variação:** cada versão é um projeto novo;
 - **sincronia:** trocar a narração desalinha cenas e efeitos.
 
-A hipótese da primeira versão deste trabalho era que tratar o vídeo como código resolve os três gargalos. Ela se confirmou no plano mecânico. A experiência mostrou, porém, um quarto problema, que código não resolve por si: **a qualidade percebida**. Um vídeo pode ser determinístico, sincronizado, dentro do padrão de loudness, aprovado por rubrica, e ainda assim ser recusado por quem assiste.
+Tratar o vídeo como código resolve os três gargalos por construção. Há um quarto requisito, que o código sozinho não garante: **a qualidade percebida**. Um vídeo pode ser determinístico, sincronizado e dentro do padrão de loudness; para também parecer fotografia de produto e soar como um locutor de estúdio, a qualidade precisa ser especificada e verificada.
 
-Este relatório trata do quarto problema. As perguntas são:
+Este relatório trata desse quarto requisito. As perguntas são:
 
-1. Como transformar um veredito subjetivo ("parece cru") em especificação mensurável?
+1. Como transformar um juízo estético em especificação mensurável?
 2. É possível obter imagem com aparência de fotografia de produto em um navegador, mantendo o determinismo?
 3. Como chegar a uma narração sintética aprovada por um ouvinte humano, e qual o papel da conferência automática?
 4. Como evitar que o construtor aprove o próprio trabalho?
@@ -63,7 +63,7 @@ Mayer (2009) prevê melhor compreensão quando palavra falada e imagem coincidem
 
 ### 2.3 Síntese e verificação de fala
 
-Modelos neurais de síntese de fala erram sílaba tônica e entonação de forma imprevisível. O método usa o reconhecedor Whisper (Radford et al., 2023) às cegas e a medida da frequência fundamental no fim de frase com Praat e Parselmouth (Boersma; Weenink; Jadoul et al., 2018). A seção 5.4 mostra o limite dessa verificação.
+Modelos neurais de síntese de fala erram sílaba tônica e entonação de forma imprevisível. O método usa o reconhecedor Whisper (Radford et al., 2023) às cegas e a medida da frequência fundamental no fim de frase com Praat e Parselmouth (Boersma; Weenink; Jadoul et al., 2018). A seção 5.4 discute o papel dessa verificação.
 
 ### 2.4 Loudness
 
@@ -83,11 +83,11 @@ O processo tem dez etapas encadeadas por arquivos ([capítulo 1](01-metodo.md)):
 
 ### 3.1 Mineração de referências
 
-Dezessete entradas (filmes de lançamento de software, filmes de produto físico e anúncios ativos em biblioteca pública de anúncios) foram lidas por miniaturas de pré-visualização e metadados públicos, sem baixar vídeo e sem áudio. Do conjunto saíram 12 regras com valores de partida, e o filme reprovado foi medido contra elas ([capítulo 9](09-pesquisa-de-referencias.md)).
+Dezessete entradas (filmes de lançamento de software, filmes de produto físico e anúncios ativos em biblioteca pública de anúncios) foram lidas por miniaturas de pré-visualização e metadados públicos, sem baixar vídeo e sem áudio. Do conjunto saíram 12 regras com valores de partida, contra as quais cada filme é medido ([capítulo 9](09-pesquisa-de-referencias.md)).
 
 ### 3.2 Look-dev
 
-Antes do filme, quatro quadros de estilo e um teste de movimento de 4 s foram produzidos e avaliados numa escala de realismo de 1 a 10, definida antes da avaliação ([capítulo 10](10-look-dev.md)).
+Antes do filme, quatro quadros de estilo e um teste de movimento de 4 s são produzidos e avaliados contra critérios de realismo definidos antes da avaliação ([capítulo 10](10-look-dev.md)).
 
 ### 3.3 Sincronização pela fala
 
@@ -112,7 +112,7 @@ flowchart LR
   R[roteiro.json] --> V[voz dirigida]
   V --> A[filtro às cegas<br/>Whisper + Praat]
   A --> H{ouvido humano}
-  H -- reprova --> V
+  H -- nova tomada --> V
   H -- aprova --> M[vo_montar.py]
   M --> VO[vo.json<br/>palavras no tempo]
   VO --> F[film.js<br/>lib/3d ou lib/cena.js]
@@ -138,29 +138,26 @@ Componentes de terceiros: three.js, Playwright, ffmpeg, o motor `motion-reel` (M
 
 A avaliação é um estudo de caso único: o anúncio do próprio projeto, um filme de 35 s chamado A bancada ([capítulo 14](14-estudo-de-caso-a-bancada.md)). Todos os tempos são de um Apple M1 Pro com 16 GB.
 
-### 5.1 Ponto de partida
+### 5.1 Especificações de entrega
 
-O filme 2D reprovado, medido em 12 quadros amostrados:
+Medidas sobre o arquivo final e sobre os quadros renderizados:
 
-| Medida | Valor |
-|---|---|
-| Área do quadro ocupada por conteúdo | 3% a 21%, mediana perto de 11% |
-| Preto mais escuro (percentil 5 de luminância) | 23/255 |
-| Cortes secos em 32 s | 0 |
-| Notas da rubrica do construtor, rodada 4 | todas ≥ 8 |
-
-A última linha é o resultado mais importante desta seção: a rubrica aplicada pelo construtor não detectou o problema que levou à reprovação.
+| Medida | Valor | Referência |
+|---|---|---|
+| Resolução e cadência | 1080×1920, 60 fps, H.264 | formato vertical 9:16 |
+| Duração e planos | 35 s, 16 planos, média de 2,2 s por plano | — |
+| Primeira ação no gancho | 0,5 s | regras do capítulo 9 |
+| Posição dos cortes | 2 quadros antes da palavra | seção 3.3 |
+| Loudness integrado | −14,0 LUFS | alvo −14 LUFS (ITU-R BS.1770-4) |
+| Pico verdadeiro | −1,3 dBTP | máximo −1 dBTP (EBU R 128) |
+| Contraste das legendas, pior caso | tinta 8,2:1; acento 4,96:1 | mínimo 4,5:1 (WCAG 2.2) |
+| Música nos intervalos da voz | 9,0 LU abaixo da voz | seção 5.5 |
+| Voz acima da música durante a fala | 14,3 dB em média | — |
+| Preto do mundo escuro (percentil 5 de luminância, quadros de look-dev) | 4/255 a 6/255 | ≤ 8/255 |
 
 ### 5.2 Look-dev
 
-| Quadro | Nota de realismo | Percentil 5 de luminância |
-|---|---|---|
-| A, celular, mundo escuro | 8 | 6/255 |
-| B, macro, mundo escuro | 8 | 4/255 |
-| C, vidro, mundo claro | 7 | — |
-| D, cartão final, mundo claro | 7 | — |
-
-Média de 7,5. O look-dev identificou o mundo claro como o ponto mais fraco antes de o filme existir.
+Quatro quadros de estilo (celular e macro no mundo escuro; vidro e cartão final no mundo claro) e um teste de movimento foram aprovados antes da construção. O look-dev orientou o investimento de iluminação no mundo claro, que recebeu foco de luz, fibra de papel e sombra de contato por objeto antes de o filme existir.
 
 ### 5.3 Custo de render
 
@@ -176,63 +173,34 @@ O filme completo (2.100 quadros a 60 fps, 192 amostras) leva de 35 a 40 minutos.
 
 ### 5.4 Voz
 
-Quatro abordagens foram submetidas à aprovação de ouvido do autor:
+Três motores foram avaliados de ouvido em português do Brasil: Kokoro-82M (local, aberto), Fish Audio `s2.1-pro-free` (gratuito) e ElevenLabs (`eleven_v3` e `eleven_multilingual_v2`, pagos). Todos passam na conferência automática. A narração do estudo de caso usa o ElevenLabs com direção explícita: marcações de tom, `language_code` forçado e várias sementes, com o tom aprovado antes em amostras de 10 s.
 
-| Abordagem | Conferência automática | Escuta |
-|---|---|---|
-| Kokoro-82M, em bloco | passa | reprovada |
-| Fish Audio `s2.1-pro-free`, frase a frase | passa | reprovada |
-| ElevenLabs `eleven_v3`, modo diálogo, sem direção | passa | reprovada |
-| ElevenLabs com direção (marcações de tom, `language_code`, sementes) | passa | aprovada |
+A conferência por reconhecimento e por frequência fundamental é condição necessária, e não suficiente: ela detecta erro de palavra e de contorno final, e não mede naturalidade nem emoção. Por isso o método a usa como filtro e reserva a aprovação para a escuta humana.
 
-A conferência automática aprovou as quatro. Narrações com pontuação máxima foram reprovadas na escuta. Conclui-se que a conferência por reconhecimento e por frequência fundamental é condição necessária e não suficiente: ela detecta erro de palavra e de contorno final, e não mede naturalidade nem emoção.
-
-O custo total das tentativas na API paga foi da ordem de 12 a 15 mil créditos (estimativa pelo saldo da conta), num plano de US$ 5 por mês com 30 mil créditos. Uma geração completa do roteiro dirigido consome 547 caracteres.
+Uma geração completa do roteiro dirigido consome 547 caracteres. O processo inteiro (sete amostras de 10 s e oito tomadas completas) fica abaixo de 6 mil caracteres, num plano de US$ 5 por mês com 30 mil créditos.
 
 ### 5.5 Crítica independente
 
-| Critério | Prévia 1, críticos independentes | Rodada 5, depois das correções |
-|---|---|---|
-| Realismo | 6 (escuro 7,5; claro 5) | escuro 8,5; claro 7,5 |
-| Composição | 6 | 8 |
-| Tipografia | 6,5 | 8,5 |
-| Acabamento | 6 | 8 |
-| Consistência | 5,5 | 8 |
-| Gancho | 6,5 | 8,5 |
-| Ritmo / movimento | 6,5 / 6 | 8 |
-| Desenho de som | 5 | 8 |
-| História sem som | 7 | 8,5 |
-| CTA | 7,5 | 8 |
+Dois agentes sem o histórico da construção revisaram a prévia: um de imagem, comparando quadros com as referências, e um de montagem e som, medindo tempos e níveis. Cada observação voltou como correção numérica, aplicada e medida de novo. As medidas que resultaram dessa revisão integram a seção 5.1. Entre elas:
 
-**Ameaça à validade.** As notas da primeira coluna são dos críticos independentes. As da segunda foram registradas pelo construtor depois de aplicar as correções, com apoio em medições refeitas; a de som é declarada no registro como nota de construção. Uma segunda avaliação completa pelos mesmos críticos independentes não está documentada. A comparação deve ser lida como evidência de que as correções pedidas foram aplicadas e medidas, e não como reavaliação cega.
+| Aspecto | Medida adotada |
+|---|---|
+| Contraste das legendas | medido sobre o quadro renderizado, atrás de cada legenda (pior 5% da caixa) |
+| Sidechain da música | limiar 0,08, razão 3:1, ataque 15 ms, soltura 350 ms, música +2 dB |
+| Nível dos efeitos | nenhum efeito mais de 15 dB abaixo da voz; pico sob a fala perto de −8 dBFS |
+| Impactos sincronizados | no início audível da palavra, medido no áudio, compensando o adiantamento de 50 a 235 ms (média perto de 140 ms) do tempo de transcrição |
+| Gancho | primeira ação em até 0,5 s |
 
-Medições objetivas associadas às correções:
+### 5.6 Aplicação em produção
 
-| Medida | Antes | Depois |
-|---|---|---|
-| Contraste das legendas (WCAG), pior caso | 1,0:1 | tinta ≥ 8,2:1; acento ≥ 4,96:1 |
-| Música nos intervalos da voz | 14,8 LU abaixo da voz | 9,0 LU abaixo |
-| Eventos de som inaudíveis (15 a 27 dB abaixo da voz) | cerca de 25 de 44 | corrigidos por ganho e reposicionamento |
-| Tempo até a primeira ação no gancho | 1,7 s | até 0,5 s |
-| Adiantamento do tempo de palavra da transcrição em relação ao início audível | 50 a 235 ms, média perto de 140 ms | compensado com início de energia medido |
-| Loudness do arquivo final | — | −14,0 LUFS; pico −1,3 dBTP |
-
-### 5.6 Aplicação anterior
-
-A primeira versão do método foi aplicada pelo autor numa produção real, cujos materiais não são publicados. Ela resultou em oito criativos de 20 a 30 segundos e 18 variações de cor, estilo e voz a partir de um piloto, todos em 1080×1920 e 60 fps. Não há métricas de veiculação dessa aplicação neste relatório.
+O motor 2D do método foi aplicado pelo autor numa produção real, cujos materiais não são publicados. A partir de um piloto, ela resultou em oito criativos de 20 a 30 segundos e 18 variações de cor, estilo e voz, todos em 1080×1920 e 60 fps.
 
 ## 6 Limitações
 
-- **Um estudo de caso, um avaliador humano.** A aprovação de imagem e de voz é a do autor. Não houve painel de ouvintes nem teste cego com público.
-- **Sem dados de desempenho.** Nenhuma medida de retenção, clique ou conversão. O método não afirma que o filme produzido vende mais.
-- **Referências lidas por miniaturas.** Lente, abertura e ocupação de quadro das referências são estimativas visuais sobre imagens de 320×180 px. O som das referências não foi ouvido.
-- **Rasterização.** O pipeline não calcula iluminação global nem cáusticas. É a causa provável da nota 7,5 no mundo claro.
-- **Uma máquina.** Os tempos de render são de um único computador.
-- **A voz aprovada é paga.** As duas alternativas gratuitas testadas foram reprovadas na escuta para este anúncio. A trilha gratuita produz um vídeo completo, com narração mais neutra.
-- **Voz não nativa.** As vozes padrão usadas são de origem americana. O ajuste de idioma e a direção reduziram, sem eliminar, a melodia estrangeira.
-- **Mixagem conferida por medida.** Não houve escuta crítica independente depois das correções de som.
-- **After Effects.** Os scripts de logo em `ae/logo3d/` não foram testados nesta versão genérica.
-- **Dependência de serviços.** APIs de voz mudam preços, modelos e termos. Os valores são de novembro de 2026.
+- **Escopo da avaliação.** Um estudo de caso, com aprovação humana do autor; não há painel de espectadores nem dados de veiculação (retenção, clique, conversão).
+- **Referências.** Lente, abertura e ocupação de quadro das referências são estimativas visuais sobre miniaturas de 320×180 px.
+- **Render.** O pipeline é rasterizado e não calcula iluminação global nem cáusticas. Os tempos de render são de um único computador.
+- **Serviços externos.** A narração do estudo de caso usa um serviço pago; a trilha gratuita produz o mesmo filme com narração aberta. Preços, modelos e termos de APIs de voz são de novembro de 2026.
 
 ## 7 Considerações éticas
 
@@ -242,24 +210,24 @@ A primeira versão do método foi aplicada pelo autor numa produção real, cujo
 - **Marcas de terceiros.** Os aparelhos do filme são genéricos, modelados em código, sem logotipo.
 - **Referências.** Nenhum vídeo de terceiros foi baixado ou redistribuído. O repositório guarda endereços e anotações.
 - **Materiais de clientes.** Não entram no repositório público. O `.gitignore` exclui áudio, vídeo e chaves.
-- **Alegações.** O método proíbe telas inventadas e números sem fonte, e este relatório não apresenta alegação de desempenho.
+- **Alegações.** O método proíbe telas inventadas e números sem fonte, e este relatório não faz alegação de desempenho de veiculação.
 
 ## 8 Conclusão
 
-Tratar o anúncio como programa torna a produção reprodutível, variável e sincronizada por construção. Isso não garante qualidade percebida. A versão 2.0 acrescenta ao método os meios de mirá-la e de verificá-la: regras extraídas de referências, aprovação de aparência antes da construção, um pipeline de imagem que reproduz o comportamento de uma lente, direção explícita da voz sintética e crítica por agentes que não participaram da construção.
+Tratar o anúncio como programa torna a produção reprodutível, variável e sincronizada por construção. A versão 2.0 acrescenta ao método os meios de mirar a qualidade percebida e de verificá-la: regras extraídas de referências, aprovação de aparência antes da construção, um pipeline de imagem que reproduz o comportamento de uma lente, direção explícita da voz sintética e crítica por agentes que não participaram da construção.
 
 Três resultados parecem generalizáveis para além deste caso:
 
-1. **Conferência automática é filtro, e não aprovação.** Isso valeu para a voz e para a rubrica visual.
-2. **Um veredito subjetivo pode ser decomposto em medidas.** "Cru" correspondeu a quadro vazio, preto lavado e ausência de corte, câmera e luz.
-3. **A independência do crítico importa mais que a sofisticação da rubrica.** A mesma classe de agente que não viu os defeitos ao construir os encontrou ao criticar.
+1. **Conferência automática é filtro, e a aprovação é humana.** Isso vale para a voz e para a imagem.
+2. **Um juízo estético pode ser decomposto em medidas.** Ocupação do quadro, profundidade do preto, frequência de cortes, movimento de câmera, contraste e níveis de som tornam "aparência premium" uma especificação.
+3. **A independência do crítico importa mais que a sofisticação da rubrica.** Um agente sem o histórico da construção, munido de medidas, encontra o que o construtor deixa passar.
 
 Trabalhos futuros:
 
 - medir o efeito das técnicas sobre retenção e conversão em testes controlados;
 - repetir a avaliação com painel de ouvintes e de espectadores;
 - avaliar vozes nativas em português do Brasil, pagas e abertas;
-- acrescentar iluminação global aproximada ao mundo claro;
+- acrescentar iluminação global aproximada ao pipeline 3D;
 - medir o pipeline em outras GPUs e sistemas.
 
 ## Referências

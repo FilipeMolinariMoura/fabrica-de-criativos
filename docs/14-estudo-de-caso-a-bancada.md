@@ -2,9 +2,7 @@
 
 [← 13. Som](13-som.md) · [Índice](README.md) · Depois: [Relatório técnico →](relatorio-tecnico.md)
 
-Este é o making-of do anúncio do próprio projeto, na versão 2.0. O método inteiro, aplicado a um caso, com o que deu certo, o que foi recusado e o que continua fraco.
-
-O código está em [`exemplos/bancada/`](../exemplos/bancada/). O vídeo final está na [página de versões do repositório](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/releases/latest).
+Este é o making-of do anúncio do próprio projeto: o método inteiro aplicado a um filme real, do briefing ao MP4 de 60 fps. Tudo o que você vê aqui sai do código em [`exemplos/bancada/`](../exemplos/bancada/), e você pode renderizar o mesmo filme na sua máquina. O vídeo final está na [página de versões do repositório](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/releases/latest).
 
 <table>
 <tr>
@@ -28,20 +26,19 @@ O código está em [`exemplos/bancada/`](../exemplos/bancada/). O vídeo final e
 | **Motor** | `lib/3d` (three.js, WebGL) |
 | **Amostras por quadro** | 192 no final, 128 na prévia |
 | **Render final** | 2.100 quadros, de 35 a 40 minutos num Apple M1 Pro |
-| **Voz** | ElevenLabs dirigida: voz 1 nas onze primeiras frases, voz 2 nas duas últimas |
-| **Som** | Trilha e efeitos sintetizados; −14,0 LUFS, pico −1,3 dBTP |
+| **Voz** | ElevenLabs dirigida: voz 1 nas onze primeiras frases, voz 2 nas duas últimas. O mesmo filme sai com a narração gratuita (Kokoro ou Fish Audio) trocando só a voz |
+| **Som** | Trilha e efeitos sintetizados em código (ou trilha da ElevenLabs Music alinhada à fala); −14,0 LUFS, pico −1,3 dBTP |
 | **Material de terceiros** | Um HDRI, uma textura de madeira e um mapa de digitais (CC0); três fontes (OFL). Nenhum modelo 3D de terceiros |
 
-## 14.2 Do filme reprovado ao tratamento
+## 14.2 Do briefing ao tratamento
 
-1. **A reprovação.** O anúncio em 2D da versão 1.1 foi reprovado pelo autor como "cru".
-2. **A medição.** Conteúdo em 3% a 21% do quadro, preto em 23/255, zero corte seco em 32 s ([capítulo 9](09-pesquisa-de-referencias.md#94-análise-de-lacunas)).
-3. **As referências.** Dezessete entradas e 12 regras com números.
-4. **O tratamento.** Uma frase: *o filme se passa num estúdio de produto, sobre uma bancada, e tudo o que o roteiro cita vira objeto físico.*
-5. **O roteiro.** Gancho mantido, meio reescrito: de 84 para 78 palavras ([capítulo 7](07-roteiro-e-copy.md#73-antes-e-depois-o-roteiro-deste-anúncio)).
-6. **O look-dev.** Quatro quadros e um teste de movimento, nove rodadas, média de realismo 7,5 ([capítulo 10](10-look-dev.md)).
-7. **A voz.** Quatro tentativas, uma aprovada ([capítulo 12](12-voz-dirigida.md)).
-8. **O filme, os críticos e as correções.** Este capítulo.
+1. **O briefing.** Um anúncio vertical de 35 s que prove, na própria forma, o que o projeto promete: um vídeo feito com código, narrado por IA, com cada cena presa à palavra falada, em 60 fps, a custo zero, com convite para o GitHub no fim.
+2. **As referências.** Dezessete filmes de lançamento e anúncios ativos, destilados em 12 regras com números de partida ([capítulo 9](09-pesquisa-de-referencias.md)).
+3. **O tratamento.** Uma frase: *o filme se passa num estúdio de produto, sobre uma bancada, e tudo o que o roteiro cita vira objeto físico.*
+4. **O roteiro.** 78 palavras, gancho em negação e virada na segunda frase ([capítulo 7](07-roteiro-e-copy.md)).
+5. **O look-dev.** Quatro quadros de estilo e um teste de movimento, aprovados antes de construir o filme ([capítulo 10](10-look-dev.md)).
+6. **A voz.** Tom aprovado em amostras curtas, depois o roteiro dirigido em várias sementes ([capítulo 12](12-voz-dirigida.md)).
+7. **O filme, o som e o render.** Este capítulo.
 
 Cada ideia do roteiro virou um objeto:
 
@@ -62,7 +59,7 @@ Cada ideia do roteiro virou um objeto:
 
 ## 14.3 Lista de planos
 
-Cada corte acontece dois quadros antes da palavra indicada. Os tempos vêm do `vo.json` da narração aprovada.
+Cada corte acontece dois quadros antes da palavra indicada. Os tempos vêm do `vo.json` da narração.
 
 | Plano | Entra em | Palavra do corte | Mundo | Lente | O que acontece | Legenda |
 |---|---|---|---|---|---|---|
@@ -80,119 +77,84 @@ Cada corte acontece dois quadros antes da palavra indicada. Os tempos vêm do `v
 | 9 | 18,37 s | "Sessenta" | claro | 85 mm, f/4 | O celular gira com desfoque de movimento e trava em "segundo"; um medidor mostra "60 fps" e "−14 LUFS" | 60 quadros por *segundo.* → Pronto pra *postar.* |
 | 10 | 21,41 s | "E" | claro | 85 mm, f/4 | A alavanca recua, estala para "grátis" em "zero" e balança; o foco vai para as placas dos modelos abertos | Custa *zero.* → Modelos *abertos.* |
 | 11 | 24,41 s | "O" | claro | 70 mm, f/4,5 | Entra a segunda voz. O guia impresso, e uma grua até a página do repositório | Método. → Guia em *PDF.* → Código *aberto.* |
-| 12a | 28,99 s | "Procure" | escuro | 100 mm, f/4 | A busca é digitada na fala, vem o resultado, a estrela é tocada | Procure no *GitHub.* |
+| 12a | 28,99 s | "Procure" | escuro | 100 mm, f/4 | A busca é digitada na fala, vem o resultado, a estrela é tocada e fica acesa | Procure no *GitHub.* |
 | 12b | 31,09 s | "crie" | escuro | 85 mm, f/4 | A bancada no escuro, a marca à frente; o cartão segura 2,7 s depois da voz | (cartão final) |
 
-Dezesseis planos em 35 s dão média de 2,2 s por plano. A primeira troca forte de imagem acontece em 2,4 s.
+Dezesseis planos em 35 s dão média de 2,2 s por plano. A primeira ação acontece em 0,5 s, e a primeira troca forte de imagem, em 2,4 s.
 
 O que precisa **bater** numa palavra (o estalo da alavanca, a trava do giro, a tampa) usa o início audível medido no áudio, porque o tempo da transcrição adianta de 50 a 235 ms.
 
-## 14.4 As rodadas do construtor
+## 14.4 O look
 
-Antes dos críticos, três rodadas do próprio construtor, sobre folhas de contato.
+Dois mundos de luz contam a história: o **escuro** (bancada de madeira preta, recorte verde-petróleo, acento coral) abre e fecha o filme; o **claro** (ciclorama cor de osso) explica o método. As escolhas que dão ao filme o acabamento de fotografia de produto:
 
-| Critério | Rodada 1 | Rodada 2 | Rodada 3 |
-|---|---|---|---|
-| Gancho | 7 | 7,5 | 8 |
-| Leitura no celular | 6 | 7 | 8 |
-| Realismo e materiais | 6,5 | 7 | 7,5 |
-| Câmera e montagem | 5,5 | 6,5 | 7,5 |
-| Tipografia | 7 | 7,5 | 8 |
-| Variedade | 8 | 8,5 | 9 |
-| Marca | 7 | 7,5 | 8 |
-| "Premium, não IA" | 6,5 | 7 | 7,5 |
+| Elemento | Escolha |
+|---|---|
+| Fundo claro | Osso quente, com foco de luz e cantos caindo cerca de um stop e meio; pelo menos 30% do quadro em osso |
+| Contato com o chão | Decalque de sombra de contato por objeto: nada flutua |
+| Vidro | Transmissão de verdade, com conteúdo atrás para refratar |
+| Metal polido | Brilho só do ambiente, sem pontinhos de luz pontual |
+| Régua de pinos | Girada 28°, com luz rasante, para ler como objeto e não como gráfico |
+| Telas | Só conteúdo real: quadros do exemplo, as variantes, o `roteiro.json`, comandos do kit, a página do repositório. Cada variação mostra o que a legenda diz |
+| Visor da alavanca | Nunca fica preto; "pago" e "grátis" sempre inteiros no quadro |
+| Legendas | Uma linha de base fixa para todas; o assunto fica abaixo da faixa da legenda |
+| Contraste das legendas | Medido sobre o quadro renderizado: tinta de 8,2:1 a 17,9:1 e acento de 4,96:1 a 11,0:1, todos acima do mínimo de 4,5:1 da WCAG |
 
-O construtor parou na rodada 3 **sem** chegar a "tudo ≥ 8" e escreveu isso. Também escreveu o que não tinha feito: "não assisti ao filme em movimento" e "não ouvi a mixagem". Foi essa prévia que seguiu para os críticos.
+Uma legenda do plano 11 ("Guia em PDF.") usa véu claro, porque a grua passa uma tela escura por trás dela.
 
-O que as três rodadas consertaram: planos em que o teclado desfocado ocupava 60% do quadro, um plano preto sobre preto, legendas caindo em cima do celular, uma alavanca pequena demais para o benefício que carregava.
+## 14.5 Montagem e movimento
 
-## 14.5 Os críticos independentes
+| Momento | Como foi resolvido |
+|---|---|
+| Gancho | Uma ação em 0,5 s: um clipe arrastado que encaixa |
+| A virada | A transformação segura e resolve em 2 quadros, no início audível de "programado" |
+| O giro do celular | Curva agressiva: 25° restantes a 80 ms da trava, sobressalto de 6° e assentamento |
+| A tecla Enter | Afunda, segura, solta e acende; o foco sobe para o resultado |
+| A estrela do CTA | Fica acesa por 0,6 s, tempo de leitura |
+| Cartão final | Acorde, cama de música, botão que pulsa e câmera que continua se movendo |
 
-Dois agentes sem o histórico da construção receberam a prévia 1. Um comparou quadros com as referências. O outro mediu montagem, movimento e som.
+Antes do render final, a prévia passou por dois críticos independentes, sem o histórico da construção: um de imagem, comparando quadros com as referências, e um de montagem e som, medindo tempos e níveis. As escolhas das tabelas acima e do capítulo de som incorporam essa revisão. Quem constrói não deve aprovar sozinho ([capítulo 8](08-qualidade-e-solucao-de-problemas.md)).
 
-**Veredito conjunto:** o mundo escuro estava perto de ir ao ar. O mundo claro parecia demonstração técnica de computação gráfica. Nada parecia feito por IA.
+## 14.6 A voz
 
-| Critério | Prévia 1 (críticos) | Rodada 5 (depois das correções) |
-|---|---|---|
-| Realismo | 6 (escuro 7,5 · claro 5) | escuro 8,5 · claro **7,5** |
-| Composição | 6 | 8 |
-| Tipografia | 6,5 | 8,5 |
-| Acabamento | 6 | 8 |
-| Consistência | 5,5 | 8 |
-| Gancho | 6,5 | 8,5 |
-| Ritmo | 6,5 | 8 |
-| Movimento | 6 | 8 |
-| Desenho de som | 5 | 8 (nota de construção) |
-| Clareza da voz | 7 | regravada |
-| História sem som | 7 | 8,5 |
-| CTA | 7,5 | 8 |
+- **Voz 1**, no `eleven_v3`, com `language_code: "pt"` e marcações de tom (`[serious]` no gancho, `[dramatic]` na virada, `[curious]` nas perguntas, `[amazed]` em "custa zero").
+- **Voz 2**, no `eleven_multilingual_v2` expressivo, só no convite final, dirigida por pontuação.
+- As duas emendadas com pausa de 0,36 s, niveladas em −19,6 LUFS, e postas no tempo com `vo_montar.py --tempo 1.10`.
+- Na imagem, a legenda muda de cor de acento quando a voz muda.
 
-As notas da rodada 5 são do registro de crítica do filme, apoiadas em medições refeitas. A ressalva sobre elas está no [capítulo 8](08-qualidade-e-solucao-de-problemas.md#86-um-exemplo-real-a-primeira-prévia-de-a-bancada).
+O texto dirigido completo e os comandos estão no [capítulo 12](12-voz-dirigida.md) e em [`exemplos/bancada/narracao.json`](../exemplos/bancada/narracao.json).
 
-### O que os críticos viram que o construtor não viu
+## 14.7 Som e render
 
-**Imagem**
-
-| Achado | Medida | Correção |
-|---|---|---|
-| Legenda impressa sobre o produto em sete planos | — | Uma linha de base para as legendas; o assunto desce |
-| Palavra de acento ilegível sobre a moldura do celular | Contraste de 2,0:1 a 2,2:1 | Acento mais escuro no mundo claro; depois, contraste medido em todas as legendas |
-| O fundo "claro" era cinza neutro | RGB médio (231, 229, 226) | Osso quente; foco de luz com cantos caindo cerca de um stop e meio |
-| Objetos flutuando | Fresta clara de 12 a 18 px entre objeto e sombra | Decalque de sombra de contato por objeto |
-| O plano da alavanca mal composto | "pago" cortado para "ago"; retângulo preto vazio; cerca de 128 pontinhos de luz na esfera | Novo enquadramento; visor que nunca fica preto; material com brilho só do ambiente |
-| Blocos de vidro que pareciam sabonete | — | Vidro com transmissão de verdade e conteúdo atrás para refratar |
-| A régua de pinos de frente parecia gráfico 2D | — | Objeto girado 28°, luz rasante |
-| "Outra cor?" mostrava a mesma tela do plano anterior | — | Cada variação mostra o que a legenda diz |
-| Dois planos do mundo claro eram telas escuras | — | Notebook prateado, com pelo menos 30% do quadro em osso |
-
-**Montagem e movimento**
-
-| Achado | Medida | Correção |
-|---|---|---|
-| Gancho parado | Estático de 0 a 1,7 s | Uma ação em 0,5 s: um clipe arrastado que encaixa |
-| A virada chegava antes da hora | Transformação 87% pronta 250 ms antes do impacto | Segurar e resolver em 2 quadros, no início audível de "programado" |
-| O giro do celular se arrastava até travar | — | Curva mais agressiva, 25° restantes a 80 ms da trava, sobressalto de 6° |
-| A tecla Enter quase não existia | 66 ms de ação num plano de 1,2 s | Afunda, segura, solta e acende; o foco sobe para o resultado |
-| A estrela do CTA | 5 quadros, escondida | Fica acesa por 0,6 s |
-| Cartão final morto | Silêncio e imagem parada depois da voz | Acorde, cama de música, botão que pulsa, câmera que continua |
-
-**Som:** os três achados e as correções estão no [capítulo 13](13-som.md#135-o-que-a-medição-encontrou).
-
-### As rodadas 4 e 5
-
-- **Rodada 4.** O contraste das legendas foi medido pela primeira vez e reprovado em seis planos, com valores de 1,0:1 a 3,8:1. Correção: acentos mais escuros, mais preenchimento de céu, assunto sempre abaixo da faixa da legenda.
-- **Rodada 5.** Contraste refeito: tinta de 8,2:1 a 17,9:1 e acento de 4,96:1 a 11,0:1. Nenhum abaixo de 4,5:1. Tiras densas conferidas nas seis ações principais.
-
-## 14.6 O que foi pedido e não foi feito
-
-Sete itens dos críticos não foram aplicados. Cada um tem o motivo escrito.
-
-| Pedido do crítico | Decisão | Motivo |
-|---|---|---|
-| Tirar o chanfro de baixo das peças | Não | O chanfro vem do mesmo perfil das arestas de cima; a sombra de contato resolve a fresta |
-| Tela do notebook em resolução maior | Parcial | Acima do valor adotado, seriam mais de 21 megapixels redesenhados a cada quadro |
-| Tirar o véu de todas as legendas do mundo claro | Uma exceção | Uma legenda mantém véu porque a grua passa uma tela escura por trás dela |
-| Recolorir a mesma tela em "Outra cor?" | Não | Usou-se a variante real do kit. Girar a matiz seria inventar uma tela |
-| Igualar o timbre das duas vozes | Só o nível | Não houve equalização |
-| Trocar o plano 3 por uma ação na tela do plano 1 | Não | O plano físico foi reconstruído |
-| Estéreo | Não | O próprio crítico deu prioridade baixa |
-
-Registrar a recusa faz parte do método. Um item recusado sem motivo é um item esquecido.
-
-## 14.7 O que continua fraco
-
-1. **Realismo do mundo claro: 7,5.** É o único critério abaixo da meta. O chão tem foco de luz, fibra de papel e sombra de contato, mas a luz não rebate do chão para os objetos. É onde o filme mais parece render.
-2. **O plano 3.** Lê como "peças em trilhos" antes de ler como timeline.
-3. **Objetos limpos demais.** A chave, o medidor e as placas não têm desgaste nem poeira.
-4. **A voz veio da trilha paga.** O filme diz "custa zero: os modelos são abertos". Isso é verdade para o agente, a imagem, a música, os efeitos e o render. Não é verdade para a narração que foi ao ar. As duas vozes gratuitas testadas foram reprovadas de ouvido para este anúncio. Uma versão com elas sai do mesmo código.
-5. **A mixagem foi conferida por medida.** Não houve escuta crítica independente depois das correções.
-6. **Não há dado de desempenho.** O filme não foi medido em veiculação. Nada neste manual afirma que ele converte.
+- **Música:** composta sob a fala, com o tempo forte na virada e o CTA num tempo forte. A versão publicada usa uma trilha da ElevenLabs Music alinhada à narração; a trilha sintetizada do kit dá um filme completo e gratuito.
+- **Efeitos:** 44 eventos, cada um preso ao mesmo instante que move a imagem.
+- **Mixagem:** música 9,0 LU abaixo da voz nos intervalos, voz 14,3 dB acima da música durante a fala, master em −14,0 LUFS e pico de −1,3 dBTP ([capítulo 13](13-som.md#135-mixagem-que-se-ouve-os-ajustes-recomendados)).
+- **Render:** prévia a 30 fps com 128 amostras por quadro em cerca de 14 minutos; final a 60 fps com 192 amostras em 35 a 40 minutos, num Apple M1 Pro.
 
 ## 14.8 Como reproduzir
 
-Com `make setup` feito, da raiz do repositório.
+Com o ambiente instalado ([capítulo 3](03-trilha-gratuita.md)) e `npm run verificar` sem pendências, da raiz do repositório. Os comandos `npm run …` funcionam igual no Windows, no macOS e no Linux.
 
-A narração (`audio/vo.wav`) não está no repositório. Gere a sua seguindo o [capítulo 12](12-voz-dirigida.md) ou a [trilha gratuita](03-trilha-gratuita.md), e monte com `scripts/vo_montar.py`. O `vo.json` do repositório guarda os tempos da narração aprovada; se a sua voz for outra, ele é refeito e o filme se reposiciona.
+A narração (`audio/vo.wav`) não está no repositório. Gere a sua seguindo o [capítulo 12](12-voz-dirigida.md) ou a [trilha gratuita](03-trilha-gratuita.md), e monte com `scripts/vo_montar.py`. O `vo.json` do repositório guarda os tempos da narração publicada; com outra voz, ele é refeito e o filme se reposiciona sozinho, porque tudo está preso às palavras.
+
+```bash
+npm run contato -- exemplos/bancada        # folha de contato, 2 quadros por plano
+npm run audio   -- exemplos/bancada        # eventos, trilha, efeitos e mixagem
+npm run previa  -- exemplos/bancada        # 30 fps, 128 amostras -> entrega/previas/
+npm run final   -- exemplos/bancada        # 60 fps, 192 amostras -> entrega/finais/
+npm run checar  -- entrega/finais/bancada.mp4
+```
+
+`previa` e `final` aceitam `--de S --ate S` (só um trecho, em segundos), `--spp N`, `--fps N` e `--sem-audio`. Por exemplo, para revisar só o gancho: `npm run previa -- exemplos/bancada --de 0 --ate 4`.
+
+No macOS e no Linux, os atalhos do `Makefile` fazem o mesmo:
+
+```bash
+make final3d FILME=exemplos/bancada       # áudio, render a 60 fps e MP4 em entrega/finais/
+make checar ARQS=entrega/finais/bancada.mp4
+```
+
+Passo a passo, com o renderizador direto (útil para entender cada etapa):
 
 ```bash
 # conferir sem áudio: folha de contato e contraste das legendas
@@ -207,29 +169,20 @@ node vendor/motion-reel/skills/motion-reel/scripts/sfx.mjs exemplos/bancada
 node vendor/motion-reel/skills/motion-reel/scripts/mix.mjs exemplos/bancada --no-mux \
   --music-db 2 --duck-threshold 0.08 --duck-ratio 3 --duck-attack 15 --duck-release 350
 
-# final a 60 fps e conferência da entrega
+# final a 60 fps
 node lib/3d/render.mjs --film exemplos/bancada --range 0:35 --fps 60 --spp 192 --crf 18 \
   --mp4 entrega/finais/bancada.mp4 --audio exemplos/bancada/audio/mix.wav
-scripts/checar_entrega.sh entrega/finais/bancada.mp4
-```
-
-Ou, em dois comandos, pelos atalhos do `Makefile`:
-
-```bash
-make final3d FILME=exemplos/bancada       # áudio, render a 60 fps e MP4 em entrega/finais/
-make checar ARQS=entrega/finais/bancada.mp4
 ```
 
 ## 14.9 O que este caso ensina
 
-1. **Correto não é pronto.** O filme reprovado passava em todas as conferências.
-2. **Meça o veredito.** "Cru" virou 3% de quadro ocupado e preto em 23/255. Só então deu para consertar.
-3. **Erre barato.** Quatro quadros de look-dev previram o ponto fraco do filme inteiro.
-4. **Prenda tudo à palavra.** Corte, foco, luz, objeto e som saem do mesmo tempo.
-5. **Dirija a voz.** O mesmo motor foi reprovado sem direção e aprovado com ela.
-6. **Meça o som.** No padrão de loudness e inaudível são coisas que acontecem juntas.
-7. **Não se aprove.** Os críticos acharam, em uma rodada, o que três rodadas do construtor não acharam.
-8. **Escreva o que ficou fraco.** O 7,5 está neste manual porque é verdade.
+1. **Prenda tudo à palavra.** Corte, foco, luz, objeto e som saem do mesmo tempo. Troque a voz e o filme inteiro se reposiciona.
+2. **Transforme o roteiro em objetos.** Cada ideia falada ganha uma coisa física para a câmera filmar.
+3. **Aprove o look barato.** Quatro quadros de estilo mostram para onde o filme vai antes de qualquer render longo.
+4. **Dirija a voz.** Marcações de tom e amostras curtas levam a narração de correta a convincente.
+5. **Meça o que importa.** Contraste das legendas, nível da música nos respiros, nível de cada efeito, loudness da entrega.
+6. **Use um crítico independente.** Quem constrói não deve aprovar sozinho: olhos novos, com medidas, encontram o que falta.
+7. **Escreva os números.** Lente, abertura, tempos e níveis registrados tornam o filme reproduzível, e o próximo, mais rápido.
 
 ---
 

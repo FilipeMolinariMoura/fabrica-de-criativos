@@ -33,7 +33,7 @@ próprio projeto voltou como "crua".
 | **"Premium, não IA"** | Um estranho diria que isso saiu de um estúdio? Ou tem cara de template: caixa alta pesada, tudo centralizado, brilho e néon gratuitos, cinco cores, elementos genéricos? | parece gerado, parece template | não dá para dizer como foi feito | |
 | **Som medido** | O som foi **medido**, não só ouvido? Master em -14 LUFS e pico real até -1 dBTP (`make checar`). Frases e vozes no mesmo nível. A trilha aparece nos intervalos da fala (não some sob a voz). Cada efeito começa no quadro do evento e nunca em cima de uma palavra. Há respiro antes da virada e um fecho no cartão final. | trilha some ou briga com a voz; efeito em cima de palavra; nível varia de frase para frase | medidas anotadas abaixo e dentro da meta | |
 
-Critérios separados quando fizer sentido (o exemplo `exemplos/bancada/docs/critica.md` usa alguns): composição,
+Critérios separados quando fizer sentido: composição,
 tipografia, consistência entre planos, história sem som, CTA. No caminho 3D com dois mundos de luz, dê uma nota
 de realismo para cada mundo.
 

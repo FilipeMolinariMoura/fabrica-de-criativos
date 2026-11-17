@@ -12,10 +12,10 @@ Cada técnica tem três partes: um fundamento (por que funciona), uma receita (c
 |---|---|
 | O argumento de venda é a interface de um aplicativo | O argumento é o objeto, o acabamento ou a "cara de produto" |
 | Você precisa de dezenas de variações de cor, estilo e voz | Você precisa de um filme de divulgação que seja comparado a filmes de lançamento |
-| O render precisa sair em minutos | Você aceita de 35 a 40 minutos de render por meio minuto de filme |
+| O render precisa sair em minutos | Há margem para cerca de 35 a 40 minutos de render final por meio minuto de filme |
 | O público vai ver o anúncio entre outros anúncios de performance | O público vai ver o filme ao lado de comerciais de marca |
 
-O motor 2D foi reprovado como veículo do anúncio deste projeto ([capítulo 0](00-visao-geral.md#03-a-reprovação)). Isso não o torna ruim: torna-o errado para aquele trabalho. Os defeitos medidos (quadro vazio, preto lavado, zero corte) também se corrigem dentro do 2D, e a seção 6.5 mostra como.
+Os dois motores convivem no mesmo kit, e escolher entre eles é uma decisão de produção, não de qualidade. O 2D é imbatível em velocidade e volume de variações; o 3D entrega a "cara de comercial de marca". As regras de enquadramento, contraste e ritmo da seção 6.5 valem para os dois e elevam o 2D ao mesmo padrão visual.
 
 ## 6.2 Fundamentos
 
@@ -74,15 +74,15 @@ Vale para os dois motores.
 
 É isso que torna o vídeo reprodutível: o mesmo commit gera o mesmo MP4.
 
-## 6.5 O que a versão 2 ensinou ao motor 2D
+## 6.5 Padrão visual de filme de lançamento no 2D
 
-A análise que reprovou o anúncio 2D gerou regras que não dependem de 3D. Aplique-as a qualquer filme em canvas.
+A leitura de filmes de lançamento ([capítulo 9](09-pesquisa-de-referencias.md)) gerou regras que não dependem de 3D. Aplique-as a qualquer filme em canvas: elas são a diferença entre um anúncio que parece modelo pronto e um que parece produção.
 
-| Defeito medido | Correção dentro do 2D |
+| Armadilha comum | Como fazer no 2D |
 |---|---|
-| Conteúdo em 3% a 21% do quadro | O objeto principal ocupa de 55% a 75% da largura. Corte a interface em vez de mostrá-la inteira e pequena |
-| Preto em 23/255 | Fundo escuro de verdade (percentil 5 de luminância ≤ 8/255). Confira com um histograma do quadro |
-| Zero corte seco em 32 s | De 10 a 12 planos em 30 s. Troque fusão por corte na palavra |
+| Conteúdo pequeno, ocupando uma fração do quadro | O objeto principal ocupa de 55% a 75% da largura. Corte a interface em vez de mostrá-la inteira e pequena |
+| Preto lavado, acinzentado | Fundo escuro de verdade (percentil 5 de luminância ≤ 8/255). Confira com um histograma do quadro |
+| Filme inteiro em fusões, sem corte seco | De 10 a 12 planos em 30 s. Prefira o corte na palavra à fusão |
 | O mesmo fundo o filme todo | Dois "mundos" de cor, com a troca coincidindo com a virada do roteiro |
 | Caixa alta pesada em três linhas | Caixa mista, peso 500 a 600, no máximo 5 palavras na tela, uma palavra de acento em outra família |
 | Código e terminal ilegíveis | Texto que precisa ser lido tem ao menos 30 px de altura de letra no quadro final. O resto fica deliberadamente fora de foco ou fora do quadro |

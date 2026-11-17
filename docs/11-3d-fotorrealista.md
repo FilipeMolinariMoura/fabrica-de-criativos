@@ -4,7 +4,7 @@
 
 Este capítulo explica como o kit produz imagem com cara de estúdio usando three.js, WebGL e a GPU que você já tem. O código está em [`lib/3d/`](../lib/3d/) e o filme que o usa está em [`exemplos/bancada/`](../exemplos/bancada/).
 
-Não é traçado de raios. É rasterização comum, repetida muitas vezes por quadro, com uma coisa diferente a cada vez. A soma dessas repetições dá o que normalmente se atribui a motores caros: desfoque de lente de verdade, desfoque de movimento e sombra suave.
+O segredo não é traçado de raios: é rasterização comum, repetida muitas vezes por quadro, com uma coisa diferente a cada vez. A soma dessas repetições entrega o que normalmente se atribui a motores caros (desfoque de lente de verdade, desfoque de movimento e sombra suave) rodando no navegador, em qualquer GPU com WebGL 2.
 
 ## 11.1 A ideia: uma câmera que soma
 
@@ -86,19 +86,19 @@ Regras de modelagem (`lib/3d/models.js`):
 node lib/3d/render.mjs --film exemplos/bancada --contrast
 ```
 
-No filme, a tinta ficou entre 8,2:1 e 17,9:1, e a palavra de acento entre 4,96:1 e 11,0:1. Antes da medição, havia legendas com 1,0:1.
+No filme, a tinta ficou entre 8,2:1 e 17,9:1, e a palavra de acento entre 4,96:1 e 11,0:1, acima do critério AA da WCAG (4,5:1). Rode a medição sempre antes do render final: é o jeito seguro de garantir legenda legível sobre qualquer fundo.
 
 **Um passe de acabamento.** Depois da soma, na ordem: bloom e halação (só do buffer de emissivos), aberração cromática lateral, vinheta, exposição, mapeamento de tons de filme (ACES), gradação, legendas, grão e dither. O bloom sai de um passe separado em que tudo é preto, menos as telas e os LEDs. No mundo claro, um bloom por limiar de brilho faria o fundo inteiro brilhar.
 
 **Dois acabamentos do mesmo render.** `motor` é o filme finalizado. `limpo` desliga grão, vinheta, halação e aberração, para quem quer finalizar em outro programa. O renderizador grava os dois de uma vez com `--limpo`.
 
-## 11.6 Tropeços
+## 11.6 Armadilhas conhecidas e como evitar
 
-Cada linha custou pelo menos uma rodada.
+O motor já resolve cada uma destas armadilhas. A tabela explica o porquê de cada decisão e serve de referência quando você escrever o seu próprio filme ou estender `lib/3d`.
 
-| Tropeço | Sintoma | Saída |
+| Armadilha | Sintoma | Como evitar |
 |---|---|---|
-| **`scene.environment` ignora `material.envMapIntensity`** | Clarão de softbox na tela do notebook; sombras lavadas no chão claro. Custou três rodadas de procura | Atribuir o mapa de ambiente direto em `material.envMap`, com a dose de cada material |
+| **`scene.environment` ignora `material.envMapIntensity`** | Clarão de softbox na tela do notebook; sombras lavadas no chão claro | Atribuir o mapa de ambiente direto em `material.envMap`, com a dose de cada material |
 | **Luz que se move imprime pontos em superfície polida** | *N* pontinhos brilhantes num vidro ou numa esfera cromada | Vidro e polidos recebem brilho só do ambiente (`envSpecOnly`) |
 | **Bloom por limiar em cena clara** | O ciclorama inteiro brilha | Bloom só de emissivos, em passe próprio |
 | **Vidro atrás de vidro some** | A segunda placa desaparece | A transmissão do three.js só enxerga objetos opacos. O pipeline renderiza o vidro em camadas, de trás para a frente (`glassLayers`) |
@@ -136,19 +136,25 @@ node lib/3d/render.mjs --film exemplos/bancada --range 0:35 --fps 60 --spp 192 -
   --mp4 entrega/finais/bancada.mp4 --audio exemplos/bancada/audio/mix.wav
 ```
 
-Os mesmos passos, pelos atalhos do `Makefile` (que chamam `scripts/finalizar3d.sh`):
+Os mesmos passos pelos atalhos do kit, que funcionam igual em Windows, macOS e Linux:
 
 ```bash
-make contato3d   FILME=exemplos/bancada    # folha de contato -> out/exemplos/bancada/contato.jpg
-make contraste3d FILME=exemplos/bancada    # contraste de cada legenda
-make audio3d     FILME=exemplos/bancada    # eventos -> trilha -> efeitos -> mixagem
-make previa3d    FILME=exemplos/bancada    # áudio + 30 fps, 128 amostras -> entrega/previas/
-make final3d     FILME=exemplos/bancada    # áudio + 60 fps, 192 amostras -> entrega/finais/
+npm run contato -- exemplos/bancada   # folha de contato -> out/exemplos/bancada/contato.jpg
+npm run audio   -- exemplos/bancada   # eventos -> trilha -> efeitos -> mixagem
+npm run previa  -- exemplos/bancada   # áudio + 30 fps, 128 amostras -> entrega/previas/
+npm run final   -- exemplos/bancada   # áudio + 60 fps, 192 amostras -> entrega/finais/
+npm run checar  -- entrega/finais/bancada.mp4   # resolução, fps, áudio, -14 LUFS, pico
 ```
 
-As variáveis `SPP`, `FPS` e `CRF` trocam a qualidade; `SEM_AUDIO=1` usa a mixagem que já existe; `LIMPO=1` grava também o master sem grão nem vinheta. Veja `scripts/finalizar3d.sh --help`.
+`previa` e `final` aceitam `--de S --ate S` (renderizar só um trecho, em segundos), `--spp N` (amostras por quadro), `--fps N` e `--sem-audio` (usa a mixagem que já existe). Por exemplo, para conferir só o gancho em qualidade final:
 
-**Sistema testado.** O renderizador abre o Chromium com o backend gráfico Metal (`--use-angle=metal`), que só existe no macOS. Em Linux e Windows o motor 3D não foi testado, e essa opção provavelmente precisa ser trocada em `lib/3d/render.mjs`.
+```bash
+npm run final -- exemplos/bancada --de 0 --ate 4
+```
+
+No macOS e no Linux, os mesmos passos também existem no `Makefile`: `make contato3d`, `make contraste3d`, `make audio3d`, `make previa3d` e `make final3d`, com `FILME=exemplos/bancada`. As variáveis `SPP`, `FPS` e `CRF` trocam a qualidade, `SEM_AUDIO=1` usa a mixagem existente e `LIMPO=1` grava também o master sem grão nem vinheta (veja `scripts/finalizar3d.sh --help`).
+
+**Sistemas e GPU.** O motor roda no Chromium do Playwright e usa a GPU por WebGL 2; uma placa integrada é suficiente. Os tempos deste capítulo foram medidos num Apple M1 Pro com macOS. Para confirmar que o Chromium enxerga a sua GPU, em qualquer sistema, rode `npm run verificar`.
 
 Para abrir o filme no navegador e andar pelo tempo com as setas, sirva a raiz do repositório com qualquer servidor estático e abra `exemplos/bancada/index.html`.
 
@@ -198,7 +204,7 @@ window.seek = (t) => pipe.render(stage, t, { spp, fps, typeTex, frame });
 window.filmReady = true;
 ```
 
-O passo a passo que funcionou em A bancada:
+O passo a passo usado em A bancada:
 
 1. **Carregue o `vo.json` e monte os tempos.** Uma tabela `T` com o instante de cada palavra que importa, e uma tabela `CUT` com os cortes: o início da frase menos dois quadros.
 2. **Descreva cada plano como um objeto** com quatro partes: o mundo de luz, o que as telas mostram em *t*, a função `at(t)` que posiciona objetos e devolve a câmera, e a legenda.
@@ -210,13 +216,15 @@ O passo a passo que funcionou em A bancada:
 
 `update()` é chamada *N* vezes por quadro, em instantes diferentes. Nada de estado acumulado.
 
-## 11.10 Limites
+## 11.10 Escopo do motor
 
-- **Sem luz rebatida e sem cáusticas.** É o que mais separa o mundo claro de uma fotografia.
-- **Refração em espaço de tela.** Aguenta quadro parado e câmera calma.
-- **Um navegador, uma GPU.** Não há render distribuído. O filme de 35 s é a escala testada.
-- **Testado numa máquina, num sistema.** Os tempos são de um Apple M1 Pro, em macOS. O renderizador pede o backend Metal, exclusivo do macOS; Linux e Windows não foram testados.
-- **Texto pequeno em tela desfocada** precisa de muitas amostras para não mostrar o padrão.
+Para planejar o seu filme, tenha em mente o que o motor faz e como ele escala:
+
+- **Iluminação direta com sombra suave e oclusão de céu.** Luz rebatida e cáusticas entram como refinamento opcional ([seção 10.5](10-look-dev.md)).
+- **Refração em espaço de tela.** Ideal para quadros parados e câmera calma em volta de vidro.
+- **Um navegador, uma GPU.** O render acontece numa máquina só; filmes de 30 a 35 s são a escala natural de um anúncio.
+- **Tempo de render depende da GPU.** Os números da seção 11.8 são de um Apple M1 Pro; máquinas diferentes terão tempos diferentes. Para ganhar velocidade, baixe as amostras antes da resolução.
+- **Texto pequeno em tela desfocada** pede mais amostras para um desfoque limpo.
 
 ---
 

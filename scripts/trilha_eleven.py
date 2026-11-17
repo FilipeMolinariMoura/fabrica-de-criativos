@@ -19,7 +19,9 @@ alinhar  lê <filme>/trilha.json (dur, reveal, cta), acha na tomada a virada (ma
          esticando o tempo de cada trecho sem mudar o tom. Se algum trecho precisar esticar mais que
          --max-esticar, usa um esticamento único (virada no lugar, fim da música no fim do filme) e avisa
          onde o impacto final caiu. Normaliza o volume e grava <filme>/audio/music.wav, pronto para a mixagem
-         (scripts/finalizar3d.sh <filme> audio  ou  mix.mjs).
+         (node fabrica.mjs audio <filme>, scripts/finalizar3d.sh <filme> audio  ou  mix.mjs), e a marca
+         <filme>/audio/music.origem.json: com ela (ou com o musica.json no filme) a finalização não troca esta
+         música pela sintetizada, nem quando o trilha.json muda (aí ela avisa para realinhar).
 
 Plano (<filme>/musica.json): {"positive_global_styles": [...], "negative_global_styles": [...],
   "sections": [{"section_name": "Intro", "positive_local_styles": [...], "negative_local_styles": [...],
@@ -46,7 +48,7 @@ def chave():
     if os.environ.get("ELEVENLABS_API_KEY"):
         return os.environ["ELEVENLABS_API_KEY"].strip()
     if os.path.exists(".env"):
-        m = re.search(r"^ELEVENLABS_API_KEY=(\S+)\s*$", open(".env").read(), re.M)
+        m = re.search(r"^ELEVENLABS_API_KEY=(\S+)\s*$", open(".env", encoding="utf-8").read(), re.M)
         if m:
             return m.group(1).strip("\"'")
     sys.exit("Falta ELEVENLABS_API_KEY no ambiente ou no .env (veja .env.example).")
@@ -56,7 +58,7 @@ def gerar(a):
     plano_arq = os.path.join(a.filme, "musica.json")
     if not os.path.exists(plano_arq):
         sys.exit(f"faltou {plano_arq} (o plano de composição; veja o cabeçalho deste script)")
-    plano = json.load(open(plano_arq))
+    plano = json.load(open(plano_arq, encoding="utf-8"))
     plano = {k: plano[k] for k in ("positive_global_styles", "negative_global_styles", "sections")}
     os.makedirs(os.path.join(a.filme, "audio"), exist_ok=True)
     for n in range(1, a.tomadas + 1):
@@ -102,7 +104,7 @@ def trecho(src, de, ate, alvo, saida):
 
 
 def alinhar(a):
-    tr = json.load(open(os.path.join(a.filme, "trilha.json")))
+    tr = json.load(open(os.path.join(a.filme, "trilha.json"), encoding="utf-8"))
     dur, reveal, cta = float(tr["dur"]), float(tr["reveal"]), float(tr["cta"])
     x, sr = sf.read(a.tomada, always_2d=True)
     fim = len(x) / sr
@@ -139,6 +141,10 @@ def alinhar(a):
     for p in (p1, p2, tmp):
         if os.path.exists(p):
             os.remove(p)
+    # marca a origem: finalizar.sh, finalizar3d.sh e fabrica.mjs não trocam esta música pela sintetizada
+    with open(os.path.join(pasta, "music.origem.json"), "w", encoding="utf-8") as f:
+        json.dump({"origem": "scripts/trilha_eleven.py alinhar", "tomada": os.path.basename(a.tomada)}, f, ensure_ascii=False)
+        f.write("\n")
     print(f"virada medida em {tv:.2f} s (+{jv:.0f} dB) -> {reveal:.2f} s | impacto final medido em {tf:.2f} s (+{jf:.0f} dB)")
     print(modo)
     if jv < 6:

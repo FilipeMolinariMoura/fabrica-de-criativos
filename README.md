@@ -2,340 +2,501 @@
 
 # Fábrica de Criativos
 
-**Anúncios em vídeo que saem de código: você escreve o roteiro, a IA narra, e cada cena entra na palavra falada.**
+### Escreva o roteiro. A IA narra. O código filma. E não custa nada.
 
+Anúncios em vídeo vertical com **3D fotorrealista**, **voz por IA** e **cada cena entrando na palavra falada**, gerados a partir de código, em 60 fps, prontos para Reels, TikTok e Shorts.
+
+**100% gratuito e de código aberto.** Sem assinatura, sem editor de vídeo pago, sem marca d'água.
+
+[![Custo R$ 0](https://img.shields.io/badge/custo-R%24%200-2EA44F.svg)](#-de-graça-de-ponta-a-ponta)
+[![Versão](https://img.shields.io/badge/vers%C3%A3o-2.1.0-FF6B4A.svg)](CHANGELOG.md)
+[![Windows · macOS · Linux](https://img.shields.io/badge/Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-suportado-0B1416.svg)](#-começar-em-10-minutos)
+[![Node.js 20+](https://img.shields.io/badge/Node.js-20%2B-5FA04E.svg?logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB.svg?logo=python&logoColor=white)](https://www.python.org)
+[![three.js](https://img.shields.io/badge/three.js-0.187-000000.svg?logo=threedotjs&logoColor=white)](https://threejs.org)
 [![CI](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/actions/workflows/ci.yml/badge.svg)](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/actions/workflows/ci.yml)
-[![Versão 2.0.1](https://img.shields.io/badge/vers%C3%A3o-2.0.1-FF6B4A.svg)](CHANGELOG.md)
-[![Código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-blue.svg)](LICENSE)
-[![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey.svg)](LICENSE-docs.md)
-[![Guia em PDF](https://img.shields.io/badge/guia-PDF-0B1416.svg)](dist/Fabrica-de-Criativos.pdf)
+[![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 
 <a href="https://github.com/FilipeMolinariMoura/fabrica-de-criativos/releases/latest">
-  <img src="exemplos/bancada/preview/bancada.gif" width="320" alt="A bancada: anúncio vertical de 35 segundos em 3D fotorrealista, com objetos de estúdio que entram em cena na palavra falada">
+  <img src="exemplos/bancada/preview/bancada.gif" width="300" alt="A bancada: anúncio vertical de 35 segundos em 3D fotorrealista feito com a Fábrica de Criativos">
 </a>
 
-<sub>Este anúncio foi programado, não editado. O código está em <a href="exemplos/bancada"><code>exemplos/bancada</code></a>.<br>
-<a href="https://github.com/FilipeMolinariMoura/fabrica-de-criativos/releases/latest">Assista em 60 fps, com som, na página de versões.</a></sub>
+**Este anúncio não foi editado. Ele foi programado com este repositório.**<br>
+<a href="https://github.com/FilipeMolinariMoura/fabrica-de-criativos/releases/latest"><b>▶ Assistir em 60 fps, com som</b></a> · <a href="dist/Fabrica-de-Criativos.pdf"><b>📘 Guia em PDF</b></a> · <a href="#-começar-em-10-minutos"><b>🚀 Começar agora</b></a>
 
 </div>
 
 ---
 
-## A história em sete linhas
+## ✨ O que é
 
-Editor de timeline não escala: trocar uma palavra do roteiro obriga a regravar a voz e arrastar todos os cortes de novo.
+A Fábrica de Criativos é um **método completo e um kit gratuito de código aberto** para produzir anúncios em vídeo com qualidade de estúdio, sem abrir um editor de vídeo e sem pagar nenhuma ferramenta.
 
-Então o vídeo virou **código**. Cada quadro é uma função do tempo, e cada cena começa numa palavra da narração.
-
-A primeira versão funcionava. Era determinística, sincronizada, dentro do padrão de áudio, com nota 8 na própria rubrica.
-
-O autor assistiu e reprovou com uma palavra: **cru**.
-
-A versão 2.0 é a resposta, em cinco peças: **pesquisa de referências** que transforma "parece caro" em 12 regras com números; **look-dev** antes de construir; **3D fotorrealista** no navegador; **voz dirigida** como se dirige um locutor; e **críticos independentes**, porque quem constrói não aprova o próprio trabalho.
-
-Tudo está aqui: o método, o código, os números, e também o que deu errado.
-
-## Antes e depois
-
-O mesmo roteiro, os mesmos momentos, duas versões.
-
-<table>
-<tr>
-<th></th>
-<th align="center">Gancho</th>
-<th align="center">Cena na palavra</th>
-<th align="center">"Custa zero"</th>
-<th align="center">Cartão final</th>
-</tr>
-<tr>
-<td><b>1.x</b><br><sub>2D em canvas<br><i>reprovada</i></sub></td>
-<td><img src="docs/img/v1-01-gancho.jpg" width="160" alt="Versão 1: título em caixa alta sobre degradê, com um painel de timeline pequeno"></td>
-<td><img src="docs/img/v1-04-palavra.jpg" width="160" alt="Versão 1: miniaturas e fichas de palavras pequenas sobre fundo vazio"></td>
-<td><img src="docs/img/v1-08-gratis.jpg" width="160" alt="Versão 1: chave Pago e Grátis desenhada em 2D sobre fundo vazio"></td>
-<td><img src="docs/img/v1-12-cartao.jpg" width="160" alt="Versão 1: cartão final em 2D com ícone, nome e botão"></td>
-</tr>
-<tr>
-<td><b>2.0</b><br><sub>3D em three.js<br><i>A bancada</i></sub></td>
-<td><img src="docs/img/v2-01-gancho.jpg" width="160" alt="Versão 2: macro de um editor de vídeo numa tela real, com foco raso e legenda em caixa baixa"></td>
-<td><img src="docs/img/v2-06-palavra.jpg" width="160" alt="Versão 2: fichas físicas com as palavras acendendo diante de um celular num ciclorama claro"></td>
-<td><img src="docs/img/v2-10-zero.jpg" width="160" alt="Versão 2: alavanca metálica entre pago e grátis, com placas dos modelos abertos ao fundo"></td>
-<td><img src="docs/img/v2-12-cartao.jpg" width="160" alt="Versão 2: a marca como objeto sobre a bancada escura, com o cartão final"></td>
-</tr>
-</table>
-
-| Medida | Versão 1.x | Versão 2.0 |
-|---|---|---|
-| Quadro ocupado por conteúdo | 3% a 21% | assunto em mais da metade da largura, em todo plano |
-| Preto mais escuro | 23/255 | 4 a 6/255 nos quadros de estilo |
-| Cortes secos | 0 em 32 s | 16 planos em 35 s |
-| Câmera, luz e sombra | nenhuma | lente de 50 a 135 mm, luz de estúdio, sombra de luz de área |
-
-Como essas medidas foram tiradas: [capítulo 9 da documentação](docs/09-pesquisa-de-referencias.md#94-análise-de-lacunas).
-
-## O que você recebe
+Você descreve o anúncio num arquivo de texto. A ferramenta gera a narração com IA, marca o instante de cada palavra, monta as cenas em 3D com luz, lente e materiais reais, compõe a trilha e os efeitos, mixa no padrão das redes e entrega o MP4 final.
 
 | | |
 |---|---|
-| **Um método em 10 etapas** | Do briefing à entrega, com entrada, saída e portão de qualidade em cada etapa. [docs/01-metodo.md](docs/01-metodo.md) |
-| **Um kit de código** | Dois motores de filme (2D em canvas e 3D fotorrealista em three.js), scripts de voz, trilha, efeitos, mixagem e conferência |
-| **Três exemplos completos** | [`demo`](exemplos/demo) (aplicativo fictício, 2D) · [`divulgacao`](exemplos/divulgacao) (o anúncio 2D reprovado) · [`bancada`](exemplos/bancada) (o anúncio 3D) |
-| **Um guia em PDF** | A versão diagramada do método, em 27 páginas. [dist/Fabrica-de-Criativos.pdf](dist/Fabrica-de-Criativos.pdf) |
-| **Um relatório técnico** | Em formato de artigo, com resumo em português e inglês, avaliação, limitações e ética. [docs/relatorio-tecnico.md](docs/relatorio-tecnico.md) |
+| 💸 **Custa zero** | Motor, 3D, voz, trilha, efeitos e mixagem rodam no seu computador, com software livre e modelos de IA abertos. |
+| 🎬 **Qualidade de filme de produto** | 3D fotorrealista com profundidade de campo real, desfoque de movimento, luz de estúdio e vidro com refração. |
+| 🎙️ **Voz por IA, grátis** | Narração com voz aberta rodando no seu computador, ou voz de locutor dirigida se você quiser ir além. |
+| ⏱️ **Sincronia perfeita** | Cada corte e cada efeito cai na palavra falada. Mudou o texto? O filme se reorganiza sozinho. |
+| 🔁 **Variações em um comando** | Outra cor, outro estilo, outra voz, sem refazer nada. Ideal para teste A/B. |
+| 📐 **Pronto para postar** | 1080×1920, 60 fps, H.264 e áudio em −14 LUFS, o padrão das plataformas. |
 
-## Começo rápido
+## 🎞️ Veja o resultado
 
-Pré-requisitos: Node.js 18 ou mais novo, [uv](https://docs.astral.sh/uv/), ffmpeg e Whisper. O `make setup` avisa o que falta. O motor 2D roda em macOS e Linux. **O motor 3D só foi testado em macOS** (Apple Silicon).
+<table>
+<tr>
+<td align="center"><img src="docs/img/v2-01-gancho.jpg" width="150" alt="Macro de uma tela de edição com foco raso"><br><sub>Gancho</sub></td>
+<td align="center"><img src="docs/img/v2-02-programado.jpg" width="150" alt="Código do roteiro na tela"><br><sub>"Ele foi programado"</sub></td>
+<td align="center"><img src="docs/img/v2-06-palavra.jpg" width="150" alt="Fichas com palavras acendendo diante de um celular"><br><sub>Cena na palavra</sub></td>
+<td align="center"><img src="docs/img/v2-09-60fps.jpg" width="150" alt="Celular e medidor mostrando 60 fps"><br><sub>60 fps</sub></td>
+<td align="center"><img src="docs/img/v2-10-zero.jpg" width="150" alt="Alavanca de metal entre pago e grátis"><br><sub>"Custa zero"</sub></td>
+<td align="center"><img src="docs/img/v2-12-cartao.jpg" width="150" alt="Cartão final com a marca sobre a bancada"><br><sub>Chamada final</sub></td>
+</tr>
+</table>
 
-```bash
-git clone https://github.com/FilipeMolinariMoura/fabrica-de-criativos
-cd fabrica-de-criativos
-make setup          # dependências e conferência das ferramentas
-make demo           # exemplo 2D: voz gratuita + trilha + efeitos + mixagem + prévia
+Tudo o que aparece nesse filme está no repositório: o roteiro, as cenas, a câmera, a luz, os materiais e o som, em [`exemplos/bancada`](exemplos/bancada).
+
+## ⚙️ Como funciona
+
+```mermaid
+flowchart LR
+    A["📝 Roteiro<br/>roteiro.json"] --> B["🎙️ Voz com IA<br/>dirigida, frase a frase"]
+    B --> C["⏱️ Palavras no tempo<br/>vo.json"]
+    C --> D["🎬 Cenas em código<br/>3D ou 2D"]
+    C --> E["🎵 Trilha e efeitos<br/>presos às palavras"]
+    D --> F["🖥️ Render quadro a quadro<br/>60 fps"]
+    E --> G["🎚️ Mixagem<br/>−14 LUFS"]
+    F --> H["📱 MP4 final<br/>1080×1920"]
+    G --> H
 ```
 
-A prévia sai em `entrega/previas/`. Agora o filme 3D:
+Cada etapa grava um arquivo que a próxima lê. Por isso dá para trocar só a voz, só a música ou só uma cena, e o resto se ajusta.
 
-```bash
-make contato3d FILME=exemplos/bancada     # folha de contato dos 16 planos, em segundos
-```
+---
 
-A folha sai em `out/exemplos/bancada/contato.jpg`. O filme inteiro sai com `make final3d FILME=exemplos/bancada`, depois que você gerar a narração (ela não vai no repositório). O passo a passo está em ["Como reproduzir" no estudo de caso](docs/14-estudo-de-caso-a-bancada.md#148-como-reproduzir).
+## 💸 De graça, de ponta a ponta
 
-Para começar um criativo seu:
+Todas as etapas têm um caminho **gratuito** que roda no seu computador. Nada de assinatura, créditos ou marca d'água.
 
-```bash
-scripts/novo_criativo.sh a01 "Meu primeiro criativo"
-```
+| Etapa | 🆓 Como fazer de graça | O que usa |
+|---|---|---|
+| **Roteiro e cenas com IA** | Agente de IA com um modelo aberto rodando no seu computador | [Ollama](https://ollama.com) + `qwen3-coder` ou `gpt-oss` |
+| **Voz** | Voz por IA local, com vozes em português do Brasil | [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) (Apache-2.0, uso comercial liberado) |
+| **Palavras no tempo** | Reconhecedor de fala local | [Whisper](https://github.com/openai/whisper) |
+| **Cenas em 3D fotorrealista** | Motor incluído no projeto | [three.js](https://threejs.org) |
+| **Trilha e efeitos** | Compostos em código, já presos às palavras | Incluídos |
+| **Render, mixagem e entrega** | Quadro a quadro, em 60 fps, −14 LUFS | Chromium + FFmpeg |
+| **Total** | | **R$ 0** |
 
-Depois siga o [método](docs/01-metodo.md).
+O `npm run demo` usa exatamente esse caminho: voz gratuita, trilha gratuita, render gratuito.
 
 <details>
-<summary><b>Usar o Claude Code com um modelo aberto, sem pagar</b></summary>
+<summary><b>Usar o agente de IA de graça (Claude Code + modelo aberto)</b></summary>
+
+1. Instale o [Ollama](https://ollama.com/download) e o [Claude Code](https://docs.claude.com/en/docs/claude-code/overview).
+2. Baixe um modelo aberto e deixe o Ollama rodando:
 
 ```bash
-ollama pull qwen3-coder:30b && ollama serve
+ollama pull qwen3-coder:30b
+ollama serve
+```
+
+3. Em outro terminal, aponte o Claude Code para o Ollama e abra-o na pasta do projeto.
+
+No macOS e no Linux:
+
+```bash
 export ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_AUTH_TOKEN=ollama ANTHROPIC_API_KEY=""
 claude --model qwen3-coder:30b
 ```
 
-Requisitos de memória e cuidados: [docs/03-trilha-gratuita.md](docs/03-trilha-gratuita.md).
+No Windows (PowerShell):
+
+```powershell
+$env:ANTHROPIC_BASE_URL="http://localhost:11434"; $env:ANTHROPIC_AUTH_TOKEN="ollama"; $env:ANTHROPIC_API_KEY=""
+claude --model qwen3-coder:30b
+```
+
+Com 16 GB de memória, use `gpt-oss:20b`. Com 32 GB, `qwen3-coder:30b`. Detalhes em [docs/03-trilha-gratuita.md](docs/03-trilha-gratuita.md).
 
 </details>
 
-## O método em 10 etapas
+### Quer ir além? Serviços pagos são opcionais
 
-| # | Etapa | O que você faz | Sai daqui com | Leia |
-|---|---|---|---|---|
-| 1 | **Briefing** | Confirma produto, público, dor, CTA e telas reais | `briefing.md` | [Método](docs/01-metodo.md#11-briefing) |
-| 2 | **Referências** | Lê filmes do gênero sem baixar vídeo e escreve regras com números | Tabela, regras e análise de lacunas | [Pesquisa de referências](docs/09-pesquisa-de-referencias.md) |
-| 3 | **Roteiro** | Escreve 30 segundos para o ouvido e aprova o texto | `roteiro.json` | [Roteiro e copy](docs/07-roteiro-e-copy.md) |
-| 4 | **Voz dirigida** | Aprova o tom em amostras curtas, dirige, gera com sementes | Tomada aprovada de ouvido | [Voz dirigida](docs/12-voz-dirigida.md) |
-| 5 | **Narração no tempo** | Marca o instante de cada palavra | `vo.json` | [Método](docs/01-metodo.md#15-narração-no-tempo) |
-| 6 | **Look-dev** | Constrói quatro quadros de estilo e dá nota honesta | Quadros aprovados | [Look-dev](docs/10-look-dev.md) |
-| 7 | **Filme** | Programa os planos, cada corte preso a uma palavra | `film.js` | [3D fotorrealista](docs/11-3d-fotorrealista.md) · [Motor 2D](docs/06-tecnicas-de-motion.md) |
-| 8 | **Som** | Sintetiza trilha e efeitos e mede a mixagem | `mix.wav` em −14 LUFS | [Som](docs/13-som.md) |
-| 9 | **Crítica independente** | Entrega a prévia a críticos que não construíram o filme | Correções com números | [Qualidade](docs/08-qualidade-e-solucao-de-problemas.md) |
-| 10 | **Render, variações e entrega** | Renderiza a 60 fps e confere o arquivo | MP4 1080×1920 | [Qualidade](docs/08-qualidade-e-solucao-de-problemas.md#83-especificação-de-entrega) |
+Se quiser voz de locutor profissional ou música produzida, troque só a etapa que quiser. O resto continua igual e gratuito.
 
-## Gratuito × pago
+| Etapa | Opcional pago | Para quê |
+|---|---|---|
+| Agente de IA | [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) com plano Claude | Mais rapidez em tarefas longas |
+| Voz | [ElevenLabs](https://elevenlabs.io) (a partir de US$ 5/mês) ou [Fish Audio](https://fish.audio) (tem cota grátis) | Voz de locutor com direção de tom |
+| Música | ElevenLabs Music | Trilha produzida, alinhada à fala |
 
-Dá para fazer tudo sem pagar. Vale saber onde está a diferença.
+Guias: [caminho gratuito](docs/03-trilha-gratuita.md) · [serviços opcionais](docs/04-trilha-paga.md).
 
-| Etapa | Trilha gratuita | Trilha paga | Diferença real |
-|---|---|---|---|
-| Agente | Claude Code com modelo aberto no Ollama (`qwen3-coder:30b`) | Claude Code com plano Claude | O modelo aberto erra mais em tarefa longa. Peça uma etapa por vez |
-| Filme 2D e 3D | `lib/cena.js` e `lib/3d` | iguais | **Nenhuma.** O 3D fotorrealista é código aberto |
-| Trilha e efeitos | Sintetizados em código | iguais | Nenhuma |
-| Narração | Kokoro (local) ou Fish Audio (modelo gratuito) | ElevenLabs com direção | **A maior.** Veja abaixo |
-| Conferência da fala | Whisper e Praat | iguais | Nenhuma |
-| Render | Playwright e ffmpeg | iguais | Nenhuma |
+---
 
-> **Sobre a voz, sem rodeio.** O filme diz "custa zero: os modelos são abertos". Isso vale para o agente, a imagem, a música, os efeitos e o render. A narração que foi ao ar veio da trilha paga: as duas vozes gratuitas foram reprovadas de ouvido para este anúncio. O plano usado custa US$ 5 por mês, e todas as tentativas somadas gastaram da ordem de 12 a 15 mil dos 30 mil créditos mensais. A história inteira está em [docs/12-voz-dirigida.md](docs/12-voz-dirigida.md).
+## 🚀 Começar em 10 minutos
 
-Detalhes: [trilha gratuita](docs/03-trilha-gratuita.md) · [trilha paga](docs/04-trilha-paga.md).
+São quatro passos. Não precisa saber programar: é copiar e colar.
 
-## Como funciona
+### 1. Baixe o projeto
 
-```mermaid
-flowchart LR
-  R[roteiro.json] --> V[voz dirigida]
-  V --> A[filtro às cegas<br/>Whisper + Praat]
-  A --> H{ouvido<br/>humano}
-  H -- reprova --> V
-  H -- aprova --> VO[vo.json<br/>cada palavra no tempo]
-  VO --> F[film.js<br/>lib/3d ou lib/cena.js]
-  VO --> T[trilha.py<br/>música]
-  F --> E[sfx.mjs<br/>efeitos]
-  T --> X[mix.mjs<br/>−14 LUFS]
-  E --> X
-  F --> RD[render<br/>Chromium + ffmpeg]
-  X --> RD
-  RD --> P[prévia]
-  P --> C{críticos<br/>independentes}
-  C -- correções com números --> F
-  C -- aprovado --> M[MP4<br/>1080×1920, 60 fps]
+Instale o [Git](https://git-scm.com/downloads) se ainda não tiver. Depois abra o terminal e rode:
+
+```bash
+git clone https://github.com/FilipeMolinariMoura/fabrica-de-criativos.git
+cd fabrica-de-criativos
 ```
 
-Três ideias sustentam o desenho:
+> **Onde fica o terminal?** No Windows, abra o menu Iniciar e procure **PowerShell**. No macOS, procure **Terminal** no Spotlight (⌘ + espaço). No Linux, **Terminal**.
 
-- **O filme é uma função pura do tempo.** `window.seek(t)` desenha o quadro *t*. O mesmo commit gera o mesmo MP4.
-- **Tudo é preso à palavra.** Corte, foco, luz, objeto e som perguntam ao `vo.json` quando a palavra é dita. Trocar a voz reposiciona o filme.
-- **Uma câmera que soma.** No motor 3D, cada quadro é a média de 192 a 768 renders, cada um com a câmera num ponto da abertura da lente, num instante do obturador e com as luzes num ponto da própria área. Daí saem o desfoque de lente, o desfoque de movimento e a sombra suave.
+Prefere sem Git? Clique no botão verde **Code → Download ZIP** no topo desta página, descompacte e abra o terminal dentro da pasta.
 
-## Mapa do repositório
+### 2. Instale tudo com um comando
+
+O instalador coloca no seu computador o que o projeto precisa (Node.js, FFmpeg, uv, o navegador de render e o reconhecedor de fala) e confere se ficou tudo certo. Ele pula o que você já tiver.
+
+<details open>
+<summary><b>🪟 Windows 10 e 11</b></summary>
+
+No PowerShell, dentro da pasta do projeto:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File instalar\windows.ps1
+```
+
+O instalador usa o **winget**, que já vem no Windows 10 e 11. Ao terminar, **feche e abra o PowerShell de novo** para os programas novos aparecerem.
+
+</details>
+
+<details>
+<summary><b>🍎 macOS</b></summary>
+
+```bash
+bash instalar/macos.sh
+```
+
+Usa o [Homebrew](https://brew.sh). Se ele não estiver instalado, o script instala primeiro (vai pedir a senha do Mac).
+
+</details>
+
+<details>
+<summary><b>🐧 Linux (Ubuntu, Debian e derivados)</b></summary>
+
+```bash
+bash instalar/linux.sh
+```
+
+Usa o `apt` e vai pedir a senha de administrador (`sudo`).
+
+</details>
+
+### 3. Confira a instalação
+
+```bash
+npm run verificar
+```
+
+Você vai ver uma lista com ✔ em cada item. Se aparecer algum ✖, a própria linha diz o que fazer.
+
+### 4. Gere o primeiro vídeo
+
+```bash
+npm run demo
+```
+
+Em poucos minutos, o projeto cria um anúncio de exemplo do começo ao fim, **sem gastar nada**: voz gratuita, trilha, efeitos e mixagem. O vídeo aparece em:
+
+```
+entrega/previas/demo-previa.mp4
+```
+
+**Pronto: você acabou de gerar um anúncio a partir de código.** 🎉
+
+### E o filme 3D?
+
+Veja os 16 planos do anúncio em 3D numa folha de quadros, em segundos:
+
+```bash
+npm run contato -- exemplos/bancada
+```
+
+E renderize a prévia completa do filme em 3D:
+
+```bash
+npm run previa -- exemplos/bancada --sem-audio
+```
+
+---
+
+## 🎯 Crie o seu anúncio
+
+O caminho mais fácil é usar um agente de IA (como o [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)) dentro da pasta do projeto. Ele lê a documentação e conduz cada etapa. Exemplo de pedido:
+
+> Siga `docs/01-metodo.md`. Meu produto é [descreva]. Escreva o roteiro de 30 s, gere amostras de voz para eu escolher e monte o filme em `criativos/meu-anuncio`.
+
+Se preferir fazer à mão, são estes comandos:
+
+```bash
+# 1. Crie a pasta do anúncio a partir do modelo
+npm run novo -- meu-anuncio "Meu primeiro anúncio"
+
+# 2. Escreva o roteiro em criativos/meu-anuncio/roteiro.json
+
+# 3. Gere a narração com a voz gratuita
+uv run scripts/voz_kokoro.py meu-anuncio pf_dora 3 --roteiros criativos/meu-anuncio/roteiro.json
+
+# 4. Escolha a melhor tomada e marque o tempo de cada palavra
+uv run scripts/voz_avaliar.py voz/meu-anuncio
+uv run scripts/vo_montar.py criativos/meu-anuncio voz/meu-anuncio/pf_dora-1.wav
+
+# 5. Prévia rápida e versão final
+npm run previa -- criativos/meu-anuncio
+npm run final -- criativos/meu-anuncio
+
+# 6. Confira se o arquivo está no padrão das redes
+npm run checar -- entrega/finais/meu-anuncio.mp4
+```
+
+Tudo isso de graça. Se um dia quiser voz de locutor profissional, troque só a voz pela ElevenLabs com direção de tom: [docs/12-voz-dirigida.md](docs/12-voz-dirigida.md).
+
+---
+
+## 🧰 Requisitos e versões
+
+### Sistemas
+
+| Sistema | Versão | Instalação |
+|---|---|---|
+| 🪟 Windows | 10 (22H2) ou 11 | `instalar\windows.ps1` (winget) |
+| 🍎 macOS | 13 Ventura ou mais novo, Intel ou Apple Silicon | `instalar/macos.sh` (Homebrew) |
+| 🐧 Linux | Ubuntu 22.04+, Debian 12+ e derivados | `instalar/linux.sh` (apt) |
+
+Desenvolvido e validado em macOS com Apple Silicon. Em qualquer sistema, o `npm run verificar` confirma se o render está usando a placa de vídeo.
+
+### Computador
+
+| | Mínimo | Recomendado |
+|---|---|---|
+| Memória | 8 GB | 16 GB |
+| Placa de vídeo | Qualquer uma com WebGL 2 (a integrada serve) | Placa dedicada ou Apple Silicon |
+| Espaço em disco | 5 GB (programas, navegador e modelos de voz e fala) | 10 GB (para guardar vários renders) |
+
+### Linguagens
+
+| Linguagem | Onde é usada |
+|---|---|
+| **JavaScript** (Node.js, módulos ES) | Cenas, motores 3D e 2D, render, efeitos, mixagem e a linha de comando |
+| **Python** | Voz, conferência da fala, trilha musical, folhas de quadros |
+| **HTML e CSS** | Página de cada filme e o guia em PDF |
+| **Shell** (opcional) | Atalhos `make` para quem usa macOS ou Linux |
+
+### Programas
+
+| Programa | Versão | Para quê |
+|---|---|---|
+| [Node.js](https://nodejs.org) | 20 LTS ou mais novo (testado no 22) | Roda o motor e o render |
+| [npm](https://www.npmjs.com) | vem com o Node.js | Instala as bibliotecas JavaScript |
+| [uv](https://docs.astral.sh/uv/) | 0.5 ou mais novo (testado no 0.13) | Roda os scripts Python e **baixa o Python certo sozinho** |
+| [FFmpeg](https://ffmpeg.org) | 6 ou mais novo | Codifica o vídeo e mede o áudio |
+| [Git](https://git-scm.com) | qualquer recente | Baixa o projeto |
+| Chromium do [Playwright](https://playwright.dev) | instalado pelo instalador | Desenha cada quadro na placa de vídeo |
+| Reconhecedor de fala | [mlx-whisper](https://github.com/ml-explore/mlx-examples) 0.4 (Mac Apple Silicon) ou [openai-whisper](https://github.com/openai/whisper) (Windows e Linux) | Marca o instante de cada palavra |
+
+Você não precisa instalar o Python à parte: o `uv` baixa a versão que cada script pede (3.10 a 3.12).
+
+### Bibliotecas
+
+| Biblioteca | Versão | Linguagem | Para quê |
+|---|---|---|---|
+| [three.js](https://threejs.org) | 0.187 | JavaScript | Cenas 3D, materiais e luz |
+| [Playwright](https://playwright.dev) | 1.65 | JavaScript | Controla o navegador que renderiza os quadros |
+| [motion-reel](vendor/motion-reel) | 1.3 (incluída) | JavaScript e Python | Motor 2D, efeitos sonoros e mixagem |
+| [NumPy](https://numpy.org), [SciPy](https://scipy.org) | atuais | Python | Áudio e sinais |
+| [librosa](https://librosa.org) | 0.10 ou mais nova | Python | Análise de ritmo da trilha |
+| [soundfile](https://github.com/bastibe/python-soundfile) | atual | Python | Leitura e gravação de áudio |
+| [Parselmouth (Praat)](https://parselmouth.readthedocs.io) | atual | Python | Mede a entonação no fim das frases |
+| [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) | 0.9.4 ou mais nova | Python | Voz gratuita, local |
+| [Pillow](https://python-pillow.org) | atual | Python | Folhas de quadros |
+
+As bibliotecas Python são instaladas sozinhas pelo `uv` na primeira vez que cada script roda.
+
+### Chaves de serviços (opcionais)
+
+O caminho gratuito não precisa de nenhuma chave. Elas só servem se você escolher vozes ou música pagas. Copie `.env.example` para `.env` e preencha:
+
+| Variável | Serviço |
+|---|---|
+| `ELEVENLABS_API_KEY` | [ElevenLabs](https://elevenlabs.io): voz dirigida e música (opcional) |
+| `FISH_API_KEY` | [Fish Audio](https://fish.audio): voz |
+
+O arquivo `.env` nunca vai para o repositório.
+
+---
+
+## 📟 Comandos
+
+Funcionam igual no Windows, no macOS e no Linux.
+
+| Comando | O que faz |
+|---|---|
+| `npm run verificar` | Confere se tudo está instalado e se a placa de vídeo está sendo usada |
+| `npm run demo` | Gera o anúncio de exemplo do começo ao fim |
+| `npm run novo -- <id> "<título>"` | Cria a pasta de um anúncio novo |
+| `npm run contato -- <pasta>` | Folha com um quadro de cada cena, em segundos |
+| `npm run previa -- <pasta>` | Prévia em 30 fps, com som |
+| `npm run final -- <pasta>` | Versão final em 60 fps, com som |
+| `npm run audio -- <pasta>` | Refaz só a trilha, os efeitos e a mixagem |
+| `npm run checar -- <arquivo.mp4>` | Confere resolução, fps, formato e volume |
+
+Na prévia e no final dá para renderizar só um trecho (`--de 10 --ate 15`), mudar a qualidade (`--spp 64`) ou reaproveitar o áudio já mixado sem refazê-lo (`--sem-audio`).
+
+No macOS e no Linux, os mesmos comandos também existem como `make` (`make demo`, `make final3d FILME=exemplos/bancada`). Rode `make ajuda` para ver a lista.
+
+---
+
+## 🗂️ O que vem no repositório
 
 ```
 fabrica-de-criativos/
-├─ docs/               o manual completo, o relatório técnico e as referências
+├─ fabrica.mjs           linha de comando (npm run …)
+├─ instalar/             instaladores para Windows, macOS e Linux
 ├─ lib/
-│  ├─ 3d/              motor 3D: câmera de acumulação, estúdio, modelos, telas, renderizador
-│  ├─ cena.js          motor 2D: primitivas de motion design
-│  └─ motion.js        harness do filme como função do tempo
-├─ scripts/            voz, filtro às cegas, narração no tempo, trilha, variações, entrega
+│  ├─ 3d/                motor 3D fotorrealista (three.js)
+│  └─ cena.js            primitivas do motor 2D
+├─ scripts/              voz, trilha, montagem da narração, variações, entrega
 ├─ exemplos/
-│  ├─ bancada/         o anúncio 3D desta versão
-│  ├─ divulgacao/      o anúncio 2D da versão 1.1
-│  └─ demo/            aplicativo fictício, usado no `make demo`
-├─ templates/          briefing, roteiro, referências, quadros de estilo, crítica, checklist
-├─ ae/logo3d/          logo 3D no After Effects por script (não testado nesta versão)
-├─ vendor/motion-reel  motor de render e áudio (MIT, v1.3.0)
-├─ ebook/  dist/       fonte e PDF do guia
-└─ Makefile            `make ajuda` lista os atalhos
+│  ├─ bancada/           o anúncio 3D desta página
+│  ├─ divulgacao/        anúncio em motion 2D com glassmorphism
+│  └─ demo/              exemplo rápido de um aplicativo
+├─ templates/            briefing, roteiro, crítica, referências, checklist
+├─ docs/                 o manual completo (15 capítulos)
+├─ dist/                 o guia em PDF
+└─ vendor/motion-reel/   motor 2D e de áudio (MIT)
 ```
 
-## Documentação
+## 📚 Documentação
 
-O índice com caminhos de leitura por objetivo está em [docs/README.md](docs/README.md).
+| Para quem | Comece por |
+|---|---|
+| **Quero só gerar vídeos** | [Começar em 10 minutos](#-começar-em-10-minutos) e [solução de problemas](docs/08-qualidade-e-solucao-de-problemas.md) |
+| **Quero aprender o método** | [O método em 10 etapas](docs/01-metodo.md) |
+| **Quero o 3D fotorrealista** | [3D fotorrealista](docs/11-3d-fotorrealista.md) e [o making-of de A bancada](docs/14-estudo-de-caso-a-bancada.md) |
+| **Quero a melhor voz** | [Voz dirigida](docs/12-voz-dirigida.md) |
+| **Quero estudar ou citar** | [Relatório técnico](docs/relatorio-tecnico.md) e [referências](docs/referencias.md) |
 
-| | Documento | Conteúdo |
+O manual completo está em [`docs/`](docs/README.md), e a versão diagramada no [guia em PDF](dist/Fabrica-de-Criativos.pdf).
+
+<details>
+<summary><b>O método em 10 etapas</b></summary>
+
+| # | Etapa | Resultado |
 |---|---|---|
-| | [Guia em PDF](dist/Fabrica-de-Criativos.pdf) | O método diagramado, para ler de uma vez |
-| 0 | [Visão geral](docs/00-visao-geral.md) | A história e como ler |
-| 1 | [Método](docs/01-metodo.md) | As 10 etapas, entradas, saídas e portões de qualidade |
-| 2 | [Ferramentas](docs/02-ferramentas.md) | Inventário, licenças e o que foi descartado |
-| 3 | [Trilha gratuita](docs/03-trilha-gratuita.md) | Ollama, modelos abertos, Kokoro, Fish Audio |
-| 4 | [Trilha paga](docs/04-trilha-paga.md) | O que vale pagar e quanto custou |
-| 5 | [Skills](docs/05-skills.md) | Skills por etapa e como pedir ao agente |
-| 6 | [Técnicas de motion](docs/06-tecnicas-de-motion.md) | O motor 2D |
-| 7 | [Roteiro e copy](docs/07-roteiro-e-copy.md) | Fórmula, famílias de gancho, antes e depois do roteiro |
-| 8 | [Qualidade](docs/08-qualidade-e-solucao-de-problemas.md) | Rubrica, críticos independentes, solução de problemas |
-| 9 | [Pesquisa de referências](docs/09-pesquisa-de-referencias.md) | As 12 regras do visual caro |
-| 10 | [Look-dev](docs/10-look-dev.md) | Quadros de estilo e nota honesta |
-| 11 | [3D fotorrealista](docs/11-3d-fotorrealista.md) | O pipeline, a luz, os materiais, os tropeços |
-| 12 | [Voz dirigida](docs/12-voz-dirigida.md) | O que foi reprovado e o processo que funcionou |
-| 13 | [Som](docs/13-som.md) | Trilha, efeitos e mixagem medida |
-| 14 | [Estudo de caso](docs/14-estudo-de-caso-a-bancada.md) | O making-of de A bancada |
-| | [Relatório técnico](docs/relatorio-tecnico.md) | Formato de artigo |
-| | [Referências](docs/referencias.md) | Bibliografia em ABNT |
+| 1 | [Briefing](docs/01-metodo.md) | Produto, público, mensagem e chamada definidos |
+| 2 | [Referências](docs/09-pesquisa-de-referencias.md) | As regras visuais do anúncio, com números |
+| 3 | [Roteiro](docs/07-roteiro-e-copy.md) | 30 segundos escritos para o ouvido, com gancho forte |
+| 4 | [Voz dirigida](docs/12-voz-dirigida.md) | Narração com o tom aprovado |
+| 5 | [Narração no tempo](docs/01-metodo.md) | O instante exato de cada palavra |
+| 6 | [Look-dev](docs/10-look-dev.md) | Quadros de estilo aprovados antes de construir |
+| 7 | [Filme](docs/11-3d-fotorrealista.md) | As cenas, cada corte preso a uma palavra |
+| 8 | [Som](docs/13-som.md) | Trilha, efeitos e mixagem em −14 LUFS |
+| 9 | [Crítica independente](docs/08-qualidade-e-solucao-de-problemas.md) | Ajustes guiados por medição |
+| 10 | [Entrega](docs/08-qualidade-e-solucao-de-problemas.md) | MP4 em 60 fps e variações |
 
-O PDF é gerado com `node ebook/build.mjs`.
+</details>
 
-## Perguntas frequentes
+---
+
+## ❓ Perguntas frequentes
 
 <details>
-<summary><b>Preciso pagar alguma coisa?</b></summary>
+<summary><b>Preciso saber programar?</b></summary>
 
-Não. O agente pode ser um modelo aberto rodando na sua máquina, a voz pode ser Kokoro ou Fish Audio, e todo o resto é código aberto. O que você perde sem pagar é qualidade de narração e confiabilidade do agente em tarefas longas. Se for pagar uma coisa só, pague a voz.
+Não para gerar vídeos: os comandos desta página bastam. Para criar cenas novas, o mais prático é pedir a um agente de IA, que escreve o código seguindo a documentação.
 
 </details>
 
 <details>
-<summary><b>Precisa de placa de vídeo?</b></summary>
+<summary><b>É grátis mesmo?</b></summary>
 
-Precisa de uma GPU que o navegador consiga usar, e a integrada serve. O filme deste repositório foi renderizado num Apple M1 Pro com 16 GB: de 35 a 40 minutos para 35 segundos a 60 fps. Em hardware mais fraco, use menos amostras por quadro.
-
-Um limite honesto: o renderizador 3D abre o Chromium com o backend gráfico Metal, que só existe no macOS. Em Linux e Windows ele não foi testado, e essa opção precisa ser trocada em `lib/3d/render.mjs`. O motor 2D não tem essa restrição.
+Sim. Do roteiro ao MP4 final, tudo pode rodar no seu computador com software livre e modelos de IA abertos: Ollama para o agente, Kokoro para a voz, Whisper para marcar as palavras, three.js para o 3D, FFmpeg para o vídeo. Não tem assinatura, limite de vídeos nem marca d'água. Serviços pagos, como a ElevenLabs, são opcionais.
 
 </details>
 
 <details>
-<summary><b>Por que não usar IA de vídeo?</b></summary>
+<summary><b>Funciona no Windows?</b></summary>
 
-Por três motivos. Texto e interface saem errados, e num anúncio de software a interface é a prova. Os modelos entregam de 24 a 30 fps. E o resultado não se repete: você não consegue trocar uma palavra e renderizar de novo. No caso deste filme havia um quarto motivo: ele afirma que foi programado. A análise completa está no [capítulo 9](docs/09-pesquisa-de-referencias.md#96-por-que-não-vídeo-generativo).
-
-</details>
-
-<details>
-<summary><b>Funciona com outro agente ou outro modelo?</b></summary>
-
-Sim. O método é um conjunto de arquivos e scripts. Qualquer agente que leia a documentação e rode comandos serve: Claude Code com modelo da Anthropic ou aberto, OpenCode, Aider, Qwen Code. Você também pode seguir tudo à mão, sem agente.
+Sim. Use o instalador `instalar\windows.ps1` e os comandos `npm run`. Eles são os mesmos nos três sistemas.
 
 </details>
 
 <details>
-<summary><b>Posso usar em trabalho para cliente?</b></summary>
+<summary><b>Preciso de uma placa de vídeo potente?</b></summary>
 
-Pode. O código é MIT e a documentação é CC BY 4.0. Três cuidados: confira a licença comercial da voz que escolher, use só telas reais do produto, e nunca envie material de cliente para um repositório público. Se quiser contribuir de volta, contribua com código e técnica, nunca com o material do trabalho.
-
-</details>
-
-<details>
-<summary><b>Quanto tempo leva?</b></summary>
-
-O `make demo` roda em minutos. Um criativo 2D, depois do kit montado, leva de uma a duas horas, quase todas de revisão humana (estimativa do autor). O filme 3D deste repositório levou menos de um dia, com vários agentes em paralelo e muitas rodadas; o render final é a menor parte disso.
+Não. Qualquer placa com WebGL 2, inclusive as integradas, renderiza o filme. Uma placa melhor só deixa o render final mais rápido. Num MacBook com M1 Pro, os 35 segundos de A bancada em 60 fps levam cerca de 40 minutos.
 
 </details>
 
 <details>
-<summary><b>A voz ficou sem emoção. E agora?</b></summary>
+<summary><b>Por que não usar uma IA que gera o vídeo direto?</b></summary>
 
-É o problema mais comum, e a conferência automática não o detecta. Volte um passo: gere só o gancho e o CTA em quatro a sete variações e escolha o tom de ouvido. Depois dirija: marcações de tom, ênfase em caixa alta, reticências para pausa, idioma forçado. Reescreva o roteiro para dar à voz o que cantar, com perguntas e frases curtas depois de uma longa. O passo a passo está em [docs/12-voz-dirigida.md](docs/12-voz-dirigida.md).
+Porque aqui você tem controle total: a interface real do produto aparece como ela é, cada cena cai na palavra certa, e qualquer ajuste é refeito com precisão. O mesmo código gera sempre o mesmo vídeo.
 
 </details>
 
 <details>
-<summary><b>O que este projeto não promete?</b></summary>
+<summary><b>Posso usar nos anúncios dos meus clientes?</b></summary>
 
-Não promete desempenho de anúncio. Não há dado de clique, retenção ou conversão aqui. O que o método garante é o processo e o arquivo: um vídeo reprodutível, sincronizado, dentro do padrão de entrega, e avaliado por alguém que não o construiu.
+Sim, e de graça. O código é MIT e a voz Kokoro é Apache-2.0: os dois permitem uso comercial. Se escolher um serviço pago de voz ou música, confira a licença do plano.
 
 </details>
 
-## Roteiro do projeto
+<details>
+<summary><b>Funciona com outros agentes de IA além do Claude?</b></summary>
 
-O que ainda falta, em ordem de importância.
+Sim. A documentação é em texto e os comandos são de terminal, então qualquer agente que lê arquivos e roda comandos consegue conduzir o método.
 
-- [ ] Voz brasileira nativa aprovada de ouvido, paga e aberta
-- [ ] Luz rebatida aproximada no mundo claro (o critério que ficou em 7,5)
-- [ ] Variações de cor, estilo e voz com um comando também no motor 3D
-- [ ] Formatos 1:1 e 16:9 no motor 3D
-- [ ] Medição do render em outras GPUs, em Linux e em Windows
-- [ ] Teste dos scripts de logo no After Effects
-- [ ] Sons gravados, com licença aberta, para teclas, chave e papel
-- [ ] Estudo de desempenho em veiculação real
-- [ ] Tradução da documentação para o inglês
+</details>
 
-Quer assumir um item? Veja [CONTRIBUTING.md](CONTRIBUTING.md).
+<details>
+<summary><b>Quanto tempo leva para fazer um anúncio?</b></summary>
 
-## Como citar
+Com o método dominado, de uma a duas horas de trabalho por anúncio, mais o tempo de render. As variações (cor, estilo e voz) saem em minutos.
+
+</details>
+
+---
+
+## 🤝 Contribua
+
+Ideias, cenas novas, vozes em outros idiomas e melhorias são muito bem-vindas. Leia o [guia de contribuição](CONTRIBUTING.md) e abra uma [issue](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/issues).
+
+Fez um anúncio com a Fábrica? Mostre em [Issues → Mostrar um criativo](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/issues/new/choose).
+
+Se o projeto te ajudou, deixe uma ⭐. Isso ajuda mais gente a encontrá-lo.
+
+## 📄 Licença
+
+- **Código:** [MIT](LICENSE). Grátis para usar, modificar e usar comercialmente.
+- **Documentação e guia:** [CC BY 4.0](LICENSE-docs.md).
+- **Componentes de terceiros:** motion-reel (MIT), fontes Inter, Urbanist, Geist e Instrument Serif (SIL OFL 1.1), texturas e HDRI da Poly Haven e da ambientCG (CC0). Detalhes em [`lib/3d/assets/ASSETS.md`](lib/3d/assets/ASSETS.md).
+
+## 📝 Como citar
 
 ```bibtex
 @software{molinari_fabrica_de_criativos_2026,
   author  = {Molinari, Filipe},
-  title   = {Fábrica de Criativos: método aberto para anúncios em vídeo a partir de código, com 3D fotorrealista e IA},
+  title   = {Fábrica de Criativos: anúncios em vídeo a partir de código, com 3D fotorrealista e IA},
   year    = {2026},
-  version = {2.0.1},
+  version = {2.1.0},
   url     = {https://github.com/FilipeMolinariMoura/fabrica-de-criativos}
 }
 ```
 
-ABNT: MOLINARI, Filipe. **Fábrica de Criativos**: método aberto para anúncios em vídeo a partir de código, com 3D fotorrealista e IA. Versão 2.0.1. 2026. Disponível em: https://github.com/FilipeMolinariMoura/fabrica-de-criativos. Acesso em: 16 nov. 2026.
+<div align="center">
 
-Os metadados de citação estão em [`CITATION.cff`](CITATION.cff).
+Feito por **[Filipe Molinari](https://github.com/FilipeMolinariMoura)** · O anúncio do topo foi produzido com o próprio método.
 
-## Ética e uso responsável
-
-- Use **só a interface real** do produto anunciado e **nenhum número sem fonte**.
-- **Voz sintética:** siga as políticas de conteúdo gerado por IA da plataforma. Clonar a voz de alguém exige consentimento. Não use vozes que imitam pessoas reais.
-- **Uso comercial:** o plano gratuito da ElevenLabs não permite. O Kokoro (Apache-2.0) permite. Os pesos do F5-TTS e do XTTS-v2 são não comerciais.
-- **Material de cliente** nunca vai para o repositório. O `.gitignore` já exclui `.env`, áudio, vídeo e projetos do After Effects.
-- **Chaves de API** ficam só no `.env`. Veja [SECURITY.md](SECURITY.md).
-
-## Licenças
-
-- Código: [MIT](LICENSE).
-- Documentação e guia: [CC BY 4.0](LICENSE-docs.md).
-- Terceiros: `vendor/motion-reel` (MIT, Aries Spring); fontes Urbanist, Inter, Geist, Geist Mono e Instrument Serif (SIL OFL 1.1); HDRI e texturas de Poly Haven e ambientCG (CC0).
-
-## Contribuição
-
-Contribuições são bem-vindas: um filme novo, uma primitiva, um motor de voz, uma correção. Leia [CONTRIBUTING.md](CONTRIBUTING.md) e o [código de conduta](CODE_OF_CONDUCT.md). Fez um criativo com o kit? Mostre numa [issue](https://github.com/FilipeMolinariMoura/fabrica-de-criativos/issues/new/choose).
+</div>

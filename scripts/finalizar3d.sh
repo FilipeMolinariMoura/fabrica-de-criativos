@@ -74,10 +74,16 @@ else
   ANTES="$(cat "$F/trilha.json" 2>/dev/null || true)"
   META="$(node "$RENDER" --film "$F" --meta)"
   echo "${META%%$'\n'*}"
-  if [[ -n "${TRILHA:-}" || ! -f "$F/audio/music.wav" || ! -f "$F/beats.json" || "$ANTES" != "$(cat "$F/trilha.json")" ]]; then
+  # música do trilha_eleven.py (marca audio/music.origem.json ou plano musica.json): não é trocada pela sintetizada
+  ELEVEN=""
+  [[ -f "$F/audio/music.wav" && ( -f "$F/audio/music.origem.json" || -f "$F/musica.json" ) ]] && ELEVEN=1
+  if [[ -n "${TRILHA:-}" || ! -f "$F/audio/music.wav" || ! -f "$F/beats.json" || ( -z "$ELEVEN" && "$ANTES" != "$(cat "$F/trilha.json")" ) ]]; then
     echo "== trilha"
     # shellcheck disable=SC2086
     SKILL="$SKILL" uv run -q scripts/trilha.py "$F" ${TRILHA_ARGS:-} | grep -E "^(andamento|loudness|->)" || true
+  elif [[ -n "$ELEVEN" && "$ANTES" != "$(cat "$F/trilha.json")" ]]; then
+    echo "== trilha: $F/audio/music.wav mantida (veio do trilha_eleven.py); o trilha.json mudou: realinhe com"
+    echo "   uv run scripts/trilha_eleven.py alinhar $F <tomada.raw.wav>   (TRILHA=1 troca pela sintetizada)"
   else
     echo "== trilha: $F/audio/music.wav mantida (trilha.json não mudou; TRILHA=1 refaz)"
   fi

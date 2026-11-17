@@ -2,7 +2,7 @@
 
 [← 6. Técnicas de motion](06-tecnicas-de-motion.md) · [Índice](README.md) · Próximo: [8. Qualidade →](08-qualidade-e-solucao-de-problemas.md)
 
-O roteiro decide a maior parte do resultado. Nenhuma lente e nenhuma voz salvam uma frase mole. Este capítulo dá a fórmula, as famílias de gancho que se veem em anúncios que ficam muito tempo no ar, e o antes e depois do roteiro do anúncio deste projeto, com o raciocínio de cada troca.
+O roteiro decide a maior parte do resultado: é ele que a voz interpreta e é nele que cada cena se prende. Este capítulo dá a fórmula, as famílias de gancho que se veem em anúncios que ficam muito tempo no ar, e mostra, frase a frase, como o roteiro do anúncio deste projeto foi lapidado, com o raciocínio de cada escolha.
 
 ## 7.1 Fórmula de 30 segundos
 
@@ -40,7 +40,7 @@ Na pesquisa de referências deste projeto ([capítulo 9](09-pesquisa-de-referenc
 | **"Você ainda faz do jeito antigo?"** | "It's 2026, if you're still manually recording your voiceovers…" (ElevenLabs) | 270 |
 | **Número concreto de ganho** | "Cut your editing time from 4 hours to 4 minutes" (ElevenLabs) | 228 |
 | **O produto ocupando o quadro inteiro** | Interface do editor em tela cheia, sem frase de efeito (CapCut) | 229 |
-| **"Isto que você vê não foi feito do jeito normal"** | "Esto no lo estoy grabando yo." (HeyGen) | 64 |
+| **"Isto que você vê é diferente do que parece"** | "Esto no lo estoy grabando yo." (HeyGen) | 64 |
 | **Desafio ao espectador** | "Un plan dans cette vidéo n'existe pas. Tu l'as repéré ?" (HeyGen) | 56 |
 | **Sequência de verbos** | "Idea, type, generate, edit, done!" (Canva) | 53 |
 
@@ -54,13 +54,13 @@ Padrões que se repetem nos mais antigos:
 4. **CTA por ação simples**, dito e escrito.
 5. **O que está há mais tempo no ar é "prova mais rosto"**, e não motion polido. Um filme sem rosto compensa com prova no primeiro quadro.
 
-O gancho deste projeto, "Esse vídeo não foi editado. Ele foi programado.", pertence à quarta família. No orgânico, a mesma ideia sustenta vídeos técnicos com centenas de milhares de visualizações (por exemplo, "This video was made with code", do canal Fireship). Isso ajudou a decidir **manter o gancho** e reescrever só o meio.
+O gancho deste projeto, "Esse vídeo não foi editado. Ele foi programado.", pertence à quarta família. No orgânico, a mesma ideia sustenta vídeos técnicos com centenas de milhares de visualizações (por exemplo, "This video was made with code", do canal Fireship). Por isso o gancho é o eixo do roteiro, e o trabalho de lapidação se concentra no meio.
 
-## 7.3 Antes e depois: o roteiro deste anúncio
+## 7.3 Lapidando o roteiro: o caso deste anúncio
 
-A primeira versão do roteiro tinha 84 palavras. A segunda tem 78. O gancho, o coração ("cada cena entra exatamente na palavra falada") e o CTA ficaram. Seis frases mudaram.
+Todo roteiro bom passa por uma lapidação. Escreva um rascunho completo, leia em voz alta e reescreva cada frase com três perguntas: dá para filmar? diz o benefício? a voz tem o que interpretar? No anúncio deste projeto, o rascunho de 84 palavras virou um roteiro final de 78. O gancho, o coração ("cada cena entra exatamente na palavra falada") e o CTA se mantiveram; seis frases ganharam força.
 
-| # | Primeira versão | Segunda versão | Por quê |
+| # | Rascunho | Roteiro final | Técnica aplicada |
 |---|---|---|---|
 | 1 | Esse vídeo não foi editado. | *igual* | É o melhor ativo do filme e pertence a uma família de gancho que dura no ar |
 | 2 | Ele foi programado. | *igual* | Fecha o gancho com a virada |
@@ -70,17 +70,17 @@ A primeira versão do roteiro tinha 84 palavras. A segunda tem 78. O gancho, o c
 | 6 | Outra cor. Outro estilo. Outra voz. | **Quer outra cor? Outro estilo? Outra voz?** | A pergunta devolve a palavra ao espectador e dá à voz três finais de frase subindo, que quebram a monotonia do trecho |
 | 7 | Um comando só. | *igual* | Resposta seca às três perguntas |
 | 8 | Sessenta quadros por segundo, com o áudio no padrão das redes. | Sessenta quadros por segundo, **pronto pra postar.** | "Padrão das redes" é especificação. Quem não sabe o que é LUFS não sente nada. "Pronto pra postar" é o benefício |
-| 9 | E dá pra fazer tudo de graça, com modelos abertos. | **E custa zero: os modelos são abertos.** | A primeira chegava aos 19 segundos e mole. "Custa zero" é mais curto, é número, e os dois-pontos criam a pausa que dá peso |
-| 10 | Método completo, guia em PDF e o código inteiro, aberto no GitHub. | **O método, o guia em PDF e o código inteiro estão no GitHub.** | Frase com verbo. A lista sem verbo soava como leitura de índice |
+| 9 | E dá pra fazer tudo de graça, com modelos abertos. | **E custa zero: os modelos são abertos.** | Aos 19 segundos a frase precisa de energia. "Custa zero" é mais curto, é número, e os dois-pontos criam a pausa que dá peso |
+| 10 | Método completo, guia em PDF e o código inteiro, aberto no GitHub. | **O método, o guia em PDF e o código inteiro estão no GitHub.** | Frase com verbo. Uma lista sem verbo soa como leitura de índice |
 | 11 | Procure Fábrica de Criativos no GitHub e crie o seu hoje. | Procure Fábrica de Criativos e crie o seu hoje. | "GitHub" já foi dito na frase anterior e está escrito na tela |
 
-Três lições saem desta tabela e valem para qualquer roteiro:
+Três técnicas saem desta tabela e valem para qualquer roteiro:
 
 - **Troque negação por imagem.** Se a frase não pode ser filmada, reescreva.
 - **Troque especificação por benefício.** O número técnico vai para a tela (o medidor mostra "−14 LUFS"); a fala diz o que isso dá a quem ouve.
 - **Dê à voz o que cantar.** Perguntas, dois-pontos e frases curtas depois de uma longa criam melodia. Um roteiro de afirmações do mesmo tamanho sai monótono em qualquer motor de voz.
 
-**Custo de mudar o roteiro:** regravar a voz, refazer o `vo.json` e reposicionar o filme. Como as cenas são presas às palavras, o reposicionamento é automático para as palavras que ficaram. As frases novas pedem planos novos.
+**Mudar o roteiro é barato:** regrave a voz, refaça o `vo.json` e o filme se reposiciona sozinho, porque as cenas são presas às palavras. Só as frases novas pedem planos novos. Ainda assim, aprove o texto antes de gerar a voz final: é a forma mais rápida de chegar ao filme pronto.
 
 ## 7.4 Escrever para a voz
 
@@ -93,7 +93,7 @@ Três lições saem desta tabela e valem para qualquer roteiro:
 | Três ideias numa cena | Uma ideia por cena |
 | Só afirmações | Uma pergunta ou uma pausa a cada três ou quatro frases |
 
-**A grafia depende do motor.** Na primeira versão, com Fish Audio, o roteiro precisou de grafia fonética para estrangeirismos ("taimláin", "Guitirrábi"). Com a ElevenLabs dirigida, a grafia normal ("GitHub", "PDF") saiu certa. Teste a palavra difícil sozinha antes de gerar o roteiro inteiro, e guarde o texto limpo num campo e o texto de fala em outro.
+**A grafia depende do motor.** Em motores como o Fish Audio, estrangeirismos podem pedir grafia fonética ("taimláin", "Guitirrábi"). Com a ElevenLabs dirigida, a grafia normal ("GitHub", "PDF") sai certa. Teste a palavra difícil sozinha antes de gerar o roteiro inteiro, e guarde o texto limpo num campo e o texto de fala em outro.
 
 **Marcações de direção** (`[serious]`, `[warmly]`) e ênfase em CAIXA ALTA entram num texto à parte, o texto dirigido. O roteiro aprovado continua limpo. Veja o [capítulo 12](12-voz-dirigida.md).
 
@@ -111,7 +111,7 @@ Três lições saem desta tabela e valem para qualquer roteiro:
 - Nenhuma marca de terceiros sem autorização escrita.
 - Narração sintética: siga as políticas da plataforma de anúncios sobre conteúdo gerado por IA.
 - Antes de veicular, confira a licença comercial da voz ([capítulo 4](04-trilha-paga.md)).
-- Se o roteiro afirma algo sobre o próprio vídeo ("foi programado", "custa zero"), o vídeo precisa cumprir. Foi por isso que o anúncio deste projeto não usa tomadas de IA de vídeo, e é por isso que este manual diz com todas as letras que a voz aprovada veio da trilha paga.
+- Se o roteiro afirma algo sobre o próprio vídeo ("foi programado", "custa zero"), o vídeo precisa cumprir. Por isso o anúncio deste projeto é 100% renderizado por código, sem tomadas de IA de vídeo, e este manual informa com clareza qual trilha de voz foi usada na versão final (a dirigida, do [capítulo 12](12-voz-dirigida.md)); a trilha gratuita reproduz o mesmo filme a custo zero.
 
 ## 7.7 Esquema do `roteiro.json`
 

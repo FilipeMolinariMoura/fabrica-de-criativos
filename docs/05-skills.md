@@ -4,7 +4,7 @@
 
 *Skills* são pacotes de instruções, com scripts e referências, que o agente carrega quando a tarefa pede. Elas não dependem do modelo: funcionam no Claude Code com modelos da Anthropic e também com um modelo aberto por trás (trilha gratuita).
 
-Nenhuma skill é obrigatória para usar o kit. O motor de render vem copiado em `vendor/`, e os scripts rodam pelo terminal. As skills ajudam o agente a acertar mais na primeira vez.
+Nenhuma skill é obrigatória para usar o kit: o motor de render já vem em `vendor/`, e os scripts rodam pelo terminal em Windows, macOS e Linux. As skills são um acelerador: com elas, o agente acerta mais já na primeira tentativa.
 
 ## 5.1 Qual skill em qual etapa
 
@@ -65,17 +65,17 @@ Peça por etapa, cite os arquivos e diga onde parar. Seis pedidos cobrem o méto
 
 **Look-dev (etapa 6)**
 
-> Siga `docs/10-look-dev.md`. Construa 4 quadros de estilo com `lib/3d` e um teste de movimento de 4 s. Dê nota honesta de realismo de 1 a 10 a cada quadro e liste o que ainda parece falso. Não comece o filme.
+> Siga `docs/10-look-dev.md`. Construa 4 quadros de estilo com `lib/3d` e um teste de movimento de 4 s. Avalie o realismo de cada quadro numa escala de 1 a 10 e liste os ajustes que o aproximam das referências. Não comece o filme.
 
 **Filme (etapa 7)**
 
-> Quadros aprovados. Construa o filme em `criativos/a01` com `lib/3d`, cada corte e cada evento preso a uma palavra do `vo.json`. Rode folhas de contato e tiras densas a cada rodada e registre as notas em `docs/critica.md` do filme.
+> Quadros aprovados. Crie o filme com `npm run novo -- a01 "Meu anúncio"` e construa-o com `lib/3d`, cada corte e cada evento preso a uma palavra do `vo.json`. Gere a folha de contato (`npm run contato -- <pasta do filme>`) a cada rodada e registre as observações em `docs/critica.md` do filme.
 
 **Crítica independente (etapa 9)**
 
-> Você é crítico e não construiu este filme. Avalie `entrega/previas/a01-previa.mp4` com a rubrica de `docs/08-qualidade-e-solucao-de-problemas.md`. Meça o que puder medir. Devolva notas por critério e uma lista de correções com números. Não elogie.
+> Você é crítico e não construiu este filme. Avalie `entrega/previas/a01-previa.mp4` com a rubrica de `docs/08-qualidade-e-solucao-de-problemas.md`. Meça o que puder medir. Devolva uma avaliação por critério e uma lista de ajustes com números. Seja objetivo.
 
-O último pedido vai para um agente novo, sem o histórico da construção. Esse é o ponto.
+O último pedido vai para um agente novo, sem o histórico da construção. Essa é a força da etapa: quem constrói não aprova sozinho, e um olhar independente encontra o que o construtor já não enxerga.
 
 ## 5.4 Instalar skills
 

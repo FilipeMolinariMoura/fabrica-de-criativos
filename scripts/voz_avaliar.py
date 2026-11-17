@@ -9,8 +9,8 @@ uso: uv run scripts/voz_avaliar.py voz/<id> [--modelo-whisper NOME]
 O QUE ESTE SCRIPT FAZ E O QUE NÃO FAZ
   Faz:     pega palavra errada, faltando ou sobrando (Whisper) e frase que termina com o tom errado
            (afirmação que sobe, pergunta que desce; Praat). Serve para descartar tomada com defeito.
-  Não faz: NÃO mede naturalidade nem emoção. Tomada com nota 100 já foi reprovada de ouvido: sotaque,
-           melodia de outra língua, leitura sem vida e ênfase no lugar errado passam por aqui sem perder ponto.
+  Não faz: não mede naturalidade nem emoção: sotaque, melodia de outra língua, leitura sem vida e
+           ênfase no lugar errado passam por aqui sem perder ponto.
   Por isso a nota é um filtro, não uma aprovação. Quem aprova a voz é uma pessoa, ouvindo as duas ou três
   primeiras do ranking.
 
@@ -76,7 +76,7 @@ def whisper(audio, modelo=None):
 
 
 def avaliar(audio, texto):
-    pal = json.load(open(os.path.splitext(audio)[0] + ".json"))
+    pal = json.load(open(os.path.splitext(audio)[0] + ".json", encoding="utf-8"))
     words = [w for seg in pal["segments"] for w in seg.get("words", [])]
     ouvido = norm(" ".join(w["word"] for w in words))
     esperado = norm(texto)

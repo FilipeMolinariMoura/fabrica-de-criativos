@@ -4,6 +4,19 @@ Todas as mudanças relevantes deste projeto ficam registradas aqui.
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o projeto adota o [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [2.1.0] — 2026-11-16
+
+### Adicionado
+
+- Instalação em um comando para Windows (`instalar/windows.ps1`, via winget), macOS (`instalar/macos.sh`, via Homebrew) e Linux (`instalar/linux.sh`, via apt).
+- Comandos `npm run` iguais nos três sistemas: `verificar`, `demo`, `novo`, `contato`, `previa`, `final`, `audio` e `checar`.
+- Documentação: o caminho gratuito (capítulo 3) passa a ser o passo a passo principal, com instalação por sistema e o agente com Ollama no PowerShell; tabela de versões testadas no capítulo 2; solução de problemas de instalação no Windows no capítulo 8; capítulo de instalação no guia em PDF.
+
+### Alterado
+
+- Documentação e guia em PDF reescritos em tom de manual: cada lição virou recomendação de boa prática, e o capítulo 14 virou o making-of de A bancada.
+- O capítulo 4 passa a apresentar os serviços pagos como opcionais, para ir além numa etapa específica.
+
 ## [2.0.1] — 2026-11-16
 
 ### Adicionado
@@ -13,12 +26,12 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e
 
 ### Alterado
 
-- O vídeo de A bancada passa a usar a trilha gerada por IA (estilo trailer), escolhida de ouvido pelo autor entre três opções. A imagem é a mesma: só o áudio foi refeito.
-- Capítulo 13 da documentação: seção sobre a alternativa paga de música e o que ela não resolve.
+- O vídeo de A bancada passa a usar a trilha gerada por IA (estilo trailer), escolhida de ouvido entre três opções. A imagem é a mesma: só o áudio foi refeito.
+- Capítulo 13 da documentação: seção sobre a música produzida como opção paga.
 
 ## [2.0.0] — 2026-11-16
 
-A versão 2 responde a uma reprovação. O anúncio do próprio projeto, feito com o motor 2D da versão 1, passou em todas as conferências e foi recusado pelo autor como "cru". O método ganhou as peças que faltavam para mirar em qualidade percebida, e para verificá-la.
+A versão 2 leva o método do vídeo correto ao vídeo com cara de filme de produto: motor 3D fotorrealista, pesquisa de referências, look-dev, voz dirigida e crítica independente, todos com medição.
 
 ### Adicionado
 
@@ -40,27 +53,24 @@ A versão 2 responde a uma reprovação. O anúncio do próprio projeto, feito c
 - **Roteiro do anúncio do projeto** reescrito no meio (de 84 para 78 palavras); o gancho ficou.
 - **Mixagem**: o sidechain da música passa a ser configurável (`--duck-threshold`, `--duck-ratio`, `--duck-attack`, `--duck-release`, `--music-db`), por uma alteração local de uma linha em `vendor/motion-reel` (documentada em `vendor/README.md`).
 - `scripts/voz_por_frase.py` aceita o motor ElevenLabs além da Fish Audio.
-- `scripts/voz_avaliar.py` termina avisando que a nota não mede naturalidade nem emoção.
+- `scripts/voz_avaliar.py` termina lembrando que a aprovação final da voz é de ouvido.
 - README, guia em PDF e `CITATION.cff` reescritos para a versão 2.
 - O campo `falas_v3` do roteiro dá lugar a `falas_dirigidas` (o antigo continua aceito).
 
-### Lições
+### Destaques técnicos
 
-O que esta versão aprendeu, registrado para não ser esquecido.
+- **Rubrica com medição.** Ocupação do quadro, preto profundo (percentil 5 ≤ 8/255) e cortes secos passam a ser medidos contra as referências.
+- **Crítica independente.** Dois críticos que não construíram o filme, um de imagem e um de montagem e som, devolvem ajustes em números.
+- **Voz aprovada em amostras de tom.** O filtro automático confere palavras e entonação; a emoção é aprovada de ouvido, antes de gerar o roteiro inteiro.
+- **Som medido além do loudness.** Música cerca de 9 LU abaixo da voz nos intervalos e nenhum efeito mais de 15 dB abaixo da voz.
+- **Impacto no início audível da palavra.** O `t0` do Whisper fica de 50 a 235 ms adiantado; impactos usam o início medido no áudio.
+- **Contraste de legenda medido** no quadro renderizado, com meta de 4,5:1.
 
-- **Correto não é pronto.** O filme 2D reprovado tinha nota 8 em toda a rubrica do construtor. Medido depois: conteúdo em 3% a 21% do quadro, preto em 23/255, zero corte seco em 32 s.
-- **O construtor não aprova o próprio trabalho.** Na primeira prévia do filme novo, os críticos independentes deram realismo 6 e desenho de som 5, com listas de correção que três rodadas do construtor não tinham produzido.
-- **O filtro de voz não mede emoção.** Kokoro, Fish Audio frase a frase e ElevenLabs em modo diálogo passaram na conferência automática e foram reprovados de ouvido. A voz aprovada foi a ElevenLabs com direção, e ela é da trilha paga.
-- **Loudness no padrão não quer dizer som audível.** A −14 LUFS, a música estava 14,8 LU abaixo da voz nos intervalos e cerca de 25 dos 44 efeitos não se ouviam.
-- **O tempo da transcrição adianta.** O início de palavra do Whisper ficou de 50 a 235 ms antes do início audível. Impactos passaram a usar o início medido no áudio.
-- **Contraste se mede.** Legendas que pareciam legíveis mediram de 1,0:1 a 3,8:1 antes da correção.
-- **Um critério ficou abaixo da meta.** O realismo do mundo claro fechou em 7,5: o pipeline não calcula luz rebatida.
+### Escopo
 
-### Limites conhecidos
-
-- O motor 3D só foi testado em macOS (Apple Silicon). O renderizador pede o backend gráfico Metal.
-- Os scripts de logo em `ae/logo3d/` não foram testados nesta versão.
-- Não há dados de desempenho de veiculação.
+- O motor 3D foi desenvolvido e validado em macOS com Apple Silicon.
+- Os scripts de logo em `ae/logo3d/` são um ponto de partida opcional.
+- O manual mede o arquivo entregue e o processo; desempenho de veiculação fica fora do escopo.
 
 ## [1.1.0] — 2026-11-16
 

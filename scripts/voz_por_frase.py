@@ -45,7 +45,7 @@ def chave(nome="FISH_API_KEY"):
     if os.environ.get(nome):
         return os.environ[nome].strip()
     if os.path.exists(".env"):
-        m = re.search(rf"^{nome}=(.+)$", open(".env").read(), re.M)
+        m = re.search(rf"^{nome}=(.+)$", open(".env", encoding="utf-8").read(), re.M)
         if m and m.group(1).strip():
             return m.group(1).strip().strip("\"'")
     sys.exit(f"Falta {nome} no .env (veja .env.example).")
@@ -63,7 +63,7 @@ def eleven(texto, voz, modelo, estab, saida, key):
     wav = saida[:-4] + ".wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", saida, "-ar", str(SR), "-ac", "1", wav], check=True)
     os.makedirs("voz", exist_ok=True)
-    open(os.path.join("voz", "caracteres.log"), "a").write(f"eleven {modelo} {len(texto)}\n")
+    open(os.path.join("voz", "caracteres.log"), "a", encoding="utf-8").write(f"eleven {modelo} {len(texto)}\n")
     return wav
 
 
@@ -130,7 +130,7 @@ def main():
     a = ap.parse_args()
     mais = {int(x.split(":")[0]): int(x.split(":")[1]) for x in a.mais.split(",") if x}
 
-    rot = json.load(open(a.roteiros))
+    rot = json.load(open(a.roteiros, encoding="utf-8"))
     c = next((x for x in rot["criativos"] if x["id"] == a.id), None) or sys.exit(f"criativo {a.id} não está no roteiro")
     falas = [rot["cta_fala"] if f == "CTA" else f for f in (c.get(a.campo) or c["falas"])]
     key = chave("ELEVENLABS_API_KEY" if a.motor == "eleven" else "FISH_API_KEY")
@@ -138,7 +138,7 @@ def main():
     pasta = os.path.join("voz", a.id)
     cand_dir = os.path.join(pasta, "frases", a.rotulo)
     os.makedirs(cand_dir, exist_ok=True)
-    open(os.path.join(pasta, "texto.txt"), "w").write(" ".join(falas) + "\n")
+    open(os.path.join(pasta, "texto.txt"), "w", encoding="utf-8").write(" ".join(falas) + "\n")
 
     itens, k = [], 0
     for fi, fala in enumerate(falas):
@@ -175,7 +175,7 @@ def main():
     final = final / max(1e-9, np.max(np.abs(final))) * 0.89
     saida = os.path.join(pasta, f"{a.rotulo}-frases.wav")
     sf.write(saida, final, SR)
-    json.dump(itens, open(saida[:-4] + ".relatorio.json", "w"), ensure_ascii=False, indent=1)
+    json.dump(itens, open(saida[:-4] + ".relatorio.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"ok {saida} ({len(final) / SR:.2f} s). Confira com: uv run scripts/voz_avaliar.py {pasta}")
 
 

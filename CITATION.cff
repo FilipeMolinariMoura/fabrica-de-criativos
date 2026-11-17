@@ -9,14 +9,13 @@ abstract: >-
   profundidade de campo de lente fina, desfoque de movimento e sombras de luz de área por
   acumulação de amostras, um processo de direção de voz sintética com aprovação humana e
   crítica por agentes independentes do construtor, com medições objetivas de imagem e de som.
-  Documenta uma trilha gratuita (modelos de pesos abertos) e uma trilha paga (serviços
-  comerciais), as tentativas reprovadas e as limitações. Não apresenta dados de desempenho de
-  veiculação.
+  Funciona de ponta a ponta com ferramentas gratuitas e modelos de pesos abertos, com serviços
+  comerciais como opção. Não apresenta dados de desempenho de veiculação.
 authors:
   - family-names: Molinari
     given-names: Filipe
 type: software
-version: 2.0.1
+version: 2.1.0
 date-released: 2026-11-16
 license: MIT
 repository-code: "https://github.com/FilipeMolinariMoura/fabrica-de-criativos"

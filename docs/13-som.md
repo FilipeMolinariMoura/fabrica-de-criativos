@@ -2,9 +2,9 @@
 
 [← 12. Voz dirigida](12-voz-dirigida.md) · [Índice](README.md) · Próximo: [14. Estudo de caso →](14-estudo-de-caso-a-bancada.md)
 
-No método, todo o som que não é voz sai de código: a música é composta por um script, os efeitos são sintetizados a partir da lista de eventos do filme, e a mixagem fecha num padrão medido. Nada de banco de música, nada de direito autoral.
+No método, todo o som que não é voz sai de código: a música é composta por um script, os efeitos são sintetizados a partir da lista de eventos do filme, e a mixagem fecha num padrão medido. Nada de banco de música, nada de direito autoral, e o som cai no quadro certo por construção.
 
-A versão 2 acrescentou uma coisa a esse desenho: **medir**. A primeira prévia de A bancada estava no padrão de loudness e, mesmo assim, o crítico de som deu nota 5. A música tinha sumido debaixo da voz, e mais da metade dos efeitos não se ouvia.
+O segredo de um som que prende é **medir**. Estar em −14 LUFS garante o padrão de entrega; medir a música nos intervalos da voz e o nível de cada efeito garante que tudo o que você compôs seja de fato ouvido. Este capítulo traz os dois.
 
 ## 13.1 A cadeia
 
@@ -44,28 +44,30 @@ No motor 2D, `trilha.json` é escrito à mão. No motor 3D, o filme o calcula a 
 
 ### Alternativa paga: música gerada por IA, alinhada à fala
 
-A trilha sintetizada casa sozinha com a fala e é grátis, mas tem timbre de sintetizador. No anúncio deste projeto, o autor pediu uma música "mais impactante, que prende mais". A trilha publicada foi gerada na **ElevenLabs Music** e alinhada à narração com `scripts/trilha_eleven.py`.
+A trilha sintetizada casa sozinha com a fala e é grátis, com timbre eletrônico. Quando o anúncio pede uma música de mais impacto, com textura de produção, gere-a na **ElevenLabs Music** e alinhe-a à narração com `scripts/trilha_eleven.py`. Foi assim a trilha publicada de A bancada.
 
 O processo tem três passos:
 
 1. **Planejar sobre a fala.** O arquivo `musica.json` do filme descreve a música em seções: introdução tensa, queda em "Ele foi programado", respiro nas três perguntas, subida, tensão e final no CTA. O plano usado está em [`exemplos/bancada/musica.json`](../exemplos/bancada/musica.json).
-2. **Gerar tomadas e escolher de ouvido.** Foram geradas seis faixas em três estilos (trailer, bass house e trap). O autor ouviu três delas já no vídeo e escolheu a de trailer.
-3. **Alinhar medindo.** A API não cumpre os tempos pedidos: a introdução de 3,0 s saiu com 3,9 a 4,5 s. O script acha no áudio a virada (o maior salto de energia no começo) e o impacto final, leva a virada para `reveal` e o impacto para `cta`, e estica o tempo de cada trecho sem mudar o tom.
+2. **Gerar tomadas e escolher de ouvido.** Em A bancada, seis faixas em três estilos (trailer, bass house e trap); as favoritas foram ouvidas já no vídeo, e a de trailer ficou.
+3. **Alinhar medindo.** A geração não garante os tempos exatos pedidos (uma introdução de 3,0 s pode sair com 3,9 a 4,5 s), e é por isso que o script mede: acha no áudio a virada (o maior salto de energia no começo) e o impacto final, leva a virada para `reveal` e o impacto para `cta`, e estica o tempo de cada trecho sem mudar o tom.
 
 ```bash
 uv run scripts/trilha_eleven.py gerar   exemplos/bancada --tomadas 2
 uv run scripts/trilha_eleven.py alinhar exemplos/bancada exemplos/bancada/audio/musica-1.raw.wav
-make audio3d FILME=exemplos/bancada      # refaz efeitos e mixagem com a música nova
+npm run audio -- exemplos/bancada        # refaz efeitos e mixagem com a música nova
 ```
+
+No macOS e no Linux, a última linha também pode ser `make audio3d FILME=exemplos/bancada`.
 
 Na tomada publicada, a virada foi medida em 4,12 s e o impacto final em 30,32 s. Para caírem em 2,40 s e 29,02 s, os dois trechos foram esticados em 1,6% e 2,0%. Quando uma tomada pede mais de 8%, o script usa um esticamento único e avisa onde o impacto final caiu.
 
-O que observar:
+Boas práticas:
 
-- **Trocar a música não exige novo render.** A imagem é a mesma; refaz-se a mixagem e junta-se o áudio ao vídeo pronto. Levou minutos.
-- **A geração não é determinística.** A mesma semente pode dar outra música. Guarde a tomada escolhida; ela não vai para o repositório.
-- **O que pulsa na batida fica defasado.** O botão do cartão final foi animado sobre a grade de batidas da trilha sintetizada. Com a música nova, o pulso pode não coincidir com a batida. Corrigir pede novo render daquele trecho. Não foi feito.
-- **A medição alinha, o ouvido aprova.** Uma das seis tomadas tinha virada de só 3 dB; o script avisa quando o salto é menor que 6 dB.
+- **Trocar a música não exige novo render.** A imagem é a mesma; refaz-se a mixagem e junta-se o áudio ao vídeo pronto, em minutos.
+- **Guarde a tomada escolhida.** A geração não é determinística: a mesma semente pode dar outra música. O áudio não vai para o repositório.
+- **Anime na batida da música final.** O que pulsa no tempo (como o botão do cartão final) segue a grade de batidas da trilha usada no render. Se trocar a música depois, renderize de novo só aquele trecho para o pulso cair na batida nova.
+- **A medição alinha, o ouvido aprova.** O script avisa quando o salto de energia da virada é menor que 6 dB: sinal de que vale ouvir outra tomada.
 - **Licença.** Exige plano pago. Confira os termos de uso comercial do seu plano antes de veicular.
 
 `finalizar3d.sh` só recompõe a música sintetizada se `audio/music.wav` não existir ou se o `trilha.json` mudar. Uma música alinhada por este script é mantida.
@@ -91,15 +93,15 @@ Sons usados em A bancada: `whoosh` (deslize, com duração e faixa de frequênci
 
 O arquivo final de A bancada mediu −14,0 LUFS e −1,3 dBTP.
 
-## 13.5 O que a medição encontrou
+## 13.5 Mixagem que se ouve: os ajustes recomendados
 
-O crítico de montagem e som mediu a prévia 1 em vez de só ouvir. Três achados.
+Três ajustes, todos medidos, fazem a diferença entre uma mixagem no padrão e uma mixagem que prende.
 
-### A música tinha sumido
+### Deixe a música respirar
 
-O sidechain padrão abaixava a música com tanta força e a soltava tão devagar que, nos intervalos entre as frases, ela continuava 14,8 LU abaixo da voz. O filme soava como voz sobre silêncio.
+O sidechain padrão do motion-reel abaixa a música com força e a solta devagar: nos intervalos entre as frases, ela fica 14,8 LU abaixo da voz, e o filme soa como voz sobre silêncio. Com os ajustes recomendados, a música volta a preencher os respiros.
 
-| Parâmetro | Antes (padrão) | Depois |
+| Parâmetro | Padrão do motion-reel | Recomendado |
 |---|---|---|
 | Limiar (`threshold`) | 0,02 | **0,08** |
 | Razão (`ratio`) | 6 | **3** |
@@ -107,42 +109,40 @@ O sidechain padrão abaixava a música com tanta força e a soltava tão devagar
 | Soltura (`release`) | 280 ms | **350 ms** |
 | Ganho da música | 0 dB | **+2 dB** |
 
-| Medida | Antes | Depois |
+| Medida | Padrão | Recomendado |
 |---|---|---|
 | Música nos intervalos da voz | 14,8 LU abaixo | **9,0 LU abaixo** |
 | Voz acima da música, em média, durante a fala | — | **14,3 dB** |
-| Loudness integrado | −14 LUFS | −14 LUFS (inalterado) |
+| Loudness integrado | −14 LUFS | −14 LUFS |
 
-A música voltou a existir, a voz continuou inteligível, e o padrão de entrega não mudou. Os parâmetros entram na linha de comando:
+A música ganha presença, a voz continua inteligível, e o padrão de entrega se mantém. Os parâmetros entram na linha de comando:
 
 ```bash
 node vendor/motion-reel/skills/motion-reel/scripts/mix.mjs exemplos/bancada --no-mux \
   --music-db 2 --duck-threshold 0.08 --duck-ratio 3 --duck-attack 15 --duck-release 350
 ```
 
-Essas quatro opções `--duck-*` e a `--music-db` são uma alteração local de uma linha na cópia do motion-reel. Sem elas, os valores antigos continuam valendo. O registro está em [`vendor/README.md`](../vendor/README.md).
+As quatro opções `--duck-*` e a `--music-db` são uma extensão de uma linha na cópia do motion-reel incluída no kit; sem elas, valem os valores padrão. O registro está em [`vendor/README.md`](../vendor/README.md).
 
-### Mais da metade dos efeitos não se ouvia
+### Faça cada efeito ser ouvido
 
-Dos 44 eventos de som, cerca de 25 estavam de 15 a 27 dB abaixo da voz. Na prática, inaudíveis. Ao mesmo tempo, os três efeitos mais fortes caíam em cima de palavras-chave.
+Efeito que fica de 15 a 27 dB abaixo da voz some na prática. Meça o pico de cada evento contra a voz e ajuste. Em A bancada, com 44 eventos de som, a mixagem final segue estas escolhas:
 
-O que foi feito:
-
-| Problema | Correção |
+| Situação | Escolha |
 |---|---|
-| Seis deslizes pequenos, um por bloco, viravam ruído | Um deslize só, da esquerda para a direita |
-| Um golpe em cima da palavra "clipe" | Movido para depois da palavra |
-| Sons das fichas quase mudos | +8 dB |
-| O som da tampa não acompanhava o movimento visível | Sincronizado com o movimento, +10 dB |
-| A subida antes do CTA mal se ouvia | Começa uns 1,2 s antes, +8 dB |
-| Cortes secos sem som nenhum | Um clique leve em cada corte seco |
-| O giro tinha som mais curto que a imagem | O deslize dura o que o giro dura na tela |
+| Vários deslizes pequenos seguidos | Um deslize só, da esquerda para a direita |
+| Golpe perto de uma palavra-chave ("clipe") | Logo depois da palavra, nunca em cima |
+| Sons das fichas | +8 dB |
+| A tampa do notebook | Sincronizada com o movimento visível, +10 dB |
+| A subida antes do CTA | Começa uns 1,2 s antes, +8 dB |
+| Cortes secos | Um clique leve em cada corte |
+| O giro do celular | O deslize dura o que o giro dura na tela |
 
-### O filme morria depois da última palavra
+### Mantenha o filme vivo depois da última palavra
 
-O cartão final ficava em silêncio. Agora há um acorde logo depois de "hoje", a música se mantém até o fim, e o botão pulsa em duas batidas com um som suave.
+O cartão final é parte do anúncio. Em A bancada, um acorde entra logo depois de "hoje", a música se mantém até o fim, e o botão pulsa em duas batidas com um som suave.
 
-## 13.6 As regras que ficaram
+## 13.6 As regras do som
 
 1. **Todo evento visual tem som, e todo som se ouve.** Efeito mais de 15 dB abaixo da voz não existe.
 2. **Nenhum golpe em cima de palavra.** Efeitos fortes vão nos intervalos e no fechamento das consoantes. Sob a fala, o pico de qualquer efeito fica perto de −8 dBFS.
@@ -151,13 +151,13 @@ O cartão final ficava em silêncio. Agora há um acorde logo depois de "hoje", 
 5. **Quase silêncio antes da virada.** De 150 a 250 ms. O contraste faz a virada bater.
 6. **A música respira nos intervalos da voz.** Perto de 9 LU abaixo da voz, e não 15.
 7. **O filme não acaba quando a voz acaba.** Acorde, cama e um último gesto no cartão final.
-8. **Master em −14 LUFS e pico ≤ −1 dBTP.** Confira com `scripts/checar_entrega.sh`.
+8. **Master em −14 LUFS e pico ≤ −1 dBTP.** Confira com `npm run checar -- <arquivo.mp4>`.
 
 ## 13.7 Como medir o seu
 
 | Pergunta | Medida | Ferramenta |
 |---|---|---|
-| Está no padrão de entrega? | Loudness integrado e pico verdadeiro | `scripts/checar_entrega.sh` (usa o filtro `ebur128` do ffmpeg) |
+| Está no padrão de entrega? | Loudness integrado e pico verdadeiro | `npm run checar` (usa o filtro `ebur128` do ffmpeg) |
 | A voz está parelha? | Loudness de cada frase, usando os tempos do `vo.json` | Um script curto com o mesmo filtro, trecho a trecho |
 | A música existe? | Loudness da música já abaixada, nos intervalos entre frases, contra a voz | Idem, sobre os arquivos separados |
 | Os efeitos se ouvem? | Pico de cada efeito em `sfx.wav` contra o nível da voz naquele instante | Idem |
@@ -166,27 +166,30 @@ O cartão final ficava em silêncio. Agora há um acorde logo depois de "hoje", 
 
 Os arquivos separados (`vo.wav`, `music.wav`, `sfx.wav`) são o que torna essas medidas possíveis. Guarde-os.
 
-## 13.8 O que não foi feito
+## 13.8 Para ir além
 
-- **Estéreo.** A mixagem é, na prática, mono. O crítico apontou e deu prioridade baixa. Ficou assim.
-- **Timbre das duas vozes.** O nível foi igualado; o brilho, não.
-- **Escuta crítica final.** A mixagem foi corrigida e conferida por medida. A nota de som registrada depois das correções é nota de construção. Quem aprova o som de ouvido é a pessoa que aprova o filme.
-- **Batida do cartão final.** O pulso do botão segue a grade da trilha sintetizada, não a da música publicada (veja 13.2).
-- **Sons gravados.** Tudo é sintetizado. Para estalo de chave, tecla e papel, gravar com o celular ou usar um acervo CC0 daria mais matéria. Não foi feito.
+- **Estéreo.** A mixagem sai, na prática, em mono, que é o que a maioria dos celulares reproduz. Para fone de ouvido, abrir os efeitos no panorama dá mais espaço.
+- **Timbre das vozes.** Com duas vozes, além de igualar o nível, uma equalização leve aproxima o brilho das duas.
+- **Escuta final.** A medição garante o padrão; a pessoa que aprova o filme dá a palavra final sobre o som, de ouvido, de preferência no celular.
+- **Sons gravados.** Tudo no kit é sintetizado. Para estalo de chave, tecla e papel, gravar com o celular ou usar um acervo CC0 acrescenta matéria.
 
 ## 13.9 Comandos
 
-Motor 2D, tudo de uma vez:
+Os comandos `npm run …` funcionam igual no Windows, no macOS e no Linux.
+
+Motor 2D, o exemplo completo:
 
 ```bash
-scripts/finalizar.sh exemplos/demo previa      # trilha, efeitos, mixagem e render
+npm run demo                                   # narração grátis, trilha, efeitos, mixagem e prévia
 ```
 
-Motor 3D, tudo de uma vez:
+Motor 3D, todo o som de uma vez:
 
 ```bash
-make audio3d FILME=exemplos/bancada            # eventos -> trilha -> efeitos -> mixagem
+npm run audio -- exemplos/bancada              # eventos -> trilha -> efeitos -> mixagem
 ```
+
+No macOS e no Linux, os atalhos equivalentes são `make demo` e `make audio3d FILME=exemplos/bancada`.
 
 O mesmo, passo a passo:
 

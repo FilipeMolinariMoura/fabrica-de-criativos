@@ -34,7 +34,11 @@ cd "$RAIZ"
 NOME="$(basename "$F")"
 DUR="$(node -e "process.stdout.write(String(require('./$F/film.json').duration ?? 15))")"
 
-if [[ -f "$F/trilha.json" ]]; then
+if [[ -f "$F/trilha.json" && -z "${TRILHA:-}" && -f "$F/audio/music.wav" && -f "$F/beats.json" \
+      && ( -f "$F/audio/music.origem.json" || -f "$F/musica.json" ) ]]; then
+  # música do trilha_eleven.py: não é trocada pela sintetizada (TRILHA=1 troca)
+  echo "== trilha: $F/audio/music.wav mantida (veio do trilha_eleven.py; TRILHA=1 troca pela sintetizada)"
+elif [[ -f "$F/trilha.json" ]]; then
   echo "== trilha"
   SKILL="$SKILL" uv run -q scripts/trilha.py "$F" | grep -E "^(andamento|loudness|->)" || true
 elif [[ ! -f "$F/audio/music.wav" || ! -f "$F/beats.json" ]]; then

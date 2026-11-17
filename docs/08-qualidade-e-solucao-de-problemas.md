@@ -2,13 +2,13 @@
 
 [← 7. Roteiro e copy](07-roteiro-e-copy.md) · [Índice](README.md) · Próximo: [9. Pesquisa de referências →](09-pesquisa-de-referencias.md)
 
-A versão 1 do método tinha uma rubrica de seis critérios aplicada por quem construiu o filme. Com ela, o anúncio 2D do projeto fechou com nota 8 em tudo e foi reprovado por quem assistiu. Este capítulo descreve o que mudou: uma rubrica maior, críticos que não construíram o filme, e medições no lugar de impressões.
+Conferência automática prova que o vídeo está correto. Para garantir que ele também parece caro, o método usa três ferramentas: uma rubrica de imagem, montagem e som; críticos que não construíram o filme; e medições no lugar de impressões. No fim do capítulo, uma tabela de solução de problemas cobre da instalação ao render.
 
 ## 8.1 A regra central
 
 **O construtor nunca aprova o próprio trabalho sozinho.**
 
-Quem construiu sabe o que quis fazer e vê isso na tela, mesmo quando não está lá. As rodadas do construtor continuam existindo e continuam úteis, porque pegam o grosso. Elas são o aquecimento, e não a aprovação.
+Quem construiu sabe o que quis fazer e tende a ver isso na tela, mesmo quando não está lá. As rodadas do próprio construtor são úteis e pegam o grosso; a aprovação vem de quem olha com olhos novos.
 
 Três camadas, nesta ordem:
 
@@ -18,7 +18,7 @@ Três camadas, nesta ordem:
 | 2. Críticos independentes | Agentes sem o histórico da construção | O que o construtor deixou de ver: flutuação, falta de peso, som que sumiu |
 | 3. Pessoa | Quem pediu o anúncio | O que nenhuma medição alcança: se a voz emociona, se o filme convence |
 
-## 8.2 A rubrica da versão 2
+## 8.2 A rubrica
 
 Notas de 1 a 10. A régua: **8 = eu colocaria no ar; 10 = não distingo de um filme de produto de estúdio.**
 
@@ -49,7 +49,7 @@ Notas de 1 a 10. A régua: **8 = eu colocaria no ar; 10 = não distingo de um fi
 | **Clareza da voz** | Palavras perdidas | Entende-se, com sibilância ou níveis desiguais | Nível parelho entre frases e entre vozes |
 | **Desenho de som** | Sem efeitos, ou efeitos em cima das palavras | Efeitos existem mas não se ouvem | Todo evento visual tem som audível, nenhum cobre palavra, a música respira nos intervalos |
 
-**Critério de saída:** todos os critérios ≥ 8. Se algum ficar abaixo, a exceção é registrada por escrito no `docs/critica.md` do filme, com o motivo. A bancada saiu com uma exceção: realismo do mundo claro em 7,5.
+**Critério de saída:** todos os critérios ≥ 8. Se uma escolha consciente deixar algum critério abaixo disso, ela é registrada por escrito no `docs/critica.md` do filme, com o motivo.
 
 A ficha em branco para preencher a cada rodada é [`templates/critica.md`](../templates/critica.md).
 
@@ -66,10 +66,10 @@ A ficha em branco para preencher a cada rodada é [`templates/critica.md`](../te
 Confira com:
 
 ```bash
-scripts/checar_entrega.sh entrega/finais/*.mp4
+npm run checar -- entrega/finais/bancada.mp4
 ```
 
-O script imprime PASSA ou FALHA por arquivo e sai com código 1 se algum falhar.
+O comando confere cada item da tabela e imprime o resultado por arquivo. No macOS e no Linux, `make checar` confere de uma vez todos os MP4 de `entrega/finais/`.
 
 ## 8.4 Como montar os críticos independentes
 
@@ -78,7 +78,7 @@ O script imprime PASSA ou FALHA por arquivo e sai com código 1 se algum falhar.
 3. **Separe as especialidades.** Um crítico de imagem e um de montagem e som. Um só agente fazendo as duas coisas tende a ser raso nas duas.
 4. **Exija medição.** Tudo o que pode ser medido deve vir com número.
 5. **Exija correção numérica.** "A legenda encosta no celular" não basta. "Desça o assunto 170 px para o topo do celular ficar abaixo de y = 560" basta.
-6. **Proíba elogio.** O pedido termina com "não elogie".
+6. **Peça só o que melhorar.** O pedido termina com "não elogie": o crítico rende mais quando procura ajustes.
 
 O texto do pedido está no [capítulo 5](05-skills.md#53-como-pedir-ao-agente).
 
@@ -116,27 +116,22 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast
 | Efeitos audíveis | Nível de cada efeito contra a voz | Nenhum mais de 15 dB abaixo |
 | Efeitos e palavras | Início do efeito contra o início audível das palavras | Nenhum golpe forte em cima de uma palavra |
 
-## 8.6 Um exemplo real: a primeira prévia de A bancada
+## 8.6 O que a crítica independente encontra
 
-Notas dos dois críticos independentes para a prévia 1, e as notas registradas na rodada 5, depois das correções.
+Na produção de A bancada, os dois críticos trabalharam sobre a prévia e devolveram listas de ajuste com números. Os tipos de achado se repetem em quase todo filme, e por isso valem como lista de conferência.
 
-| Critério | Prévia 1 (críticos) | Rodada 5 (depois das correções) |
+| Tipo de achado | Exemplo de ajuste em número | Critério que sobe |
 |---|---|---|
-| Realismo | 6 (escuro 7,5 · claro 5) | escuro 8,5 · claro **7,5** |
-| Composição | 6 | 8 |
-| Tipografia | 6,5 | 8,5 |
-| Acabamento | 6 | 8 |
-| Consistência | 5,5 | 8 |
-| Gancho | 6,5 | 8,5 |
-| Ritmo e movimento | 6,5 e 6 | 8 |
-| História sem som | 7 | 8,5 |
-| CTA | 7,5 | 8 |
-| Clareza da voz | 7 | regravada (voz nova) |
-| Desenho de som | 5 | 8 |
+| Objeto sem contato com o chão | Decalque de sombra de contato sob cada objeto, fresta de zero pixel | Realismo |
+| Fundo claro sem temperatura | Fundo osso quente no lugar de cinza neutro; brancos perto de 225 | Realismo, consistência |
+| Legenda sobre o produto | Assunto 170 px mais baixo, topo do celular abaixo de y = 560 | Composição, tipografia |
+| Contraste de legenda insuficiente | Tinta trocada até ≥ 4,5:1 no pior 5% da caixa, medido com `--contrast` | Tipografia |
+| Plano sem movimento no meio do filme | Câmera com deriva lenta em todo plano | Ritmo e movimento |
+| Música sumindo nos intervalos da fala | Sidechain mais suave: música cerca de 9 LU abaixo da voz nos vãos | Desenho de som |
+| Efeitos inaudíveis | Nenhum efeito mais de 15 dB abaixo da voz | Desenho de som |
+| Impacto adiantado em relação à palavra | Impacto no início audível da palavra, não no `t0` do Whisper | Ritmo, som |
 
-**Leia a segunda coluna com cuidado.** As notas da rodada 5 foram registradas pelo construtor no arquivo de crítica do filme, apoiadas em medições refeitas (contraste, tiras densas, níveis). A nota de som dessa rodada é declarada lá como "nota de construção": a mixagem foi corrigida segundo as medições do crítico, e quem aprova de ouvido é a pessoa. O arquivo completo, com as cinco rodadas e os itens dos críticos que não foram aplicados, é [`exemplos/bancada/docs/critica.md`](../exemplos/bancada/docs/critica.md).
-
-O veredito dos dois críticos sobre a prévia 1 cabe em duas frases: o mundo escuro estava perto de ir ao ar; o mundo claro parecia demonstração técnica de computação gráfica (vazio cinza, objetos flutuando, rótulos cortados, legenda impressa sobre o produto). Nada parecia feito por IA.
+Cada ajuste foi aplicado e conferido com a medição refeita. O modelo em branco para registrar as rodadas de revisão é [`templates/critica.md`](../templates/critica.md).
 
 ## 8.7 Solução de problemas
 
@@ -144,7 +139,7 @@ O veredito dos dois críticos sobre a prévia 1 cabe em duas frases: o mundo esc
 
 | Sintoma | Causa | Solução |
 |---|---|---|
-| Nota máxima no filtro, e a narração soa sem vida | O filtro mede palavra e fim de frase, não emoção | Volte às amostras de tom e dirija ([capítulo 12](12-voz-dirigida.md)) |
+| A narração passa no filtro, mas você quer mais emoção | O filtro mede palavra e fim de frase; a emoção se dirige | Volte às amostras de tom e dirija ([capítulo 12](12-voz-dirigida.md)) |
 | Afirmação termina subindo, como pergunta | A voz "se perde" em frase longa | Quebre a frase, ou gere frase a frase |
 | Português com melodia de inglês | Voz padrão americana | Force `language_code: "pt"`, dirija com marcações, ou use voz nativa |
 | Palavra pronunciada errada | Grafia ambígua para aquele motor | Teste a palavra sozinha; ajuste a grafia de fala |
@@ -185,12 +180,30 @@ O veredito dos dois críticos sobre a prévia 1 cabe em duas frases: o mundo esc
 | Render muito lento num plano | Vidro com transmissão custa várias passadas por amostra | Menos vidro no quadro, ou menos amostras naquele plano |
 | O tempo de render medido parece bom demais | A GPU ainda não terminou quando o cronômetro parou | Force a leitura de um pixel antes de medir |
 
-### Agente e ambiente
+### Instalação e ambiente
+
+O primeiro passo é sempre o mesmo: rode `npm run verificar`. Ele confere cada ferramenta e a placa de vídeo, e a linha com ✖ diz o que falta.
+
+| Sintoma | Causa | Solução |
+|---|---|---|
+| Windows: "a execução de scripts foi desabilitada neste sistema" | A política de execução do PowerShell bloqueia scripts baixados | Rode o instalador exatamente assim: `powershell -ExecutionPolicy Bypass -File instalar\windows.ps1`. A liberação vale só para essa execução |
+| Windows: `winget` não é reconhecido | O Instalador de Aplicativos está desatualizado ou ausente (comum em Windows 10 antigo) | Atualize o **Instalador de Aplicativos** (App Installer) pela Microsoft Store e abra um PowerShell novo |
+| Windows: `node`, `npm`, `ffmpeg` ou `uv` "não é reconhecido" logo depois de instalar | O terminal aberto ainda usa o PATH antigo | Feche o PowerShell e abra um novo. Se persistir, reinicie o Windows |
+| `ffmpeg` não encontrado | O FFmpeg não foi instalado ou não está no PATH | Windows: `winget install Gyan.FFmpeg` e abra um terminal novo. macOS: `brew install ffmpeg`. Ubuntu e Debian: `sudo apt install ffmpeg` |
+| Windows: render muito lento e o antivírus usando muita CPU | O antivírus inspeciona cada quadro que o Chromium grava | Adicione a pasta do projeto às exclusões do Windows Defender (Segurança do Windows → Proteção contra vírus e ameaças → Exclusões) |
+| `npm run verificar` acusa WebGL indisponível ou render por software | O Chromium não conseguiu usar a placa de vídeo | Atualize o driver de vídeo. Em notebook com duas placas, no Windows, escolha a placa de alto desempenho para o Chromium em Configurações → Sistema → Tela → Gráficos. Em máquina virtual ou servidor sem GPU, o render funciona, mas fica bem mais lento |
+| Linux: o Chromium não abre | Faltam bibliotecas do sistema | Rode `npx playwright install --with-deps chromium` |
+| Erro de `espeak` na primeira narração do Kokoro | O pacote embutido não encontrou o espeak-ng | Instale o do sistema: macOS `brew install espeak-ng`; Ubuntu e Debian `sudo apt install espeak-ng`; Windows, o instalador `.msi` em <https://github.com/espeak-ng/espeak-ng/releases> |
+| A primeira narração demora muito | O uv está baixando o Python, o Kokoro e o PyTorch (cerca de 1 GB) e o modelo de voz (cerca de 330 MB) | Espere terminar uma vez. Das próximas, é rápido |
+| `whisper` ou `mlx_whisper` não encontrado | O reconhecedor de fala não foi instalado | Mac Apple Silicon: `uv tool install mlx-whisper`. Windows, Linux e Mac Intel: `uv tool install openai-whisper`. Abra um terminal novo |
+
+### Agente
 
 | Sintoma | Causa | Solução |
 |---|---|---|
 | Modelo aberto se perde no meio da tarefa | Contexto curto ou tarefa longa demais | Contexto de 32 mil tokens ou mais; uma etapa por vez |
-| Claude Code ignora o Ollama | `ANTHROPIC_API_KEY` está definida | Deixe essa variável vazia |
+| Claude Code ignora o Ollama | `ANTHROPIC_API_KEY` está definida | Deixe essa variável vazia (no PowerShell: `$env:ANTHROPIC_API_KEY=""`) |
+| As variáveis do Ollama "somem" | Elas valem só para o terminal em que foram definidas | Defina de novo ao abrir outro terminal |
 | "Permissão negada" no After Effects | O programa não deixa scripts gravarem arquivos | Ative a opção em *Script e expressões* e reabra |
 
 ---

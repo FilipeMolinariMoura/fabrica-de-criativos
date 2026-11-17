@@ -1,5 +1,7 @@
-# Fábrica de Criativos: atalhos para o fluxo inteiro.
+# Fábrica de Criativos: atalhos para o fluxo inteiro (macOS e Linux).
+# Em qualquer sistema, inclusive Windows, o mesmo fluxo está em: node fabrica.mjs ajuda
 #
+#   make verificar                                confere Node, npm, uv, ffmpeg, Chromium, WebGL e Whisper (node fabrica.mjs verificar)
 #   make setup                                    dependências (npm: three e Playwright + Chromium) e conferência das ferramentas
 #   make demo                                     voz grátis + trilha + efeitos + mixagem + prévia do exemplos/demo (motor 2D)
 #
@@ -38,11 +40,14 @@ ROTEIRO ?= roteiros/roteiros.json
 MODELO ?= eleven_v3
 ARQS ?= entrega/finais/*.mp4
 
-.PHONY: setup demo voz-gratis voz-paga voz-amostras voz-dirigida avaliar previa final \
+.PHONY: verificar setup demo voz-gratis voz-paga voz-amostras voz-dirigida avaliar previa final \
         contato3d contraste3d audio3d previa3d final3d checar sintaxe ajuda
 
 ajuda:
 	@awk 'NR > 1 && /^#/ { sub(/^# ?/, ""); print; next } NR > 1 { exit }' Makefile
+
+verificar:
+	node fabrica.mjs verificar
 
 setup:
 	npm install
@@ -50,7 +55,7 @@ setup:
 	@command -v ffmpeg >/dev/null || echo "FALTA: ffmpeg (macOS: brew install ffmpeg; Ubuntu: sudo apt install ffmpeg)"
 	@command -v uv >/dev/null || echo "FALTA: uv (https://docs.astral.sh/uv/: curl -LsSf https://astral.sh/uv/install.sh | sh)"
 	@command -v mlx_whisper >/dev/null || command -v whisper >/dev/null || echo "FALTA: Whisper (Mac Apple Silicon: uv tool install mlx-whisper; outros: uv tool install openai-whisper)"
-	@echo "setup ok"
+	@echo "setup ok (conferência completa: make verificar)"
 
 # O demo refaz a narração grátis (Kokoro, determinística) e o áudio; vo.json e beats.json já estão no repositório.
 demo:

@@ -498,7 +498,7 @@ def main():
     cfg_path = film / "trilha.json"
     if not cfg_path.exists():
         sys.exit(f"faltou {cfg_path}")
-    cfg = json.loads(cfg_path.read_text())
+    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     dur = float(cfg["dur"])
     reveal = float(cfg["reveal"])
     cta = float(cfg.get("cta", dur))
@@ -587,7 +587,7 @@ def main():
         "key": f"{key} menor -> relativa maior", "mood": mood,
         "source": "scripts/trilha.py: grid projetado (downbeat na virada), conferido no stem de bateria com measure_beats",
     }
-    (film / "beats.json").write_text(json.dumps(grid, indent=1))
+    (film / "beats.json").write_text(json.dumps(grid, indent=1), encoding="utf-8")
 
     # ---------------- checks
     # onset at the reveal and at the CTA (librosa, on the finished bed)

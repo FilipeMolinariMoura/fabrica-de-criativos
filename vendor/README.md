@@ -11,7 +11,7 @@ das dependências de sistema.
 | Versão | 1.3.0 (ver `motion-reel/CHANGELOG.md`) |
 | Autor | Aries Spring |
 | Licença | MIT (`motion-reel/LICENSE`) |
-| Modificações | nenhuma: a pasta é uma cópia fiel do plugin |
+| Modificações | duas, pequenas, descritas no fim deste arquivo (`mix.mjs` e `sfx.mjs`) |
 
 O motion-reel é um plugin do Claude Code que transforma código em vídeo: o filme é um canvas que é função
 pura do tempo, renderizado quadro a quadro pelo Chromium (Playwright), com trilha e efeitos sintetizados e
@@ -59,3 +59,26 @@ node vendor/motion-reel/skills/motion-reel/scripts/mix.mjs <filme> --no-mux \
 
 Motivo: em `exemplos/bancada` a crítica mediu a música 14,8 LU abaixo da voz nos intervalos (sumia).
 Ao atualizar o vendor, reaplique esta troca ou a mixagem volta ao comportamento original.
+
+## Alteração local em `motion-reel/skills/motion-reel/scripts/sfx.mjs`
+
+Uma linha: o `sfx.mjs` chama o `render.mjs --hits` com o mesmo Node que está rodando (`process.execPath`) em vez
+de procurar `node` no PATH. Funciona igual no macOS e no Linux e evita surpresa no Windows (Node instalado fora
+do PATH, ou duas versões instaladas).
+
+```
+- spawnSync('node', [RENDER, '--film', film, '--hits'], ...)
++ spawnSync(process.execPath, [RENDER, '--film', film, '--hits'], ...)
+```
+
+Ao atualizar o vendor, reaplique esta troca também.
+
+## Windows, macOS e Linux
+
+O resto do vendor já roda nos três sistemas (caminhos com `path.join`, `ffmpeg` chamado sem shell, Playwright
+achado a partir da pasta do projeto). Dois cuidados ficam com quem chama, e o `fabrica.mjs` já os toma:
+
+- `--film` vira caminho de URL dentro do `render.mjs`: passe com barras normais (`exemplos/demo`, nunca
+  `exemplos\demo`) e relativo à raiz do repositório;
+- o `render.mjs` só liga a GPU sozinho no macOS (Metal). Para os filmes 2D isso não importa; os filmes 3D da
+  fábrica usam `lib/3d/render.mjs`, que escolhe a GPU por sistema (`lib/3d/gpu.mjs`).
