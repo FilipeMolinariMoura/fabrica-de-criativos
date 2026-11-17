@@ -4,13 +4,25 @@ Todas as mudanças relevantes deste projeto ficam registradas aqui.
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o projeto adota o [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [2.1.1] — 2026-11-17
+
+### Adicionado
+
+- Guia "Contas gratuitas, passo a passo" (README, capítulo 3 e guia em PDF): Fish Audio, ElevenLabs, Ollama, OpenRouter, GitHub e bancos de fontes e texturas, com onde clicar, onde pegar a chave e onde colar.
+- Dicas para render mais com as cotas gratuitas.
+
+### Alterado
+
+- O caminho gratuito ganhou mais destaque no README, no manual e no guia em PDF, com as três vozes gratuitas (Kokoro, Fish Audio e ElevenLabs).
+- Preço de referência do plano Starter da ElevenLabs atualizado para a partir de US$ 6 por mês.
+
 ## [2.1.0] — 2026-11-16
 
 ### Adicionado
 
 - Instalação em um comando para Windows (`instalar/windows.ps1`, via winget), macOS (`instalar/macos.sh`, via Homebrew) e Linux (`instalar/linux.sh`, via apt).
 - Comandos `npm run` iguais nos três sistemas: `verificar`, `demo`, `novo`, `contato`, `previa`, `final`, `audio` e `checar`.
-- Documentação: o caminho gratuito (capítulo 3) passa a ser o passo a passo principal, com instalação por sistema e o agente com Ollama no PowerShell; tabela de versões testadas no capítulo 2; solução de problemas de instalação no Windows no capítulo 8; capítulo de instalação no guia em PDF.
+- Documentação: o caminho gratuito (capítulo 3) passa a ser o passo a passo principal, com instalação por sistema e o agente com Ollama no PowerShell; tabela de versões de referência no capítulo 2; solução de problemas de instalação no Windows no capítulo 8; capítulo de instalação no guia em PDF.
 
 ### Alterado
 
@@ -68,7 +80,7 @@ A versão 2 leva o método do vídeo correto ao vídeo com cara de filme de prod
 
 ### Escopo
 
-- O motor 3D foi desenvolvido e validado em macOS com Apple Silicon.
+- O motor 3D usa a GPU por WebGL 2; os tempos de referência são de um notebook com Apple M1 Pro.
 - Os scripts de logo em `ae/logo3d/` são um ponto de partida opcional.
 - O manual mede o arquivo entregue e o processo; desempenho de veiculação fica fora do escopo.
 

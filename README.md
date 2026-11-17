@@ -6,10 +6,11 @@
 
 Anúncios em vídeo vertical com **3D fotorrealista**, **voz por IA** e **cada cena entrando na palavra falada**, gerados a partir de código, em 60 fps, prontos para Reels, TikTok e Shorts.
 
-**100% gratuito e de código aberto.** Sem assinatura, sem editor de vídeo pago, sem marca d'água.
+**100% gratuito e de código aberto.** Sem assinatura, sem editor de vídeo pago, sem marca d'água.<br>
+Roda no **Windows**, no **macOS** e no **Linux**, instalado com um comando.
 
 [![Custo R$ 0](https://img.shields.io/badge/custo-R%24%200-2EA44F.svg)](#-de-graça-de-ponta-a-ponta)
-[![Versão](https://img.shields.io/badge/vers%C3%A3o-2.1.0-FF6B4A.svg)](CHANGELOG.md)
+[![Versão](https://img.shields.io/badge/vers%C3%A3o-2.1.1-FF6B4A.svg)](CHANGELOG.md)
 [![Windows · macOS · Linux](https://img.shields.io/badge/Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-suportado-0B1416.svg)](#-começar-em-10-minutos)
 [![Node.js 20+](https://img.shields.io/badge/Node.js-20%2B-5FA04E.svg?logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB.svg?logo=python&logoColor=white)](https://www.python.org)
@@ -83,7 +84,7 @@ Todas as etapas têm um caminho **gratuito** que roda no seu computador. Nada de
 | Etapa | 🆓 Como fazer de graça | O que usa |
 |---|---|---|
 | **Roteiro e cenas com IA** | Agente de IA com um modelo aberto rodando no seu computador | [Ollama](https://ollama.com) + `qwen3-coder` ou `gpt-oss` |
-| **Voz** | Voz por IA local, com vozes em português do Brasil | [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) (Apache-2.0, uso comercial liberado) |
+| **Voz** | Voz por IA local, com vozes em português do Brasil, ou a cota grátis da Fish Audio e da ElevenLabs | [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) (Apache-2.0, uso comercial liberado) · [Fish Audio](https://fish.audio) · [ElevenLabs](https://elevenlabs.io) |
 | **Palavras no tempo** | Reconhecedor de fala local | [Whisper](https://github.com/openai/whisper) |
 | **Cenas em 3D fotorrealista** | Motor incluído no projeto | [three.js](https://threejs.org) |
 | **Trilha e efeitos** | Compostos em código, já presos às palavras | Incluídos |
@@ -91,6 +92,82 @@ Todas as etapas têm um caminho **gratuito** que roda no seu computador. Nada de
 | **Total** | | **R$ 0** |
 
 O `npm run demo` usa exatamente esse caminho: voz gratuita, trilha gratuita, render gratuito.
+
+### 🎤 Vozes grátis que soam profissionais
+
+Você tem três caminhos para narrar sem pagar, e todos entregam narração de qualidade em português do Brasil:
+
+| Voz | Como é | Conta | Melhor para |
+|---|---|---|---|
+| **[Kokoro](https://huggingface.co/hexgrad/Kokoro-82M)** | Roda no seu computador, sem internet depois da instalação | Não precisa | Produzir à vontade, sem limite, com uso comercial liberado |
+| **[Fish Audio](https://fish.audio)** | Biblioteca enorme de vozes brasileiras, modelo gratuito na API | Grátis | Escolher entre dezenas de locutores e locutoras |
+| **[ElevenLabs](https://elevenlabs.io)** | Vozes de locutor com direção de tom (confiante, curiosa, empolgada) | Grátis, com créditos todo mês | Narrações com emoção e interpretação |
+
+```bash
+uv run scripts/voz_kokoro.py meu-anuncio pf_dora 3 --roteiros criativos/meu-anuncio/roteiro.json       # Kokoro
+node scripts/voz_fish.mjs meu-anuncio locutor <voice_id> 3 --roteiros criativos/meu-anuncio/roteiro.json # Fish Audio
+uv run scripts/voz_dirigida.py amostras <voice_id> sarah --id meu-anuncio --roteiros criativos/meu-anuncio/roteiro.json # ElevenLabs
+```
+
+### 🔑 Contas gratuitas, passo a passo
+
+Para o caminho 100% local você não precisa de conta nenhuma. As contas abaixo são opcionais, todas grátis, e abrem mais opções de voz e de modelos.
+
+<details>
+<summary><b>Fish Audio: vozes brasileiras grátis</b></summary>
+
+1. Acesse [fish.audio](https://fish.audio) e clique em **Sign up**. Dá para entrar com a conta Google.
+2. No menu, abra **API Keys** e clique em **Create**.
+3. Copie a chave e cole no arquivo `.env` da pasta do projeto: `FISH_API_KEY=sua-chave`.
+4. Escolha vozes em português direto do terminal: `node scripts/voz_fish.mjs vozes`.
+
+O projeto usa o modelo gratuito da Fish Audio (`s2.1-pro-free`). Para anúncios pagos, confira os termos do seu plano.
+
+</details>
+
+<details>
+<summary><b>ElevenLabs: voz de locutor com direção de tom</b></summary>
+
+1. Acesse [elevenlabs.io](https://elevenlabs.io) e clique em **Sign up**. Também aceita conta Google.
+2. Vá em **Developers → API Keys → Create API Key**. Marque a permissão **Text to Speech** e, para navegar pela biblioteca de vozes, **Voices (read)**.
+3. Copie a chave e cole no `.env`: `ELEVENLABS_API_KEY=sua-chave`.
+4. Gere amostras curtas para escolher o tom antes do roteiro inteiro: `uv run scripts/voz_dirigida.py amostras …` (veja [docs/12-voz-dirigida.md](docs/12-voz-dirigida.md)).
+
+O plano gratuito traz créditos todo mês, o bastante para narrar vários anúncios de 30 segundos (cerca de 1 crédito por caractere). Ele é para uso pessoal e pede o crédito "elevenlabs.io" ao publicar. Para anúncios comerciais, o plano Starter libera a licença.
+
+</details>
+
+<details>
+<summary><b>Ollama: agente de IA grátis no seu computador</b></summary>
+
+Não precisa de conta. Baixe em [ollama.com/download](https://ollama.com/download), instale, e baixe um modelo: `ollama pull gpt-oss:20b` (16 GB de memória) ou `ollama pull qwen3-coder:30b` (32 GB). O passo a passo para ligar no Claude Code está logo abaixo.
+
+</details>
+
+<details>
+<summary><b>OpenRouter: modelos abertos na nuvem, para computadores mais simples</b></summary>
+
+1. Acesse [openrouter.ai](https://openrouter.ai) e crie a conta.
+2. Em **Keys**, crie uma chave.
+3. Use um dos modelos marcados como **free** no catálogo. É uma alternativa ao Ollama quando o computador tem pouca memória.
+
+</details>
+
+<details>
+<summary><b>GitHub, Google Fonts, Poly Haven e ambientCG</b></summary>
+
+- **[GitHub](https://github.com/signup):** conta grátis para baixar, dar estrela e publicar os seus anúncios.
+- **[Google Fonts](https://fonts.google.com), [Poly Haven](https://polyhaven.com) e [ambientCG](https://ambientcg.com):** fontes, iluminação de estúdio e texturas grátis, sem conta. O projeto já vem com as que usa.
+
+</details>
+
+### 💡 Dicas para render mais com o gratuito
+
+- **Comece pelo Kokoro.** É ilimitado e roda offline. Use as contas grátis quando quiser outro timbre.
+- **Aprove o tom com amostras curtas.** Gere só o gancho e o CTA (uns 10 segundos) antes do roteiro inteiro. Gasta muito menos crédito.
+- **Gere frase a frase.** Com `scripts/voz_por_frase.py`, se uma frase sair diferente do que você quer, só ela é refeita.
+- **Guarde as tomadas.** O que já foi gerado fica na pasta `voz/` e nunca é cobrado de novo.
+- **Música grátis já vem pronta.** A trilha sintetizada (`scripts/trilha.py`) é gerada no seu computador e já cai no tempo da fala.
 
 <details>
 <summary><b>Usar o agente de IA de graça (Claude Code + modelo aberto)</b></summary>
@@ -125,12 +202,12 @@ Com 16 GB de memória, use `gpt-oss:20b`. Com 32 GB, `qwen3-coder:30b`. Detalhes
 
 ### Quer ir além? Serviços pagos são opcionais
 
-Se quiser voz de locutor profissional ou música produzida, troque só a etapa que quiser. O resto continua igual e gratuito.
+Tudo acima é grátis. Se um dia quiser mais volume de créditos, licença comercial de voz ou música produzida, troque só a etapa que quiser. O resto continua igual e gratuito.
 
 | Etapa | Opcional pago | Para quê |
 |---|---|---|
 | Agente de IA | [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) com plano Claude | Mais rapidez em tarefas longas |
-| Voz | [ElevenLabs](https://elevenlabs.io) (a partir de US$ 5/mês) ou [Fish Audio](https://fish.audio) (tem cota grátis) | Voz de locutor com direção de tom |
+| Voz | Planos pagos da [ElevenLabs](https://elevenlabs.io) (a partir de US$ 6/mês) ou da [Fish Audio](https://fish.audio) | Mais créditos e licença comercial |
 | Música | ElevenLabs Music | Trilha produzida, alinhada à fala |
 
 Guias: [caminho gratuito](docs/03-trilha-gratuita.md) · [serviços opcionais](docs/04-trilha-paga.md).
@@ -260,7 +337,7 @@ npm run final -- criativos/meu-anuncio
 npm run checar -- entrega/finais/meu-anuncio.mp4
 ```
 
-Tudo isso de graça. Se um dia quiser voz de locutor profissional, troque só a voz pela ElevenLabs com direção de tom: [docs/12-voz-dirigida.md](docs/12-voz-dirigida.md).
+Tudo isso de graça. Para trocar de voz, use a Fish Audio ou a ElevenLabs com as contas gratuitas: veja [Vozes grátis que soam profissionais](#-vozes-grátis-que-soam-profissionais).
 
 ---
 
@@ -274,7 +351,7 @@ Tudo isso de graça. Se um dia quiser voz de locutor profissional, troque só a 
 | 🍎 macOS | 13 Ventura ou mais novo, Intel ou Apple Silicon | `instalar/macos.sh` (Homebrew) |
 | 🐧 Linux | Ubuntu 22.04+, Debian 12+ e derivados | `instalar/linux.sh` (apt) |
 
-Desenvolvido e validado em macOS com Apple Silicon. Em qualquer sistema, o `npm run verificar` confirma se o render está usando a placa de vídeo.
+Roda nos três sistemas com os mesmos comandos. O `npm run verificar` confirma se o render está usando a sua placa de vídeo.
 
 ### Computador
 
@@ -297,9 +374,9 @@ Desenvolvido e validado em macOS com Apple Silicon. Em qualquer sistema, o `npm 
 
 | Programa | Versão | Para quê |
 |---|---|---|
-| [Node.js](https://nodejs.org) | 20 LTS ou mais novo (testado no 22) | Roda o motor e o render |
+| [Node.js](https://nodejs.org) | 20 LTS ou mais novo (recomendado: 22) | Roda o motor e o render |
 | [npm](https://www.npmjs.com) | vem com o Node.js | Instala as bibliotecas JavaScript |
-| [uv](https://docs.astral.sh/uv/) | 0.5 ou mais novo (testado no 0.13) | Roda os scripts Python e **baixa o Python certo sozinho** |
+| [uv](https://docs.astral.sh/uv/) | 0.5 ou mais novo | Roda os scripts Python e **baixa o Python certo sozinho** |
 | [FFmpeg](https://ffmpeg.org) | 6 ou mais novo | Codifica o vídeo e mede o áudio |
 | [Git](https://git-scm.com) | qualquer recente | Baixa o projeto |
 | Chromium do [Playwright](https://playwright.dev) | instalado pelo instalador | Desenha cada quadro na placa de vídeo |
@@ -421,21 +498,21 @@ Não para gerar vídeos: os comandos desta página bastam. Para criar cenas nova
 <details>
 <summary><b>É grátis mesmo?</b></summary>
 
-Sim. Do roteiro ao MP4 final, tudo pode rodar no seu computador com software livre e modelos de IA abertos: Ollama para o agente, Kokoro para a voz, Whisper para marcar as palavras, three.js para o 3D, FFmpeg para o vídeo. Não tem assinatura, limite de vídeos nem marca d'água. Serviços pagos, como a ElevenLabs, são opcionais.
+Sim. Do roteiro ao MP4 final, tudo roda no seu computador com software livre e modelos de IA abertos: Ollama para o agente, Kokoro para a voz, Whisper para marcar as palavras, three.js para o 3D, FFmpeg para o vídeo. Não tem assinatura, limite de vídeos nem marca d'água. E se quiser outras vozes, a Fish Audio e a ElevenLabs têm contas gratuitas com créditos todo mês.
 
 </details>
 
 <details>
 <summary><b>Funciona no Windows?</b></summary>
 
-Sim. Use o instalador `instalar\windows.ps1` e os comandos `npm run`. Eles são os mesmos nos três sistemas.
+Sim. No PowerShell, rode `powershell -ExecutionPolicy Bypass -File instalar\windows.ps1` e depois os mesmos comandos `npm run` do macOS e do Linux. O instalador usa o winget, que já vem no Windows 10 e 11.
 
 </details>
 
 <details>
 <summary><b>Preciso de uma placa de vídeo potente?</b></summary>
 
-Não. Qualquer placa com WebGL 2, inclusive as integradas, renderiza o filme. Uma placa melhor só deixa o render final mais rápido. Num MacBook com M1 Pro, os 35 segundos de A bancada em 60 fps levam cerca de 40 minutos.
+Não. Qualquer placa com WebGL 2, inclusive as integradas, renderiza o filme. Uma placa melhor só deixa o render final mais rápido. Como referência, os 35 segundos de A bancada em 60 fps levam cerca de 40 minutos num notebook de 2021.
 
 </details>
 
@@ -490,7 +567,7 @@ Se o projeto te ajudou, deixe uma ⭐. Isso ajuda mais gente a encontrá-lo.
   author  = {Molinari, Filipe},
   title   = {Fábrica de Criativos: anúncios em vídeo a partir de código, com 3D fotorrealista e IA},
   year    = {2026},
-  version = {2.1.0},
+  version = {2.1.1},
   url     = {https://github.com/FilipeMolinariMoura/fabrica-de-criativos}
 }
 ```

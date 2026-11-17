@@ -59,9 +59,8 @@ de realismo para cada mundo.
 ## Crítico independente
 
 **Quem constrói nunca aprova sozinho.** Depois de tantas rodadas, o construtor conhece cada justificativa
-e para de ver o defeito. No anúncio de exemplo, o construtor parou com notas entre 7,5 e 9; dois críticos
-independentes reprovaram a mesma prévia (realismo 6, som 5) e devolveram listas de correção com números.
-Só depois dessas correções quase tudo chegou a 8.
+e para de ver o detalhe. Um crítico independente, sem o histórico da construção, enxerga o que passou e
+devolve correções com números. No anúncio de exemplo, foi essa rodada que levou o filme ao acabamento final.
 
 Como fazer:
 
@@ -76,7 +75,7 @@ Como fazer:
   ("preto em 23/255, levar a 8 ou menos"; "trilha 14,8 LU abaixo da voz, levar a 9").
 - **O construtor responde item por item:** aplicado, ou não aplicado e por quê. Nada some da lista.
 - **A voz é aprovada de ouvido por uma pessoa.** `scripts/voz_avaliar.py` só filtra palavra errada e tom
-  errado no fim da frase; narração com nota 100 já foi reprovada de ouvido.
+  errado no fim da frase; o tom e a emoção, quem escolhe é o ouvido.
 - **Só vai para o ar** com as notas do crítico em 8 ou mais; o que ficar abaixo vai escrito na entrega.
 
 | Crítico (não construiu) | Olhar | Notas dele | Reprovou o quê | Correções pedidas |

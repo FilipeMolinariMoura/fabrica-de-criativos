@@ -4,11 +4,13 @@
 
 O [caminho gratuito](03-trilha-gratuita.md) entrega o anúncio completo, do roteiro ao MP4, por R$ 0. Este capítulo é para quando você quiser ir além numa etapa específica: **voz de locutor com interpretação dirigida**, **música produzida** ou **um agente mais rápido em tarefas longas**. Você troca só a etapa que quiser; o 3D, a sincronia, a mixagem e o render continuam os mesmos, e gratuitos.
 
+**Experimente de graça antes de assinar.** A ElevenLabs tem plano gratuito com cerca de 10 mil créditos por mês, o bastante para testar o tom e narrar alguns anúncios de 30 segundos (uso não comercial, com atribuição). A criação da conta e da chave está, passo a passo, na [seção 3.11](03-trilha-gratuita.md#311-contas-gratuitas-passo-a-passo). Assine um plano pago só quando for veicular.
+
 ## 4.1 O que cada serviço acrescenta
 
 | Serviço | Etapa | O que acrescenta | Plano para anúncio |
 |---|---|---|---|
-| [ElevenLabs](https://elevenlabs.io) | Voz | Voz de locutor com direção de tom, ênfase e pausa; vozes nativas em português na biblioteca | Starter (a partir de US$ 5 por mês), que inclui uso comercial |
+| [ElevenLabs](https://elevenlabs.io) | Voz | Voz de locutor com direção de tom, ênfase e pausa; vozes nativas em português na biblioteca | Starter (a partir de US$ 6 por mês), que inclui uso comercial |
 | ElevenLabs Music | Trilha | Música produzida, com timbres reais, alinhada à fala pelo kit | Conforme o plano |
 | [Claude](https://claude.com) (Anthropic) | Agente | Mais rapidez e autonomia em tarefas longas, críticos independentes em paralelo | Pro ou Max, ou a API com cobrança por uso |
 | Adobe After Effects | Logo | Logo 3D por script (`ae/logo3d/`), para quem já trabalha no programa | Creative Cloud |
@@ -21,7 +23,7 @@ Os números abaixo são da narração de A bancada, o anúncio do próprio proje
 
 | Item | Valor | Natureza do dado |
 |---|---|---|
-| Plano | ElevenLabs Starter, US$ 5 por mês | preço do plano |
+| Plano | ElevenLabs Starter, a partir de US$ 6 por mês | preço do plano |
 | Créditos do plano | 30 mil por mês | informado pelo plano |
 | Preço por caractere no `eleven_v3` | 1 crédito | observado na conta |
 | Tamanho do roteiro | 455 caracteres (78 palavras); com as marcações de direção, 547 caracteres por geração completa | contado |
@@ -85,6 +87,7 @@ No macOS e no Linux, os atalhos equivalentes são `make voz-amostras` e `make vo
 | Muitos criativos com pouco orçamento | Piloto com o agente que você preferir; os demais com o modelo aberto, copiando o piloto |
 | Sem Creative Cloud | Marca modelada em three.js ou no Blender, de graça |
 | Orçamento zero | O caminho gratuito inteiro: Kokoro ou Fish Audio, trilha sintetizada, 3D e render locais |
+| Quer conhecer a voz dirigida sem pagar | Conta gratuita da ElevenLabs: amostras de tom e alguns roteiros por mês, para uso não comercial |
 
 ## 4.6 O que é igual nos dois caminhos
 

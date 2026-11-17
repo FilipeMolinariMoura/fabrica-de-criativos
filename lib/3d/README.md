@@ -31,7 +31,7 @@ window.seek = (t) => pipe.render(stage, t, { spp, fps, typeTex, frame });
 ou `Math.random`. `pipe.acabamento = 'motor' | 'limpo'` liga ou desliga grão, vinheta, halação e
 aberração (master limpo para grade externa).
 
-## Qualidade e tempo (Apple M1 Pro, Chromium headless em ANGLE Metal, 1080×1920)
+## Qualidade e tempo (exemplo: notebook com Apple M1 Pro, Chromium headless, 1080×1920)
 
 Qualquer GPU com WebGL 2 serve, inclusive as integradas; os tempos abaixo são de referência e
 variam com a máquina. Na prática, use os presets prontos: `npm run contato`, `npm run previa`

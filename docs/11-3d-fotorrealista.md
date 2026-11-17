@@ -154,13 +154,13 @@ npm run final -- exemplos/bancada --de 0 --ate 4
 
 No macOS e no Linux, os mesmos passos também existem no `Makefile`: `make contato3d`, `make contraste3d`, `make audio3d`, `make previa3d` e `make final3d`, com `FILME=exemplos/bancada`. As variáveis `SPP`, `FPS` e `CRF` trocam a qualidade, `SEM_AUDIO=1` usa a mixagem existente e `LIMPO=1` grava também o master sem grão nem vinheta (veja `scripts/finalizar3d.sh --help`).
 
-**Sistemas e GPU.** O motor roda no Chromium do Playwright e usa a GPU por WebGL 2; uma placa integrada é suficiente. Os tempos deste capítulo foram medidos num Apple M1 Pro com macOS. Para confirmar que o Chromium enxerga a sua GPU, em qualquer sistema, rode `npm run verificar`.
+**Sistemas e GPU.** O motor roda em Windows 10 e 11, macOS e Linux, no Chromium do Playwright, e usa a GPU por WebGL 2; uma placa integrada é suficiente, e o `lib/3d/gpu.mjs` escolhe o caminho da GPU de cada sistema. Para confirmar que o Chromium enxerga a sua placa, rode `npm run verificar`. Os tempos deste capítulo são de uma máquina de exemplo, um notebook com Apple M1 Pro.
 
 Para abrir o filme no navegador e andar pelo tempo com as setas, sirva a raiz do repositório com qualquer servidor estático e abra `exemplos/bancada/index.html`.
 
 ## 11.8 Desempenho e predefinições
 
-Medido num Apple M1 Pro com 16 GB, Chromium sem interface, 1080×1920.
+Exemplo medido num notebook com Apple M1 Pro e 16 GB, Chromium sem interface, 1080×1920. Em outra máquina, os tempos mudam com a placa de vídeo.
 
 | Uso | Amostras (spp) | Render por quadro |
 |---|---|---|
@@ -223,7 +223,7 @@ Para planejar o seu filme, tenha em mente o que o motor faz e como ele escala:
 - **Iluminação direta com sombra suave e oclusão de céu.** Luz rebatida e cáusticas entram como refinamento opcional ([seção 10.5](10-look-dev.md)).
 - **Refração em espaço de tela.** Ideal para quadros parados e câmera calma em volta de vidro.
 - **Um navegador, uma GPU.** O render acontece numa máquina só; filmes de 30 a 35 s são a escala natural de um anúncio.
-- **Tempo de render depende da GPU.** Os números da seção 11.8 são de um Apple M1 Pro; máquinas diferentes terão tempos diferentes. Para ganhar velocidade, baixe as amostras antes da resolução.
+- **Tempo de render depende da GPU.** Os números da seção 11.8 são de um notebook com Apple M1 Pro, como exemplo; cada máquina terá os seus tempos. Para ganhar velocidade, baixe as amostras antes da resolução.
 - **Texto pequeno em tela desfocada** pede mais amostras para um desfoque limpo.
 
 ---

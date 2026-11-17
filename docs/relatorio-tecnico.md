@@ -136,7 +136,7 @@ Componentes de terceiros: three.js, Playwright, ffmpeg, o motor `motion-reel` (M
 
 ## 5 Avaliação
 
-A avaliação é um estudo de caso único: o anúncio do próprio projeto, um filme de 35 s chamado A bancada ([capítulo 14](14-estudo-de-caso-a-bancada.md)). Todos os tempos são de um Apple M1 Pro com 16 GB.
+A avaliação é um estudo de caso único: o anúncio do próprio projeto, um filme de 35 s chamado A bancada ([capítulo 14](14-estudo-de-caso-a-bancada.md)). Os tempos citados são de uma máquina de exemplo, um notebook com Apple M1 Pro e 16 GB; o kit roda em Windows, macOS e Linux.
 
 ### 5.1 Especificações de entrega
 
@@ -173,11 +173,11 @@ O filme completo (2.100 quadros a 60 fps, 192 amostras) leva de 35 a 40 minutos.
 
 ### 5.4 Voz
 
-Três motores foram avaliados de ouvido em português do Brasil: Kokoro-82M (local, aberto), Fish Audio `s2.1-pro-free` (gratuito) e ElevenLabs (`eleven_v3` e `eleven_multilingual_v2`, pagos). Todos passam na conferência automática. A narração do estudo de caso usa o ElevenLabs com direção explícita: marcações de tom, `language_code` forçado e várias sementes, com o tom aprovado antes em amostras de 10 s.
+Três motores foram avaliados de ouvido em português do Brasil: Kokoro-82M (local, aberto), Fish Audio `s2.1-pro-free` (gratuito) e ElevenLabs (`eleven_v3` e `eleven_multilingual_v2`, pagos). Todos passam na conferência automática e entregam narração de boa qualidade; os dois gratuitos produzem o anúncio completo sem custo. A narração do estudo de caso usa o ElevenLabs com direção explícita: marcações de tom, `language_code` forçado e várias sementes, com o tom aprovado antes em amostras de 10 s.
 
 A conferência por reconhecimento e por frequência fundamental é condição necessária, e não suficiente: ela detecta erro de palavra e de contorno final, e não mede naturalidade nem emoção. Por isso o método a usa como filtro e reserva a aprovação para a escuta humana.
 
-Uma geração completa do roteiro dirigido consome 547 caracteres. O processo inteiro (sete amostras de 10 s e oito tomadas completas) fica abaixo de 6 mil caracteres, num plano de US$ 5 por mês com 30 mil créditos.
+Uma geração completa do roteiro dirigido consome 547 caracteres. O processo inteiro (sete amostras de 10 s e oito tomadas completas) fica abaixo de 6 mil caracteres, num plano a partir de US$ 6 por mês com 30 mil créditos.
 
 ### 5.5 Crítica independente
 
@@ -199,7 +199,7 @@ O motor 2D do método foi aplicado pelo autor numa produção real, cujos materi
 
 - **Escopo da avaliação.** Um estudo de caso, com aprovação humana do autor; não há painel de espectadores nem dados de veiculação (retenção, clique, conversão).
 - **Referências.** Lente, abertura e ocupação de quadro das referências são estimativas visuais sobre miniaturas de 320×180 px.
-- **Render.** O pipeline é rasterizado e não calcula iluminação global nem cáusticas. Os tempos de render são de um único computador.
+- **Render.** O pipeline é rasterizado e não calcula iluminação global nem cáusticas. Os tempos de render citados são de uma máquina de exemplo e variam com a placa de vídeo.
 - **Serviços externos.** A narração do estudo de caso usa um serviço pago; a trilha gratuita produz o mesmo filme com narração aberta. Preços, modelos e termos de APIs de voz são de novembro de 2026.
 
 ## 7 Considerações éticas

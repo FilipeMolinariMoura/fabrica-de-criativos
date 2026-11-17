@@ -24,9 +24,9 @@ Os dois usam o mesmo código, os mesmos scripts e os mesmos arquivos intermediá
 | **Logo 3D** | three.js dentro do filme, ou Blender | After Effects por script (`ae/logo3d/`) | Quando você já trabalha no After Effects. |
 | **Render** | Playwright, Chromium e FFmpeg | iguais | — |
 
-## 2.2 Versões testadas
+## 2.2 Versões de referência
 
-O kit foi testado com as versões abaixo. A coluna "Requisito" é o mínimo que funciona.
+O kit roda em Windows 10 e 11, macOS e Linux. A coluna "Requisito" é o mínimo que funciona; a coluna "Referência" é a versão usada para gerar os exemplos deste manual. O instalador do seu sistema coloca tudo no lugar, e `npm run verificar` confirma o resultado, inclusive a placa de vídeo.
 
 ### Sistemas e computador
 
@@ -41,7 +41,7 @@ O kit foi testado com as versões abaixo. A coluna "Requisito" é o mínimo que 
 
 ### Programas
 
-| Programa | Requisito | Testado com | Para quê |
+| Programa | Requisito | Referência | Para quê |
 |---|---|---|---|
 | [Node.js](https://nodejs.org) | 20 ou mais novo | 22.23 | Roda o motor, o render e a linha de comando `npm run …` |
 | npm | vem com o Node.js | 10.9 | Instala as bibliotecas JavaScript e roda os comandos |

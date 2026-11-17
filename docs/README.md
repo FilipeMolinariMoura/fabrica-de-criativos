@@ -14,7 +14,7 @@ Este é o manual completo do método, versão 2.0: 15 capítulos numerados, um r
 | Render, mixagem e entrega | Chromium + FFmpeg, 60 fps, −14 LUFS | R$ 0 |
 | **Total** | | **R$ 0** |
 
-O passo a passo completo desse caminho está no [capítulo 3](03-trilha-gratuita.md). Serviços pagos, como voz de locutor ou música produzida, são opcionais e estão no [capítulo 4](04-trilha-paga.md).
+O passo a passo completo desse caminho está no [capítulo 3](03-trilha-gratuita.md), com a criação de cada conta gratuita (Fish Audio, ElevenLabs, OpenRouter, GitHub) na [seção 3.11](03-trilha-gratuita.md#311-contas-gratuitas-passo-a-passo). Serviços pagos, como voz de locutor ou música produzida, são opcionais e estão no [capítulo 4](04-trilha-paga.md).
 
 Se você tem pouco tempo, escolha um dos quatro caminhos abaixo e leia só o que ele pede.
 
@@ -25,7 +25,7 @@ Se você tem pouco tempo, escolha um dos quatro caminhos abaixo e leia só o que
 Tempo: 20 minutos, mais o tempo de render.
 
 1. [Começar em 10 minutos, no README](../README.md#-começar-em-10-minutos): baixar, rodar o instalador do seu sistema, `npm run verificar` e `npm run demo`.
-2. [3. O caminho gratuito](03-trilha-gratuita.md): a instalação passo a passo no Windows, no macOS e no Linux, e o anúncio inteiro sem gastar nada.
+2. [3. O caminho gratuito](03-trilha-gratuita.md): a instalação passo a passo no Windows, no macOS e no Linux, as [contas gratuitas](03-trilha-gratuita.md#311-contas-gratuitas-passo-a-passo) e o anúncio inteiro sem gastar nada.
 3. [14. Making-of: A bancada](14-estudo-de-caso-a-bancada.md), seção "Como reproduzir".
 4. [8. Qualidade e solução de problemas](08-qualidade-e-solucao-de-problemas.md), se alguma coisa travar.
 
@@ -64,7 +64,7 @@ Tempo: duas horas de leitura e um render.
 | 0 | [Visão geral](00-visao-geral.md) | O que é isto e por que funciona? |
 | 1 | [O método em 10 etapas](01-metodo.md) | O que entra, o que sai e o que precisa passar em cada etapa? |
 | 2 | [Ferramentas](02-ferramentas.md) | Que peças compõem o kit, em que versão e com que licença? |
-| 3 | [O caminho gratuito](03-trilha-gratuita.md) | Como instalar tudo e produzir do roteiro ao MP4 sem pagar nada? |
+| 3 | [O caminho gratuito](03-trilha-gratuita.md) | Como instalar tudo, criar as contas gratuitas e produzir do roteiro ao MP4 sem pagar nada? |
 | 4 | [Serviços opcionais](04-trilha-paga.md) | O que um serviço pago acrescenta, se você quiser ir além? |
 | 5 | [Skills](05-skills.md) | Que skills e plugins o agente usa em cada etapa? |
 | 6 | [Técnicas de motion (motor 2D)](06-tecnicas-de-motion.md) | Como funciona o motor 2D e quando usá-lo? |

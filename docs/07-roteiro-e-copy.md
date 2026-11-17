@@ -87,7 +87,7 @@ Três técnicas saem desta tabela e valem para qualquer roteiro:
 | Evite | Prefira |
 |---|---|
 | Frase longa com vírgulas | Frases de 4 a 9 palavras |
-| Siglas ("QR", "CRM") em motores neutros | A grafia como se fala ("quiu-ár"), testando no motor escolhido |
+| Siglas ("QR", "CRM") | A grafia como se fala ("quiu-ár"), testando no motor escolhido |
 | "R$ 25 mil", "10s" | "vinte e cinco mil reais", "dez segundos" |
 | Jargão ("solução robusta") | A palavra que o público usa |
 | Três ideias numa cena | Uma ideia por cena |

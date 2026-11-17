@@ -19,7 +19,9 @@ Este capítulo é um passo a passo para quem nunca usou terminal. Siga na ordem.
 | Render, mixagem e entrega | Chromium (Playwright) e FFmpeg | Apache-2.0 e LGPL | R$ 0 |
 | **Total** | | | **R$ 0** |
 
-Há também uma segunda voz gratuita na nuvem, a Fish Audio (`s2.1-pro-free`, com cota de uso justo), descrita na [seção 3.10](#310-outra-voz-gratuita-fish-audio).
+Há também uma segunda voz gratuita, na nuvem: a Fish Audio, com plano gratuito e o modelo `s2.1-pro-free` na API, descrita na [seção 3.10](#310-outra-voz-gratuita-fish-audio). E se um dia você quiser experimentar a ElevenLabs, ela também tem conta gratuita com créditos mensais.
+
+**Nenhuma etapa pede cartão de crédito.** Os serviços que precisam de cadastro têm conta gratuita, e a [seção 3.11](#311-contas-gratuitas-passo-a-passo) mostra cada uma, clique a clique: o que você ganha de graça, como criar a conta, onde pegar a chave e onde colar.
 
 ## 3.2 Requisitos de máquina
 
@@ -37,7 +39,7 @@ Há também uma segunda voz gratuita na nuvem, a Fish Audio (`s2.1-pro-free`, co
 | 16 GB | `gpt-oss:20b` ou um Qwen Coder de 14B | Peça uma etapa por vez |
 | 32 GB | `qwen3-coder:30b` | O ponto de equilíbrio |
 | 64 GB ou mais | Modelos maiores da família Qwen3 | Tarefas mais longas de uma vez |
-| Pouca memória | Modelo aberto hospedado com cota gratuita (OpenRouter, Ollama Cloud) | O código é enviado ao serviço |
+| Pouca memória | Modelo aberto hospedado com cota gratuita (OpenRouter, Ollama Cloud; conta na [seção 3.11](#311-contas-gratuitas-passo-a-passo)) | O código é enviado ao serviço |
 
 Os nomes e tamanhos dos modelos mudam rápido. Confira <https://ollama.com/library> antes de baixar.
 
@@ -225,7 +227,7 @@ Para um filme 3D, comece copiando `exemplos/bancada` e trocando o roteiro, as te
 
 ## 3.9 A voz gratuita: Kokoro
 
-O Kokoro-82M tem licença Apache-2.0, roda no seu computador, em CPU, e tem vozes de português do Brasil.
+O Kokoro-82M roda no seu computador, em CPU, sem conta e sem chave, e tem licença Apache-2.0: **uso comercial permitido, inclusive em anúncio pago**. As vozes em português do Brasil soam naturais e claras, e o resultado é muito bom para um anúncio completo.
 
 | Voz | Perfil |
 |---|---|
@@ -233,17 +235,24 @@ O Kokoro-82M tem licença Apache-2.0, roda no seu computador, em CPU, e tem voze
 | `pm_alex` | masculina |
 | `pm_santa` | masculina, mais grave |
 
+```bash
+uv run scripts/voz_kokoro.py meu-anuncio pf_dora 3 --roteiros criativos/meu-anuncio/roteiro.json
+```
+
+Na primeira vez, o uv instala o Kokoro e o modelo de voz (cerca de 330 MB) é baixado sozinho. Das próximas, é rápido.
+
 **Como tirar o melhor dele:**
 
-- O Kokoro dá a mesma saída a cada execução, o que é ótimo para refazer o vídeo igual. As tomadas extras variam a velocidade (×1,00, ×0,96, ×1,04) para você escolher o ritmo.
-- Leitura limpa, clara e neutra: combina com anúncios diretos, tutoriais e demonstrações de produto.
-- Prefira ganchos afirmativos a perguntas: a leitura fica mais firme.
-- Escreva números e siglas por extenso e use reticências para pausas.
-- Aprove o roteiro com o Kokoro antes de qualquer outra coisa: trocar a voz depois não muda nada no filme, porque as cenas seguem as palavras.
+- **Ouça as três vozes** no gancho e no CTA antes de gerar o roteiro inteiro. É de graça e leva segundos.
+- **O Kokoro é repetível:** a mesma entrada dá a mesma saída, ótimo para refazer o vídeo igual. As tomadas extras variam a velocidade (×1,00, ×0,96, ×1,04) para você escolher o ritmo.
+- **Dirija pela pontuação.** Reticências abrem pausa, dois-pontos preparam a palavra seguinte, exclamação dá energia.
+- **Ganchos afirmativos** ("Esse vídeo não foi editado.") saem com leitura firme e segura.
+- **Escreva números e siglas por extenso**, do jeito que se fala.
+- **Feche o roteiro com o Kokoro.** Se depois quiser outra voz, troque só ela: as cenas seguem as palavras, e o filme se reorganiza sozinho.
 
 ## 3.10 Outra voz gratuita: Fish Audio
 
-A Fish Audio tem um modelo gratuito na API (`s2.1-pro-free`, com uso justo) e uma biblioteca grande de vozes em português, com mais variação de interpretação que o Kokoro. Ela roda na nuvem e pede uma chave gratuita.
+A Fish Audio tem plano gratuito e um modelo gratuito na API, o `s2.1-pro-free`, que é o padrão dos scripts do kit. A biblioteca tem muitas vozes em português do Brasil, com interpretações variadas: dá para escolher o timbre e o jeito de falar que combinam com a marca, sem gastar nada. Ela roda na nuvem e pede uma chave gratuita (passo a passo na [seção 3.11](#311-contas-gratuitas-passo-a-passo)).
 
 ```bash
 # .env: FISH_API_KEY=...   (crie em fish.audio → API Keys)
@@ -253,13 +262,130 @@ uv run scripts/voz_por_frase.py <criativo> <voice_id> f1 --roteiros <roteiro.jso
 uv run scripts/voz_dialogo.py voz/<criativo> voz/<criativo>/dueto.wav --vozes f1,m5,f1,...
 ```
 
-**Frase a frase.** Gerar cada frase separadamente, com alguns candidatos, e escolher às cegas o que termina no tom certo garante entonação firme em todas as frases. Use `--temperatura 0.55` para uma leitura mais estável. Para uma interpretação contínua, gere o roteiro em bloco e escolha a melhor tomada.
+**Escolha de ouvido, em amostras curtas.** Gere só o gancho e o CTA em três ou quatro vozes da biblioteca e escolha a que mais combina. Só então gere o roteiro inteiro.
 
-**Escolha da voz.** Use vozes que não imitam pessoas reais: em anúncio público, isso evita risco legal e de reputação. Confira também se o seu plano permite uso comercial.
+**Frase a frase.** O `voz_por_frase.py` gera cada frase separadamente, com alguns candidatos, e escolhe às cegas o que termina no tom certo: entonação firme em todas as frases. Use `--temperatura 0.55` para uma leitura mais estável. Para uma interpretação contínua, gere o roteiro em bloco e escolha a melhor tomada.
+
+**Diálogo.** Com duas vozes da biblioteca, o `voz_dialogo.py` monta uma conversa, de graça.
+
+**Escolha da voz.** Use vozes que não imitam pessoas reais: em anúncio público, isso evita risco legal e de reputação. Antes de veicular anúncio pago, confira os termos do plano.
 
 **Outra opção local:** o Piper roda em CPU e é leve. Confira a licença de cada voz antes de usar em anúncio.
 
-## 3.11 Filme 3D sem pagar nada
+## 3.11 Contas gratuitas, passo a passo
+
+O caminho gratuito quase não pede cadastro: o Ollama, o Kokoro, o Whisper, o 3D e a trilha rodam no seu computador, sem conta. Os serviços na nuvem que o kit usa, ou que você pode querer experimentar, têm conta gratuita. Abaixo, um bloco por serviço, na ordem em que costumam aparecer.
+
+As chaves de API ficam num arquivo `.env`, na pasta do projeto. Crie-o uma vez a partir do modelo:
+
+```bash
+cp .env.example .env              # macOS e Linux
+copy .env.example .env            # Windows (PowerShell)
+```
+
+Abra o `.env` num editor de texto (no Windows, `notepad .env`) e cole cada chave depois do `=` da variável certa, sem aspas e sem espaços. O `.env` nunca vai para o repositório. Não cole chaves no chat com o agente.
+
+### Ollama: o agente de IA, sem conta
+
+- **De graça:** modelos abertos rodando no seu computador, sem limite de uso.
+- **Como instalar:**
+  1. Abra <https://ollama.com/download>.
+  2. Baixe o instalador do seu sistema (Windows, macOS ou Linux) e instale.
+  3. No terminal, baixe um modelo: `ollama pull qwen3-coder:30b` (32 GB de memória) ou `ollama pull gpt-oss:20b` (16 GB).
+- **Chave:** nenhuma. O Claude Code se conecta pelas variáveis da [seção 3.7](#37-passo-5-o-agente-de-ia-de-graça-claude-code--ollama).
+- **Licença:** Ollama MIT; Qwen3-Coder e gpt-oss Apache-2.0.
+
+### Kokoro: a voz local, sem conta
+
+- **De graça:** narração em português do Brasil (`pf_dora`, `pm_alex`, `pm_santa`), sem limite.
+- **Como usar:**
+  1. Rode `uv run scripts/voz_kokoro.py <criativo> pf_dora 3 --roteiros <roteiro.json>`.
+  2. Na primeira vez, espere o download do modelo (cerca de 330 MB). Pronto.
+- **Chave:** nenhuma.
+- **Licença:** Apache-2.0, uso comercial permitido.
+
+### Fish Audio: vozes na nuvem, com modelo gratuito
+
+- **De graça:** plano gratuito com créditos mensais no site, e o modelo `s2.1-pro-free` na API, usado por `scripts/voz_fish.mjs` e `scripts/voz_por_frase.py`.
+- **Como criar a conta:**
+  1. Abra <https://fish.audio>.
+  2. Clique em **Sign up** e entre com a conta do Google ou com um e-mail.
+  3. No menu da conta, abra **API Keys**.
+  4. Crie uma chave nova, dê um nome (por exemplo, `fabrica`) e copie a chave.
+- **Onde colar:** no `.env`, em `FISH_API_KEY=`.
+- **Confira:** `node scripts/voz_fish.mjs vozes` lista as vozes em português.
+- **Licença:** confira os termos do plano antes de usar em anúncio pago.
+
+### ElevenLabs: para experimentar a voz de locutor
+
+- **De graça:** o plano gratuito dá cerca de 10 mil créditos por mês. No `eleven_v3`, cada caractere gasta cerca de 1 crédito: um roteiro de 30 segundos tem uns 500 caracteres, então dá para narrar vários anúncios de 30 s por mês e testar o tom com calma.
+- **Como criar a conta:**
+  1. Abra <https://elevenlabs.io> e clique em **Sign up**.
+  2. Entre com a conta do Google ou com um e-mail.
+  3. No painel, abra **Developers** e depois **API Keys**.
+  4. Clique em **Create API Key**, dê um nome e libere as permissões **Text to Speech** (para gerar a narração) e **Voices**, só leitura (para ver as vozes). Copie a chave.
+- **Onde colar:** no `.env`, em `ELEVENLABS_API_KEY=`.
+- **Confira:** `node scripts/eleven.mjs conta` mostra o plano e os créditos do mês.
+- **Licença:** o plano gratuito pede atribuição à ElevenLabs e é para uso não comercial. Para anúncio pago, o plano Starter (a partir de US$ 6 por mês) inclui licença comercial. Veja o [capítulo 4](04-trilha-paga.md).
+
+### Hugging Face: só se algum download pedir
+
+- **De graça:** conta para baixar modelos abertos.
+- **Quando precisa:** só se algum modelo pedir login para baixar. O Kokoro não pede.
+- **Como criar a conta:** abra <https://huggingface.co>, clique em **Sign Up** e confirme o e-mail. Se um script pedir, crie um token em **Settings → Access Tokens**, com permissão de leitura.
+
+### OpenRouter: modelos abertos na nuvem, para máquinas mais simples
+
+- **De graça:** alguns modelos abertos têm versão gratuita (com `:free` no nome), com cota diária de pedidos. É uma alternativa ao Ollama quando o computador tem pouca memória para rodar o modelo localmente.
+- **Como criar a conta:**
+  1. Abra <https://openrouter.ai> e clique em **Sign up**.
+  2. No menu da conta, abra **Keys** e clique em **Create Key**. Copie a chave.
+- **Onde usar:** na configuração do agente que você escolher (OpenCode, Aider e outros aceitam o OpenRouter). Lembre que o código e os pedidos são enviados ao serviço.
+- **Limite:** as versões gratuitas têm cota diária de pedidos; confira a página de limites do OpenRouter.
+
+### GitHub: para guardar e publicar os seus anúncios
+
+- **De graça:** repositórios públicos e privados.
+- **Como criar a conta:** abra <https://github.com/signup>, escolha usuário e senha e confirme o e-mail.
+- **Para quê:** dar *fork* no projeto, marcar com estrela, guardar o código dos seus filmes e versionar cada variação. Áudio, vídeo e chaves ficam fora do repositório (o `.gitignore` do kit já cuida disso).
+
+### Google Fonts, Poly Haven e ambientCG: sem conta
+
+- **De graça:** fontes sob SIL OFL em <https://fonts.google.com>; HDRIs e texturas sob CC0 em <https://polyhaven.com> e <https://ambientcg.com>.
+- **Como usar:** baixe direto do site, sem cadastro. Os materiais que o filme de exemplo usa já vêm no projeto.
+
+### Claude Code: instalação gratuita
+
+- **De graça:** `npm install -g @anthropic-ai/claude-code`. Com o Ollama por trás ([seção 3.7](#37-passo-5-o-agente-de-ia-de-graça-claude-code--ollama)), não é preciso conta da Anthropic.
+
+### Resumo: custo total R$ 0
+
+| Serviço | Precisa de conta? | Chave no `.env` | Custo |
+|---|---|---|---|
+| Ollama + Qwen3-Coder ou gpt-oss | Não | — | R$ 0 |
+| Claude Code com o Ollama | Não | — | R$ 0 |
+| Kokoro | Não | — | R$ 0 |
+| Whisper e Praat | Não | — | R$ 0 |
+| Fish Audio, `s2.1-pro-free` | Sim, gratuita | `FISH_API_KEY` | R$ 0 |
+| ElevenLabs, plano gratuito (opcional) | Sim, gratuita | `ELEVENLABS_API_KEY` | R$ 0 |
+| OpenRouter, modelos `:free` (opcional) | Sim, gratuita | na configuração do agente | R$ 0 |
+| Hugging Face (só se pedir) | Sim, gratuita | — | R$ 0 |
+| GitHub | Sim, gratuita | — | R$ 0 |
+| Google Fonts, Poly Haven, ambientCG | Não | — | R$ 0 |
+| **Total** | | | **R$ 0** |
+
+## 3.12 Como esticar as cotas gratuitas
+
+As vozes locais (Kokoro) não têm cota. Nos serviços na nuvem, estas práticas fazem o plano gratuito render muito:
+
+- **Teste o tom em amostras curtas.** Gere só o gancho e o CTA, uns 10 segundos, em algumas vozes. Escolha de ouvido e só então gere o roteiro inteiro.
+- **Gere frase a frase e refaça só a frase fraca.** Com o `voz_por_frase.py`, a opção `--mais 8:5` gera mais candidatos só para a frase 8, sem gastar o roteiro inteiro de novo.
+- **Guarde as tomadas.** Todas ficam em `voz/<criativo>/`. Uma tomada aprovada não precisa ser gerada de novo, e serve para outras variações do anúncio.
+- **Feche o roteiro antes da voz.** Cada mudança de texto depois da voz custa uma geração nova.
+- **Some os caracteres antes de um lote.** O kit registra o gasto de cada chamada em `voz/caracteres.log`.
+- **Música de graça e sem cota:** a trilha sintetizada do `scripts/trilha.py` já vem presa às palavras e entra sozinha na prévia e no final.
+
+## 3.13 Filme 3D sem pagar nada
 
 O pipeline 3D não depende de nenhum serviço. Os comandos principais:
 
@@ -277,21 +403,22 @@ node lib/3d/render.mjs --film exemplos/bancada --at 2.6,10.5 --spp 256
 
 Os materiais de terceiros (um HDRI, uma textura de madeira, um mapa de digitais e três fontes) são CC0 ou OFL e estão listados no [capítulo 2](02-ferramentas.md). Todos os comandos e presets de qualidade estão no [capítulo 11](11-3d-fotorrealista.md#117-comandos).
 
-## 3.12 Logo 3D gratuito
+## 3.14 Logo 3D gratuito
 
 1. **three.js dentro do filme.** No motor 3D, modele a marca como objeto (veja `buildMark` em `exemplos/bancada/props.js`). No motor 2D, use o modo `--3d` do `scaffold.mjs` do motion-reel.
 2. **Blender.** Importe o SVG, use *Extrude*, anime a rotação e uma luz de varredura, e renderize uma sequência PNG com transparência. No motor 2D, ela entra no cartão final com `logoSeq()` de `lib/cena.js`.
 
-## 3.13 Custo total
+## 3.15 Custo total: R$ 0
 
 | Item | Custo |
 |---|---|
-| Software e modelos | R$ 0 |
+| Software e modelos de IA | R$ 0 |
+| Contas nos serviços (Fish Audio, GitHub e os opcionais) | R$ 0, todas no plano gratuito |
 | Materiais (HDRI, texturas, fontes) | R$ 0 |
 | Licença para anúncio comercial | R$ 0: código MIT, Kokoro Apache-2.0, materiais CC0 e OFL |
-| Tempo de máquina | O render final 3D de 35 s leva cerca de 40 minutos num M1 Pro; o 2D, poucos minutos |
+| Tempo de máquina | O 2D sai em poucos minutos. O 3D de 35 s a 60 fps leva cerca de 40 minutos num notebook com Apple M1 Pro, por exemplo; cada máquina tem o seu tempo |
 
-Quer voz de locutor profissional ou música produzida? Troque só essa etapa por um serviço pago e mantenha o resto de graça: veja os [serviços opcionais](04-trilha-paga.md).
+Quer voz de locutor com direção de estúdio ou música produzida? Troque só essa etapa por um serviço opcional e mantenha o resto de graça: veja os [serviços opcionais para ir além](04-trilha-paga.md).
 
 ---
 

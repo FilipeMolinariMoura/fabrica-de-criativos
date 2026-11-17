@@ -147,6 +147,13 @@ h3 + table, h3 + p, h3 + div { break-before: avoid; }
 .hero-free p { margin: 0; font-size: 9.8pt; }
 .toc li { padding: 0; font-size: 9pt; line-height: 1.42; }
 .toc .n { font-size: 10pt; }
+.acc { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin: 2mm 0 3mm; }
+.acc > div { border: 0.4mm solid var(--line); border-radius: 2.5mm; padding: 2.6mm 3.2mm; break-inside: avoid; font-size: 8.5pt; line-height: 1.42; }
+.acc > div > b:first-child { display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; font: 800 10.5pt Urbanist; margin-bottom: 1.2mm; }
+.acc ol { margin: 0.6mm 0 1mm; padding-left: 4.6mm; } .acc li { margin-bottom: 0.4mm; }
+.acc p { margin: 0 0 0.8mm; } .acc p:last-child { margin-bottom: 0; }
+.acc .lic { color: var(--mute); font-size: 7.8pt; }
+.acc code { font-size: 7.6pt; }
 </style></head>
 <body>
 <!-- ABERTURA + SUMÁRIO -->
@@ -165,23 +172,24 @@ h3 + table, h3 + p, h3 + div { break-before: avoid; }
   <ul class="toc">
     <li><span class="n">01</span><span class="t">O que é e por que funciona</span><span class="p" data-toc="c01">3</span></li>
     <li><span class="n">02</span><span class="t">Grátis de ponta a ponta</span><span class="p" data-toc="c02">4</span></li>
-    <li><span class="n">03</span><span class="t">Instalação no Windows, no macOS e no Linux</span><span class="p" data-toc="c03">5</span></li>
-    <li><span class="n">04</span><span class="t">Versões, linguagens e bibliotecas</span><span class="p" data-toc="c04">6</span></li>
-    <li><span class="n">05</span><span class="t">O método em 10 etapas</span><span class="p" data-toc="c05">7</span></li>
-    <li><span class="n">06</span><span class="t">O kit completo</span><span class="p" data-toc="c06">8</span></li>
-    <li><span class="n">07</span><span class="t">Briefing e roteiro</span><span class="p" data-toc="c07">9</span></li>
-    <li><span class="n">08</span><span class="t">Pesquisa de referências e as 12 regras</span><span class="p" data-toc="c08">10</span></li>
-    <li><span class="n">09</span><span class="t">Voz dirigida</span><span class="p" data-toc="c09">11</span></li>
-    <li><span class="n">10</span><span class="t">Narração no tempo</span><span class="p" data-toc="c10">12</span></li>
-    <li><span class="n">11</span><span class="t">Look-dev</span><span class="p" data-toc="c11">13</span></li>
-    <li><span class="n">12</span><span class="t">O filme em 3D fotorrealista</span><span class="p" data-toc="c12">14</span></li>
-    <li><span class="n">13</span><span class="t">O filme em 2D</span><span class="p" data-toc="c13">15</span></li>
-    <li><span class="n">14</span><span class="t">Som: trilha, efeitos e mixagem</span><span class="p" data-toc="c14">16</span></li>
-    <li><span class="n">15</span><span class="t">Crítica independente</span><span class="p" data-toc="c15">17</span></li>
-    <li><span class="n">16</span><span class="t">Render, variações e entrega</span><span class="p" data-toc="c16">18</span></li>
-    <li><span class="n">17</span><span class="t">Serviços opcionais para ir além</span><span class="p" data-toc="c17">19</span></li>
-    <li><span class="n">18</span><span class="t">Skills e como pedir ao agente</span><span class="p" data-toc="c18">20</span></li>
-    <li><span class="n">19</span><span class="t">Fundamentos</span><span class="p" data-toc="c19">21</span></li>
+    <li><span class="n">03</span><span class="t">Contas gratuitas, passo a passo</span><span class="p" data-toc="c03">5</span></li>
+    <li><span class="n">04</span><span class="t">Instalação no Windows, no macOS e no Linux</span><span class="p" data-toc="c04">5</span></li>
+    <li><span class="n">05</span><span class="t">Versões, linguagens e bibliotecas</span><span class="p" data-toc="c05">6</span></li>
+    <li><span class="n">06</span><span class="t">O método em 10 etapas</span><span class="p" data-toc="c06">7</span></li>
+    <li><span class="n">07</span><span class="t">O kit completo</span><span class="p" data-toc="c07">8</span></li>
+    <li><span class="n">08</span><span class="t">Briefing e roteiro</span><span class="p" data-toc="c08">9</span></li>
+    <li><span class="n">09</span><span class="t">Pesquisa de referências e as 12 regras</span><span class="p" data-toc="c09">10</span></li>
+    <li><span class="n">10</span><span class="t">Voz dirigida</span><span class="p" data-toc="c10">11</span></li>
+    <li><span class="n">11</span><span class="t">Narração no tempo</span><span class="p" data-toc="c11">12</span></li>
+    <li><span class="n">12</span><span class="t">Look-dev</span><span class="p" data-toc="c12">13</span></li>
+    <li><span class="n">13</span><span class="t">O filme em 3D fotorrealista</span><span class="p" data-toc="c13">14</span></li>
+    <li><span class="n">14</span><span class="t">O filme em 2D</span><span class="p" data-toc="c14">15</span></li>
+    <li><span class="n">15</span><span class="t">Som: trilha, efeitos e mixagem</span><span class="p" data-toc="c15">16</span></li>
+    <li><span class="n">16</span><span class="t">Crítica independente</span><span class="p" data-toc="c16">17</span></li>
+    <li><span class="n">17</span><span class="t">Render, variações e entrega</span><span class="p" data-toc="c17">18</span></li>
+    <li><span class="n">18</span><span class="t">Serviços opcionais para ir além</span><span class="p" data-toc="c18">19</span></li>
+    <li><span class="n">19</span><span class="t">Skills e como pedir ao agente</span><span class="p" data-toc="c19">20</span></li>
+    <li><span class="n">20</span><span class="t">Fundamentos</span><span class="p" data-toc="c20">21</span></li>
     <li class="sep">Apêndices</li>
     <li><span class="n">A</span><span class="t">Cola de comandos</span><span class="p" data-toc="ap-a">22</span></li>
     <li><span class="n">B</span><span class="t">Problemas comuns e soluções</span><span class="p" data-toc="ap-b">23</span></li>
@@ -243,6 +251,7 @@ h3 + table, h3 + p, h3 + div { break-before: avoid; }
   <tr><td><b>Render e entrega</b></td><td><b>Chromium</b> (Playwright) e <b>FFmpeg</b>: 60 fps, −14 LUFS</td><td>Apache-2.0 · LGPL</td><td>R$ 0</td></tr>
   <tr class="tot"><td colspan="3">Total, do roteiro ao MP4</td><td>R$ 0</td></tr>
 </table>
+<p class="small" style="margin-top:-2mm">Outra voz gratuita, na nuvem: a <b>Fish Audio</b>, com o modelo <code>s2.1-pro-free</code> e muitas vozes em português. As contas gratuitas, clique a clique, estão no capítulo 3.</p>
 <div class="hero-free"><b class="t">npm run demo</b><p>Faz exatamente esse caminho e entrega um anúncio pronto em poucos minutos: voz gratuita, trilha, efeitos, mixagem e render.</p></div>
 <h3>O agente de IA de graça: Claude Code + Ollama</h3>
 <p>O Ollama roda modelos abertos no seu computador com uma API compatível com a da Anthropic. Instale o Ollama (<code>ollama.com/download</code>) e o Claude Code (<code>npm install -g @anthropic-ai/claude-code</code>), baixe o modelo e aponte o Claude Code para ele.</p>
@@ -269,9 +278,70 @@ claude --model qwen3-coder:30b</pre>
 <div class="box porque"><b>Você nem precisa do agente</b><p>Os comandos <code>npm run …</code> bastam para rodar os exemplos e fazer um anúncio novo. O agente ajuda a escrever o roteiro e a criar cenas novas.</p></div>
 </div>
 
-<!-- 03 INSTALAÇÃO -->
+<!-- 03 CONTAS GRATUITAS -->
 <section class="chap"><span class="mk">QQc03QQ</span>
-  <div class="row"><div class="num">03</div><h1>Instalação no Windows, no macOS e no Linux</h1></div>
+  <div class="row"><div class="num">03</div><h1>Contas gratuitas, passo a passo</h1></div>
+  <p class="intro">O caminho gratuito quase não pede cadastro: agente, voz local, 3D e trilha rodam no seu computador. Os serviços na nuvem que o kit usa, ou que você pode querer experimentar, têm conta gratuita. Nenhum pede cartão de crédito.</p>
+</section>
+<p>As chaves ficam no arquivo <code>.env</code>, na pasta do projeto. Crie-o uma vez com <code>cp .env.example .env</code> (macOS e Linux) ou <code>copy .env.example .env</code> (Windows), abra num editor de texto e cole cada chave depois do <code>=</code> da variável certa. O <code>.env</code> nunca vai para o repositório; não cole chaves no chat com o agente.</p>
+<div class="acc">
+<div><b>Ollama <span class="tag free">Sem conta</span></b>
+<p><b>De graça:</b> modelos abertos no seu computador, sem limite de uso.</p>
+<ol><li>Abra <code>ollama.com/download</code> e instale a versão do seu sistema.</li>
+<li>No terminal: <code>ollama pull qwen3-coder:30b</code> (32 GB) ou <code>ollama pull gpt-oss:20b</code> (16 GB).</li></ol>
+<p><b>Chave:</b> nenhuma; o Claude Code se conecta pelas variáveis do capítulo 2.</p>
+<p class="lic">Ollama MIT; Qwen3-Coder e gpt-oss Apache-2.0.</p></div>
+<div><b>Kokoro <span class="tag free">Sem conta</span></b>
+<p><b>De graça:</b> narração local em português do Brasil, sem limite: <code>pf_dora</code>, <code>pm_alex</code>, <code>pm_santa</code>.</p>
+<ol><li>Rode <code>uv run scripts/voz_kokoro.py &lt;id&gt; pf_dora 3 --roteiros &lt;roteiro.json&gt;</code>.</li>
+<li>Na primeira vez, espere o download do modelo (cerca de 330 MB).</li></ol>
+<p><b>Chave:</b> nenhuma.</p>
+<p class="lic">Apache-2.0, uso comercial permitido.</p></div>
+<div><b>Fish Audio <span class="tag free">Conta grátis</span></b>
+<p><b>De graça:</b> plano gratuito com créditos mensais e o modelo <code>s2.1-pro-free</code> na API, padrão de <code>voz_fish.mjs</code> e <code>voz_por_frase.py</code>. Muitas vozes em português.</p>
+<ol><li>Abra <code>fish.audio</code> e clique em <b>Sign up</b> (Google ou e-mail).</li>
+<li>No menu da conta, abra <b>API Keys</b>.</li>
+<li>Crie uma chave nova e copie.</li></ol>
+<p><b>Onde colar:</b> <code>FISH_API_KEY=</code> no <code>.env</code>. Confira com <code>node scripts/voz_fish.mjs vozes</code>.</p>
+<p class="lic">Confira os termos do plano antes de usar em anúncio pago.</p></div>
+<div><b>ElevenLabs <span class="tag free">Conta grátis</span></b>
+<p><b>De graça:</b> cerca de 10 mil créditos por mês. Com cerca de 1 crédito por caractere, dá para narrar vários anúncios de 30 s e testar o tom.</p>
+<ol><li>Abra <code>elevenlabs.io</code> e clique em <b>Sign up</b>.</li>
+<li>No painel: <b>Developers → API Keys → Create API Key</b>.</li>
+<li>Libere <b>Text to Speech</b> e <b>Voices</b> (leitura) e copie a chave.</li></ol>
+<p><b>Onde colar:</b> <code>ELEVENLABS_API_KEY=</code> no <code>.env</code>. Confira com <code>node scripts/eleven.mjs conta</code>.</p>
+<p class="lic">O gratuito pede atribuição e é para uso não comercial; para anúncio pago, o Starter (a partir de US$ 6 por mês) inclui licença comercial.</p></div>
+<div><b>OpenRouter <span class="tag free">Opcional</span></b>
+<p><b>De graça:</b> alguns modelos abertos têm versão <code>:free</code>, com cota diária de pedidos. Alternativa ao Ollama em máquinas com pouca memória.</p>
+<ol><li>Abra <code>openrouter.ai</code> e clique em <b>Sign up</b>.</li>
+<li>Em <b>Keys</b>, crie uma chave e cole na configuração do agente (OpenCode, Aider).</li></ol>
+<p class="lic">O código e os pedidos vão para o serviço; confira a página de limites.</p></div>
+<div><b>Hugging Face · GitHub <span class="tag free">Conta grátis</span></b>
+<p><b>Hugging Face</b> (<code>huggingface.co</code>): só se algum modelo pedir login para baixar; o Kokoro não pede. Token em <b>Settings → Access Tokens</b>, leitura.</p>
+<p><b>GitHub</b> (<code>github.com/signup</code>): para dar <i>fork</i>, marcar com estrela e versionar os seus anúncios.</p>
+<p class="lic">Google Fonts (OFL), Poly Haven e ambientCG (CC0): sem conta, download direto. Claude Code: instalação gratuita; com o Ollama, sem conta da Anthropic.</p></div>
+</div>
+<div class="split">
+<table class="zero" style="margin-top:0">
+  <tr><th>Serviço</th><th>Conta</th><th>Custo</th></tr>
+  <tr><td>Ollama, Claude Code, Kokoro, Whisper</td><td>Não precisa</td><td>R$ 0</td></tr>
+  <tr><td>Fish Audio, <code>s2.1-pro-free</code></td><td>Gratuita</td><td>R$ 0</td></tr>
+  <tr><td>ElevenLabs, OpenRouter (opcionais)</td><td>Gratuita</td><td>R$ 0</td></tr>
+  <tr><td>GitHub, Hugging Face</td><td>Gratuita</td><td>R$ 0</td></tr>
+  <tr><td>Fontes, HDRIs e texturas</td><td>Não precisa</td><td>R$ 0</td></tr>
+  <tr class="tot"><td colspan="2">Custo total</td><td>R$ 0</td></tr>
+</table>
+<div class="box dica" style="margin-top:0"><b>Como esticar as cotas gratuitas</b><ul style="margin:0;padding-left:4.5mm">
+<li>Teste o tom em amostras curtas: só o gancho e o CTA.</li>
+<li>Gere frase a frase e refaça só a frase fraca (<code>--mais 8:5</code>).</li>
+<li>Guarde as tomadas em <code>voz/&lt;id&gt;/</code>: a aprovada não precisa ser gerada de novo.</li>
+<li>Feche o roteiro antes de gerar a voz.</li>
+<li>Música sem cota: a trilha sintetizada de <code>scripts/trilha.py</code>.</li></ul></div>
+</div>
+
+<!-- 04 INSTALAÇÃO -->
+<section class="chap"><span class="mk">QQc04QQ</span>
+  <div class="row"><div class="num">04</div><h1>Instalação no Windows, no macOS e no Linux</h1></div>
   <p class="intro">Quatro passos, uma vez por computador. Não precisa saber programar: é copiar e colar no terminal.</p>
 </section>
 <ol class="steps">
@@ -305,10 +375,10 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 </div>
 <p class="small">No macOS e no Linux, os mesmos comandos também existem como <code>make</code> (<code>make demo</code>, <code>make contato3d FILME=exemplos/bancada</code>); <code>make ajuda</code> lista todos.</p>
 
-<!-- 04 VERSÕES -->
-<section class="chap"><span class="mk">QQc04QQ</span>
-  <div class="row"><div class="num">04</div><h1>Versões, linguagens e bibliotecas</h1></div>
-  <p class="intro">Tudo o que o instalador coloca no computador, com o mínimo que funciona e a versão em que o kit foi testado.</p>
+<!-- 05 VERSÕES -->
+<section class="chap"><span class="mk">QQc05QQ</span>
+  <div class="row"><div class="num">05</div><h1>Versões, linguagens e bibliotecas</h1></div>
+  <p class="intro">Tudo o que o instalador coloca no computador, com o mínimo que funciona e a versão de referência. Roda em Windows 10 e 11, macOS e Linux; <code>npm run verificar</code> confirma tudo, inclusive a placa de vídeo.</p>
 </section>
 <div class="split">
 <div>
@@ -334,7 +404,7 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 </div>
 <h3>Programas</h3>
 <table>
-  <tr><th>Programa</th><th>Requisito</th><th>Testado com</th><th>Para quê</th></tr>
+  <tr><th>Programa</th><th>Requisito</th><th>Referência</th><th>Para quê</th></tr>
   <tr><td><b>Node.js</b></td><td>20 ou mais novo</td><td>22.23</td><td>Motor, render e os comandos <code>npm run</code></td></tr>
   <tr><td><b>npm</b></td><td>vem com o Node.js</td><td>10.9</td><td>Bibliotecas JavaScript</td></tr>
   <tr><td><b>uv</b></td><td>0.5 ou mais novo</td><td>0.13</td><td>Roda os scripts Python e baixa o Python certo</td></tr>
@@ -358,9 +428,9 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 </table>
 <p class="small">Cada script Python declara no cabeçalho as bibliotecas de que precisa, e o <code>uv</code> as instala sozinho na primeira execução.</p>
 
-<!-- 05 MÉTODO -->
-<section class="chap pg"><span class="mk">QQc05QQ</span>
-  <div class="row"><div class="num">05</div><h1>O método em 10 etapas</h1></div>
+<!-- 06 MÉTODO -->
+<section class="chap pg"><span class="mk">QQc06QQ</span>
+  <div class="row"><div class="num">06</div><h1>O método em 10 etapas</h1></div>
   <p class="intro">Cada etapa produz um arquivo que a seguinte consome, e tem um portão de qualidade: uma condição objetiva para seguir. Dá para voltar a qualquer ponto sem refazer o resto.</p>
 </section>
 <div class="pipe">
@@ -393,9 +463,9 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 <div class="box dica"><b>Piloto antes da escala</b><p>Construa um criativo completo, aprove, e só então produza os demais a partir dele.</p></div>
 </div>
 
-<!-- 06 KIT -->
-<section class="chap"><span class="mk">QQc06QQ</span>
-  <div class="row"><div class="num">06</div><h1>O kit completo</h1></div>
+<!-- 07 KIT -->
+<section class="chap"><span class="mk">QQc07QQ</span>
+  <div class="row"><div class="num">07</div><h1>O kit completo</h1></div>
   <p class="intro">Tudo o que entra na produção, agrupado pela função. Cada peça tem um caminho gratuito; os serviços pagos aparecem como opção.</p>
 </section>
 <table class="kit">
@@ -403,7 +473,7 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
   <tr class="grp"><td colspan="3">Orquestração</td></tr>
   <tr><td><b>Ollama + modelo aberto</b><br><span class="small">qwen3-coder, gpt-oss</span></td><td>Um modelo de pesos abertos na sua máquina, com API compatível com a da Anthropic.</td><td><span class="tag free">Grátis, local</span></td></tr>
   <tr><td><b>Claude Code</b><br><span class="small">app ou CLI</span></td><td>O agente que conduz a produção: escreve roteiro e código, roda comandos, olha as folhas de contato e corrige. Funciona com o Ollama.</td><td><span class="tag free">Grátis com Ollama</span></td></tr>
-  <tr><td><b>Subagentes</b></td><td>Um agente por criativo depois do piloto, e os críticos independentes (capítulo 15).</td><td><span class="tag free">Mesmo modelo</span></td></tr>
+  <tr><td><b>Subagentes</b></td><td>Um agente por criativo depois do piloto, e os críticos independentes (capítulo 16).</td><td><span class="tag free">Mesmo modelo</span></td></tr>
   <tr class="grp"><td colspan="3">Imagem</td></tr>
   <tr><td><b>Motor 3D</b><br><span class="small"><code>lib/3d</code> · three.js</span></td><td>Câmera de acumulação, estúdio com luz de área, materiais físicos, aparelhos genéricos modelados em código.</td><td><span class="tag free">Grátis</span></td></tr>
   <tr><td><b>Motor 2D</b><br><span class="small"><code>lib/cena.js</code></span></td><td>Primitivas de motion em canvas: títulos, vidro, pílulas, cursor, celular, transições.</td><td><span class="tag free">Grátis</span></td></tr>
@@ -414,7 +484,7 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
   <tr><td><b>Kokoro-82M</b></td><td>Narração local com vozes de português do Brasil. Apache-2.0, uso comercial liberado.</td><td><span class="tag free">Grátis, local</span></td></tr>
   <tr><td><b>Fish Audio</b></td><td>Modelo gratuito na nuvem (<code>s2.1-pro-free</code>), com biblioteca grande de vozes em português.</td><td><span class="tag free">Grátis, uso justo</span></td></tr>
   <tr><td><b>Whisper + Praat</b></td><td>Filtro às cegas (palavra e tom no fim da frase) e o tempo de cada palavra.</td><td><span class="tag free">Grátis, local</span></td></tr>
-  <tr><td><b>ElevenLabs</b></td><td>Voz de locutor dirigida com marcações de tom (capítulo 17).</td><td><span class="tag pay">Opcional</span></td></tr>
+  <tr><td><b>ElevenLabs</b></td><td>Voz de locutor dirigida com marcações de tom (capítulo 18).</td><td><span class="tag pay">Opcional</span></td></tr>
   <tr class="grp"><td colspan="3">Som e pesquisa</td></tr>
   <tr><td><b>uv + Python</b></td><td>Compõe a trilha em código e faz as medições de áudio.</td><td><span class="tag free">Grátis</span></td></tr>
   <tr><td><b>Miniaturas do YouTube</b></td><td>Leitura de ritmo, quadro e luz de um filme de referência sem baixá-lo.</td><td><span class="tag free">Grátis</span></td></tr>
@@ -433,9 +503,9 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
   <tr><td><code>voz_dirigida.py</code> · <code>trilha_eleven.py</code></td><td>Voz dirigida e música produzida na ElevenLabs (opcionais).</td></tr>
 </table>
 
-<!-- 07 ROTEIRO -->
-<section class="chap"><span class="mk">QQc07QQ</span>
-  <div class="row"><div class="num">07</div><h1>Briefing e roteiro</h1></div>
+<!-- 08 ROTEIRO -->
+<section class="chap"><span class="mk">QQc08QQ</span>
+  <div class="row"><div class="num">08</div><h1>Briefing e roteiro</h1></div>
   <p class="intro">O roteiro decide a maior parte do resultado. Escreva para o ouvido e para o polegar: uma ideia por cena, frases curtas, um gancho que para a rolagem.</p>
 </section>
 <div class="keep"><h3>A estrutura de 30 segundos</h3>
@@ -473,9 +543,9 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 </div>
 <div class="box atencao"><b>Atenção</b><p>Feche o roteiro <b>antes</b> de gerar a voz. E se o roteiro afirma algo sobre o próprio vídeo ("foi programado", "custa zero"), o vídeo cumpre: aqui, cada quadro é renderizado por código.</p></div>
 
-<!-- 08 REFERÊNCIAS -->
-<section class="chap"><span class="mk">QQc08QQ</span>
-  <div class="row"><div class="num">08</div><h1>Pesquisa de referências e as 12 regras</h1></div>
+<!-- 09 REFERÊNCIAS -->
+<section class="chap"><span class="mk">QQc09QQ</span>
+  <div class="row"><div class="num">09</div><h1>Pesquisa de referências e as 12 regras</h1></div>
   <p class="intro">"Quero que pareça caro" vira trabalho quando vira número. Esta etapa transforma a impressão em regras com números de partida, sem baixar nenhum vídeo.</p>
 </section>
 <ol class="steps">
@@ -507,17 +577,17 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 <div class="box dica"><b>Regra de partida</b><p>Os números são o ponto de partida, e o look-dev os afina. Exemplo: num celular com tela legível, f/4 mantém o texto inteiro nítido e ainda separa o fundo.</p></div>
 </div>
 
-<!-- 09 VOZ -->
-<section class="chap"><span class="mk">QQc09QQ</span>
-  <div class="row"><div class="num">09</div><h1>Voz dirigida</h1></div>
+<!-- 10 VOZ -->
+<section class="chap"><span class="mk">QQc10QQ</span>
+  <div class="row"><div class="num">10</div><h1>Voz dirigida</h1></div>
   <p class="intro">Uma narração correta informa; uma narração dirigida convence. O segredo não é o motor: é o processo. Ele vale para a voz gratuita e para a paga.</p>
 </section>
 <div class="box porque"><b>A máquina filtra, o ouvido aprova</b><p>O filtro às cegas (Whisper para as palavras, Praat para o tom no fim da frase) descarta palavra errada e afirmação que termina como pergunta. Naturalidade e emoção são trabalho do ouvido. Por isso o ouvido de uma pessoa dá a palavra final.</p></div>
 <h3>Qual voz usar quando</h3>
 <table>
   <tr><th>Motor</th><th>Destaque</th><th>Custo</th><th>Use para</th></tr>
-  <tr><td><b>Kokoro-82M</b></td><td>Leitura limpa e clara; local; repetível; uso comercial liberado</td><td><span class="tag free">Grátis</span></td><td>Anúncios diretos, demonstrações, aprovar o roteiro, <code>npm run demo</code></td></tr>
-  <tr><td><b>Fish Audio</b> <code>s2.1-pro-free</code></td><td>Mais variação de interpretação; muitas vozes em português; controle frase a frase</td><td><span class="tag free">Grátis, uso justo</span></td><td>Voz com mais cor sem gastar nada</td></tr>
+  <tr><td><b>Kokoro-82M</b></td><td>Voz natural e clara; local, sem conta; repetível; uso comercial liberado</td><td><span class="tag free">Grátis</span></td><td>O anúncio completo sem custo, <code>npm run demo</code>, muitas variações</td></tr>
+  <tr><td><b>Fish Audio</b> <code>s2.1-pro-free</code></td><td>Interpretação expressiva; muitas vozes em português; controle frase a frase</td><td><span class="tag free">Grátis, uso justo</span></td><td>O anúncio completo sem custo, com muitas opções de timbre</td></tr>
   <tr><td><b>ElevenLabs</b> <code>eleven_v3</code></td><td>Interpretação de locutor dirigida com marcações de tom</td><td><span class="tag pay">Opcional</span></td><td>Quando o anúncio pede emoção dirigida frase a frase</td></tr>
 </table>
 <h3>O processo</h3>
@@ -543,9 +613,9 @@ npm run previa -- exemplos/bancada --sem-audio       <span class="c"># prévia d
 <div class="box dica"><b>Vozes nativas soam melhor</b><p>Em português, prefira vozes nativas do idioma: as três do Kokoro são brasileiras, e a Fish Audio tem dezenas. Evite vozes que imitam pessoas reais.</p></div>
 </div>
 
-<!-- 10 NARRAÇÃO NO TEMPO -->
-<section class="chap"><span class="mk">QQc10QQ</span>
-  <div class="row"><div class="num">10</div><h1>Narração no tempo</h1></div>
+<!-- 11 NARRAÇÃO NO TEMPO -->
+<section class="chap"><span class="mk">QQc11QQ</span>
+  <div class="row"><div class="num">11</div><h1>Narração no tempo</h1></div>
   <p class="intro">A técnica central do método: nada no filme tem segundo fixo. Tudo começa numa palavra.</p>
 </section>
 <pre data-t="terminal">uv run scripts/vo_montar.py &lt;pasta-do-filme&gt; voz/&lt;id&gt;/&lt;tomada&gt;.wav --tempo 1.10 --pausa-max 0.36</pre>
@@ -558,9 +628,9 @@ const corte   = wt('ele') - 2 / 60;    <span class="c">// o corte vai dois quadr
 <div class="box atencao"><b>Use o início audível</b><p>O tempo de palavra do Whisper fica de 50 a 235 ms antes do som, com média perto de 140 ms (medido). Para o que precisa bater, use o início medido no áudio, ou <code>t0</code> + 0,10 s.</p></div>
 </div>
 
-<!-- 11 LOOK-DEV -->
-<section class="chap"><span class="mk">QQc11QQ</span>
-  <div class="row"><div class="num">11</div><h1>Look-dev</h1></div>
+<!-- 12 LOOK-DEV -->
+<section class="chap"><span class="mk">QQc12QQ</span>
+  <div class="row"><div class="num">12</div><h1>Look-dev</h1></div>
   <p class="intro">Antes de construir 30 segundos, construa quatro quadros. É o jeito mais barato de responder à pergunta que mais importa num anúncio: isto parece caro?</p>
 </section>
 <figure>
@@ -601,9 +671,9 @@ const corte   = wt('ele') - 2 / 60;    <span class="c">// o corte vai dois quadr
 </table>
 <div class="box dica"><b>Para ir além</b><p>Desgaste e poeira nos objetos metálicos, aresta de vidro com espessura variável e luz rebatida simulada com uma fonte suave sob os objetos aproximam ainda mais o mundo claro de uma fotografia.</p></div>
 
-<!-- 12 3D -->
-<section class="chap"><span class="mk">QQc12QQ</span>
-  <div class="row"><div class="num">12</div><h1>O filme em 3D fotorrealista</h1></div>
+<!-- 13 3D -->
+<section class="chap"><span class="mk">QQc13QQ</span>
+  <div class="row"><div class="num">13</div><h1>O filme em 3D fotorrealista</h1></div>
   <p class="intro">Rasterização comum em three.js, repetida muitas vezes por quadro, com uma coisa diferente a cada vez. A soma dá desfoque de lente, desfoque de movimento e sombra suave de verdade, em qualquer placa com WebGL 2.</p>
 </section>
 <div class="box porque"><b>A ideia: uma câmera que soma</b><p>Uma câmera real não registra um instante nem um ponto: o obturador fica aberto por um tempo, e a luz entra por uma abertura que tem área. A imagem é a média de tudo o que passou. O pipeline (<code>lib/3d/pipeline.js</code>) faz o mesmo: um quadro é a média de <b>192 a 768 renders</b> completos da cena.</p></div>
@@ -667,9 +737,9 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
 </table>
 <p class="small">Escopo do motor: rasterização acumulada, refração em espaço de tela. Os scripts de logo no After Effects (<code>ae/logo3d/</code>) são um ponto de partida opcional; a marca pode ser modelada em three.js ou no Blender, de graça.</p>
 
-<!-- 13 2D -->
-<section class="chap"><span class="mk">QQc13QQ</span>
-  <div class="row"><div class="num">13</div><h1>O filme em 2D</h1></div>
+<!-- 14 2D -->
+<section class="chap"><span class="mk">QQc14QQ</span>
+  <div class="row"><div class="num">14</div><h1>O filme em 2D</h1></div>
   <p class="intro">O motor 2D (<code>lib/cena.js</code>) desenha num canvas e renderiza em poucos minutos. É o caminho mais curto para anúncios de interface com muitas variações.</p>
 </section>
 <table>
@@ -694,9 +764,9 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
 <div class="box atencao"><b>O contrato do render</b><p>Vale para os dois motores. O filme é função pura do tempo. Sem <code>setTimeout</code>, sem <code>Math.random</code>, sem estado entre quadros. Os quadros podem ser pedidos fora de ordem.</p></div>
 </div>
 
-<!-- 14 SOM -->
-<section class="chap"><span class="mk">QQc14QQ</span>
-  <div class="row"><div class="num">14</div><h1>Som: trilha, efeitos e mixagem</h1></div>
+<!-- 15 SOM -->
+<section class="chap"><span class="mk">QQc15QQ</span>
+  <div class="row"><div class="num">15</div><h1>Som: trilha, efeitos e mixagem</h1></div>
   <p class="intro">Todo som que não é voz sai de código, de graça, preso às mesmas palavras que movem a imagem. E o som é medido, não só construído.</p>
 </section>
 <ol class="steps">
@@ -737,9 +807,9 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
   <li>−14 LUFS e pico ≤ −1 dBTP, conferidos</li>
 </ul></div>
 
-<!-- 15 CRÍTICA -->
-<section class="chap"><span class="mk">QQc15QQ</span>
-  <div class="row"><div class="num">15</div><h1>Crítica independente</h1></div>
+<!-- 16 CRÍTICA -->
+<section class="chap"><span class="mk">QQc16QQ</span>
+  <div class="row"><div class="num">16</div><h1>Crítica independente</h1></div>
   <p class="intro">Quem constrói sabe o que quis fazer e tende a ver isso na tela. Por isso, quem constrói não aprova sozinho: a aprovação vem de quem olha com olhos novos.</p>
 </section>
 <table>
@@ -767,9 +837,9 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
 </table>
 <p class="small">Régua: 8 = eu colocaria no ar; 10 = não distingo de um filme de produto de estúdio. Critério de saída: todos os critérios ≥ 8. A rubrica completa está em <code>docs/08-qualidade-e-solucao-de-problemas.md</code>, e a ficha em branco em <code>templates/critica.md</code>.</p>
 
-<!-- 16 RENDER -->
-<section class="chap"><span class="mk">QQc16QQ</span>
-  <div class="row"><div class="num">16</div><h1>Render, variações e entrega</h1></div>
+<!-- 17 RENDER -->
+<section class="chap"><span class="mk">QQc17QQ</span>
+  <div class="row"><div class="num">17</div><h1>Render, variações e entrega</h1></div>
   <p class="intro">A prévia serve para aprovar. O final serve para subir. Entre um e outro, a conferência do arquivo. Os mesmos comandos servem para o 2D e para o 3D.</p>
 </section>
 <table>
@@ -805,14 +875,14 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
   <li>Licença comercial da voz conferida</li>
 </ul></div>
 
-<!-- 17 OPCIONAIS -->
-<section class="chap"><span class="mk">QQc17QQ</span>
-  <div class="row"><div class="num">17</div><h1>Serviços opcionais para ir além</h1></div>
-  <p class="intro">O caminho gratuito entrega o anúncio completo. Se quiser ir além numa etapa, troque só ela: o 3D, a sincronia, a mixagem e o render continuam iguais, e gratuitos.</p>
+<!-- 18 OPCIONAIS -->
+<section class="chap"><span class="mk">QQc18QQ</span>
+  <div class="row"><div class="num">18</div><h1>Serviços opcionais para ir além</h1></div>
+  <p class="intro">O caminho gratuito entrega o anúncio completo. Se quiser ir além numa etapa, troque só ela: o 3D, a sincronia, a mixagem e o render continuam iguais, e gratuitos. E experimente antes no plano gratuito da ElevenLabs (capítulo 3).</p>
 </section>
 <table>
   <tr><th>Serviço</th><th>Etapa</th><th>O que acrescenta</th><th>Plano para anúncio</th></tr>
-  <tr><td><b>ElevenLabs</b></td><td>Voz</td><td>Voz de locutor com marcações de tom, ênfase e pausa; vozes nativas em português</td><td>Starter, a partir de US$ 5 por mês</td></tr>
+  <tr><td><b>ElevenLabs</b></td><td>Voz</td><td>Voz de locutor com marcações de tom, ênfase e pausa; vozes nativas em português</td><td>Starter, a partir de US$ 6 por mês</td></tr>
   <tr><td><b>ElevenLabs Music</b></td><td>Trilha</td><td>Música produzida, alinhada à fala por <code>trilha_eleven.py</code></td><td>Conforme o plano</td></tr>
   <tr><td><b>Claude</b></td><td>Agente</td><td>Mais rapidez e autonomia em tarefas longas</td><td>Pro, Max ou API</td></tr>
 </table>
@@ -821,7 +891,7 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
 <h3 style="margin-top:0">Quanto custa uma narração dirigida</h3>
 <table>
   <tr><th>Item</th><th>Valor</th></tr>
-  <tr><td>Plano Starter</td><td>US$ 5 por mês, 30 mil créditos</td></tr>
+  <tr><td>Plano Starter</td><td>A partir de US$ 6 por mês, 30 mil créditos</td></tr>
   <tr><td>Roteiro de A bancada com marcações</td><td>547 caracteres por geração (1 crédito cada no <code>eleven_v3</code>)</td></tr>
   <tr><td>Uma geração completa</td><td>menos de 2% do plano</td></tr>
 </table>
@@ -834,11 +904,11 @@ node lib/3d/render.mjs --film exemplos/bancada --contrast   <span class="c"># co
 </div>
 <pre data-t="terminal">uv run scripts/voz_dirigida.py amostras &lt;voice_id&gt; ana --id c01 --roteiros roteiros/roteiros.json
 uv run scripts/voz_dirigida.py bloco c01 &lt;voice_id&gt; ana --modelo eleven_v3 --tomadas 5 --roteiros roteiros/roteiros.json</pre>
-<div class="box dica"><b>Três recomendações</b><p>Prefira uma voz nativa do português, da biblioteca da ElevenLabs. Aprove de ouvido as duas melhores tomadas. Use um plano com uso comercial (o gratuito da ElevenLabs não permite anúncio). A chave fica no <code>.env</code>, que nunca vai para o repositório.</p></div>
+<div class="box dica"><b>Três recomendações</b><p>Prefira uma voz nativa do português, da biblioteca da ElevenLabs. Aprove de ouvido as duas melhores tomadas. Teste o tom de graça no plano gratuito e assine um plano com uso comercial só para veicular. A chave fica no <code>.env</code>, que nunca vai para o repositório.</p></div>
 
-<!-- 18 SKILLS -->
-<section class="chap"><span class="mk">QQc18QQ</span>
-  <div class="row"><div class="num">18</div><h1>Skills e como pedir ao agente</h1></div>
+<!-- 19 SKILLS -->
+<section class="chap"><span class="mk">QQc19QQ</span>
+  <div class="row"><div class="num">19</div><h1>Skills e como pedir ao agente</h1></div>
   <p class="intro">Skills são pacotes de instruções que o agente carrega quando a tarefa pede. Não dependem do modelo, então funcionam igual com o modelo aberto no Ollama. Nenhuma é obrigatória.</p>
 </section>
 <table>
@@ -854,9 +924,9 @@ uv run scripts/voz_dirigida.py bloco c01 &lt;voice_id&gt; ana --modelo eleven_v3
 <pre data-t="pedido: voz">Roteiro aprovado. Siga docs/12-voz-dirigida.md: gere amostras de tom só do gancho e do CTA com as três vozes do Kokoro. Não gere o roteiro inteiro antes de eu escolher uma.</pre>
 <pre data-t="pedido: crítica independente (para um agente novo)">Você é crítico e não construiu este filme. Avalie entrega/previas/a01-previa.mp4 com a rubrica de docs/08-qualidade-e-solucao-de-problemas.md. Meça o que puder medir. Devolva a avaliação por critério e uma lista de ajustes com números. Não elogie.</pre>
 
-<!-- 19 FUNDAMENTOS -->
-<section class="chap"><span class="mk">QQc19QQ</span>
-  <div class="row"><div class="num">19</div><h1>Fundamentos</h1></div>
+<!-- 20 FUNDAMENTOS -->
+<section class="chap"><span class="mk">QQc20QQ</span>
+  <div class="row"><div class="num">20</div><h1>Fundamentos</h1></div>
   <p class="intro">As regras do método vêm de estudos de animação, aprendizagem, computação gráfica e áudio. Saber o porquê ajuda a decidir quando uma regra pode ceder.</p>
 </section>
 <div class="keep"><table>
@@ -946,8 +1016,9 @@ uv run scripts/voz_dirigida.py bloco c01 &lt;voice_id&gt; ana --tomadas 5 --rote
   <tr><td><b>Kokoro-82M</b></td><td>Apache-2.0</td><td>Uso comercial permitido</td></tr>
   <tr><td><b>Ollama, Qwen3-Coder, gpt-oss</b></td><td>MIT · Apache-2.0</td><td>Locais e gratuitos</td></tr>
   <tr><td><b>HDRI, texturas, fontes do 3D</b></td><td>CC0 e SIL OFL</td><td>Poly Haven, ambientCG, Google Fonts</td></tr>
-  <tr><td><b>Fish Audio gratuito</b></td><td>Uso justo</td><td>Confira os termos antes de veicular</td></tr>
-  <tr><td><b>ElevenLabs</b> (opcional)</td><td>Starter, US$ 5 por mês</td><td>O plano gratuito não permite uso comercial</td></tr>
+  <tr><td><b>Fish Audio gratuito</b></td><td>Conta gratuita, <code>s2.1-pro-free</code></td><td>Confira os termos antes de veicular</td></tr>
+  <tr><td><b>ElevenLabs gratuito</b> (opcional)</td><td>Cerca de 10 mil créditos por mês</td><td>Para testar: uso não comercial, com atribuição</td></tr>
+  <tr><td><b>ElevenLabs Starter</b> (opcional)</td><td>A partir de US$ 6 por mês</td><td>Inclui licença comercial</td></tr>
 </table>
 <div class="box porque"><b>Boas práticas de publicação</b><p>Mantenha material de cliente, áudio, vídeo e chaves fora de repositório público. Use vozes que não imitam pessoas reais. Siga as políticas de conteúdo gerado por IA da plataforma de anúncios. O guia mede o arquivo entregue e o processo; o desempenho de veiculação depende da campanha.</p></div>
 

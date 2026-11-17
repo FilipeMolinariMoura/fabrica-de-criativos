@@ -145,7 +145,7 @@ A especificação de entrega está no [capítulo 8](08-qualidade-e-solucao-de-pr
 
 ## 1.11 Quanto tempo leva
 
-Estes números foram tomados numa máquina só (Apple M1 Pro, 16 GB, GPU integrada). Servem de ordem de grandeza.
+Os números abaixo são de uma máquina de exemplo, um notebook com Apple M1 Pro, 16 GB e GPU integrada. Servem de ordem de grandeza em qualquer sistema.
 
 | Trabalho | Tempo | Natureza do dado |
 |---|---|---|

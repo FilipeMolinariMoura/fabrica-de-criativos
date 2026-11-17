@@ -80,5 +80,6 @@ achado a partir da pasta do projeto). Dois cuidados ficam com quem chama, e o `f
 
 - `--film` vira caminho de URL dentro do `render.mjs`: passe com barras normais (`exemplos/demo`, nunca
   `exemplos\demo`) e relativo à raiz do repositório;
-- o `render.mjs` só liga a GPU sozinho no macOS (Metal). Para os filmes 2D isso não importa; os filmes 3D da
-  fábrica usam `lib/3d/render.mjs`, que escolhe a GPU por sistema (`lib/3d/gpu.mjs`).
+- o `render.mjs` do vendor escolhe a GPU por conta própria no macOS (Metal) e usa o padrão do Chromium nos
+  outros sistemas. Para os filmes 2D isso basta; os filmes 3D da fábrica usam `lib/3d/render.mjs`, que escolhe
+  a GPU de cada sistema (Windows, macOS e Linux) pelo `lib/3d/gpu.mjs`.

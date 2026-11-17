@@ -6,7 +6,7 @@ Num anúncio, a voz é o que faz a pessoa do outro lado **sentir** alguma coisa.
 
 O método cabe numa frase: **dirija a voz com marcações de tom, aprove o tom em amostras curtas antes de gerar o roteiro inteiro, e deixe o ouvido de uma pessoa dar a palavra final.**
 
-O processo vale para qualquer motor. Com as vozes gratuitas (Kokoro, local, e Fish Audio) ele custa R$ 0, e a [seção 12.8](#128-e-na-trilha-gratuita) mostra o passo a passo. Os exemplos com marcações de tom usam a ElevenLabs, um serviço opcional para quem quer interpretação de locutor.
+O processo vale para qualquer motor. Com as vozes gratuitas (Kokoro, local, e Fish Audio) ele custa R$ 0 e entrega narração muito boa, e a [seção 12.8](#128-e-na-trilha-gratuita) mostra o passo a passo. Os exemplos com marcações de tom usam a ElevenLabs, um serviço opcional para quem quer direção de locutor; o plano gratuito dela basta para experimentar ([seção 3.11](03-trilha-gratuita.md#311-contas-gratuitas-passo-a-passo)).
 
 ## 12.1 A máquina filtra, o ouvido aprova
 
@@ -155,19 +155,19 @@ Para o resultado mais natural, escolha uma **voz brasileira nativa** da bibliote
 
 ## 12.5 Qual motor usar quando
 
-Avaliação de ouvido, em português do Brasil, em novembro de 2026.
+Avaliação de ouvido, em português do Brasil, em novembro de 2026. Todos os motores abaixo deram narrações boas; a escolha depende do anúncio e do orçamento.
 
 | Motor | Ponto forte | Custo | Use para |
 |---|---|---|---|
-| **Kokoro-82M** | Leitura limpa e correta; roda local; repetível; licença permite uso comercial | Grátis | Rascunho, aprovação de roteiro, `npm run demo`, anúncios em que a imagem é a protagonista |
-| **Fish Audio** `s2.1-pro-free` | Mais expressivo que o Kokoro; biblioteca grande de vozes em português | Grátis, com uso justo | Trilha gratuita com mais cor na voz; frase a frase onde precisar de controle fino |
-| **ElevenLabs** `eleven_v3`, dirigido | Obedece às marcações de tom; timbre de estúdio; sementes repetíveis | Pago | A voz principal de um anúncio |
-| **ElevenLabs** `eleven_multilingual_v2` expressivo | Estável; responde muito bem à pontuação | Pago | Segunda voz, fecho, variações |
-| **ElevenLabs** modo diálogo | Duas vozes numa geração, com troca natural | Pago | Diálogo de verdade, com direção por fala |
+| **Kokoro-82M** | Voz natural e clara; roda local, sem conta; repetível; licença permite uso comercial | Grátis | O anúncio completo sem custo, `npm run demo`, aprovação de roteiro, muitas variações |
+| **Fish Audio** `s2.1-pro-free` | Interpretação expressiva; biblioteca grande de vozes em português do Brasil | Grátis, com conta gratuita | O anúncio completo sem custo, com muitas opções de timbre; frase a frase onde precisar de controle fino |
+| **ElevenLabs** `eleven_v3`, dirigido | Obedece às marcações de tom; timbre de estúdio; sementes repetíveis | Plano gratuito para testar; pago para veicular | Quando você quer direção de locutor frase a frase |
+| **ElevenLabs** `eleven_multilingual_v2` expressivo | Estável; responde muito bem à pontuação | Plano gratuito para testar; pago para veicular | Segunda voz, fecho, variações |
+| **ElevenLabs** modo diálogo | Duas vozes numa geração, com troca natural | Plano gratuito para testar; pago para veicular | Diálogo com direção por fala |
 
 Dicas para tirar o melhor de cada um:
 
-- **Kokoro:** não sobe o tom em pergunta por conta própria; prefira roteiros com afirmações curtas.
+- **Kokoro:** brilha em afirmações curtas e firmes; dirija pela pontuação (reticências, dois-pontos, exclamação) e ouça as três vozes no gancho antes de escolher.
 - **Fish Audio:** em textos longos, gere frase a frase e escolha às cegas; estrangeirismos ficam melhores com grafia fonética.
 - **ElevenLabs:** sempre com direção (marcações, `language_code` e sementes). As tomadas variam entre si, e é por isso que o processo gera várias.
 
@@ -186,7 +186,8 @@ Boas práticas ao emendar vozes:
 
 | Item | Valor |
 |---|---|
-| Plano | ElevenLabs Starter, US$ 5 por mês, 30 mil créditos |
+| Plano gratuito | cerca de 10 mil créditos por mês, para testar (uso não comercial, com atribuição) |
+| Plano | ElevenLabs Starter, a partir de US$ 6 por mês, 30 mil créditos |
 | Preço no `eleven_v3` | 1 crédito por caractere |
 | Uma geração completa do roteiro dirigido de A bancada | 547 caracteres (435 da voz 1 e 112 da voz 2) |
 | Processo completo deste capítulo | sete amostras de 10 s e oito tomadas completas: menos de 6 mil caracteres |
@@ -200,13 +201,13 @@ O kit registra os caracteres de cada chamada em `voz/caracteres.log`. Some antes
 
 O processo é o mesmo, com as alavancas que cada motor oferece.
 
-1. **Amostras de tom:** o gancho e o CTA em três ou quatro vozes da biblioteca da Fish Audio, e nas três do Kokoro.
+1. **Amostras de tom:** o gancho e o CTA em três ou quatro vozes da biblioteca da Fish Audio, e nas três do Kokoro. Custa zero e leva minutos.
 2. **Direção por pontuação:** reticências, dois-pontos, perguntas. É a direção que esses motores entendem.
 3. **Roteiro que ajuda a voz:** frases curtas, uma pergunta a cada três ou quatro frases ([capítulo 7](07-roteiro-e-copy.md)).
 4. **Frase a frase onde a voz pedir**, e em bloco no restante.
 5. **Ouvido no fim**, igual.
 
-O resultado é uma narração clara e correta, de custo zero. Quando a voz for o centro do anúncio, a trilha paga dá a camada extra de emoção.
+O resultado é uma narração muito boa, de custo zero, pronta para o anúncio. A ElevenLabs entra como opção para ir além, quando você quiser dirigir a voz como um locutor de estúdio, com marcações de tom.
 
 ## 12.9 Ética e licença
 

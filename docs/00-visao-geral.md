@@ -20,6 +20,8 @@ Cada etapa do método tem um caminho gratuito, com software livre e modelos de I
 | Render, mixagem e entrega | Chromium + FFmpeg, 1080×1920, 60 fps, −14 LUFS | R$ 0 |
 | **Total** | | **R$ 0** |
 
+Nenhuma etapa pede cartão de crédito. Os serviços na nuvem que o kit usa ou sugere (Fish Audio, ElevenLabs, OpenRouter, GitHub) têm conta gratuita, e a [seção 3.11](03-trilha-gratuita.md#311-contas-gratuitas-passo-a-passo) ensina a criar cada uma, clique a clique.
+
 O comando `npm run demo` percorre exatamente esse caminho e entrega um anúncio pronto em poucos minutos. O passo a passo, da instalação ao MP4, está no [capítulo 3](03-trilha-gratuita.md). Se um dia você quiser voz de locutor profissional ou música produzida, troque só essa etapa por um serviço pago: o [capítulo 4](04-trilha-paga.md) mostra como, e o resto do método continua igual.
 
 ## 0.2 O problema que ele resolve
@@ -70,7 +72,7 @@ Os dois obedecem ao mesmo contrato do render e usam a mesma sincronia pela palav
 | Disco | De 3 a 5 GB para as ferramentas e os modelos de IA |
 | Conhecimento | Copiar e colar comandos no terminal. Para criar cenas novas, um agente de IA escreve o código seguindo este manual |
 
-Um instalador por sistema coloca tudo no lugar (Node.js, FFmpeg, uv, o navegador de render e o Whisper), e `npm run verificar` confere o resultado. As versões testadas estão no [capítulo 2](02-ferramentas.md#22-versões-testadas) e a instalação passo a passo no [capítulo 3](03-trilha-gratuita.md).
+Um instalador por sistema coloca tudo no lugar (Node.js, FFmpeg, uv, o navegador de render e o Whisper), e `npm run verificar` confere o resultado. As versões de referência estão no [capítulo 2](02-ferramentas.md#22-versões-de-referência) e a instalação passo a passo no [capítulo 3](03-trilha-gratuita.md).
 
 ## 0.7 Escopo
 

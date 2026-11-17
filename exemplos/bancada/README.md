@@ -81,7 +81,7 @@ node lib/3d/render.mjs --film exemplos/bancada --range 0:35 --fps 60 --spp 192 -
 `window.ACABAMENTO` no `index.html` (ou `--q "acabamento=limpo"`) desliga grão, vinheta, halação e
 aberração para uma finalização externa; `--limpo <arquivo>` grava esse master junto, do mesmo render.
 
-## Tempo de render (Apple M1 Pro, 16 GB)
+## Tempo de render (exemplo: notebook com Apple M1 Pro, 16 GB)
 
 | | Quadros | Render por quadro | Total |
 |---|---|---|---|
